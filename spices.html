@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Royal Spice Collection | Hamsa Masala</title>
+    <meta name="description"
+        content="Explore our royal collection of authentic Persian blended masalas, whole spices, and luxury spice blends handcrafted from ancient royal traditions.">
+    <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="catalog.css?v=14">
+</head>
+
+<body>
+
+    <!-- Sticky Top Header -->
+    <header class="top-header">
+        <div style="display: flex; align-items: center; gap: 14px;">
+            <a href="index.html" class="back-btn" aria-label="Back to Home"><i class="fas fa-arrow-left"></i></a>
+            <a href="index.html" class="logo" aria-label="Hamsa Masala">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
+            </a>
+        </div>
+
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="spices.html" class="active">Spices</a>
+            <a href="heritage.html">Heritage</a>
+        </nav>
+
+        <div class="header-icons">
+            <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()"><i
+                    class="fas fa-search"></i></button>
+            <button type="button" class="icon-btn cart-btn" id="open-cart-btn" aria-label="Shopping Cart"
+                onclick="openCartDrawer()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </button>
+            <button type="button" class="icon-btn menu-btn" id="open-menu-btn" aria-label="Menu"
+                onclick="openMenuDrawer()"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Royal Dark Green Header Banner with Hero Image Background -->
+    <section class="catalog-banner">
+        <div class="catalog-banner-overlay"></div>
+        <div class="catalog-banner-inner">
+            <div class="banner-motif"><i class="fas fa-crown"></i> &bull; ✦ &bull; <i class="fas fa-leaf"></i></div>
+            <h1 class="catalog-title">Our Royal Spice Collection</h1>
+            <p class="catalog-subtitle">Centuries of artisanal Persian mastery. Every blend is freshly roasted,
+                handmade, and infused with rare Silk Route spices.</p>
+        </div>
+    </section>
+
+    <!-- Transition Divider 1 -->
+    <div class="divider div-1">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d="M0,0 C300,100 600,150 900,50 C1200,-50 1440,80 1440,80 L1440,120 L0,120 Z" fill="#F4F0E6"></path>
+        </svg>
+    </div>
+
+    <!-- Search & Filter Controls Section -->
+    <section class="catalog-controls">
+        <div class="controls-container">
+            <!-- Search Bar -->
+            <div class="search-wrapper">
+                <div class="search-input-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="spice-search-input"
+                        placeholder="Search royal spices (e.g. Biryani, Boti Delight, Turkish Shank, Sweet)..."
+                        autocomplete="off">
+                    <button id="clear-search-btn" class="clear-search-btn" aria-label="Clear Search"><i
+                            class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <!-- Filter Pills & Sort Dropdown -->
+            <div class="filter-sort-bar">
+                <div class="filter-pills" id="category-pills">
+                    <button class="filter-pill active" data-category="all" onclick="filterCatalogCategory('all', this)">All Spices</button>
+                    <button class="filter-pill" data-category="blended" onclick="filterCatalogCategory('blended', this)">Royal Biryanis &amp; Gravies</button>
+                    <button class="filter-pill" data-category="royal" onclick="filterCatalogCategory('royal', this)">Gourmet Sweets &amp; Royal</button>
+                </div>
+
+                <div class="sort-wrapper">
+                    <label for="sort-select" class="sort-label">Sort by:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Results Meta Info -->
+            <div class="results-info-row">
+                <span id="results-count-text">Showing <strong id="results-count">8</strong> handcrafted royal
+                    specialties</span>
+                <span style="color: var(--color-accent); font-weight: 500;"><i class="fas fa-truck-fast"></i> Free
+                    Delivery above ₹499</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="catalog-grid-section">
+        <div class="catalog-grid-container">
+            <div class="product-grid" id="product-grid">
+
+                <!-- Product 1: Lazeez - Dum - Biryani -->
+                <div class="product-card" data-id="lazeez-dum"
+                    data-name="Lazeez - Dum - Biryani Royal Persian-Mughal Spice Blend" data-category="blended"
+                    data-price="249" data-rating="4.9">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('lazeez-dum')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'lazeez-dum')" aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #E2B66B; color: #0F2C24;">Imperial Dum
+                            Biryani</span>
+                        <img src="assets/lazeez-dum-biryani.png" alt="Lazeez - Dum - Biryani" class="card-img"
+                            loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('lazeez-dum')">
+                        <h3 class="card-title">Lazeez - Dum - Biryani</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹249</span>
+                            <span class="orig-price-val">₹299</span>
+                            <span class="weight-val">60g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">4.9</span>
+                                <span class="review-count">(1.8K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Lazeez - Dum - Biryani', 249, 'assets/lazeez-dum-biryani.png', 1, '60g')"
+                                aria-label="Add Lazeez - Dum - Biryani to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Original - Classic - Biryani -->
+                <div class="product-card" data-id="classic-biryani"
+                    data-name="Original - Classic - Biryani Royal Persian-Mughal Spice Blend" data-category="blended"
+                    data-price="249" data-rating="4.8">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('classic-biryani')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'classic-biryani')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge">Bestseller</span>
+                        <img src="assets/original-classic-biryani.png" alt="Original - Classic - Biryani"
+                            class="card-img" loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('classic-biryani')">
+                        <h3 class="card-title">Original - Classic - Biryani</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹249</span>
+                            <span class="orig-price-val">₹299</span>
+                            <span class="weight-val">60g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">4.8</span>
+                                <span class="review-count">(2.1K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Original - Classic - Biryani', 249, 'assets/original-classic-biryani.png', 1, '60g')"
+                                aria-label="Add Original - Classic - Biryani to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Raaz-e-Kalimiri Biryani -->
+                <div class="product-card" data-id="raaz-e-kalimiri"
+                    data-name="Raaz-e-Kalimiri Biryani Royal Persian-Mughal Spice Blend" data-category="blended"
+                    data-price="249" data-rating="4.9">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('raaz-e-kalimiri')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'raaz-e-kalimiri')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #E2B66B; color: #0F2C24;">Prized Pepper Blend</span>
+                        <img src="assets/raaz-e-kalimiri-biryani.png" alt="Raaz-e-Kalimiri Biryani" class="card-img"
+                            loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('raaz-e-kalimiri')">
+                        <h3 class="card-title">Raaz-e-Kalimiri Biryani</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹249</span>
+                            <span class="orig-price-val">₹299</span>
+                            <span class="weight-val">60g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">4.9</span>
+                                <span class="review-count">(1.5K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Raaz-e-Kalimiri Biryani', 249, 'assets/raaz-e-kalimiri-biryani.png', 1, '60g')"
+                                aria-label="Add Raaz-e-Kalimiri Biryani to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Turkish Lamb Shank Gravy -->
+                <div class="product-card" data-id="turkish-lamb-shank"
+                    data-name="Turkish Lamb Shank Gravy Instant Masala" data-category="blended" data-price="299"
+                    data-rating="4.9">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('turkish-lamb-shank')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'turkish-lamb-shank')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #C44536; color: #FFF;">Royal Turkish Gravy</span>
+                        <img src="assets/turkish-lamb-shank.png" alt="Turkish Lamb Shank Gravy" class="card-img"
+                            loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('turkish-lamb-shank')">
+                        <h3 class="card-title">Turkish Lamb Shank Gravy</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹299</span>
+                            <span class="orig-price-val">₹349</span>
+                            <span class="weight-val">100g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">4.9</span>
+                                <span class="review-count">(1.4K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Turkish Lamb Shank Gravy', 299, 'assets/turkish-lamb-shank.png', 1, '100g')"
+                                aria-label="Add Turkish Lamb Shank Gravy to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Boti Delight - Behruz Gravy Instant Masala -->
+                <div class="product-card" data-id="boti-delight" data-name="Boti Delight Behruz Gravy Instant Masala"
+                    data-category="blended" data-price="279" data-rating="4.9">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('boti-delight')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'boti-delight')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #A83232; color: #FFF;">Instant Gravy Masala</span>
+                        <img src="assets/boti-delight.png" alt="Boti Delight - Behruz Gravy Instant Masala"
+                            class="card-img" loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('boti-delight')">
+                        <h3 class="card-title">Boti Delight Gravy Masala</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹279</span>
+                            <span class="orig-price-val">₹329</span>
+                            <span class="weight-val">100g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">4.9</span>
+                                <span class="review-count">(1.9K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Boti Delight - Behruz Gravy Instant Masala', 279, 'assets/boti-delight.png', 1, '100g')"
+                                aria-label="Add Boti Delight to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Shabnami Murg Lababdar Gravy -->
+                <div class="product-card" data-id="murg-lababdar"
+                    data-name="Shabnami Murg Lababdar Gravy Instant Masala" data-category="blended" data-price="289"
+                    data-rating="4.9">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('murg-lababdar')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'murg-lababdar')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #C44536; color: #FFF;">Persian Lababdar Gravy</span>
+                        <img src="assets/murg-lababdar.png" alt="Shabnami Murg Lababdar Gravy" class="card-img"
+                            loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('murg-lababdar')">
+                        <h3 class="card-title">Shabnami Murg Lababdar</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹289</span>
+                            <span class="orig-price-val">₹339</span>
+                            <span class="weight-val">100g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">4.9</span>
+                                <span class="review-count">(1.6K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Shabnami Murg Lababdar Gravy', 289, 'assets/murg-lababdar.png', 1, '100g')"
+                                aria-label="Add Shabnami Murg Lababdar to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7: Mukhmali Murg Kalimiri Gravy Masala -->
+                <div class="product-card" data-id="murg-kalimiri" data-name="Mukhmali Murg Kalimiri Gravy Masala"
+                    data-category="blended" data-price="279" data-rating="4.9">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('murg-kalimiri')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'murg-kalimiri')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #2E5A44; color: #FFF;">Velvety Kalimiri
+                            Special</span>
+                        <img src="assets/murg-kalimiri.png" alt="Mukhmali Murg Kalimiri Gravy Masala" class="card-img"
+                            loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('murg-kalimiri')">
+                        <h3 class="card-title">Mukhmali Murg Kalimiri</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹279</span>
+                            <span class="orig-price-val">₹329</span>
+                            <span class="weight-val">100g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">4.9</span>
+                                <span class="review-count">(1.3K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Mukhmali Murg Kalimiri Gravy Masala', 279, 'assets/murg-kalimiri.png', 1, '100g')"
+                                aria-label="Add Mukhmali Murg Kalimiri to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8: Ruz-Bi-Haleebia (Persian Sweet) -->
+                <div class="product-card" data-id="ruz-bi-haleebia"
+                    data-name="Ruz-Bi-Haleebia Persian Sweet Saffron Rosewater" data-category="royal" data-price="329"
+                    data-rating="5.0">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('ruz-bi-haleebia')">
+                        <div class="persian-corner-top-left"></div>
+                        <div class="persian-corner-top-right"></div>
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'ruz-bi-haleebia')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #E2B66B; color: #0F2C24;">Gourmet Persian
+                            Sweet</span>
+                        <img src="assets/ruz-bi-haleebia.png" alt="Ruz-Bi-Haleebia (Persian Sweet)" class="card-img"
+                            loading="lazy" style="object-fit: contain; padding: 6px;">
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('ruz-bi-haleebia')">
+                        <h3 class="card-title">Ruz-Bi-Haleebia (Persian Sweet)</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹329</span>
+                            <span class="orig-price-val">₹389</span>
+                            <span class="weight-val">100g</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">5.0</span>
+                                <span class="review-count">(2.4K)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Ruz-Bi-Haleebia (Persian Sweet)', 329, 'assets/ruz-bi-haleebia.png', 1, '100g')"
+                                aria-label="Add Ruz-Bi-Haleebia to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Transition Divider to Footer -->
+    <div class="divider div-3" style="background: var(--color-cream);">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d="M0,0 C400,80 800,150 1440,20 L1440,120 L0,120 Z" fill="#0F2C24"></path>
+        </svg>
+    </div>
+
+    <!-- Quote & Footer Section -->
+    <section class="footer-section" id="heritage">
+        <div class="quote-box">
+            <div class="quote-icon">“</div>
+            <p class="quote-text">"Where fragrant spices whisper stories of old Isfahan, bringing centuries of royal
+                feasts directly to your dinner table."</p>
+            <p class="quote-author">THE MASTER BLENDER &bull; TEHRAN TO THE WORLD</p>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-logo-wrapper">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="footer-logo-img">
+            </div>
+            <p class="footer-desc">Curating rare royal spices and traditional artisanal blends since 1928.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Toast Notification -->
+    <div id="cart-toast" class="cart-toast">
+        <img id="toast-img" src="assets/hamsa-logo.svg" alt="Product" class="cart-toast-thumb">
+        <div class="cart-toast-text">
+            <strong id="toast-title">Added to Cart!</strong>
+            <span id="toast-subtitle">₹249 &bull; Pack added</span>
+        </div>
+        <a href="javascript:void(0)" class="cart-toast-link" onclick="openCartDrawer()">View Cart &rarr;</a>
+    </div>
+
+    <!-- Slide-out Cart Drawer -->
+    <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCartDrawer(event)">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-drawer-header">
+                <div class="cart-drawer-brand">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="cart-brand-logo-img">
+                    <h3>Royal Shopping Bag (<span id="cart-drawer-count">0</span>)</h3>
+                </div>
+                <button class="close-cart-btn" onclick="closeCartDrawer()" aria-label="Close Cart"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-free-shipping-bar" id="cart-shipping-bar">
+                <div class="shipping-progress-text" id="shipping-progress-text">
+                    <i class="fas fa-truck-fast"></i> Add <strong>₹499</strong> more for <strong>Free Royal
+                        Delivery</strong>
+                </div>
+                <div class="shipping-progress-track">
+                    <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="cart-drawer-body" id="cart-drawer-items"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="checkout-btn" onclick="handleProceedToCheckout()">PROCEED TO CHECKOUT &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication (Login / Signup OTP Modal) -->
+    <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
+        <div class="auth-modal-card" onclick="event.stopPropagation()">
+            <button class="auth-close-btn" onclick="closeAuthModal()" aria-label="Close Modal">&times;</button>
+            <div class="auth-header">
+                <div class="auth-brand-emblem">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="auth-brand-logo-img">
+                </div>
+                <h3 class="auth-title">Hamsa Masala</h3>
+                <p class="auth-subtitle">Quick verification via WhatsApp to complete your royal order</p>
+            </div>
+
+            <!-- Step 1: Phone Input & Send OTP -->
+            <div id="auth-phone-step" class="auth-step-pane">
+                <label class="auth-field-label">Enter WhatsApp Mobile Number</label>
+                <div class="phone-input-group">
+                    <span class="country-code">+91</span>
+                    <input type="tel" id="auth-mobile-input" placeholder="Enter 10-digit number" maxlength="10"
+                        autocomplete="tel">
+                </div>
+                <div id="auth-phone-error" class="auth-error-msg" style="display: none;"></div>
+
+                <button type="button" class="auth-whatsapp-btn" onclick="sendAuthOTP('whatsapp')">
+                    <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Send OTP on WhatsApp
+                </button>
+            </div>
+
+            <!-- Step 2: 4-digit OTP Screen -->
+            <div id="auth-otp-step" class="auth-step-pane" style="display: none;">
+                <p class="otp-instruction">
+                    Enter the 4-digit code sent to <br>
+                    <strong id="auth-display-phone">+91 98765 43210</strong>
+                    <button type="button" class="change-phone-btn" onclick="backToPhoneStep()">(Change)</button>
+                </p>
+                <div class="otp-inputs-row">
+                    <input type="text" class="otp-digit" id="otp-1" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, 'otp-2', '')">
+                    <input type="text" class="otp-digit" id="otp-2" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, 'otp-3', 'otp-1')">
+                    <input type="text" class="otp-digit" id="otp-3" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, 'otp-4', 'otp-2')">
+                    <input type="text" class="otp-digit" id="otp-4" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, '', 'otp-3')">
+                </div>
+                <div class="otp-hint-note">
+                    <i class="fas fa-key"></i> Demo Verification: Enter any 4 digits (e.g., <strong>1234</strong>)
+                </div>
+                <div id="auth-otp-error" class="auth-error-msg" style="display: none; text-align: center;"></div>
+                <button type="button" class="auth-verify-btn" onclick="verifyOTP()">
+                    VERIFY &amp; CONTINUE &rarr;
+                </button>
+                <div class="resend-otp-row">
+                    Didn't receive code? <button type="button" onclick="resendOTP()">Resend OTP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openRoyalProduct(id) {
+            localStorage.setItem('hamsa_selected_product_id', id);
+            sessionStorage.setItem('hamsa_selected_product_id', id);
+            window.location.href = 'product.html?id=' + encodeURIComponent(id) + '#' + encodeURIComponent(id);
+        }
+    </script>
+    <script src="script.js?v=12"></script>
+</body>
+
+</html>

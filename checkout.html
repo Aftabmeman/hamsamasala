@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout & Address | Hamsa Masala</title>
+    <meta name="description" content="Secure checkout for your authentic Hamsa Masala spices. Fast delivery via Delhivery.">
+    <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="style.css?v=14">
+    <!-- Catalog & Checkout Styles -->
+    <link rel="stylesheet" href="catalog.css?v=14">
+</head>
+<body>
+
+    <!-- Sticky Royal Header -->
+    <header class="top-header">
+        <div class="header-left">
+            <a href="javascript:history.back()" class="back-btn" aria-label="Go Back">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <a href="index.html" class="logo" aria-label="Hamsa Masala">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
+            </a>
+        </div>
+
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="spices.html">Our Spices</a>
+            <a href="heritage.html">Heritage</a>
+        </nav>
+
+        <div class="header-right" style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; color: var(--color-gold); font-size: 0.85rem; font-weight: 600; background: rgba(226,182,107,0.12); padding: 8px 14px; border-radius: 20px; border: 1px solid rgba(226,182,107,0.3);">
+                <i class="fas fa-shield-halved"></i> 100% Secure Checkout
+            </div>
+            <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()"><i class="fas fa-search"></i></button>
+            <button type="button" class="icon-btn menu-btn" id="open-menu-btn" aria-label="Menu" onclick="openMenuDrawer()"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Main Checkout Wrapper -->
+    <main class="checkout-wrapper">
+        <div class="checkout-container">
+
+            <!-- Checkout Header & Step Progress Indicator -->
+            <div class="checkout-header-bar">
+                <h1 class="checkout-page-title">Royal Feast Checkout</h1>
+                <div class="checkout-steps-indicator">
+                    <span class="checkout-step done"><i class="fas fa-circle-check"></i> Bag</span>
+                    <i class="fas fa-chevron-right" style="font-size: 0.7rem; color: #aaa;"></i>
+                    <span class="checkout-step active"><i class="fas fa-circle-dot"></i> Shipping &amp; Payment</span>
+                    <i class="fas fa-chevron-right" style="font-size: 0.7rem; color: #aaa;"></i>
+                    <span class="checkout-step"><i class="far fa-circle"></i> Confirmation</span>
+                </div>
+            </div>
+
+            <!-- Two-Column Layout -->
+            <div class="checkout-main-grid">
+
+                <!-- Left Column: Shipping Address & Payment Selection -->
+                <div class="checkout-left-col">
+
+                    <!-- Section 1: Shipping Address Form -->
+                    <div class="checkout-section-card">
+                        <div class="checkout-card-header">
+                            <span class="card-step-badge">1</span>
+                            <h2 class="checkout-card-title">Delivery Address</h2>
+                        </div>
+
+                        <form id="checkout-address-form" class="address-form-grid" onsubmit="event.preventDefault()">
+                            
+                            <div class="form-field">
+                                <label for="addr-fullname">Full Name *</label>
+                                <input type="text" id="addr-fullname" placeholder="e.g. Rahul Sharma" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="addr-phone">Mobile Number *</label>
+                                <div style="display: flex; align-items: center; background: #FAF7F0; border: 1.5px solid rgba(15,44,36,0.18); border-radius: 10px; overflow: hidden;">
+                                    <span style="padding: 12px 14px; background: rgba(15,44,36,0.06); font-weight: 700; border-right: 1px solid rgba(15,44,36,0.15); font-size: 0.9rem;">+91</span>
+                                    <input type="tel" id="addr-phone" placeholder="10-digit number" maxlength="10" style="border: none; background: none; flex: 1; padding: 12px 14px;" required>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="addr-pincode">Pincode (6 digits) *</label>
+                                <input type="text" id="addr-pincode" placeholder="e.g. 110001" maxlength="6" oninput="handlePincodeAutoFill(this.value)" required>
+                                <div id="pincode-autofill-hint" class="pincode-autofill-hint">
+                                    <i class="fas fa-check-circle"></i> City &amp; State auto-detected
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="addr-city">City / District *</label>
+                                <input type="text" id="addr-city" placeholder="City" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="addr-state">State *</label>
+                                <input type="text" id="addr-state" placeholder="State" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="addr-flat">Flat / House No. / Building *</label>
+                                <input type="text" id="addr-flat" placeholder="e.g. Flat 402, Royal Palms" required>
+                            </div>
+
+                            <div class="form-field form-group-full">
+                                <label for="addr-street">Area / Street / Landmark *</label>
+                                <input type="text" id="addr-street" placeholder="e.g. Near Silk Route Market, Main Road" required>
+                            </div>
+
+                            <div class="form-field form-group-full">
+                                <label>Address Type</label>
+                                <div class="address-type-selector">
+                                    <button type="button" class="type-pill active" onclick="selectAddressType(this, 'Home')">
+                                        <i class="fas fa-house"></i> Home
+                                    </button>
+                                    <button type="button" class="type-pill" onclick="selectAddressType(this, 'Work')">
+                                        <i class="fas fa-briefcase"></i> Work / Office
+                                    </button>
+                                    <button type="button" class="type-pill" onclick="selectAddressType(this, 'Other')">
+                                        <i class="fas fa-location-dot"></i> Other
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- Section 2: Payment Options -->
+                    <div class="checkout-section-card">
+                        <div class="checkout-card-header">
+                            <span class="card-step-badge">2</span>
+                            <h2 class="checkout-card-title">Payment Method</h2>
+                        </div>
+
+                        <div class="payment-methods-list">
+
+                            <!-- UPI Option (Default) -->
+                            <div class="payment-method-item active" onclick="selectPaymentMethod('upi', this)">
+                                <div class="payment-method-header">
+                                    <input type="radio" name="payment_opt" id="pay-upi" class="payment-method-radio" checked>
+                                    <label for="pay-upi" class="payment-method-title">
+                                        UPI (Google Pay, PhonePe, Paytm, QR)
+                                    </label>
+                                    <div class="payment-badges">
+                                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                                        <i class="fas fa-qrcode" title="Scan QR"></i>
+                                    </div>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">
+                                        Enter your UPI ID (VPA) or scan QR code on the next screen:
+                                    </p>
+                                    <div style="display: flex; gap: 10px;">
+                                        <input type="text" id="upi-vpa-input" placeholder="e.g. mobile@upi / username@okhdfcbank" style="flex: 1; padding: 10px 14px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
+                                        <button type="button" style="background: var(--color-dark-green); color: var(--color-gold); border: 1px solid var(--color-gold); border-radius: 8px; padding: 10px 16px; font-weight: 700; font-size: 0.8rem; cursor: pointer;">
+                                            VERIFY
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cards Option -->
+                            <div class="payment-method-item" onclick="selectPaymentMethod('card', this)">
+                                <div class="payment-method-header">
+                                    <input type="radio" name="payment_opt" id="pay-card" class="payment-method-radio">
+                                    <label for="pay-card" class="payment-method-title">
+                                        Credit / Debit Card (Visa, Mastercard, RuPay)
+                                    </label>
+                                    <div class="payment-badges">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <i class="fab fa-cc-mastercard"></i>
+                                    </div>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                        <div style="grid-column: 1 / -1;">
+                                            <input type="text" placeholder="Card Number (16 Digits)" maxlength="19" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="MM / YY" maxlength="5" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
+                                        </div>
+                                        <div>
+                                            <input type="password" placeholder="CVV (3 Digits)" maxlength="3" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Netbanking Option -->
+                            <div class="payment-method-item" onclick="selectPaymentMethod('netbanking', this)">
+                                <div class="payment-method-header">
+                                    <input type="radio" name="payment_opt" id="pay-netbank" class="payment-method-radio">
+                                    <label for="pay-netbank" class="payment-method-title">
+                                        Net Banking (All Major Indian Banks)
+                                    </label>
+                                    <div class="payment-badges">
+                                        <i class="fas fa-building-columns"></i>
+                                    </div>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <select style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; background: #FAF7F0;">
+                                        <option>HDFC Bank</option>
+                                        <option>State Bank of India (SBI)</option>
+                                        <option>ICICI Bank</option>
+                                        <option>Axis Bank</option>
+                                        <option>Kotak Mahindra Bank</option>
+                                        <option>Punjab National Bank</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Cash on Delivery (COD) Option -->
+                            <div class="payment-method-item" onclick="selectPaymentMethod('cod', this)">
+                                <div class="payment-method-header">
+                                    <input type="radio" name="payment_opt" id="pay-cod" class="payment-method-radio">
+                                    <label for="pay-cod" class="payment-method-title">
+                                        Cash on Delivery (COD)
+                                    </label>
+                                    <div class="payment-badges">
+                                        <i class="fas fa-hand-holding-dollar"></i>
+                                    </div>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p style="font-size: 0.85rem; color: #2E7D32; font-weight: 600; margin: 0;">
+                                        <i class="fas fa-circle-check"></i> Verified COD Available. Pay in cash or scan QR via delivery agent upon arrival.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Order Summary & Place Order -->
+                <div class="checkout-right-col">
+                    <div class="order-summary-card">
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1.5px solid rgba(15,44,36,0.1);">
+                            <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-text-dark); margin: 0;">
+                                Order Summary
+                            </h3>
+                            <span id="order-summary-count" style="font-size: 0.82rem; color: var(--color-accent); font-weight: 700;">
+                                0 Items
+                            </span>
+                        </div>
+
+                        <!-- Scrollable Items List -->
+                        <div class="order-items-scroll" id="checkout-items-list">
+                            <!-- Populated dynamically -->
+                        </div>
+
+                        <!-- Royal Coupon Input -->
+                        <div class="coupon-input-group">
+                            <input type="text" id="coupon-code-input" placeholder="Enter Coupon (e.g. ROYAL10)">
+                            <button type="button" onclick="applyPromoCode()">APPLY</button>
+                        </div>
+                        <div id="coupon-status-msg" style="font-size: 0.78rem; margin-top: -12px; margin-bottom: 16px; display: none;"></div>
+
+                        <!-- Price Breakdown -->
+                        <div class="order-bill-row">
+                            <span>Subtotal</span>
+                            <span id="bill-subtotal">₹0</span>
+                        </div>
+                        <div class="order-bill-row">
+                            <span>Royal Delivery Fee</span>
+                            <span id="bill-delivery" style="color: #2E7D32; font-weight: 600;">FREE</span>
+                        </div>
+                        <div class="order-bill-row" id="bill-discount-row" style="display: none; color: #2E7D32;">
+                            <span>Royal Promo Discount (10%)</span>
+                            <span id="bill-discount">-₹0</span>
+                        </div>
+                        <div class="order-bill-row total-row">
+                            <span>Total Payable</span>
+                            <span id="bill-total" style="color: var(--color-dark-green); font-size: 1.4rem;">₹0</span>
+                        </div>
+
+                        <!-- Primary Place Order Button -->
+                        <button type="button" class="place-order-btn" onclick="handlePlaceOrder()">
+                            <i class="fas fa-lock"></i> PLACE ORDER &bull; <span id="btn-total-val">₹0</span>
+                        </button>
+
+                        <div class="safe-checkout-note">
+                            <i class="fas fa-shield-halved" style="color: #2E7D32;"></i>
+                            <span>256-Bit SSL Encrypted &bull; Authentic Persian Guarantee</span>
+                        </div>
+
+                        <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(15,44,36,0.15); display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: #555;">
+                            <i class="fas fa-truck-fast" style="font-size: 1.2rem; color: var(--color-accent);"></i>
+                            <span>Delivery Partner: <strong>Delhivery Express</strong> (Estimated in 3-4 days)</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Royal Order Success Modal -->
+    <div id="order-success-modal" class="order-success-modal">
+        <div class="order-success-card">
+            
+            <div class="order-success-header">
+                <div class="order-success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h2 class="order-success-title">Royal Order Confirmed!</h2>
+                <p style="font-size: 0.95rem; color: rgba(244,240,230,0.9); margin: 0;">
+                    Shukriya! Your royal spices are being hand-blended with care.
+                </p>
+            </div>
+
+            <div class="order-success-body">
+                
+                <div class="order-meta-box">
+                    <div class="order-meta-row">
+                        <span style="color: #666;">Order ID:</span>
+                        <strong id="modal-order-id" style="color: var(--color-dark-green); font-family: monospace; font-size: 1rem;">#PM-98421</strong>
+                    </div>
+                    <div class="order-meta-row">
+                        <span style="color: #666;">Estimated Delivery:</span>
+                        <strong style="color: #2E7D32;"><i class="fas fa-truck-fast"></i> 3-4 Days via Delhivery</strong>
+                    </div>
+                    <div class="order-meta-row">
+                        <span style="color: #666;">Payment Mode:</span>
+                        <strong id="modal-payment-mode">UPI</strong>
+                    </div>
+                    <div class="order-meta-row">
+                        <span style="color: #666;">Total Paid:</span>
+                        <strong id="modal-total-paid" style="color: var(--color-dark-green); font-size: 1.1rem;">₹0</strong>
+                    </div>
+                    <div class="order-meta-row" style="border-top: 1px dashed rgba(15,44,36,0.15); padding-top: 8px; margin-top: 8px;">
+                        <span style="color: #666;">Shipping Address:</span>
+                        <span id="modal-address-summary" style="text-align: right; font-size: 0.82rem; color: #333; max-width: 60%;"></span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <button type="button" class="order-continue-btn" onclick="window.location.href='spices.html'">
+                        <i class="fas fa-bag-shopping"></i> Continue Shopping
+                    </button>
+                    <button type="button" class="order-continue-btn" style="background: #FFFFFF; color: var(--color-dark-green);" onclick="window.print()">
+                        <i class="fas fa-receipt"></i> Print Invoice
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js?v=12"></script>
+    <script>
+        // Indian Pincode Directory Lookup
+        const pincodeDirectory = {
+            '11': { city: 'New Delhi', state: 'Delhi' },
+            '12': { city: 'Gurugram', state: 'Haryana' },
+            '13': { city: 'Ambala', state: 'Haryana' },
+            '14': { city: 'Amritsar', state: 'Punjab' },
+            '16': { city: 'Chandigarh', state: 'Chandigarh' },
+            '20': { city: 'Noida', state: 'Uttar Pradesh' },
+            '22': { city: 'Lucknow', state: 'Uttar Pradesh' },
+            '28': { city: 'Agra', state: 'Uttar Pradesh' },
+            '30': { city: 'Jaipur', state: 'Rajasthan' },
+            '34': { city: 'Jodhpur', state: 'Rajasthan' },
+            '38': { city: 'Ahmedabad', state: 'Gujarat' },
+            '39': { city: 'Surat', state: 'Gujarat' },
+            '40': { city: 'Mumbai', state: 'Maharashtra' },
+            '41': { city: 'Pune', state: 'Maharashtra' },
+            '44': { city: 'Nagpur', state: 'Maharashtra' },
+            '45': { city: 'Indore', state: 'Madhya Pradesh' },
+            '46': { city: 'Bhopal', state: 'Madhya Pradesh' },
+            '50': { city: 'Hyderabad', state: 'Telangana' },
+            '53': { city: 'Visakhapatnam', state: 'Andhra Pradesh' },
+            '56': { city: 'Bengaluru', state: 'Karnataka' },
+            '60': { city: 'Chennai', state: 'Tamil Nadu' },
+            '64': { city: 'Coimbatore', state: 'Tamil Nadu' },
+            '68': { city: 'Kochi', state: 'Kerala' },
+            '69': { city: 'Thiruvananthapuram', state: 'Kerala' },
+            '70': { city: 'Kolkata', state: 'West Bengal' },
+            '75': { city: 'Bhubaneswar', state: 'Odisha' },
+            '78': { city: 'Guwahati', state: 'Assam' },
+            '80': { city: 'Patna', state: 'Bihar' },
+            '83': { city: 'Ranchi', state: 'Jharkhand' }
+        };
+
+        let selectedAddressType = 'Home';
+        let selectedPaymentMethodName = 'UPI (Google Pay, PhonePe, QR)';
+        let promoDiscountPercent = 0;
+
+        function handlePincodeAutoFill(pin) {
+            const cleanPin = pin.trim().replace(/\D/g, '');
+            const hint = document.getElementById('pincode-autofill-hint');
+            if (cleanPin.length >= 2) {
+                const prefix = cleanPin.substring(0, 2);
+                if (pincodeDirectory[prefix]) {
+                    const info = pincodeDirectory[prefix];
+                    document.getElementById('addr-city').value = info.city;
+                    document.getElementById('addr-state').value = info.state;
+                    hint.style.display = 'block';
+                    hint.innerHTML = `<i class="fas fa-check-circle"></i> Auto-filled: ${info.city}, ${info.state}`;
+                    return;
+                }
+            }
+            if (cleanPin.length === 6) {
+                if (!document.getElementById('addr-city').value) {
+                    document.getElementById('addr-city').value = 'Metro Hub';
+                    document.getElementById('addr-state').value = 'India';
+                }
+                hint.style.display = 'block';
+                hint.innerHTML = `<i class="fas fa-check-circle"></i> Pincode verified for Delhivery delivery`;
+            } else {
+                hint.style.display = 'none';
+            }
+        }
+
+        function selectAddressType(btn, type) {
+            document.querySelectorAll('.type-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            selectedAddressType = type;
+        }
+
+        function selectPaymentMethod(type, itemEl) {
+            document.querySelectorAll('.payment-method-item').forEach(i => i.classList.remove('active'));
+            itemEl.classList.add('active');
+            const radio = itemEl.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+
+            if (type === 'upi') selectedPaymentMethodName = 'UPI (GPay / PhonePe)';
+            else if (type === 'card') selectedPaymentMethodName = 'Credit / Debit Card';
+            else if (type === 'netbanking') selectedPaymentMethodName = 'Net Banking';
+            else if (type === 'cod') selectedPaymentMethodName = 'Cash on Delivery (COD)';
+        }
+
+        function renderCheckoutOrderSummary() {
+            const listEl = document.getElementById('checkout-items-list');
+            const countEl = document.getElementById('order-summary-count');
+            const billSubtotalEl = document.getElementById('bill-subtotal');
+            const billDeliveryEl = document.getElementById('bill-delivery');
+            const billTotalEl = document.getElementById('bill-total');
+            const btnTotalValEl = document.getElementById('btn-total-val');
+            const discountRow = document.getElementById('bill-discount-row');
+            const discountEl = document.getElementById('bill-discount');
+
+            if (!listEl) return;
+
+            // If empty, add a default royal spice for smooth testing
+            if (!cart || cart.length === 0) {
+                cart = [
+                    { name: 'Biryani Masala', pack: '100g', price: 249, qty: 1, img: 'assets/biryani-jar.jpg' },
+                    { name: 'Kabab Masala', pack: '100g', price: 229, qty: 1, img: 'assets/kabab-card.jpg' }
+                ];
+                saveCart();
+            }
+
+            const totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+            if (countEl) countEl.textContent = `${totalCount} Item${totalCount > 1 ? 's' : ''}`;
+
+            let subtotal = 0;
+            listEl.innerHTML = cart.map(item => {
+                const itemTotal = item.price * (item.qty || 1);
+                subtotal += itemTotal;
+                return `
+                    <div style="display: flex; gap: 12px; align-items: center; background: #FAF7F0; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(15,44,36,0.08);">
+                        <img src="${item.img}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(226,182,107,0.4);">
+                        <div style="flex: 1;">
+                            <h5 style="margin: 0 0 2px 0; font-size: 0.9rem; color: var(--color-text-dark);">${item.name}</h5>
+                            <span style="font-size: 0.75rem; color: #666;">${item.pack || '100g'} &bull; Qty: <strong>${item.qty || 1}</strong></span>
+                        </div>
+                        <strong style="color: var(--color-dark-green); font-size: 0.95rem;">₹${itemTotal}</strong>
+                    </div>
+                `;
+            }).join('');
+
+            // Delivery Fee
+            const deliveryFee = subtotal >= 499 ? 0 : 50;
+            billDeliveryEl.innerHTML = deliveryFee === 0 ? '<strong style="color: #2E7D32;">FREE</strong>' : '₹50';
+
+            // Discount
+            let discountAmount = 0;
+            if (promoDiscountPercent > 0) {
+                discountAmount = Math.round((subtotal * promoDiscountPercent) / 100);
+                discountRow.style.display = 'flex';
+                discountEl.textContent = `-₹${discountAmount}`;
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            const finalTotal = Math.max(0, subtotal + deliveryFee - discountAmount);
+
+            billSubtotalEl.textContent = '₹' + subtotal;
+            billTotalEl.textContent = '₹' + finalTotal;
+            btnTotalValEl.textContent = '₹' + finalTotal;
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('coupon-code-input');
+            const msg = document.getElementById('coupon-status-msg');
+            if (!input || !msg) return;
+
+            const code = input.value.trim().toUpperCase();
+            if (code === 'ROYAL10') {
+                promoDiscountPercent = 10;
+                msg.style.display = 'block';
+                msg.style.color = '#2E7D32';
+                msg.innerHTML = '<i class="fas fa-circle-check"></i> <strong>ROYAL10</strong> applied! 10% Royal Discount!';
+                renderCheckoutOrderSummary();
+            } else if (code) {
+                promoDiscountPercent = 0;
+                msg.style.display = 'block';
+                msg.style.color = '#C62828';
+                msg.innerHTML = '<i class="fas fa-circle-xmark"></i> Invalid code. Try <strong>ROYAL10</strong>';
+                renderCheckoutOrderSummary();
+            }
+        }
+
+        function handlePlaceOrder() {
+            const name = document.getElementById('addr-fullname').value.trim();
+            const phone = document.getElementById('addr-phone').value.trim();
+            const pin = document.getElementById('addr-pincode').value.trim();
+            const city = document.getElementById('addr-city').value.trim();
+            const flat = document.getElementById('addr-flat').value.trim();
+            const street = document.getElementById('addr-street').value.trim();
+
+            if (!name || !phone || !pin || !flat || !city) {
+                alert('Please fill all mandatory shipping address fields (Name, Phone, Pincode, Flat, City).');
+                return;
+            }
+
+            if (!/^\d{6}$/.test(pin)) {
+                alert('Please enter a valid 6-digit Pincode.');
+                return;
+            }
+
+            // Generate Order ID
+            const orderNum = Math.floor(10000 + Math.random() * 90000);
+            const orderId = `#PM-${orderNum}`;
+            const totalPaid = document.getElementById('bill-total').textContent;
+
+            document.getElementById('modal-order-id').textContent = orderId;
+            document.getElementById('modal-total-paid').textContent = totalPaid;
+            document.getElementById('modal-payment-mode').textContent = selectedPaymentMethodName;
+            document.getElementById('modal-address-summary').textContent = `${flat}, ${street}, ${city} - ${pin} (${selectedAddressType})`;
+
+            // Save order into history for My Orders and Track Order
+            const newOrder = {
+                id: orderId,
+                date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+                items: [...cart],
+                total: totalPaid,
+                status: 'In Transit',
+                trackingNumber: 'DLV' + Math.floor(100000000 + Math.random() * 900000000),
+                deliveryEta: '3-4 Days via Delhivery Express',
+                paymentMethod: selectedPaymentMethodName,
+                address: `${flat}, ${street}, ${city} - ${pin} (${selectedAddressType})`
+            };
+            let pastOrders = JSON.parse(localStorage.getItem('persian_masala_orders') || '[]');
+            pastOrders.unshift(newOrder);
+            localStorage.setItem('persian_masala_orders', JSON.stringify(pastOrders));
+
+            // Open Order Success Modal
+            const modal = document.getElementById('order-success-modal');
+            modal.classList.add('open');
+
+            // Clear Cart in localStorage after successful order
+            cart = [];
+            localStorage.setItem('persian_masala_cart', '[]');
+            updateCartUI();
+        }
+
+        // Initialize Checkout Page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pre-fill phone from login
+            const savedPhone = localStorage.getItem('persian_user_phone');
+            if (savedPhone) {
+                const phoneInput = document.getElementById('addr-phone');
+                if (phoneInput && !phoneInput.value) phoneInput.value = savedPhone;
+            }
+
+            const savedName = localStorage.getItem('persian_user_name');
+            if (savedName) {
+                const nameInput = document.getElementById('addr-fullname');
+                if (nameInput && !nameInput.value) nameInput.value = savedName;
+            }
+
+            renderCheckoutOrderSummary();
+        });
+    </script>
+</body>
+</html>

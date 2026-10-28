@@ -1,0 +1,976 @@
+/* ==========================================================================
+   PERSIAN HERITAGE - CINEMATIC SCROLLYTELLING STYLES (heritage.css)
+   ========================================================================== */
+
+/* Page Wrapper */
+.heritage-page {
+    background: #0A1C16;
+    color: #FAF7F0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================================================
+   CHAPTER 1: MOVIE-STYLE HERO SECTION (ANTI-GRAVITY ANIMATION)
+   ========================================================================== */
+.heritage-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: radial-gradient(circle at 50% 40%, #164034 0%, #0A1C16 75%, #05100C 100%);
+    padding: calc(var(--nav-height) + 40px) 6% 80px 6%;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Persian Geometric Glow Backdrop */
+.hero-geometric-backdrop {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(226, 182, 107, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(226, 182, 107, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.hero-arch-silhouette {
+    position: absolute;
+    width: 650px;
+    height: 850px;
+    border: 2px solid rgba(226, 182, 107, 0.18);
+    border-radius: 350px 350px 0 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -46%);
+    pointer-events: none;
+    box-shadow: 0 0 80px rgba(226, 182, 107, 0.06);
+}
+
+.hero-arch-silhouette::before {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border: 1px dashed rgba(226, 182, 107, 0.14);
+    border-radius: 334px 334px 0 0;
+}
+
+/* Anti-Gravity Floating Spices Layer */
+.floating-spices-stage {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.floating-spice-item {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.85;
+    transition: transform 0.2s ease-out;
+}
+
+.floating-spice-item .spice-emblem-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(15, 44, 36, 0.7);
+    border: 1.5px solid #E2B66B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 8px 25px rgba(226, 182, 107, 0.25), inset 0 0 15px rgba(226, 182, 107, 0.15);
+    backdrop-filter: blur(4px);
+}
+
+.floating-spice-item .spice-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #E2B66B;
+    background: rgba(10, 28, 22, 0.85);
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(226, 182, 107, 0.3);
+}
+
+/* Individual Floating Coordinates & Keyframe Delays */
+.spice-saffron {
+    top: 22%;
+    left: 12%;
+    animation: antiGravityFloat 7s ease-in-out infinite;
+}
+
+.spice-saffron .spice-emblem-circle {
+    color: #FF5252;
+    border-color: #FF7043;
+    box-shadow: 0 8px 25px rgba(255, 82, 82, 0.3);
+}
+
+.spice-star-anise {
+    top: 26%;
+    right: 14%;
+    animation: antiGravityFloat 8.5s ease-in-out infinite 1s;
+}
+
+.spice-star-anise .spice-emblem-circle {
+    color: #E2B66B;
+}
+
+.spice-cardamom {
+    bottom: 24%;
+    left: 15%;
+    animation: antiGravityFloat 6.8s ease-in-out infinite 2s;
+}
+
+.spice-cardamom .spice-emblem-circle {
+    color: #81C784;
+    border-color: #A5D6A7;
+}
+
+.spice-cinnamon {
+    bottom: 22%;
+    right: 13%;
+    animation: antiGravityFloat 7.8s ease-in-out infinite 1.5s;
+}
+
+.spice-cinnamon .spice-emblem-circle {
+    color: #D4A35B;
+}
+
+.spice-clove {
+    top: 15%;
+    right: 32%;
+    animation: antiGravityFloat 9s ease-in-out infinite 0.5s;
+    transform: scale(0.85);
+}
+
+.spice-cumin {
+    bottom: 16%;
+    left: 36%;
+    animation: antiGravityFloat 8s ease-in-out infinite 2.5s;
+    transform: scale(0.85);
+}
+
+@keyframes antiGravityFloat {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-24px) rotate(5deg);
+    }
+    66% {
+        transform: translateY(-12px) rotate(-4deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Hero Content Box */
+.heritage-hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.hero-legacy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    background: rgba(226, 182, 107, 0.12);
+    border: 1.5px solid #E2B66B;
+    color: #E2B66B;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.heritage-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    color: #FAF7F0;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+}
+
+.heritage-hero-title span.gold-highlight {
+    color: #E2B66B;
+    background: linear-gradient(135deg, #FFF0D0 0%, #E2B66B 60%, #C9963F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.heritage-hero-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    color: rgba(244, 240, 230, 0.9);
+    max-width: 680px;
+    margin: 0 auto 36px auto;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.hero-actions-row {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.scroll-journey-btn {
+    background: linear-gradient(135deg, #E2B66B 0%, #D4A35B 100%);
+    color: #0F2C24;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 36px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 25px rgba(226, 182, 107, 0.4);
+    transition: all 0.3s;
+}
+
+.scroll-journey-btn:hover {
+    background: #F0C47F;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(226, 182, 107, 0.5);
+}
+
+.hero-explore-shop-btn {
+    background: rgba(15, 44, 36, 0.8);
+    color: #E2B66B;
+    border: 1.5px solid #E2B66B;
+    border-radius: 30px;
+    padding: 16px 32px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.hero-explore-shop-btn:hover {
+    background: #174538;
+    color: #FFF;
+    border-color: #FFF;
+}
+
+/* ==========================================================================
+   CHAPTER 2: THE SILK ROUTE JOURNEY (CREAM BG + TOWN SKETCH)
+   ========================================================================== */
+.chapter-silk-route {
+    background: #F4F0E6;
+    color: #1A1A1A;
+    padding: 110px 6% 120px 6%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Parallax Town Sketch Background Layer */
+.town-sketch-parallax-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/town-sketch.jpg');
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+.silk-route-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.section-kicker-gold {
+    display: inline-block;
+    color: #A37424;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.silk-route-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: #0F2C24;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.silk-route-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.silk-route-story-text p {
+    font-size: 1.05rem;
+    color: #333333;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.silk-route-story-text p strong {
+    color: #0F2C24;
+}
+
+.silk-route-quote-card {
+    background: #FFFFFF;
+    border: 1.5px solid rgba(226, 182, 107, 0.4);
+    border-left: 5px solid #0F2C24;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 28px;
+    font-style: italic;
+    color: #444;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Right Illustration Box */
+.silk-route-visual-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid #E2B66B;
+    box-shadow: 0 20px 50px rgba(15, 44, 36, 0.15);
+}
+
+.silk-route-visual-card img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.silk-route-visual-card:hover img {
+    transform: scale(1.04);
+}
+
+.silk-visual-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(15, 44, 36, 0.95) 100%);
+    padding: 30px 24px 20px 24px;
+    color: #FAF7F0;
+}
+
+.silk-visual-caption h4 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: #E2B66B;
+    margin-bottom: 4px;
+}
+
+.silk-visual-caption p {
+    font-size: 0.85rem;
+    color: rgba(244, 240, 230, 0.8);
+    margin: 0;
+}
+
+/* 3 Stats Pillars */
+.silk-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+}
+
+.silk-stat-box {
+    background: #FFFFFF;
+    border: 1px solid rgba(226, 182, 107, 0.35);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(15, 44, 36, 0.05);
+    transition: transform 0.3s;
+}
+
+.silk-stat-box:hover {
+    transform: translateY(-4px);
+    border-color: #E2B66B;
+}
+
+.silk-stat-number {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: #0F2C24;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.silk-stat-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #A37424;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   CHAPTER 3: THE MASTER BLENDER'S CRAFT (GLOWING GOLDEN TIMELINE)
+   ========================================================================== */
+.chapter-master-craft {
+    background: #0B211A;
+    color: #FAF7F0;
+    padding: 120px 6% 130px 6%;
+    position: relative;
+    overflow: hidden;
+}
+
+.craft-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.craft-header-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px auto;
+}
+
+.craft-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    color: #E2B66B;
+    margin-bottom: 14px;
+}
+
+.craft-subtitle {
+    font-size: 1.05rem;
+    color: rgba(244, 240, 230, 0.85);
+    line-height: 1.6;
+}
+
+/* Vertical Golden Timeline */
+.craft-timeline-tree {
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Central Glowing Line */
+.craft-timeline-tree::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    background: linear-gradient(180deg, 
+        rgba(226, 182, 107, 0.2) 0%, 
+        #E2B66B 25%, 
+        #E2B66B 75%, 
+        rgba(226, 182, 107, 0.2) 100%
+    );
+    box-shadow: 0 0 15px rgba(226, 182, 107, 0.4);
+}
+
+.timeline-craft-node {
+    position: relative;
+    margin-bottom: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.timeline-craft-node:last-child {
+    margin-bottom: 0;
+}
+
+/* Timeline Center Pin */
+.timeline-craft-node::after {
+    content: attr(data-step);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #0F2C24;
+    border: 2px solid #E2B66B;
+    color: #E2B66B;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(226, 182, 107, 0.5);
+    z-index: 10;
+}
+
+/* Alternating Left and Right */
+.timeline-craft-node.node-left .node-content-card {
+    grid-column: 1;
+    text-align: right;
+}
+
+.timeline-craft-node.node-left .node-visual-thumb {
+    grid-column: 2;
+}
+
+.timeline-craft-node.node-right .node-content-card {
+    grid-column: 2;
+    text-align: left;
+}
+
+.timeline-craft-node.node-right .node-visual-thumb {
+    grid-column: 1;
+}
+
+.node-content-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(226, 182, 107, 0.3);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.node-content-card:hover {
+    border-color: #E2B66B;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+.node-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #E2B66B;
+    background: rgba(226, 182, 107, 0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+.node-title {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    color: #FAF7F0;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.node-desc {
+    font-size: 0.95rem;
+    color: rgba(244, 240, 230, 0.8);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.node-visual-thumb {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid rgba(226, 182, 107, 0.4);
+    max-height: 220px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.node-visual-thumb img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.node-visual-thumb:hover img {
+    transform: scale(1.06);
+}
+
+/* ==========================================================================
+   CHAPTER 4: GRAND MASALA ADVERTISING SHOWCASE
+   ========================================================================== */
+.chapter-masala-showcase {
+    background: #061510;
+    padding: 120px 6% 130px 6%;
+    position: relative;
+}
+
+.showcase-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 70px auto;
+}
+
+.showcase-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    color: #FAF7F0;
+    margin-bottom: 16px;
+}
+
+.showcase-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.cinematic-spice-card {
+    background: #0E2A21;
+    border: 2px solid #E2B66B;
+    border-radius: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.cinematic-spice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 70px rgba(226, 182, 107, 0.2);
+}
+
+.cinematic-spice-card:nth-child(even) {
+    grid-template-columns: 1.25fr 1fr;
+}
+
+.cinematic-spice-card:nth-child(even) .spice-card-media {
+    order: 2;
+}
+
+.cinematic-spice-card:nth-child(even) .spice-card-info {
+    order: 1;
+}
+
+.spice-card-media {
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+}
+
+.spice-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.cinematic-spice-card:hover .spice-card-media img {
+    transform: scale(1.05);
+}
+
+.spice-media-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(10, 28, 22, 0.85);
+    border: 1px solid #E2B66B;
+    color: #E2B66B;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+}
+
+.spice-card-info {
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.spice-info-kicker {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #E2B66B;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.spice-info-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: #FAF7F0;
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.spice-info-story {
+    font-size: 1rem;
+    color: rgba(244, 240, 230, 0.85);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+/* Flavor Profile Meters */
+.flavor-profile-meters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 24px;
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 16px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(226, 182, 107, 0.2);
+}
+
+.meter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.meter-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #FAF7F0;
+}
+
+.meter-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #E2B66B 0%, #F5CE85 100%);
+    border-radius: 10px;
+}
+
+.experience-blend-btn {
+    align-self: flex-start;
+    background: var(--color-dark-green);
+    color: var(--color-gold);
+    border: 1.5px solid var(--color-gold);
+    border-radius: 30px;
+    padding: 14px 28px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+.experience-blend-btn:hover {
+    background: #E2B66B;
+    color: #0F2C24;
+    transform: translateX(4px);
+    box-shadow: 0 6px 22px rgba(226, 182, 107, 0.4);
+}
+
+/* ==========================================================================
+   CHAPTER 5: GRAND FINALE & QUOTE
+   ========================================================================== */
+.chapter-grand-finale {
+    background: radial-gradient(circle at 50% 30%, #164034 0%, #0A1C16 80%, #05100C 100%);
+    padding: 130px 6% 140px 6%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.finale-container {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.finale-crown-emblem {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: rgba(226, 182, 107, 0.15);
+    border: 2px solid #E2B66B;
+    color: #E2B66B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 0 35px rgba(226, 182, 107, 0.3);
+}
+
+.finale-master-quote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+    color: #FAF7F0;
+    line-height: 1.35;
+    margin-bottom: 24px;
+    font-style: italic;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+
+.finale-quote-author {
+    font-size: 0.95rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #E2B66B;
+    font-weight: 700;
+    margin-bottom: 46px;
+    display: block;
+}
+
+.finale-explore-btn {
+    background: linear-gradient(135deg, #E2B66B 0%, #D4A35B 100%);
+    color: #0F2C24;
+    border: none;
+    border-radius: 35px;
+    padding: 18px 45px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 35px rgba(226, 182, 107, 0.45);
+    transition: all 0.3s;
+}
+
+.finale-explore-btn:hover {
+    background: #F0C47F;
+    transform: scale(1.04);
+    box-shadow: 0 12px 45px rgba(226, 182, 107, 0.6);
+}
+
+/* Trust Bar at Bottom of Finale */
+.finale-trust-pillars {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(226, 182, 107, 0.2);
+    flex-wrap: wrap;
+}
+
+.finale-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(244, 240, 230, 0.85);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.finale-trust-item i {
+    color: #E2B66B;
+    font-size: 1.2rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLETS & MOBILE)
+   ========================================================================== */
+@media (max-width: 900px) {
+    .silk-route-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .silk-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .craft-timeline-tree::before {
+        left: 24px;
+    }
+
+    .timeline-craft-node {
+        grid-template-columns: 1fr;
+        padding-left: 55px;
+        margin-bottom: 50px;
+    }
+
+    .timeline-craft-node::after {
+        left: 24px;
+    }
+
+    .timeline-craft-node.node-left .node-content-card,
+    .timeline-craft-node.node-right .node-content-card {
+        grid-column: 1;
+        text-align: left;
+    }
+
+    .timeline-craft-node.node-left .node-visual-thumb,
+    .timeline-craft-node.node-right .node-visual-thumb {
+        display: none;
+    }
+
+    .cinematic-spice-card,
+    .cinematic-spice-card:nth-child(even) {
+        grid-template-columns: 1fr;
+    }
+
+    .cinematic-spice-card:nth-child(even) .spice-card-media {
+        order: 1;
+    }
+
+    .cinematic-spice-card:nth-child(even) .spice-card-info {
+        order: 2;
+    }
+
+    .spice-card-info {
+        padding: 30px 24px;
+    }
+
+    .spice-card-media {
+        min-height: 260px;
+    }
+
+    .floating-spice-item {
+        transform: scale(0.75);
+    }
+}

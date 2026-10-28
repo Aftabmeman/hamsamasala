@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Spices | Hamsa Masala</title>
+    <meta name="description"
+        content="Authentic Hamsa Masala. Royal blends inspired by ancient Persia with saffron, star anise, and fragrant spices.">
+    <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="catalog.css?v=14">
+</head>
+
+<body>
+
+    <!-- Sticky Top Header -->
+    <header class="top-header">
+        <div style="display: flex; align-items: center; gap: 14px;">
+            <a href="spices.html" class="back-btn" aria-label="Back to Spices"><i class="fas fa-arrow-left"></i></a>
+            <a href="index.html" class="logo" aria-label="Hamsa Masala">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
+            </a>
+        </div>
+
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="spices.html" class="active">Spices</a>
+            <a href="heritage.html">Heritage</a>
+        </nav>
+
+        <div class="header-icons">
+            <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()"><i
+                    class="fas fa-search"></i></button>
+            <button type="button" class="icon-btn cart-btn" id="open-cart-btn" aria-label="Shopping Cart"
+                onclick="openCartDrawer()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </button>
+            <button type="button" class="icon-btn menu-btn" id="open-menu-btn" aria-label="Menu"
+                onclick="openMenuDrawer()"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Product Detail Main Container -->
+    <main class="product-detail-wrapper">
+        <div class="product-detail-container">
+
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                <a href="spices.html">All Masalas</a>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                <span class="current" id="breadcrumb-current">Loading...</span>
+            </nav>
+
+            <!-- Product Main Grid (Gallery on Left, Info on Right) -->
+            <div class="product-main-grid">
+
+                <!-- Left: Media Gallery -->
+                <div class="detail-gallery">
+                    <div class="detail-main-img-box">
+                        <button class="detail-wishlist-btn" onclick="toggleWishlist(this, 'classic-biryani')"
+                            aria-label="Add to Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <img id="main-product-img" src="" alt="Hamsa Masala Product" class="detail-main-img"
+                            style="object-fit: contain;">
+                    </div>
+
+                    <!-- Product Thumbnail Gallery (Only exact product image) -->
+                    <div class="thumbnail-row">
+                        <!-- Dynamically populated by JS for the exact selected masala -->
+                    </div>
+                </div>
+
+                <!-- Right: Product Purchase Info -->
+                <div class="detail-info">
+                    <h1 class="detail-title" id="product-detail-title">Loading...</h1>
+                    <p class="detail-subtitle" id="product-detail-subtitle"></p>
+
+                    <div class="detail-rating-row">
+                        <div class="stars-group">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="detail-reviews-text">4.9 (1.8K reviews)</span>
+                        <span class="bestseller-badge"><i class="fas fa-certificate"></i> Bestseller</span>
+                    </div>
+
+                    <div class="detail-price-row">
+                        <span class="detail-price" id="display-price">₹249</span>
+                        <span class="detail-orig-price" id="display-orig-price">₹299</span>
+                        <span class="discount-pill" id="display-discount">17% OFF</span>
+                    </div>
+
+                    <!-- 4 Feature Badges -->
+                    <div class="feature-badges-grid">
+                        <div class="feature-badge-box">
+                            <i class="fas fa-leaf"></i>
+                            <span>100% Natural</span>
+                        </div>
+                        <div class="feature-badge-box">
+                            <i class="fas fa-flask"></i>
+                            <span>No Preservatives</span>
+                        </div>
+                        <div class="feature-badge-box">
+                            <i class="fas fa-award"></i>
+                            <span>Premium Quality</span>
+                        </div>
+                        <div class="feature-badge-box">
+                            <i class="fas fa-wind"></i>
+                            <span>Rich Aroma</span>
+                        </div>
+                    </div>
+
+                    <!-- Pack Size Selector -->
+                    <div class="size-selector-section">
+                        <label class="selector-label">Pack Size</label>
+                        <div class="pack-sizes-row">
+                            <!-- Dynamically populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Quantity & Stock Row -->
+                    <div class="quantity-stock-row">
+                        <label class="selector-label" style="margin-bottom: 0;">Quantity</label>
+                        <div class="quantity-control">
+                            <button class="qty-btn" onclick="updateQty(-1)" aria-label="Decrease quantity">-</button>
+                            <span class="qty-value" id="qty-val">1</span>
+                            <button class="qty-btn" onclick="updateQty(1)" aria-label="Increase quantity">+</button>
+                        </div>
+                        <div class="stock-indicator">
+                            <span class="stock-dot"></span>
+                            <span>In Stock</span>
+                            <span class="stock-note">Ships within 1-2 days</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons-group">
+                        <button class="detail-add-cart-btn" onclick="handleDetailAddToCart()">
+                            <i class="fas fa-shopping-cart"></i> ADD TO CART
+                        </button>
+                        <button class="detail-buy-now-btn" onclick="handleDetailBuyNow()">
+                            <i class="fas fa-bolt"></i> BUY NOW
+                        </button>
+                    </div>
+
+                    <!-- Check Delivery Availability (Pincode Checker) -->
+                    <div class="pincode-check-card">
+                        <div class="pincode-header">
+                            <i class="fas fa-truck-fast"></i>
+                            <span>Check Delivery Availability</span>
+                        </div>
+                        <div class="pincode-input-wrapper">
+                            <i class="fas fa-location-dot pincode-marker"></i>
+                            <input type="text" id="delivery-pincode-input" placeholder="Enter 6-digit Pincode"
+                                maxlength="6" onkeypress="if(event.key === 'Enter') checkDeliveryPincode()">
+                            <button type="button" onclick="checkDeliveryPincode()">CHECK</button>
+                        </div>
+                        <div id="pincode-status-box" class="pincode-status-box" style="display: none;"></div>
+                    </div>
+
+                    <!-- Trust Policies Bar -->
+                    <div class="trust-policies-bar">
+                        <div class="policy-item">
+                            <i class="fas fa-truck-fast"></i>
+                            <div class="policy-text">
+                                <h5>Free Delivery</h5>
+                                <p>On orders above ₹499</p>
+                            </div>
+                        </div>
+                        <div class="policy-item">
+                            <i class="fas fa-shield-halved"></i>
+                            <div class="policy-text">
+                                <h5>Secure Payment</h5>
+                                <p>UPI, Cards, COD</p>
+                            </div>
+                        </div>
+                        <div class="policy-item">
+                            <i class="fas fa-rotate-left"></i>
+                            <div class="policy-text">
+                                <h5>Easy Returns</h5>
+                                <p>7 days return policy</p>
+                            </div>
+                        </div>
+                        <div class="policy-item">
+                            <i class="fas fa-headset"></i>
+                            <div class="policy-text">
+                                <h5>24/7 Support</h5>
+                                <p>We're here to help</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Story & Tradition Section -->
+            <section class="story-profile-section">
+                <div class="story-grid">
+                    <div class="story-left">
+                        <span class="story-kicker"><i class="fas fa-crown"></i> A STORY IN EVERY SPICE</span>
+                        <h2 class="story-heading"></h2>
+                        <p class="story-paragraph"></p>
+                        <p class="story-paragraph" style="margin-top: 14px;"></p>
+                    </div>
+
+                    <div class="story-right">
+                        <div class="flavor-profile-card">
+                            <div class="card-subtitle-motif">FLAVOR PROFILE</div>
+                            <div class="flavor-icons-row">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="ingredients-preview-card">
+                            <div class="ingredients-header">
+                                <h4>Key Ingredients</h4>
+                                <a href="javascript:void(0)" onclick="switchTab('ingredients')">View All &rarr;</a>
+                            </div>
+                            <p class="ingredients-list-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Tabs Section -->
+            <section class="product-tabs-wrapper">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" onclick="switchTab('desc', this)">Description</button>
+                    <button class="tab-btn" onclick="switchTab('ingredients', this)">Ingredients</button>
+                    <button class="tab-btn" onclick="switchTab('how-to-use', this)">How to Use</button>
+                    <button class="tab-btn" id="reviews-tab-btn" onclick="switchTab('reviews', this)">Reviews</button>
+                    <button class="tab-btn" onclick="switchTab('faqs', this)">FAQs</button>
+                </div>
+
+                <div class="tab-pane active" id="tab-desc"></div>
+                <div class="tab-pane" id="tab-ingredients"></div>
+                <div class="tab-pane" id="tab-how-to-use"></div>
+                <div class="tab-pane" id="tab-reviews"></div>
+                <div class="tab-pane" id="tab-faqs">
+                    <p><strong>Q: What is the shelf life?</strong><br>A: 12 months from the packaging date when stored
+                        in an airtight container in a cool, dry place.<br><br><strong>Q: Are there any artificial
+                            preservatives or added MSG?</strong><br>A: No. All Hamsa Masala blends are 100% natural,
+                        handmade, and free from artificial colors, preservatives, or MSG.</p>
+                </div>
+            </section>
+
+            <!-- You May Also Like Section -->
+            <section class="related-section">
+                <div class="related-section-header">
+                    <h2 class="related-title"><i class="fas fa-crown"></i> You May Also Like</h2>
+                    <a href="spices.html" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="product-grid">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Transition Divider to Footer -->
+    <div class="divider div-3" style="background: var(--color-cream);">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d="M0,0 C400,80 800,150 1440,20 L1440,120 L0,120 Z" fill="#0F2C24"></path>
+        </svg>
+    </div>
+
+    <!-- Quote & Footer Section -->
+    <section class="footer-section" id="heritage">
+        <div class="quote-box">
+            <div class="quote-icon">“</div>
+            <p class="quote-text">"Where fragrant spices whisper stories of old Isfahan, bringing centuries of royal
+                feasts directly to your dinner table."</p>
+            <p class="quote-author">THE MASTER BLENDER &bull; TEHRAN TO THE WORLD</p>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-logo-wrapper">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="footer-logo-img">
+            </div>
+            <p class="footer-desc">Curating rare royal spices and traditional artisanal blends since 1928.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Toast Notification -->
+    <div id="cart-toast" class="cart-toast">
+        <img id="toast-img" src="assets/hamsa-logo.svg" alt="Product" class="cart-toast-thumb">
+        <div class="cart-toast-text">
+            <strong id="toast-title">Added to Cart!</strong>
+            <span id="toast-subtitle">₹249 &bull; Pack added</span>
+        </div>
+        <a href="javascript:void(0)" class="cart-toast-link" onclick="openCartDrawer()">View Cart &rarr;</a>
+    </div>
+
+    <!-- Slide-out Cart Drawer -->
+    <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCartDrawer(event)">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-drawer-header">
+                <div class="cart-drawer-brand">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="cart-brand-logo-img">
+                    <h3>Royal Shopping Bag (<span id="cart-drawer-count">0</span>)</h3>
+                </div>
+                <button class="close-cart-btn" onclick="closeCartDrawer()" aria-label="Close Cart"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-free-shipping-bar" id="cart-shipping-bar">
+                <div class="shipping-progress-text" id="shipping-progress-text">
+                    <i class="fas fa-truck-fast"></i> Add <strong>₹499</strong> more for <strong>Free Royal
+                        Delivery</strong>
+                </div>
+                <div class="shipping-progress-track">
+                    <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="cart-drawer-body" id="cart-drawer-items"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="checkout-btn" onclick="handleProceedToCheckout()">PROCEED TO CHECKOUT &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication (Login / Signup OTP Modal) -->
+    <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
+        <div class="auth-modal-card" onclick="event.stopPropagation()">
+            <button class="auth-close-btn" onclick="closeAuthModal()" aria-label="Close Modal">&times;</button>
+            <div class="auth-header">
+                <div class="auth-brand-emblem">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="auth-brand-logo-img">
+                </div>
+                <h3 class="auth-title">Hamsa Masala</h3>
+                <p class="auth-subtitle">Quick verification via WhatsApp to complete your royal order</p>
+            </div>
+
+            <!-- Step 1: Phone Input & Send OTP -->
+            <div id="auth-phone-step" class="auth-step-pane">
+                <label class="auth-field-label">Enter WhatsApp Mobile Number</label>
+                <div class="phone-input-group">
+                    <span class="country-code">+91</span>
+                    <input type="tel" id="auth-mobile-input" placeholder="Enter 10-digit number" maxlength="10"
+                        autocomplete="tel">
+                </div>
+                <div id="auth-phone-error" class="auth-error-msg" style="display: none;"></div>
+
+                <button type="button" class="auth-whatsapp-btn" onclick="sendAuthOTP('whatsapp')">
+                    <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Send OTP on WhatsApp
+                </button>
+            </div>
+
+            <!-- Step 2: 4-digit OTP Screen -->
+            <div id="auth-otp-step" class="auth-step-pane" style="display: none;">
+                <p class="otp-instruction">
+                    Enter the 4-digit code sent to <br>
+                    <strong id="auth-display-phone">+91 98765 43210</strong>
+                    <button type="button" class="change-phone-btn" onclick="backToPhoneStep()">(Change)</button>
+                </p>
+                <div class="otp-inputs-row">
+                    <input type="text" class="otp-digit" id="otp-1" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, 'otp-2', '')">
+                    <input type="text" class="otp-digit" id="otp-2" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, 'otp-3', 'otp-1')">
+                    <input type="text" class="otp-digit" id="otp-3" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, 'otp-4', 'otp-2')">
+                    <input type="text" class="otp-digit" id="otp-4" maxlength="1" inputmode="numeric"
+                        onkeyup="handleOtpInput(this, '', 'otp-3')">
+                </div>
+                <div class="otp-hint-note">
+                    <i class="fas fa-key"></i> Demo Verification: Enter any 4 digits (e.g., <strong>1234</strong>)
+                </div>
+                <div id="auth-otp-error" class="auth-error-msg" style="display: none; text-align: center;"></div>
+                <button type="button" class="auth-verify-btn" onclick="verifyOTP()">
+                    VERIFY &amp; CONTINUE &rarr;
+                </button>
+                <div class="resend-otp-row">
+                    Didn't receive code? <button type="button" onclick="resendOTP()">Resend OTP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=12"></script>
+    <script>
+        let currentQty = 1;
+        let activePackPrice = 249;
+        let activePackWeight = '100g';
+
+        function updateQty(change) {
+            currentQty = Math.max(1, currentQty + change);
+            document.getElementById('qty-val').textContent = currentQty;
+        }
+
+        function selectPackSize(el, price, origPrice, discount, weight) {
+            document.querySelectorAll('.pack-size-pill').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            activePackPrice = price;
+            activePackWeight = weight;
+            document.getElementById('display-price').textContent = '₹' + price;
+            document.getElementById('display-orig-price').textContent = '₹' + origPrice;
+            document.getElementById('display-discount').textContent = discount;
+        }
+
+        function switchMainImage(src, thumbEl) {
+            const mainImg = document.getElementById('main-product-img');
+            mainImg.style.opacity = '0.4';
+            setTimeout(() => {
+                mainImg.src = src;
+                mainImg.style.opacity = '1';
+            }, 150);
+            document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+            if (thumbEl) thumbEl.classList.add('active');
+        }
+
+        function switchTab(tabId, btnEl) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            if (btnEl) {
+                btnEl.classList.add('active');
+            } else {
+                const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.textContent.toLowerCase().includes(tabId));
+                if (targetBtn) targetBtn.classList.add('active');
+            }
+            const pane = document.getElementById('tab-' + tabId);
+            if (pane) pane.classList.add('active');
+        }
+
+        function handleDetailAddToCart() {
+            const title = document.getElementById('product-detail-title').textContent;
+            const img = document.getElementById('main-product-img').getAttribute('src');
+            addToCart(title, activePackPrice, img, currentQty, activePackWeight);
+            openCartDrawer();
+        }
+
+        function handleDetailBuyNow() {
+            const title = document.getElementById('product-detail-title').textContent;
+            const img = document.getElementById('main-product-img').getAttribute('src');
+            addToCart(title, activePackPrice, img, currentQty, activePackWeight);
+            const isAuth = localStorage.getItem('persian_user_authenticated') === 'true';
+            if (isAuth) {
+                window.location.href = 'checkout.html';
+            } else {
+                openAuthModal('buynow');
+            }
+        }
+
+        // Complete Product Data for all 8 Masalas
+        const productData = {
+            'classic-biryani': {
+                title: 'Original - Classic - Biryani',
+                subtitle: 'Royal Persian-Mughal Spice Blend For Majestic Biryani',
+                badge: 'Bestseller',
+                img: 'assets/original-classic-biryani.png',
+                thumbs: ['assets/original-classic-biryani.png'],
+                price: 249,
+                origPrice: 299,
+                discount: '17% OFF',
+                rating: '4.8',
+                reviews: '2.1K',
+                storyKicker: 'A STORY IN EVERY SPICE',
+                storyTitle: 'The Persian Biryani Tradition',
+                story1: 'Our Original Classic Biryani is inspired by the grand royal kitchens of ancient Persia, where fragrant spices from across the Silk Route came together. This blend brings the same traditional wisdom to your kitchen, giving your biryani a rich, aromatic and unforgettable flavor.',
+                story2: 'Roasted in micro-batches with pure Persian saffron, star anise, sweet mace, and highland green cardamom to create an irresistible royal bouquet.',
+                flavorNotes: ['Aromatic Saffron', 'Warm Cinnamon', 'Rich Star Anise', 'Balanced Cardamom'],
+                ingredientsShort: 'Persian Saffron, Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Bay Leaves, Nutmeg, Mace, Black Cumin.',
+                tabDesc: 'A carefully crafted blend of premium spices to give your biryani its authentic Persian taste. Perfect for chicken, mutton, veg biryani, and pulao. Ground fresh using slow handmade crafting to preserve natural essential oils and deep fragrant notes.',
+                tabIngredients: '<strong>Ingredients:</strong> Royal Persian Saffron, Green Cardamom, Black Cardamom, Ceylon Cinnamon Quills, Cloves, Mace (Javitri), Nutmeg (Jaiphal), Shahi Jeera, Star Anise, Bay Leaves, Kashmiri Chili, Dagad Phool.',
+                tabHowToUse: 'Use 2-3 tablespoons for 1 kg of meat/vegetables and rice. Marinate the protein with curd and half the masala. Layer with parboiled aromatic basmati rice, saffron milk, and steam (dum) on slow flame for 25 minutes.',
+                tabReviews: '★★★★★ <strong>"The aroma filled my entire home!"</strong> - Farhan R.<br><br>★★★★★ <strong>"Pure nostalgia of authentic Persian cooking. 10/10 quality."</strong> - Sneha K.<br><br>★★★★★ <strong>"The saffron notes in this classic blend are unmatched."</strong> - Rohan V.',
+                packSizes: [
+                    { weight: '60g', price: 249, origPrice: 299, discount: '17% OFF' },
+                    { weight: '120g (Pack of 2)', price: 469, origPrice: 598, discount: '22% OFF' },
+                    { weight: '250g', price: 899, origPrice: 1199, discount: '25% OFF' },
+                    { weight: '500g Royal Tin', price: 1699, origPrice: 2299, discount: '26% OFF' }
+                ]
+            },
+            'lazeez-dum': {
+                title: 'Lazeez - Dum - Biryani',
+                subtitle: 'Royal Persian-Mughal Spice Blend For Majestic Dum Biryani',
+                badge: 'Imperial Dum Biryani',
+                img: 'assets/lazeez-dum-biryani.png',
+                thumbs: ['assets/lazeez-dum-biryani.png'],
+                price: 249,
+                origPrice: 299,
+                discount: '17% OFF',
+                rating: '4.9',
+                reviews: '1.8K',
+                storyKicker: 'IMPERIAL MAJESTIC SPICE HERITAGE',
+                storyTitle: 'The Grand Art of Lazeez Dum Biryani',
+                story1: 'Inspired by the legendary royal feasts of Isfahan and old Delhi, Lazeez-Dum-Biryani is an aromatic masterpiece. Under the traditional "dum" cooking technique, natural meat juices and rice steam slowly together with hand-pounded whole spices, locking in unparalleled tenderness and fragrance.',
+                story2: 'Each tender morsel and long rice grain is wrapped in golden saffron notes and aristocratic elegance, turning your dining table into an imperial royal feast.',
+                flavorNotes: ['Velvety Dum Aroma', 'Sweet Mace & Nutmeg', 'Golden Cardamom', 'Subtle Kashmiri Spice'],
+                ingredientsShort: 'Royal Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Black Peppercorns, Bay Leaf, Kashmiri Red Chilies, Mace, Dried Rose Petals, Saffron.',
+                tabDesc: 'Lazeez-Dum-Biryani Masala captures the golden era of Persian-Mughal gastronomy. Meticulously balanced to ensure neither the heat nor the perfume overwhelms, it allows the rich natural flavors of basmati rice, tender meats, and caramelized onions to shine under slow steam.',
+                tabIngredients: '<strong>Ingredients:</strong> Royal Persian Saffron, Highland Green Cardamom, Ceylon Cinnamon, Imperial Star Anise, Cloves, Mace (Javitri), Nutmeg (Jaiphal), Dried Kashmiri Red Chilies, Shahi Cumin, Black Pepper, Coriander Seeds, Dried Rose Petals.',
+                tabHowToUse: 'Marinate 1 kg chicken or mutton with 3 tbsp Lazeez-Dum-Biryani Masala, fresh curd, mint, and lemon juice. Parboil basmati rice with whole spices until 70% done. In a heavy-bottomed handi, layer marinated meat and rice with ghee and saffron milk. Seal tightly and cook on high heat for 10 mins, then low heat (dum) for 25 mins.',
+                tabReviews: '★★★★★ <strong>"Truly Lazeez! The aroma filled the entire apartment block. Absolute royal masterpiece."</strong> - Kabir S.<br><br>★★★★★ <strong>"Perfect balance of whole spices and warmth. My guests thought it was catered by a royal chef."</strong> - Rehana B.<br><br>★★★★★ <strong>"Authentic Persian dum taste. 10/10."</strong> - Danish Q.',
+                packSizes: [
+                    { weight: '60g', price: 249, origPrice: 299, discount: '17% OFF' },
+                    { weight: '120g (Pack of 2)', price: 469, origPrice: 598, discount: '22% OFF' },
+                    { weight: '250g', price: 899, origPrice: 1199, discount: '25% OFF' },
+                    { weight: '500g Royal Tin', price: 1699, origPrice: 2299, discount: '26% OFF' }
+                ]
+            },
+            'raaz-e-kalimiri': {
+                title: 'Raaz-e-Kalimiri Biryani',
+                subtitle: 'Royal Persian-Mughal Spice Blend For Majestic Dum Biryani',
+                badge: 'Prized Pepper Blend',
+                img: 'assets/raaz-e-kalimiri-biryani.png',
+                thumbs: ['assets/raaz-e-kalimiri-biryani.png'],
+                price: 249,
+                origPrice: 299,
+                discount: '17% OFF',
+                rating: '4.9',
+                reviews: '1.5K',
+                storyKicker: 'ROYAL PERSIAN-MUGHAL DUM BIRYANI',
+                storyTitle: 'The Secret of Imperial Kalimiri Biryani',
+                story1: 'Born from secret royal palace recipes, Raaz-e-Kalimiri Biryani is an imperial blend that honors the ancient culinary legacy of Persian and Mughal courts. Hand-selected Tellicherry black peppercorns, toasted Kashmiri red chilies, Ceylon cinnamon quills, and royal green cardamom pods are handmade to perfection.',
+                story2: 'Slow-roasted over low embers, this 60g artisanal blend infuses every grain of basmati rice with a smoky, aromatic warmth and royal depth, turning each meal into a timeless celebration.',
+                flavorNotes: ['Cracked Kalimiri', 'Imperial Saffron', 'Smoky Ceylon Cinnamon', 'Green Cardamom Warmth'],
+                ingredientsShort: 'Tellicherry Black Peppercorns, Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Bay Leaf, Red Kashmiri Chilies, Coriander Seeds, Shahi Cumin.',
+                tabDesc: 'Raaz-e-Kalimiri Biryani brings centuries of Persian-Mughal banquet craftsmanship straight to your kitchen. Formulated for layered dum biryani (chicken, mutton, or royal vegetable), its aromatic spice bouquet guarantees majestic fragrance and mouth-watering royal flavor.',
+                tabIngredients: '<strong>Ingredients:</strong> Handpicked Tellicherry Black Pepper (Kalimiri), Green Cardamom Pods, Star Anise, Ceylon Cinnamon Quills, Black Cumin (Shahi Jeera), Cloves, Mace, Nutmeg, Kashmiri Red Chilies, Bay Leaves, Stone Flower (Dagad Phool), Himalayan Pink Salt.',
+                tabHowToUse: 'Marinate 750g meat or vegetables with yogurt, ginger-garlic paste, and 2-3 tbsp Raaz-e-Kalimiri Biryani Masala for 45 minutes. Layer parboiled fragrant basmati rice over cooked masala, sprinkle fried onions (birista) and saffron water, seal pot with dough or tight lid, and slow-cook on dum for 25 minutes.',
+                tabReviews: '★★★★★ <strong>"The Tellicherry black pepper and cardamom aroma is out of this world!"</strong> - Nawabzada Farooq.<br><br>★★★★★ <strong>"Pure royal restaurant quality at home. The rice grains absorb every nuance of spice."</strong> - Zoya K.<br><br>★★★★★ <strong>"The best biryani blend we have ever tasted. Irresistible aroma."</strong> - Dr. Sameer M.',
+                packSizes: [
+                    { weight: '60g', price: 249, origPrice: 299, discount: '17% OFF' },
+                    { weight: '120g (Pack of 2)', price: 469, origPrice: 598, discount: '22% OFF' },
+                    { weight: '250g', price: 899, origPrice: 1199, discount: '25% OFF' },
+                    { weight: '500g Royal Tin', price: 1699, origPrice: 2299, discount: '26% OFF' }
+                ]
+            },
+            'turkish-lamb-shank': {
+                title: 'Turkish Lamb Shank Gravy',
+                subtitle: 'Royal Turkish-Mughal Spice Blend for Majestic Gravy',
+                badge: 'Royal Turkish Gravy',
+                img: 'assets/turkish-lamb-shank.png',
+                thumbs: ['assets/turkish-lamb-shank.png'],
+                price: 299,
+                origPrice: 349,
+                discount: '14% OFF',
+                rating: '4.9',
+                reviews: '1.4K',
+                storyKicker: 'ROYAL OTTOMAN & MUGHAL FEAST',
+                storyTitle: 'The Majestic Turkish Lamb Shank Gravy',
+                story1: 'Crafted from the grand imperial dining traditions of Topkapi Palace, Turkish Lamb Shank Gravy instant masala delivers the deep, velvety richness of slow-simmered meat and hearth-roasted spices. Whole spices are crushed alongside roasted garlic, sweet paprika, sun-dried sumac berries, and aromatic herbs.',
+                story2: 'Designed specifically for slow-braised shanks and royal rich gravies, this blend envelops the meat until it falls effortlessly from the bone, infused with luxurious Turkish warmth and unforgettable aroma.',
+                flavorNotes: ['Anatolian Sumac', 'Smoked Sweet Paprika', 'Roasted Garlic & Cumin', 'Silky Rich Demi-Glaze'],
+                ingredientsShort: 'Sun-Dried Sumac, Smoked Paprika, Roasted Garlic, Anatolian Thyme, Cumin Seeds, Coriander, Black Pepper, Cinnamon, Dried Onion Flakes, Turkish Sea Salt.',
+                tabDesc: 'An authentic Turkish-Mughal instant gravy blend for creating luxurious slow-cooked lamb shanks, mutton nihari, beef ribs, or rich vegetarian shanks. Yields a glossy, aromatic sauce without any artificial colors or preservatives.',
+                tabIngredients: '<strong>Ingredients:</strong> Turkish Sweet Paprika, Roasted Garlic Powder, Wild Sun-Dried Sumac, Anatolian Thyme, Roasted Coriander, Cumin, Black Pepper, Bay Leaf, Fenugreek, Cardamom, Himalayan Rock Salt.',
+                tabHowToUse: 'Sear 2-3 lamb shanks in butter or olive oil until golden brown. Add 3 tablespoons of Turkish Lamb Shank Gravy Masala with onion paste and a splash of broth or tomato puree. Cover tightly and simmer on low heat for 1.5 to 2 hours until the meat is succulent and fall-off-the-bone tender. Serve with warm naan or buttered saffron rice.',
+                tabReviews: '★★★★★ <strong>"Fall-off-the-bone perfection! The Turkish spices and sumac tang are heavenly."</strong> - Chef Arsalan.<br><br>★★★★★ <strong>"Rich, deeply flavored gravy without any bitter aftertaste. Truly authentic."</strong> - Meherunissa B.<br><br>★★★★★ <strong>"Our family dinner felt like a banquet at a Sultan\'s palace."</strong> - Tariq H.',
+                packSizes: [
+                    { weight: '100g', price: 299, origPrice: 349, discount: '14% OFF' },
+                    { weight: '200g (Pack of 2)', price: 549, origPrice: 698, discount: '21% OFF' },
+                    { weight: '500g Master Tin', price: 1199, origPrice: 1499, discount: '20% OFF' }
+                ]
+            },
+            'boti-delight': {
+                title: 'Boti Delight - Behruz Gravy Instant Masala',
+                subtitle: 'Royal Persian-Mughal Spice Blend for Majestic Gravy',
+                badge: 'Instant Gravy Masala',
+                img: 'assets/boti-delight.png',
+                thumbs: ['assets/boti-delight.png'],
+                price: 279,
+                origPrice: 329,
+                discount: '15% OFF',
+                rating: '4.9',
+                reviews: '1.9K',
+                storyKicker: 'BEHRUZ ROYAL BANQUET',
+                storyTitle: 'The Rich Velvet of Boti Delight Gravy',
+                story1: 'A tribute to the revered Behruz dynasty banquets, Boti Delight is a luxurious instant gravy masala created for melt-in-the-mouth caramelized meat morsels (boti) and paneer medallions. Roasted shallots, handmade coriander, Kashmiri chili paste, and imperial garam masala create an intensely decadent dark glaze.',
+                story2: 'Traditionally served crowned with crispy golden straw potatoes (salli) and fresh coriander sprigs, this dish embodies the celebration and grandeur of Persian culinary heritage.',
+                flavorNotes: ['Caramelized Shallot Richness', 'Handmade Garam Masala', 'Smoky Kashmiri Chili', 'Crisp Potato Salli Finish'],
+                ingredientsShort: 'Toasted Shallot Extract, Kashmiri Red Chili, Crushed Coriander, Cumin, Cinnamon Quills, Black Cardamom, Clove, Star Anise, Turmeric, Ginger, Pink Salt.',
+                tabDesc: 'Crafted for connoisseurs of thick, luxurious royal gravies. The instant blend thickens naturally without excessive oil or cornstarch, creating a restaurant-grade velvet consistency with effortless home cooking.',
+                tabIngredients: '<strong>Ingredients:</strong> Roasted Onion and Garlic Granules, Kashmiri Chili, Coriander, Black Cardamom, Green Cardamom, Cinnamon, Cloves, Star Anise, Bay Leaf, Mace, Dry Mango Powder, Sea Salt.',
+                tabHowToUse: 'In a pan, sauté 500g mutton or chicken boti (or paneer cubes) with ghee. Whisk 2.5 tablespoons of Boti Delight Masala into 1 cup of warm water or yogurt and pour into the pan. Simmer for 15 minutes until the gravy turns rich, glossy, and deeply caramelized. Top with crispy fried potato matchsticks (salli) and serve hot.',
+                tabReviews: '★★★★★ <strong>"The caramelized onion and spice profile is unmatched. Restaurant flavor at home in 20 minutes!"</strong> - Zainab P.<br><br>★★★★★ <strong>"Thick, velvety gravy with the crunch of salli on top... phenomenal!"</strong> - Adil Khan.<br><br>★★★★★ <strong>"Absolute perfection with roomali roti or butter naan."</strong> - Feroze S.',
+                packSizes: [
+                    { weight: '100g', price: 279, origPrice: 329, discount: '15% OFF' },
+                    { weight: '200g (Pack of 2)', price: 499, origPrice: 658, discount: '24% OFF' },
+                    { weight: '500g Master Tin', price: 1099, origPrice: 1399, discount: '21% OFF' }
+                ]
+            },
+            'murg-lababdar': {
+                title: 'Shabnami Murg Lababdar Gravy',
+                subtitle: 'Royal Persian-Mughal Spice Blend for Majestic Gravy',
+                badge: 'Persian Lababdar Gravy',
+                img: 'assets/murg-lababdar.png',
+                thumbs: ['assets/murg-lababdar.png'],
+                price: 289,
+                origPrice: 339,
+                discount: '15% OFF',
+                rating: '4.9',
+                reviews: '1.6K',
+                storyKicker: 'SHABNAMI ROYAL PALACE RECIPE',
+                storyTitle: 'The Luscious Shabnami Murg Lababdar',
+                story1: 'Originating in the aristocratic Persian-Mughal banquets of Awadh and Shiraz, "Lababdar" signifies utter surrender to pure culinary indulgence. Shabnami Murg Lababdar instant gravy masala weaves sun-ripened tomato essence, toasted melon seeds (char magaz), crushed cashews, and sweet mace into a rich, velvety orange gravy with an enchanting royal sheen.',
+                story2: 'Infused with crushed green cardamom, royal Kasuri methi, and slow-churned butter aromatics, this instant masala transforms boneless chicken tenders or cottage cheese into a decadent imperial feast in under 20 minutes.',
+                flavorNotes: ['Roasted Cashew & Magaz', 'Sun-Ripened Tomato Velvet', 'Fragrant Kasuri Methi', 'Sweet Mace & Cardamom'],
+                ingredientsShort: 'Toasted Cashew Flour, Melon Seed Powder, Kashmiri Chili, Roasted Garlic, Dried Kasuri Methi, Green Cardamom, Mace, Cinnamon, Clove, Turmeric, Sea Salt.',
+                tabDesc: 'Shabnami Murg Lababdar Instant Masala yields the hallmark silky, creamy restaurant texture that coats every bite. Perfectly balanced with a gentle hint of natural sweetness, mild tangy notes, and rich buttery depth.',
+                tabIngredients: '<strong>Ingredients:</strong> Cashew Paste Granules, Toasted Watermelon Seeds (Char Magaz), Dehydrated Tomato Powder, Kashmiri Mild Chili, Roasted Onion Flakes, Green Cardamom, Royal Cumin, Kasuri Methi, Mace, Ginger Powder, Rock Salt.',
+                tabHowToUse: 'Sauté 500g boneless chicken or paneer in 2 tbsp butter. Dissolve 3 tbsp Shabnami Murg Lababdar Masala in 1 cup milk or fresh cream with 1/2 cup warm water. Pour into the pan, cover, and simmer for 15-18 minutes until the gravy thickens to a glossy satin finish. Garnish with ginger juliennes and fresh cream.',
+                tabReviews: '★★★★★ <strong>"Better than 5-star Mughlai restaurant Lababdar! Creamy, rich, and so easy."</strong> - Ananya D.<br><br>★★★★★ <strong>"The balance of cashew creaminess and fragrant Kasuri methi is perfection."</strong> - Zubair H.<br><br>★★★★★ <strong>"My children couldn\'t get enough of this with garlic naan. A kitchen essential!"</strong> - Priya S.',
+                packSizes: [
+                    { weight: '100g', price: 289, origPrice: 339, discount: '15% OFF' },
+                    { weight: '200g (Pack of 2)', price: 529, origPrice: 678, discount: '22% OFF' },
+                    { weight: '500g Master Tin', price: 1149, origPrice: 1449, discount: '21% OFF' }
+                ]
+            },
+            'murg-kalimiri': {
+                title: 'Mukhmali Murg Kalimiri Gravy Masala',
+                subtitle: 'Royal Persian-Mughal Spice Blend for Majestic Gravy',
+                badge: 'Velvety Kalimiri Special',
+                img: 'assets/murg-kalimiri.png',
+                thumbs: ['assets/murg-kalimiri.png'],
+                price: 279,
+                origPrice: 329,
+                discount: '15% OFF',
+                rating: '4.9',
+                reviews: '1.3K',
+                storyKicker: 'MUKHMALI VELVET HERITAGE',
+                storyTitle: 'The Aristocratic White Pepper & Kalimiri Velvet',
+                story1: 'True to its name "Mukhmali" (velvety), this royal delicacy was crafted for Persian nobles who favored subtle elegance over fiery red chilies. Mukhmali Murg Kalimiri marries freshly crushed Malabar black peppercorns with a luxurious white gravy base of reduced cream, blanched almonds, poppy seeds, and fragrant green coriander roots.',
+                story2: 'Each spoonful delivers a soothing creamy mouthfeel followed by the gentle, warming crescendo of aromatic crushed peppercorns that awaken the palate with aristocratic refinement.',
+                flavorNotes: ['Cracked Malabar Peppercorn', 'Silky Almond-Poppy Velvet', 'White Cumin Warmth', 'Subtle Cardamom Essence'],
+                ingredientsShort: 'Crushed Malabar Black Pepper, Blanched Almond Flour, White Poppy Seeds, Green Cardamom, Royal Cumin, Ginger, Garlic, White Pepper, Himalayan Salt.',
+                tabDesc: 'An exquisite white gravy instant masala designed for regal chicken kalimiri, reshmi boti, or paneer kalimiri. Delivers an opulent, silky smooth sauce laced with the distinct punch of coarsely cracked black pepper.',
+                tabIngredients: '<strong>Ingredients:</strong> Freshly Ground Tellicherry & Malabar Black Pepper, White Poppy Seed Powder (Khus Khus), Blanched Almond Powder, White Pepper, Green Cardamom, Shahi Jeera, Roasted Coriander, Dehydrated Garlic, Ginger, Himalayan Rock Salt.',
+                tabHowToUse: 'Heat 2 tbsp ghee or butter in a pan. Add 500g chicken or mushrooms. Mix 3 tbsp Mukhmali Murg Kalimiri Masala into 1 cup beaten yogurt and 1/2 cup fresh cream. Pour into pan, stir well, and simmer covered for 15-20 minutes until the chicken is tender and the aromatic black pepper releases its fragrant oils. Garnish with freshly cracked pepper and coriander.',
+                tabReviews: '★★★★★ <strong>"The creamy white velvet sauce with spicy black pepper hit is absolute culinary art."</strong> - Dr. Arshad Khan.<br><br>★★★★★ <strong>"Not too spicy, incredibly fragrant and luxurious. Royal dining at its finest."</strong> - Simran K.<br><br>★★★★★ <strong>"Pairs magnificently with tandoori roti or sheermal. A must-try!"</strong> - Wasim A.',
+                packSizes: [
+                    { weight: '100g', price: 279, origPrice: 329, discount: '15% OFF' },
+                    { weight: '200g (Pack of 2)', price: 499, origPrice: 658, discount: '24% OFF' },
+                    { weight: '500g Master Tin', price: 1099, origPrice: 1399, discount: '21% OFF' }
+                ]
+            },
+            'ruz-bi-haleebia': {
+                title: 'Ruz-Bi-Haleebia (Persian Sweet)',
+                subtitle: 'Creamy Saffron & Rosewater Traditional Recipe | Gourmet Selection',
+                badge: 'Gourmet Persian Sweet',
+                img: 'assets/ruz-bi-haleebia.png',
+                thumbs: ['assets/ruz-bi-haleebia.png'],
+                price: 329,
+                origPrice: 389,
+                discount: '15% OFF',
+                rating: '5.0',
+                reviews: '2.4K',
+                storyKicker: 'CENTURIES OF ROYAL SWEETNESS',
+                storyTitle: 'Ruz-Bi-Haleebia — The Saffron Rosewater Nectar',
+                story1: 'Crafted according to noble Persian traditions dating back to 1923, Ruz-Bi-Haleebia is an imperial sweet pudding blend. Fragrant aromatic rice is cooked with rich reduced milk, then elevated with Grade-1 Persian Super Negin saffron threads, hand-distilled Damascus rosewater, and green cardamom essence.',
+                story2: 'Each serving is adorned with slivered Iranian pistachios, crushed almonds, and dried royal rose petals, providing an ethereal creamy texture and unforgettable royal fragrance that crowns any celebratory feast.',
+                flavorNotes: ['Grade-1 Persian Saffron', 'Wild Damascus Rosewater', 'Crushed Pistachio & Almond', 'Velvety Condensed Milk'],
+                ingredientsShort: 'Aromatic Broken Rice, Super Negin Saffron Threads, Damascus Rose Petals, Green Cardamom Seeds, Mace, Powdered California Almonds, Iranian Pistachio Niblets.',
+                tabDesc: 'An authentic royal dessert pre-mix combining heirloom aromatic rice with rare Persian spices and floral waters. Delivers the exquisite sweetness, rich texture, and royal perfume of palace banquets in just 20 minutes.',
+                tabIngredients: '<strong>Ingredients:</strong> Heritage Short-Grain Aromatic Rice, Grade-1 Persian Saffron Threads, Green Cardamom Powder, Organic Rose Petals, Mace, Crushed Pistachios, Slivered Almonds, Natural Rosewater Essence, Raw Cane Sugar.',
+                tabHowToUse: 'Boil 1 liter of whole milk in a heavy saucepan. Stir in 100g of Ruz-Bi-Haleebia sweet mix. Cook on medium-low heat for 18-20 minutes, stirring occasionally until thick, rich, and creamy. Garnish with the included saffron-pistachio sachet. Serve chilled in traditional bowls.',
+                tabReviews: '★★★★★ <strong>"The pure saffron and Damascus rosewater scent will transport you to Isfahan palace gardens."</strong> - Shagufta B.<br><br>★★★★★ <strong>"Unbelievably creamy and not overly sweet. The whole family was in awe."</strong> - Murad Al-Din.<br><br>★★★★★ <strong>"Best Persian dessert mix ever made. Royal packaging too."</strong> - Nazneen R.',
+                packSizes: [
+                    { weight: '100g', price: 329, origPrice: 389, discount: '15% OFF' },
+                    { weight: '200g (Pack of 2)', price: 599, origPrice: 778, discount: '23% OFF' },
+                    { weight: '500g Royal Gift Tin', price: 1399, origPrice: 1799, discount: '22% OFF' }
+                ]
+            }
+        };
+
+        // Normalize any ID or alias to its canonical primary key
+        function resolveCanonicalProductId(rawInput) {
+            const raw = (rawInput || '').trim().toLowerCase();
+            if (!raw) return null;
+
+            const directAliases = {
+                'classic-biryani': 'classic-biryani',
+                'original-classic-biryani': 'classic-biryani',
+                'biryani': 'classic-biryani',
+                'original-biryani': 'classic-biryani',
+                'classic': 'classic-biryani',
+
+                'lazeez-dum': 'lazeez-dum',
+                'lazeez': 'lazeez-dum',
+                'lazeez-dum-biryani': 'lazeez-dum',
+
+                'raaz-e-kalimiri': 'raaz-e-kalimiri',
+                'raaz-kalimiri': 'raaz-e-kalimiri',
+                'raaz-e-kalimiri-biryani': 'raaz-e-kalimiri',
+                'kalimiri-biryani': 'raaz-e-kalimiri',
+
+                'turkish-lamb-shank': 'turkish-lamb-shank',
+                'turkish': 'turkish-lamb-shank',
+                'lamb-shank': 'turkish-lamb-shank',
+                'turkish-shank': 'turkish-lamb-shank',
+                'shank': 'turkish-lamb-shank',
+
+                'boti-delight': 'boti-delight',
+                'boti': 'boti-delight',
+                'boti-delight-masala': 'boti-delight',
+
+                'murg-lababdar': 'murg-lababdar',
+                'shabnami-murg-lababdar': 'murg-lababdar',
+                'murg-lababdar-gravy': 'murg-lababdar',
+                'lababdar': 'murg-lababdar',
+
+                'murg-kalimiri': 'murg-kalimiri',
+                'mukhmali-murg-kalimiri': 'murg-kalimiri',
+                'murg-kalimiri-masala': 'murg-kalimiri',
+                'murg-kalimiri-gravy': 'murg-kalimiri',
+                'kalimiri-gravy': 'murg-kalimiri',
+
+                'ruz-bi-haleebia': 'ruz-bi-haleebia',
+                'sweet': 'ruz-bi-haleebia',
+                'persian-sweet': 'ruz-bi-haleebia',
+                'haleebia': 'ruz-bi-haleebia',
+                'ruz': 'ruz-bi-haleebia'
+            };
+
+            if (directAliases[raw]) return directAliases[raw];
+            if (raw.includes('lababdar')) return 'murg-lababdar';
+            if (raw.includes('murg') && raw.includes('kalimiri')) return 'murg-kalimiri';
+            if (raw.includes('mukhmali')) return 'murg-kalimiri';
+            if (raw.includes('sweet') || raw.includes('haleebia') || raw.includes('ruz')) return 'ruz-bi-haleebia';
+            if (raw.includes('boti')) return 'boti-delight';
+            if (raw.includes('turkish') || raw.includes('shank') || raw.includes('lamb')) return 'turkish-lamb-shank';
+            if (raw.includes('lazeez')) return 'lazeez-dum';
+            if (raw.includes('raaz') || raw.includes('kalimiri')) return 'raaz-e-kalimiri';
+            if (raw.includes('classic') || raw.includes('biryani')) return 'classic-biryani';
+            return null;
+        }
+
+        function renderProductPage(targetId) {
+            const prodId = resolveCanonicalProductId(targetId) || 'classic-biryani';
+            localStorage.setItem('hamsa_selected_product_id', prodId);
+
+            const p = productData[prodId];
+            document.title = `${p.title} | Hamsa Masala`;
+
+            if (document.getElementById('breadcrumb-current')) document.getElementById('breadcrumb-current').textContent = p.title;
+            if (document.getElementById('product-detail-title')) document.getElementById('product-detail-title').textContent = p.title;
+            if (document.getElementById('product-detail-subtitle')) document.getElementById('product-detail-subtitle').textContent = p.subtitle;
+
+            const mainImgEl = document.getElementById('main-product-img');
+            if (mainImgEl) {
+                mainImgEl.src = p.img;
+                mainImgEl.alt = p.title;
+                mainImgEl.style.objectFit = 'contain';
+                mainImgEl.style.mixBlendMode = 'normal';
+            }
+
+            // Wishlist button on main image
+            const detailWishlistBtn = document.querySelector('.detail-wishlist-btn');
+            if (detailWishlistBtn) {
+                detailWishlistBtn.setAttribute('onclick', `toggleWishlist(this, '${prodId}')`);
+                if (typeof wishlist !== 'undefined' && wishlist.includes(prodId)) {
+                    detailWishlistBtn.classList.add('active');
+                    const heart = detailWishlistBtn.querySelector('i');
+                    if (heart) heart.className = 'fas fa-heart';
+                } else {
+                    detailWishlistBtn.classList.remove('active');
+                    const heart = detailWishlistBtn.querySelector('i');
+                    if (heart) heart.className = 'far fa-heart';
+                }
+            }
+
+            // Bestseller / Category badge
+            const badgeEl = document.querySelector('.bestseller-badge');
+            if (badgeEl && p.badge) {
+                badgeEl.innerHTML = `<i class="fas fa-certificate"></i> ${p.badge}`;
+            }
+
+            // Reviews & Rating
+            const reviewsTextEl = document.querySelector('.detail-reviews-text');
+            if (reviewsTextEl && p.rating && p.reviews) {
+                reviewsTextEl.textContent = `${p.rating} (${p.reviews} reviews)`;
+            }
+            const reviewsTabBtn = document.getElementById('reviews-tab-btn');
+            if (reviewsTabBtn && p.reviews) {
+                reviewsTabBtn.textContent = `Reviews (${p.reviews})`;
+            }
+
+            // Thumbnails - ONLY show the exact image of the currently selected product
+            const thumbRow = document.querySelector('.thumbnail-row');
+            if (thumbRow) {
+                const thumbsList = (p.thumbs && p.thumbs.length > 0) ? p.thumbs : [p.img];
+                thumbRow.innerHTML = thumbsList.map((thumbSrc, idx) => `
+                    <div class="thumb-item ${idx === 0 ? 'active' : ''}" onclick="switchMainImage('${thumbSrc}', this)">
+                        <img src="${thumbSrc}" alt="${p.title}" style="object-fit: contain;">
+                    </div>
+                `).join('');
+            }
+
+            // Story Section
+            const storyKickerEl = document.querySelector('.story-kicker');
+            if (storyKickerEl && p.storyKicker) {
+                storyKickerEl.innerHTML = `<i class="fas fa-crown"></i> ${p.storyKicker}`;
+            }
+            const storyHeadingEl = document.querySelector('.story-heading');
+            if (storyHeadingEl && p.storyTitle) {
+                storyHeadingEl.textContent = p.storyTitle;
+            }
+            const storyParas = document.querySelectorAll('.story-paragraph');
+            if (storyParas.length > 0 && p.story1) storyParas[0].textContent = p.story1;
+            if (storyParas.length > 1 && p.story2) storyParas[1].textContent = p.story2;
+
+            // Flavor notes
+            if (p.flavorNotes && p.flavorNotes.length > 0) {
+                const flavorIconsRow = document.querySelector('.flavor-icons-row');
+                if (flavorIconsRow) {
+                    const icons = ['fa-spray-can-sparkles', 'fa-fire-flame-curved', 'fa-gem', 'fa-scale-balanced'];
+                    flavorIconsRow.innerHTML = p.flavorNotes.map((note, idx) => `
+                        <div class="flavor-icon-item">
+                            <i class="fas ${icons[idx % icons.length]}"></i>
+                            <span>${note}</span>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            // Ingredients preview card
+            const ingredientsListEl = document.querySelector('.ingredients-list-text');
+            if (ingredientsListEl && p.ingredientsShort) {
+                ingredientsListEl.textContent = p.ingredientsShort;
+            }
+
+            // Tabs
+            const tabDescEl = document.getElementById('tab-desc');
+            if (tabDescEl && p.tabDesc) tabDescEl.innerHTML = `<p>${p.tabDesc}</p>`;
+
+            const tabIngEl = document.getElementById('tab-ingredients');
+            if (tabIngEl && p.tabIngredients) tabIngEl.innerHTML = `<p>${p.tabIngredients}</p>`;
+
+            const tabHowEl = document.getElementById('tab-how-to-use');
+            if (tabHowEl && p.tabHowToUse) tabHowEl.innerHTML = `<p>${p.tabHowToUse}</p>`;
+
+            const tabReviewsEl = document.getElementById('tab-reviews');
+            if (tabReviewsEl && p.tabReviews) tabReviewsEl.innerHTML = `<p>${p.tabReviews}</p>`;
+
+            // Pack sizes
+            if (p.packSizes && p.packSizes.length > 0) {
+                const packRow = document.querySelector('.pack-sizes-row');
+                if (packRow) {
+                    packRow.innerHTML = p.packSizes.map((pk, idx) => `
+                        <div class="pack-size-pill ${idx === 0 ? 'active' : ''}" onclick="selectPackSize(this, ${pk.price}, ${pk.origPrice}, '${pk.discount}', '${pk.weight}')">
+                            <span class="size-weight">${pk.weight}</span>
+                            <span class="size-price">₹${pk.price}</span>
+                        </div>
+                    `).join('');
+                    const activePk = p.packSizes[0];
+                    activePackPrice = activePk.price;
+                    activePackWeight = activePk.weight;
+                    if (document.getElementById('display-price')) document.getElementById('display-price').textContent = '₹' + activePk.price;
+                    if (document.getElementById('display-orig-price')) document.getElementById('display-orig-price').textContent = '₹' + activePk.origPrice;
+                    if (document.getElementById('display-discount')) document.getElementById('display-discount').textContent = activePk.discount;
+                }
+            }
+
+            // Related Products ("You May Also Like")
+            const relatedGrid = document.querySelector('.related-section .product-grid');
+            if (relatedGrid) {
+                const primaryKeys = ['classic-biryani', 'lazeez-dum', 'raaz-e-kalimiri', 'turkish-lamb-shank', 'boti-delight', 'murg-lababdar', 'murg-kalimiri', 'ruz-bi-haleebia'];
+                const otherIds = primaryKeys.filter(id => id !== prodId).slice(0, 4);
+                relatedGrid.innerHTML = otherIds.map(oId => {
+                    const other = productData[oId];
+                    const defaultWeight = other.packSizes && other.packSizes[0] ? other.packSizes[0].weight : '100g';
+                    return `
+                        <div class="product-card" data-id="${oId}">
+                            <div class="card-img-wrapper" onclick="selectAndOpenProduct('${oId}')">
+                                <div class="persian-corner-top-left"></div>
+                                <div class="persian-corner-top-right"></div>
+                                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this, '${oId}')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <img src="${other.img}" alt="${other.title}" class="card-img" style="object-fit: contain; padding: 6px;">
+                            </div>
+                            <div class="card-body" onclick="selectAndOpenProduct('${oId}')">
+                                <h3 class="card-title">${other.title}</h3>
+                                <div class="card-price-row">
+                                    <span class="price-val">₹${other.price}</span>
+                                    <span class="weight-val">${defaultWeight}</span>
+                                </div>
+                                <div class="card-footer-row">
+                                    <div class="card-rating">
+                                        <i class="fas fa-star rating-star"></i>
+                                        <span class="rating-score">${other.rating}</span>
+                                        <span class="review-count">(${other.reviews})</span>
+                                    </div>
+                                    <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart('${other.title}', ${other.price}, '${other.img}', 1, '${defaultWeight}')">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function selectAndOpenProduct(id) {
+            localStorage.setItem('hamsa_selected_product_id', id);
+            window.location.hash = id;
+            renderProductPage(id);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 3-Layer Failsafe Product Resolver: 1. Query (?id=) -> 2. Hash (#id) -> 3. localStorage
+        (function initProductDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fromQuery = urlParams.get('id');
+            const fromHash = window.location.hash ? window.location.hash.substring(1) : '';
+            const fromStorage = localStorage.getItem('hamsa_selected_product_id');
+
+            const chosenId = resolveCanonicalProductId(fromQuery)
+                || resolveCanonicalProductId(fromHash)
+                || resolveCanonicalProductId(fromStorage)
+                || 'classic-biryani';
+
+            renderProductPage(chosenId);
+        })();
+
+        window.addEventListener('hashchange', () => {
+            const fromHash = window.location.hash ? window.location.hash.substring(1) : '';
+            if (fromHash) {
+                renderProductPage(fromHash);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+
+</html>
