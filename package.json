@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Hamsa Masala Royal Spices E-Commerce Website",
   "scripts": {
-    "start": "npx serve . -l tcp://0.0.0.0:${PORT:-3000}"
+    "start": "npx serve . -l ${PORT:-3000}"
   },
   "dependencies": {
     "serve": "^14.2.0"
