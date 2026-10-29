@@ -1,5 +1,11 @@
 {
+  "name": "hamsa-masala-website",
+  "version": "1.0.0",
+  "description": "Hamsa Masala Royal Spices E-Commerce Website",
+  "scripts": {
+    "start": "npx serve . -l tcp://0.0.0.0:${PORT:-3000}"
+  },
   "dependencies": {
-    "sharp": "^0.35.5"
+    "serve": "^14.2.0"
   }
 }

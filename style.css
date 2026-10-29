@@ -1,5 +1,5 @@
-/* --- CSS Variables & Design Tokens --- */
 :root {
+    /* CSS Variables & Design Tokens */
     --color-dark-green: #0F2C24;
     --color-dark-green-overlay: rgba(15, 44, 36, 0.6);
     --color-gold: #E2B66B;
@@ -77,10 +77,6 @@ h3,
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-.top-header * {
-    pointer-events: auto;
-}
-
 .top-header.scrolled {
     background: rgba(11, 23, 41, 0.95);
     backdrop-filter: blur(10px);
@@ -112,29 +108,6 @@ h3,
 
 .logo:hover .brand-logo-img {
     filter: drop-shadow(0 4px 18px rgba(226, 182, 107, 0.85));
-}
-
-.logo-text-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.logo-text {
-    font-size: 1.45rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    line-height: 1.1;
-    color: var(--color-gold);
-}
-
-.logo-subtext {
-    font-size: 0.6rem;
-    letter-spacing: 3.5px;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    font-weight: 600;
-    opacity: 0.9;
 }
 
 .header-nav {
@@ -206,7 +179,7 @@ h3,
 .cart-btn .cart-badge {
     position: absolute;
     top: -6px;
-    right: -10px;
+    right: 10px;
     background: var(--color-gold);
     color: #0B1729;
     font-size: 0.62rem;
@@ -225,15 +198,15 @@ h3,
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: #0B1729; /* fallback if video hasn't loaded */
+    background: #0B1729;
     display: flex;
     align-items: center;
     padding: 0 6%;
     padding-top: var(--nav-height);
     overflow: hidden;
+    isolation: isolate;
 }
 
-/* Cinematic Video Background */
 .home-bg-video {
     position: absolute;
     top: 0;
@@ -364,22 +337,7 @@ h3,
     height: 100%;
 }
 
-.div-2 {
-    margin-top: -60px;
-    margin-bottom: -60px;
-}
-
-.div-3 {
-    margin-top: -60px;
-    margin-bottom: -60px;
-}
-
-.div-4 {
-    margin-top: -60px;
-    margin-bottom: -10px;
-}
-
-/* Spice Sections */
+/* Spice Sections with Clean Solid Colors */
 .spice-section {
     padding: 100px 5% 100px 5%;
     position: relative;
@@ -480,7 +438,7 @@ h3,
 }
 
 .secondary-btn:hover {
-    background: #153C31;
+    background: #153031;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(15, 44, 36, 0.3);
 }
@@ -507,38 +465,6 @@ h3,
     user-select: none;
 }
 
-/* Static Spice Showcase Image */
-.showcase-img-container {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    user-select: none;
-}
-
-.showcase-img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    filter: drop-shadow(0 15px 35px rgba(15, 44, 36, 0.12));
-    pointer-events: none;
-    user-select: none;
-    transition: none !important;
-    transform: none !important;
-}
-
-.showcase-img:hover,
-.showcase-img-container:hover {
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-/* Royal Spice Showcase Presentation */
 .spice-showcase-container {
     position: relative;
     width: 100%;
@@ -546,6 +472,13 @@ h3,
     display: flex;
     justify-content: center;
     align-items: center;
+    background: transparent !important;
+    border: none !important;
+}
+
+.spice-showcase-container::before,
+.spice-showcase-container::after {
+    display: none !important;
 }
 
 .spice-showcase-img {
@@ -554,36 +487,13 @@ h3,
     height: auto;
     display: block;
     object-fit: contain;
-    filter: drop-shadow(0 20px 45px rgba(15, 44, 36, 0.22));
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.15)) !important;
     transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .spice-showcase-img:hover {
     transform: translateY(-6px) scale(1.02);
     filter: drop-shadow(0 28px 55px rgba(15, 44, 36, 0.32));
-}
-
-/* Round Spice Container for legacy/circular display */
-.round-spice-container {
-    width: 380px;
-    height: 380px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    border: 8px solid var(--color-gold);
-    pointer-events: none;
-    user-select: none;
-    transition: none !important;
-    transform: none !important;
-}
-
-.round-spice-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    pointer-events: none;
-    user-select: none;
 }
 
 /* Footer & Quote Section */
@@ -613,7 +523,7 @@ h3,
 }
 
 .quote-text {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-style: italic;
     line-height: 1.4;
     margin-bottom: 1.5rem;
@@ -657,56 +567,11 @@ h3,
     filter: drop-shadow(0 6px 28px rgba(226, 182, 107, 0.85));
 }
 
-.footer-logo {
-    font-size: 1.5rem;
-    color: var(--color-gold);
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-}
-
-/* Modals & Drawer Brand Logos */
-.auth-brand-logo-img {
-    height: 92px;
-    width: auto;
-    max-width: 220px;
-    object-fit: contain;
-    filter: drop-shadow(0 3px 14px rgba(226, 182, 107, 0.55));
-    display: block;
-    margin: 0 auto 10px auto;
-}
-
-.cart-brand-logo-img {
-    height: 48px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(226, 182, 107, 0.45));
-    display: inline-block;
-}
-
-.cart-drawer-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.menu-brand-logo-img {
-    height: 52px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 10px rgba(226, 182, 107, 0.55));
-    display: inline-block;
-}
-
-.footer-desc {
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin-bottom: 20px;
-}
-
 .social-links {
     display: flex;
     justify-content: center;
     gap: 15px;
+    margin-top: 20px;
 }
 
 .social-links a {
@@ -727,286 +592,7 @@ h3,
     transform: translateY(-3px);
 }
 
-/* Mobile Bottom Nav */
-.bottom-nav {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: var(--bottom-nav-height);
-    background: var(--color-dark-green);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    z-index: 1000;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.nav-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: rgba(244, 240, 230, 0.6);
-    font-size: 0.7rem;
-    gap: 4px;
-    transition: color 0.3s;
-    position: relative;
-}
-
-.nav-item i {
-    font-size: 1.2rem;
-    margin-bottom: 2px;
-}
-
-.nav-item.active,
-.nav-item:hover {
-    color: var(--color-gold);
-}
-
-.nav-fab {
-    width: 56px;
-    height: 56px;
-    background: var(--color-gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-dark-green);
-    transform: translateY(-20px);
-    box-shadow: 0 4px 15px rgba(226, 182, 107, 0.4);
-}
-
-.nav-fab i {
-    font-size: 1.5rem;
-    margin: 0;
-}
-
-.cart-nav .nav-badge {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-    background: var(--color-gold);
-    color: var(--color-dark-green);
-    font-size: 0.6rem;
-    font-weight: 700;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* --- Media Queries --- */
-@media (max-width: 992px) {
-    .container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .container.reverse {
-        flex-direction: column;
-    }
-
-    .btn-group {
-        justify-content: center;
-    }
-
-    .spice-content {
-        margin-bottom: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    .bottom-nav {
-        display: none !important;
-    }
-
-    .footer-section {
-        padding-bottom: 50px;
-    }
-
-    .header-icons {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .header-icons .cart-btn {
-        display: flex !important;
-    }
-
-    .header-icons .search-btn {
-        display: flex !important;
-    }
-
-    .header-icons .menu-btn {
-        display: flex !important;
-    }
-
-    .hero {
-        background-size: cover;
-        background-position: 65% center;
-        padding: calc(var(--nav-height) + 16px) 5% 45px 5%;
-        min-height: 100vh;
-        min-height: 100dvh;
-        display: flex;
-        align-items: center;
-    }
-
-    .hero-overlay {
-        background: linear-gradient(to right, rgba(11, 23, 41, 0.72) 0%, rgba(11, 23, 41, 0.48) 50%, rgba(11, 23, 41, 0.15) 100%);
-    }
-
-    .hero-content {
-        max-width: 100%;
-    }
-
-    .hero .title {
-        font-size: clamp(1.9rem, 7.5vw, 2.4rem);
-        line-height: 1.15;
-    }
-
-    .hero .desc {
-        font-size: clamp(0.85rem, 3.2vw, 0.95rem);
-        line-height: 1.45;
-        max-width: 95%;
-        margin-bottom: 1.5rem;
-    }
-
-    .hero .subtitle {
-        font-size: 0.75rem;
-        letter-spacing: 2px;
-        margin-bottom: 0.8rem;
-    }
-
-    .slider-dots {
-        margin-top: 1.5rem;
-    }
-
-    .spice-section {
-        padding: 24px 12px !important;
-        overflow-x: hidden;
-    }
-
-    .spice-section .container {
-        display: grid !important;
-        grid-template-columns: 56% 44% !important;
-        align-items: center !important;
-        gap: 10px !important;
-        padding: 0 !important;
-        margin: 0 auto !important;
-        text-align: left !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    .spice-section.reverse .container {
-        grid-template-columns: 44% 56% !important;
-    }
-
-    .spice-section.reverse .spice-image-wrapper {
-        order: 1 !important;
-    }
-
-    .spice-section.reverse .spice-content {
-        order: 2 !important;
-    }
-
-    .spice-content {
-        margin-bottom: 0 !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    .spice-image-wrapper {
-        margin-bottom: 0 !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-
-    .icon-motif {
-        font-size: 0.85rem;
-        margin-bottom: 3px;
-    }
-
-    .section-kicker {
-        font-size: 0.62rem;
-        letter-spacing: 1.2px;
-        margin-bottom: 3px;
-        line-height: 1.2;
-    }
-
-    .section-title {
-        font-size: clamp(1.05rem, 4.2vw, 1.3rem) !important;
-        line-height: 1.15 !important;
-        margin-bottom: 4px !important;
-        word-break: break-word;
-    }
-
-    .section-subtitle {
-        font-size: 0.72rem !important;
-        line-height: 1.25 !important;
-        margin-bottom: 6px !important;
-    }
-
-    .section-desc {
-        font-size: clamp(0.72rem, 2.5vw, 0.78rem) !important;
-        line-height: 1.35 !important;
-        margin-bottom: 10px !important;
-        color: #444;
-    }
-
-    .btn-group {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 6px !important;
-        justify-content: flex-start !important;
-    }
-
-    .secondary-btn {
-        padding: 8px 12px !important;
-        font-size: 0.7rem !important;
-        letter-spacing: 0.5px !important;
-        gap: 6px !important;
-        border-radius: 20px !important;
-        white-space: nowrap !important;
-    }
-
-    .link-text {
-        font-size: 0.7rem !important;
-        padding-left: 2px;
-    }
-
-    .spice-showcase-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 auto;
-    }
-
-    .spice-showcase-img {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        object-fit: contain !important;
-    }
-
-    .brand-logo-img {
-        height: 52px;
-        max-width: 150px;
-    }
-
-    .footer-logo-img {
-        height: 95px;
-    }
-}
-
-/* CINEMATIC INTRO SCREEN (Solid Pitch-Black Theater Mode) */
+/* Cinematic Intro Screen */
 #intro-overlay {
     position: fixed;
     top: 0;
@@ -1087,6 +673,26 @@ h3,
     transform: scale(1.05);
 }
 
+/* Media Queries */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .container.reverse {
+        flex-direction: column;
+    }
+
+    .btn-group {
+        justify-content: center;
+    }
+
+    .spice-content {
+        margin-bottom: 40px;
+    }
+}
+
 @media (max-width: 768px) {
     .intro-skip-btn {
         top: 18px;
@@ -1094,53 +700,14 @@ h3,
         font-size: 0.72rem;
         padding: 6px 14px;
     }
-}
 
-/* ==========================================================================
-   HOME PAGE SHOWCASE — clean/transparent background (no city overlay)
-   ========================================================================== */
-.spice-showcase-container {
-    background: transparent !important;
-    border: none !important;
-}
-
-/* Suppress any ::before/::after backdrop on home showcase */
-.spice-showcase-container::before,
-.spice-showcase-container::after {
-    display: none !important;
-}
-
-.spice-showcase-container img {
-    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.15)) !important;
-}
-
-/* ==========================================================================
-   HEADER — glass blur on scroll + enlarged logo
-   ========================================================================== */
-:root {
-    --nav-height: 110px !important;
-}
-
-.top-header.scrolled {
-    background: rgba(15, 44, 36, 0.35) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid rgba(226, 182, 107, 0.2) !important;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15) !important;
-}
-
-.brand-logo-img {
-    height: 105px !important;
-    max-width: 280px !important;
-}
-
-@media (max-width: 768px) {
-    :root {
-        --nav-height: 85px !important;
+    .hero {
+        padding: calc(var(--nav-height) + 16px) 5% 45px 5%;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 
-    .brand-logo-img {
-        height: 72px !important;
-        max-width: 190px !important;
+    .hero .title {
+        font-size: clamp(1.9rem, 7.5vw, 2.4rem);
     }
 }
