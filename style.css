@@ -1971,7 +1971,6 @@ h3,
     }
 }
 
-
 /* ==========================================================================
    CART TOAST NOTIFICATION (Fixed Floating Notification — Never in Document Flow)
    ========================================================================== */
@@ -2061,5 +2060,96 @@ h3,
         right: 14px !important;
         bottom: 20px !important;
         justify-content: space-between !important;
+    }
+}
+
+/* =========================================================
+   ROYAL CINEMATIC INTRO VIDEO OVERLAY
+========================================================== */
+body.intro-playing {
+    overflow: hidden !important;
+}
+
+#intro-video-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    width: 100dvw !important;
+    height: 100dvh !important;
+    background-color: #000000 !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    pointer-events: auto !important;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease !important;
+    will-change: opacity, visibility;
+}
+
+#intro-video-overlay.fade-out {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+#intro-video-overlay.hidden {
+    display: none !important;
+}
+
+.intro-video-player {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    background: #000000 !important;
+}
+
+.skip-intro-btn {
+    position: absolute !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    background: rgba(15, 44, 36, 0.72) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(226, 182, 107, 0.5) !important;
+    color: #E2B66B !important;
+    padding: 9px 20px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border-radius: 30px !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45) !important;
+    transition: all 0.3s ease !important;
+    opacity: 0.9 !important;
+}
+
+.skip-intro-btn:hover {
+    opacity: 1 !important;
+    background: rgba(15, 44, 36, 0.95) !important;
+    border-color: #E2B66B !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6) !important;
+}
+
+.skip-intro-btn:active {
+    transform: translateY(0) !important;
+}
+
+@media (max-width: 768px) {
+    .skip-intro-btn {
+        bottom: 22px !important;
+        right: 20px !important;
+        padding: 7px 15px !important;
+        font-size: 0.75rem !important;
     }
 }

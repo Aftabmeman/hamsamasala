@@ -21,11 +21,104 @@
     <link rel="stylesheet" href="style.css?v=18">
     <link rel="stylesheet" href="catalog.css?v=18">
 
+    <!-- Preload Intro Video for Instant Playback (Desktop & Mobile) -->
+    <link rel="preload" as="video" href="assets/introvideomobile.mp4" type="video/mp4" media="(max-width: 768px)">
+    <link rel="preload" as="video" href="assets/introvideo.mp4" type="video/mp4" media="(min-width: 769px)">
+
     <!-- =========================================================
          ULTIMATE HTML INLINE FIX FOR STRAY MODALS AT BOTTOM
          (This bypasses all CSS caching issues)
     ========================================================== -->
     <style>
+        /* Royal Cinematic Intro Video Overlay */
+        body.intro-playing {
+            overflow: hidden !important;
+        }
+
+        #intro-video-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            width: 100dvw !important;
+            height: 100dvh !important;
+            background-color: #000000 !important;
+            z-index: 2147483647 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            pointer-events: auto !important;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease !important;
+            will-change: opacity, visibility;
+        }
+
+        #intro-video-overlay.fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        #intro-video-overlay.hidden {
+            display: none !important;
+        }
+
+        .intro-video-player {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            background: #000000 !important;
+        }
+
+        .skip-intro-btn {
+            position: absolute !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            background: rgba(15, 44, 36, 0.72) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(226, 182, 107, 0.5) !important;
+            color: #E2B66B !important;
+            padding: 9px 20px !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.82rem !important;
+            font-weight: 500 !important;
+            letter-spacing: 1.5px !important;
+            text-transform: uppercase !important;
+            border-radius: 30px !important;
+            cursor: pointer !important;
+            z-index: 10 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45) !important;
+            transition: all 0.3s ease !important;
+            opacity: 0.9 !important;
+        }
+
+        .skip-intro-btn:hover {
+            opacity: 1 !important;
+            background: rgba(15, 44, 36, 0.95) !important;
+            border-color: #E2B66B !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .skip-intro-btn:active {
+            transform: translateY(0) !important;
+        }
+
+        @media (max-width: 768px) {
+            .skip-intro-btn {
+                bottom: 22px !important;
+                right: 20px !important;
+                padding: 7px 15px !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
         #cart-toast:not(.show),
         #menu-drawer-overlay:not(.open),
         #search-modal-overlay:not(.open),
@@ -121,7 +214,89 @@
     </style>
 </head>
 
-<body>
+<body class="intro-playing">
+    <!-- Royal Cinematic Intro Video Overlay -->
+    <div id="intro-video-overlay" class="intro-video-overlay" aria-label="Intro Sequence">
+        <video id="intro-video" class="intro-video-player" autoplay muted playsinline webkit-playsinline preload="auto">
+            <source src="assets/introvideomobile.mp4" type="video/mp4" media="(max-width: 768px)">
+            <source src="assets/introvideo.mp4" type="video/mp4">
+        </video>
+        <button id="skip-intro-btn" class="skip-intro-btn" aria-label="Skip Intro Video" onclick="dismissIntroVideo()">
+            <span>Skip</span> <i class="fas fa-forward"></i>
+        </button>
+    </div>
+
+    <script>
+        (function() {
+            const overlay = document.getElementById('intro-video-overlay');
+            const video = document.getElementById('intro-video');
+            if (!overlay || !video) return;
+
+            // Detect mobile vs desktop immediately
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const chosenSrc = isMobile ? 'assets/introvideomobile.mp4' : 'assets/introvideo.mp4';
+
+            // Ensure video element plays the correct responsive source immediately
+            if (!video.currentSrc || !video.currentSrc.includes(chosenSrc)) {
+                video.src = chosenSrc;
+            }
+
+            let hasFinished = false;
+
+            window.dismissIntroVideo = function() {
+                if (hasFinished) return;
+                hasFinished = true;
+
+                document.body.classList.remove('intro-playing');
+                overlay.classList.add('fade-out');
+
+                // Ensure home hero background video plays smoothly
+                const homeBgVideo = document.querySelector('.home-bg-video');
+                if (homeBgVideo && homeBgVideo.paused) {
+                    homeBgVideo.play().catch(function() {});
+                }
+
+                setTimeout(function() {
+                    video.pause();
+                    overlay.classList.add('hidden');
+                    overlay.style.display = 'none';
+                }, 850);
+            };
+
+            function tryPlay() {
+                video.muted = true;
+                const p = video.play();
+                if (p !== undefined) {
+                    p.catch(function(err) {
+                        console.log('Intro video playback notice:', err);
+                    });
+                }
+            }
+
+            if (video.readyState >= 2) {
+                tryPlay();
+            } else {
+                video.addEventListener('loadeddata', tryPlay, { once: true });
+                video.addEventListener('canplay', tryPlay, { once: true });
+            }
+            tryPlay();
+
+            // When video finishes, transition smoothly into homepage
+            video.addEventListener('ended', dismissIntroVideo);
+
+            // Cross-dissolve 0.35s before end so there's zero freeze-frame
+            video.addEventListener('timeupdate', function() {
+                if (video.duration && video.currentTime >= (video.duration - 0.35)) {
+                    dismissIntroVideo();
+                }
+            });
+
+            // Failsafe timer (maximum 9 seconds)
+            setTimeout(function() {
+                if (!hasFinished) dismissIntroVideo();
+            }, 9000);
+        })();
+    </script>
     <!-- Top Header -->
     <header class="top-header">
         <a href="index.html" class="logo" aria-label="Hamsa Masala">
