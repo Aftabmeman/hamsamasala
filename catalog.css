@@ -1550,52 +1550,466 @@ body {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --nav-height: 70px;
+    }
+
+    /* Global mobile container lockdown */
+    html, body {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    .top-header {
+        height: 70px !important;
+        padding: 0 14px !important;
+    }
+
     .header-nav {
         display: none !important;
     }
 
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+    .brand-logo-img {
+        height: 52px !important;
+        max-width: 130px !important;
     }
 
+    .back-btn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.1rem !important;
+    }
+
+    .header-icons {
+        gap: 8px !important;
+    }
+
+    .header-icons .icon-btn {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* Catalog Banner & Page Title */
     .catalog-title {
-        font-size: 1.85rem;
+        font-size: 1.75rem !important;
     }
 
+    /* Product Detail Page Mobile Layout (360px, 375px, 390px, 412px, 430px) */
+    .product-detail-wrapper {
+        padding: calc(70px + 18px) 14px 60px 14px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .product-detail-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .breadcrumbs {
+        font-size: 0.78rem !important;
+        margin-bottom: 16px !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+    .product-main-grid {
+        grid-template-columns: 1fr !important;
+        gap: 22px !important;
+        margin-bottom: 35px !important;
+        width: 100% !important;
+    }
+
+    .product-main-grid > * {
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .detail-gallery {
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 12px !important;
+    }
+
+    .detail-main-img-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        aspect-ratio: 1 / 1 !important;
+        border-radius: 16px !important;
+        padding: 10px !important;
+    }
+
+    .detail-main-img {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .detail-wishlist-btn {
+        width: 38px !important;
+        height: 38px !important;
+        top: 12px !important;
+        right: 12px !important;
+        font-size: 1rem !important;
+    }
+
+    .thumbnail-row {
+        display: flex !important;
+        gap: 8px !important;
+        overflow-x: auto !important;
+        justify-content: flex-start !important;
+        padding-bottom: 4px !important;
+    }
+
+    .thumb-item {
+        width: 58px !important;
+        height: 58px !important;
+        flex-shrink: 0 !important;
+        border-radius: 10px !important;
+    }
+
+    .detail-info {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .detail-title {
+        font-size: clamp(1.6rem, 5.8vw, 2.1rem) !important;
+        line-height: 1.2 !important;
+        margin-bottom: 8px !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .detail-subtitle {
+        font-size: 0.95rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 12px !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .detail-rating-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 8px 10px !important;
+        margin-bottom: 14px !important;
+    }
+
+    .stars-group {
+        font-size: 0.88rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    .detail-reviews-text {
+        font-size: 0.84rem !important;
+    }
+
+    .bestseller-badge {
+        font-size: 0.72rem !important;
+        padding: 3px 8px !important;
+        white-space: nowrap !important;
+    }
+
+    .detail-price-row {
+        display: flex !important;
+        align-items: baseline !important;
+        gap: 10px !important;
+        margin-bottom: 18px !important;
+        padding-bottom: 14px !important;
+    }
+
+    .detail-price {
+        font-size: 1.85rem !important;
+    }
+
+    .detail-orig-price {
+        font-size: 1.05rem !important;
+    }
+
+    .discount-pill {
+        font-size: 0.75rem !important;
+        padding: 3px 8px !important;
+    }
+
+    /* 4 Feature Badges in 2x2 Grid on Mobile */
+    .feature-badges-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+    }
+
+    .feature-badge-box {
+        padding: 10px 8px !important;
+        min-width: 0 !important;
+        gap: 4px !important;
+    }
+
+    .feature-badge-box i {
+        font-size: 1.1rem !important;
+    }
+
+    .feature-badge-box span {
+        font-size: 0.72rem !important;
+        word-break: break-word !important;
+    }
+
+    /* Pack Sizes in 2 Columns on Mobile */
+    .size-selector-section {
+        margin-bottom: 18px !important;
+        width: 100% !important;
+    }
+
+    .pack-sizes-row {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .pack-size-pill {
+        padding: 8px 10px !important;
+        width: 100% !important;
+        text-align: center !important;
+        min-width: 0 !important;
+    }
+
+    .pack-size-pill.size-weight {
+        font-size: 0.85rem !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .pack-size-pill.size-price {
+        font-size: 0.72rem !important;
+    }
+
+    /* Quantity and Stock */
+    .quantity-stock-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+    }
+
+    .qty-btn {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .qty-value {
+        width: 36px !important;
+        font-size: 0.95rem !important;
+    }
+
+    .stock-indicator {
+        font-size: 0.8rem !important;
+    }
+
+    /* Action Buttons */
+    .action-buttons-group {
+        gap: 10px !important;
+        margin-bottom: 22px !important;
+        width: 100% !important;
+    }
+
+    .detail-add-cart-btn,
+    .detail-buy-now-btn {
+        width: 100% !important;
+        padding: 14px 18px !important;
+        font-size: 0.95rem !important;
+        border-radius: 12px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    /* Pincode Card */
+    .pincode-check-card {
+        padding: 14px 14px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+    }
+
+    .pincode-input-wrapper {
+        width: 100% !important;
+        gap: 8px !important;
+    }
+
+    .pincode-input-wrapper input {
+        min-width: 0 !important;
+        font-size: 0.82rem !important;
+        padding: 9px 8px 9px 32px !important;
+    }
+
+    .pincode-marker {
+        left: 10px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .pincode-input-wrapper button {
+        padding: 9px 14px !important;
+        font-size: 0.78rem !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Trust Policies Bar */
     .trust-policies-bar {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-        padding: 14px 12px !important;
+        gap: 8px !important;
+        padding: 12px 10px !important;
+        margin-bottom: 22px !important;
+        width: 100% !important;
+    }
+
+    .policy-item {
+        gap: 8px !important;
+        min-width: 0 !important;
+    }
+
+    .policy-item i {
+        font-size: 1.15rem !important;
+    }
+
+    .policy-item .policy-text h5 {
+        font-size: 0.78rem !important;
+    }
+
+    .policy-item .policy-text p {
+        font-size: 0.68rem !important;
+    }
+
+    /* Story Section */
+    .story-profile-section {
+        padding: 20px 14px !important;
+        margin-bottom: 28px !important;
+        border-radius: 16px !important;
+        width: 100% !important;
     }
 
     .story-grid {
         grid-template-columns: 1fr !important;
-        gap: 24px !important;
+        gap: 20px !important;
+        width: 100% !important;
     }
 
-    .story-profile-section {
-        padding: 24px 18px !important;
-        margin-bottom: 30px !important;
+    .story-left .story-heading {
+        font-size: 1.55rem !important;
+        line-height: 1.25 !important;
+        word-break: break-word !important;
     }
 
-    .product-tabs-wrapper {
-        padding: 20px 16px !important;
-        margin-bottom: 35px !important;
-    }
-
-    .tabs-nav {
-        gap: 16px !important;
-        margin-bottom: 18px !important;
-    }
-
-    .tab-btn {
+    .story-left .story-paragraph {
         font-size: 0.92rem !important;
-        padding: 8px 4px 12px 4px !important;
+        line-height: 1.65 !important;
+    }
+
+    .flavor-profile-card,
+    .ingredients-preview-card {
+        padding: 16px 14px !important;
+        width: 100% !important;
+        border-radius: 14px !important;
     }
 
     .flavor-icons-row {
-        gap: 6px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .flavor-icon-item {
+        padding: 8px 6px !important;
+        font-size: 0.74rem !important;
+    }
+
+    /* Product Tabs */
+    .product-tabs-wrapper {
+        padding: 18px 14px !important;
+        margin-bottom: 30px !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+    }
+
+    .tabs-nav {
+        gap: 12px !important;
+        margin-bottom: 16px !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .tab-btn {
+        font-size: 0.86rem !important;
+        padding: 6px 2px 10px 2px !important;
+    }
+
+    .tab-pane {
+        font-size: 0.92rem !important;
+        line-height: 1.65 !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .tab-pane p {
+        font-size: 0.92rem !important;
+        line-height: 1.65 !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Reviews Container */
+    .review-card {
+        padding: 14px !important;
+        border-radius: 12px !important;
+    }
+
+    .review-quote {
+        font-size: 0.9rem !important;
+        line-height: 1.55 !important;
+    }
+
+    /* Related Products Grid */
+    .related-section {
+        width: 100% !important;
+        margin-bottom: 40px !important;
+    }
+
+    .related-section-header {
+        margin-bottom: 16px !important;
+    }
+
+    .related-title {
+        font-size: 1.35rem !important;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 365px) {
+    .product-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .detail-title {
+        font-size: 1.5rem !important;
+    }
+    .top-header {
+        padding: 0 10px !important;
+    }
+    .brand-logo-img {
+        height: 46px !important;
+        max-width: 115px !important;
     }
 }
 
