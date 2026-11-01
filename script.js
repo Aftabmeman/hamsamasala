@@ -1079,11 +1079,11 @@ function ensureModalsInDOM() {
                 <div class="menu-drawer" onclick="event.stopPropagation()">
                     
                     <div class="menu-drawer-header">
-                        <div class="menu-brand-tag">
-                            <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="menu-brand-logo-img">
-                            <span class="menu-brand-text">HAMSA MASALA</span>
+                        <div class="menu-brand-tag" style="display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0;">
+                            <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="menu-brand-logo-img" style="height: 42px; width: auto; max-width: 44px; object-fit: contain; flex-shrink: 0; display: block;">
+                            <span class="menu-brand-text" style="font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 700; color: #E2B66B; letter-spacing: 1.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1;">HAMSA MASALA</span>
                         </div>
-                        <button class="close-menu-btn" onclick="closeMenuDrawer()" aria-label="Close Menu">
+                        <button class="close-menu-btn" onclick="closeMenuDrawer()" aria-label="Close Menu" style="flex-shrink: 0; margin-left: auto;">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>

@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Stylesheets (Version Bumped for Cache Breaking) -->
-    <link rel="stylesheet" href="style.css?v=16">
-    <link rel="stylesheet" href="catalog.css?v=16">
-    <link rel="stylesheet" href="heritage.css?v=16">
+    <link rel="stylesheet" href="style.css?v=18">
+    <link rel="stylesheet" href="catalog.css?v=18">
+    <link rel="stylesheet" href="heritage.css?v=18">
 
     <!-- =========================================================
          ULTIMATE HTML INLINE FIX FOR STRAY MODALS AT BOTTOM
@@ -61,6 +61,65 @@
         .auth-modal-overlay,
         .royal-modal-overlay {
             position: fixed !important;
+        }
+
+        /* Active .open and .show states */
+        #cart-toast.show,
+        .cart-toast.show {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 999999 !important;
+            pointer-events: auto !important;
+            transform: translateY(0) !important;
+        }
+
+        #menu-drawer-overlay.open,
+        .menu-drawer-overlay.open,
+        #cart-drawer-overlay.open,
+        .cart-drawer-overlay.open {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 999999 !important;
+            pointer-events: auto !important;
+        }
+
+        #search-modal-overlay.open,
+        .search-modal-overlay.open,
+        #auth-modal-overlay.open,
+        .auth-modal-overlay.open,
+        #orders-modal-overlay.open,
+        #track-order-modal-overlay.open,
+        #wishlist-modal-overlay.open,
+        #addresses-modal-overlay.open,
+        #support-modal-overlay.open,
+        .royal-modal-overlay.open,
+        #order-success-modal.open,
+        .order-success-modal.open {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 999999 !important;
+            pointer-events: auto !important;
+        }
+
+        #menu-drawer-overlay.open .menu-drawer,
+        .menu-drawer-overlay.open .menu-drawer,
+        #cart-drawer-overlay.open .cart-drawer,
+        .cart-drawer-overlay.open .cart-drawer {
+            transform: translateX(0) !important;
+        }
+
+        #search-modal-overlay.open .search-modal-card,
+        .search-modal-overlay.open .search-modal-card {
+            transform: translateY(0) !important;
+        }
+
+        #auth-modal-overlay.open .auth-modal-card,
+        .auth-modal-overlay.open .auth-modal-card,
+        .royal-modal-overlay.open .royal-modal-card {
+            transform: scale(1) !important;
         }
     </style>
 </head>
@@ -746,7 +805,7 @@
         <div class="cart-drawer" onclick="event.stopPropagation()">
             <div class="cart-drawer-header">
                 <div class="cart-drawer-brand">
-                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="cart-brand-logo-img">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="cart-brand-logo-img" style="height: 38px; width: auto; max-width: 42px; object-fit: contain; flex-shrink: 0; display: block;">
                     <h3>Royal Shopping Bag (<span id="cart-drawer-count">0</span>)</h3>
                 </div>
                 <button class="close-cart-btn" onclick="closeCartDrawer()" aria-label="Close Cart"><i
@@ -778,7 +837,7 @@
             <button class="auth-close-btn" onclick="closeAuthModal()" aria-label="Close Modal">&times;</button>
             <div class="auth-header">
                 <div class="auth-brand-emblem">
-                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="auth-brand-logo-img">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="auth-brand-logo-img" style="height: 64px; width: auto; max-width: 140px; object-fit: contain; display: block; margin: 0 auto;">
                 </div>
                 <h3 class="auth-title">Hamsa Masala</h3>
                 <p class="auth-subtitle">Login or Sign up to complete your royal feast order</p>
