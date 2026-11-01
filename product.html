@@ -356,10 +356,20 @@
                 <div class="tab-pane" id="tab-how-to-use"></div>
                 <div class="tab-pane" id="tab-reviews"></div>
                 <div class="tab-pane" id="tab-faqs">
-                    <p><strong>Q: What is the shelf life?</strong><br>A: 12 months from the packaging date when stored
-                        in an airtight container in a cool, dry place.<br><br><strong>Q: Are there any artificial
-                            preservatives or added MSG?</strong><br>A: No. All Hamsa Masala blends are 100% natural,
-                        handmade, and free from artificial colors, preservatives, or MSG.</p>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <h4 class="faq-q"><i class="fas fa-circle-question"></i> What is the shelf life?</h4>
+                            <p class="faq-a">12 months from the packaging date when stored in an airtight container in a cool, dry place away from direct sunlight.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4 class="faq-q"><i class="fas fa-circle-question"></i> Are there any artificial preservatives or added MSG?</h4>
+                            <p class="faq-a">No. All Hamsa Masala blends are 100% natural, handmade in small batches, and strictly free from artificial colors, chemical preservatives, or MSG.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4 class="faq-q"><i class="fas fa-circle-question"></i> How should I store the spices after opening?</h4>
+                            <p class="faq-a">Keep the blend in its resealable freshness pouch or transfer to an airtight glass container to preserve the volatile essential oils and royal aroma.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -507,7 +517,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=18"></script>
     <script>
         let currentQty = 1;
         let activePackPrice = 249;
@@ -961,7 +971,40 @@
             if (tabHowEl && p.tabHowToUse) tabHowEl.innerHTML = `<p>${p.tabHowToUse}</p>`;
 
             const tabReviewsEl = document.getElementById('tab-reviews');
-            if (tabReviewsEl && p.tabReviews) tabReviewsEl.innerHTML = `<p>${p.tabReviews}</p>`;
+            if (tabReviewsEl && p.tabReviews) {
+                const reviewChunks = p.tabReviews.split('<br><br>');
+                const cardsHTML = reviewChunks.map(chunk => {
+                    const match = chunk.match(/<strong>"(.*?)"<\/strong>\s*[-–—]\s*(.*)/i)
+                               || chunk.match(/"(.*?)"\s*[-–—]\s*(.*)/i);
+                    if (match) {
+                        return `
+                            <div class="review-card">
+                                <div class="review-card-header">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Royal Patron</span>
+                                </div>
+                                <p class="review-quote">"${match[1]}"</p>
+                                <div class="review-author">— ${match[2]}</div>
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="review-card">
+                                <div class="review-card-header">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Royal Patron</span>
+                                </div>
+                                <p class="review-quote">${chunk.replace(/★+/g, '').trim()}</p>
+                            </div>
+                        `;
+                    }
+                }).join('');
+                tabReviewsEl.innerHTML = `<div class="reviews-container">${cardsHTML}</div>`;
+            }
 
             // Pack sizes
             if (p.packSizes && p.packSizes.length > 0) {
