@@ -8,24 +8,61 @@
     <meta name="description"
         content="Explore our royal collection of authentic Persian blended masalas, whole spices, and luxury spice blends handcrafted from ancient royal traditions.">
     <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
-
     <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=14">
-    <link rel="stylesheet" href="catalog.css?v=14">
+    <!-- Bumped versions to clear cache -->
+    <link rel="stylesheet" href="style.css?v=16">
+    <link rel="stylesheet" href="catalog.css?v=16">
+
+    <!-- =========================================================
+         ULTIMATE HTML INLINE FIX FOR STRAY MODALS AT BOTTOM
+         (This bypasses all CSS caching issues)
+    ========================================================== -->
+    <style>
+        #cart-toast:not(.show),
+        #menu-drawer-overlay:not(.open),
+        #search-modal-overlay:not(.open),
+        #cart-drawer-overlay:not(.open),
+        #auth-modal-overlay:not(.open),
+        #orders-modal-overlay:not(.open),
+        #track-order-modal-overlay:not(.open),
+        #wishlist-modal-overlay:not(.open),
+        #addresses-modal-overlay:not(.open),
+        #support-modal-overlay:not(.open),
+        .royal-modal-overlay:not(.open) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: fixed !important;
+            pointer-events: none !important;
+            z-index: -9999 !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+        }
+
+        /* Force position fixed even when momentarily loading */
+        .cart-toast,
+        .menu-drawer-overlay,
+        .search-modal-overlay,
+        .cart-drawer-overlay,
+        .auth-modal-overlay,
+        .royal-modal-overlay {
+            position: fixed !important;
+        }
+    </style>
 </head>
 
 <body>
-
     <!-- Sticky Top Header -->
     <header class="top-header">
         <div style="display: flex; align-items: center; gap: 14px;">
@@ -34,13 +71,11 @@
                 <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
             </a>
         </div>
-
         <nav class="header-nav">
             <a href="index.html">Home</a>
             <a href="spices.html" class="active">Spices</a>
             <a href="heritage.html">Heritage</a>
         </nav>
-
         <div class="header-icons">
             <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()"><i
                     class="fas fa-search"></i></button>
@@ -53,7 +88,6 @@
                 onclick="openMenuDrawer()"><i class="fas fa-bars"></i></button>
         </div>
     </header>
-
     <!-- Royal Dark Green Header Banner with Hero Image Background -->
     <section class="catalog-banner">
         <div class="catalog-banner-overlay"></div>
@@ -64,14 +98,12 @@
                 handmade, and infused with rare Silk Route spices.</p>
         </div>
     </section>
-
     <!-- Transition Divider 1 -->
     <div class="divider div-1">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
             <path d="M0,0 C300,100 600,150 900,50 C1200,-50 1440,80 1440,80 L1440,120 L0,120 Z" fill="#F4F0E6"></path>
         </svg>
     </div>
-
     <!-- Search & Filter Controls Section -->
     <section class="catalog-controls">
         <div class="controls-container">
@@ -86,15 +118,16 @@
                             class="fas fa-times"></i></button>
                 </div>
             </div>
-
             <!-- Filter Pills & Sort Dropdown -->
             <div class="filter-sort-bar">
                 <div class="filter-pills" id="category-pills">
-                    <button class="filter-pill active" data-category="all" onclick="filterCatalogCategory('all', this)">All Spices</button>
-                    <button class="filter-pill" data-category="blended" onclick="filterCatalogCategory('blended', this)">Royal Biryanis &amp; Gravies</button>
-                    <button class="filter-pill" data-category="royal" onclick="filterCatalogCategory('royal', this)">Gourmet Sweets &amp; Royal</button>
+                    <button class="filter-pill active" data-category="all"
+                        onclick="filterCatalogCategory('all', this)">All Spices</button>
+                    <button class="filter-pill" data-category="blended"
+                        onclick="filterCatalogCategory('blended', this)">Royal Biryanis &amp; Gravies</button>
+                    <button class="filter-pill" data-category="royal"
+                        onclick="filterCatalogCategory('royal', this)">Gourmet Sweets &amp; Royal</button>
                 </div>
-
                 <div class="sort-wrapper">
                     <label for="sort-select" class="sort-label">Sort by:</label>
                     <select id="sort-select" class="sort-select">
@@ -105,7 +138,6 @@
                     </select>
                 </div>
             </div>
-
             <!-- Results Meta Info -->
             <div class="results-info-row">
                 <span id="results-count-text">Showing <strong id="results-count">8</strong> handcrafted royal
@@ -115,12 +147,10 @@
             </div>
         </div>
     </section>
-
     <!-- Product Grid Section -->
     <section class="catalog-grid-section">
         <div class="catalog-grid-container">
             <div class="product-grid" id="product-grid">
-
                 <!-- Product 1: Lazeez - Dum - Biryani -->
                 <div class="product-card" data-id="lazeez-dum"
                     data-name="Lazeez - Dum - Biryani Royal Persian-Mughal Spice Blend" data-category="blended"
@@ -158,7 +188,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product 2: Original - Classic - Biryani -->
                 <div class="product-card" data-id="classic-biryani"
                     data-name="Original - Classic - Biryani Royal Persian-Mughal Spice Blend" data-category="blended"
@@ -196,7 +225,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product 3: Raaz-e-Kalimiri Biryani -->
                 <div class="product-card" data-id="raaz-e-kalimiri"
                     data-name="Raaz-e-Kalimiri Biryani Royal Persian-Mughal Spice Blend" data-category="blended"
@@ -234,7 +262,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product 4: Turkish Lamb Shank Gravy -->
                 <div class="product-card" data-id="turkish-lamb-shank"
                     data-name="Turkish Lamb Shank Gravy Instant Masala" data-category="blended" data-price="299"
@@ -272,7 +299,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product 5: Boti Delight - Behruz Gravy Instant Masala -->
                 <div class="product-card" data-id="boti-delight" data-name="Boti Delight Behruz Gravy Instant Masala"
                     data-category="blended" data-price="279" data-rating="4.9">
@@ -309,7 +335,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product 6: Shabnami Murg Lababdar Gravy -->
                 <div class="product-card" data-id="murg-lababdar"
                     data-name="Shabnami Murg Lababdar Gravy Instant Masala" data-category="blended" data-price="289"
@@ -347,7 +372,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product 7: Mukhmali Murg Kalimiri Gravy Masala -->
                 <div class="product-card" data-id="murg-kalimiri" data-name="Mukhmali Murg Kalimiri Gravy Masala"
                     data-category="blended" data-price="279" data-rating="4.9">
@@ -385,7 +409,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Product 8: Ruz-Bi-Haleebia (Persian Sweet) -->
                 <div class="product-card" data-id="ruz-bi-haleebia"
                     data-name="Ruz-Bi-Haleebia Persian Sweet Saffron Rosewater" data-category="royal" data-price="329"
@@ -424,18 +447,15 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
     <!-- Transition Divider to Footer -->
     <div class="divider div-3" style="background: var(--color-cream);">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
             <path d="M0,0 C400,80 800,150 1440,20 L1440,120 L0,120 Z" fill="#0F2C24"></path>
         </svg>
     </div>
-
     <!-- Quote & Footer Section -->
     <section class="footer-section" id="heritage">
         <div class="quote-box">
@@ -444,7 +464,6 @@
                 feasts directly to your dinner table."</p>
             <p class="quote-author">THE MASTER BLENDER &bull; TEHRAN TO THE WORLD</p>
         </div>
-
         <div class="footer-bottom">
             <div class="footer-logo-wrapper">
                 <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="footer-logo-img">
@@ -458,7 +477,6 @@
             </div>
         </div>
     </section>
-
     <!-- Cart Toast Notification -->
     <div id="cart-toast" class="cart-toast">
         <img id="toast-img" src="assets/hamsa-logo.svg" alt="Product" class="cart-toast-thumb">
@@ -468,7 +486,6 @@
         </div>
         <a href="javascript:void(0)" class="cart-toast-link" onclick="openCartDrawer()">View Cart &rarr;</a>
     </div>
-
     <!-- Slide-out Cart Drawer -->
     <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCartDrawer(event)">
         <div class="cart-drawer" onclick="event.stopPropagation()">
@@ -499,7 +516,6 @@
             </div>
         </div>
     </div>
-
     <!-- Authentication (Login / Signup OTP Modal) -->
     <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
         <div class="auth-modal-card" onclick="event.stopPropagation()">
@@ -511,7 +527,6 @@
                 <h3 class="auth-title">Hamsa Masala</h3>
                 <p class="auth-subtitle">Quick verification via WhatsApp to complete your royal order</p>
             </div>
-
             <!-- Step 1: Phone Input & Send OTP -->
             <div id="auth-phone-step" class="auth-step-pane">
                 <label class="auth-field-label">Enter WhatsApp Mobile Number</label>
@@ -521,12 +536,10 @@
                         autocomplete="tel">
                 </div>
                 <div id="auth-phone-error" class="auth-error-msg" style="display: none;"></div>
-
                 <button type="button" class="auth-whatsapp-btn" onclick="sendAuthOTP('whatsapp')">
                     <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Send OTP on WhatsApp
                 </button>
             </div>
-
             <!-- Step 2: 4-digit OTP Screen -->
             <div id="auth-otp-step" class="auth-step-pane" style="display: none;">
                 <p class="otp-instruction">
@@ -557,7 +570,6 @@
             </div>
         </div>
     </div>
-
     <script>
         function openRoyalProduct(id) {
             localStorage.setItem('hamsa_selected_product_id', id);
@@ -565,7 +577,7 @@
             window.location.href = 'product.html?id=' + encodeURIComponent(id) + '#' + encodeURIComponent(id);
         }
     </script>
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=15"></script>
 </body>
 
 </html>

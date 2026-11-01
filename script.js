@@ -120,7 +120,6 @@ function getProductFromURL() {
 
 // --- Global Cart State (with LocalStorage persistence) ---
 let cart = JSON.parse(localStorage.getItem('persian_masala_cart') || '[]');
-
 function saveCart() {
     localStorage.setItem('persian_masala_cart', JSON.stringify(cart));
     updateCartUI();
@@ -251,7 +250,6 @@ function showToast(name, price, img) {
     const toastSubtitle = document.getElementById('toast-subtitle');
 
     if (!toast) return;
-
     if (toastImg) toastImg.src = img || 'assets/hamsa-logo.svg';
     if (toastTitle) toastTitle.textContent = `${name}`;
     if (toastSubtitle) toastSubtitle.textContent = price ? `₹${price} • Added to Royal Cart` : 'Saved to Wishlist';
@@ -268,7 +266,13 @@ function openCartDrawer() {
     closeMenuDrawer();
     closeSearchModal();
     const overlay = document.getElementById('cart-drawer-overlay');
-    if (overlay) overlay.classList.add('open');
+    if (overlay) {
+        overlay.style.display = 'block';
+        overlay.style.visibility = 'visible';
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        overlay.classList.add('open');
+    }
     updateCartUI();
 }
 
@@ -277,14 +281,24 @@ function closeCartDrawer(event) {
         return;
     }
     const overlay = document.getElementById('cart-drawer-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
+
 window.openCartDrawer = openCartDrawer;
 window.closeCartDrawer = closeCartDrawer;
 
 // Wishlist Logic
 let wishlist = JSON.parse(localStorage.getItem('persian_masala_wishlist') || '[]');
-
 function saveWishlist() {
     localStorage.setItem('persian_masala_wishlist', JSON.stringify(wishlist));
     updateWishlistCountBadge();
@@ -350,15 +364,22 @@ function openAuthModal(source = 'checkout') {
 
     const phoneStep = document.getElementById('auth-phone-step');
     const otpStep = document.getElementById('auth-otp-step');
+
     if (phoneStep) phoneStep.style.display = 'block';
     if (otpStep) otpStep.style.display = 'none';
 
     const errPhone = document.getElementById('auth-phone-error');
     if (errPhone) errPhone.style.display = 'none';
+
     const errOtp = document.getElementById('auth-otp-error');
     if (errOtp) errOtp.style.display = 'none';
 
+    modal.style.display = 'flex';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+    modal.style.pointerEvents = 'auto';
     modal.classList.add('open');
+
     const phoneInput = document.getElementById('auth-mobile-input');
     if (phoneInput) setTimeout(() => phoneInput.focus(), 200);
 }
@@ -368,7 +389,17 @@ function closeAuthModal(event) {
         return;
     }
     const modal = document.getElementById('auth-modal-overlay');
-    if (modal) modal.classList.remove('open');
+    if (modal) {
+        modal.classList.remove('open');
+        setTimeout(() => {
+            if (!modal.classList.contains('open')) {
+                modal.style.display = 'none';
+                modal.style.visibility = 'hidden';
+                modal.style.opacity = '0';
+                modal.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
 
 function sendAuthOTP(channel = 'whatsapp') {
@@ -396,6 +427,7 @@ function sendAuthOTP(channel = 'whatsapp') {
 
     const phoneStep = document.getElementById('auth-phone-step');
     const otpStep = document.getElementById('auth-otp-step');
+
     if (phoneStep) phoneStep.style.display = 'none';
     if (otpStep) otpStep.style.display = 'block';
 
@@ -403,6 +435,7 @@ function sendAuthOTP(channel = 'whatsapp') {
         const el = document.getElementById(id);
         if (el) el.value = '';
     });
+
     const otp1 = document.getElementById('otp-1');
     if (otp1) setTimeout(() => otp1.focus(), 200);
 }
@@ -433,6 +466,7 @@ function verifyOTP() {
     const d2 = document.getElementById('otp-2')?.value || '';
     const d3 = document.getElementById('otp-3')?.value || '';
     const d4 = document.getElementById('otp-4')?.value || '';
+
     const code = `${d1}${d2}${d3}${d4}`;
     const errorEl = document.getElementById('auth-otp-error');
 
@@ -445,6 +479,7 @@ function verifyOTP() {
     }
 
     if (errorEl) errorEl.style.display = 'none';
+
     localStorage.setItem('persian_user_authenticated', 'true');
     closeAuthModal();
     updateMenuUserUI();
@@ -461,11 +496,12 @@ function loginWithGoogle() {
     localStorage.setItem('persian_user_authenticated', 'true');
     localStorage.setItem('persian_user_phone', '9876543210');
     localStorage.setItem('persian_user_name', 'Royal Patron');
+
     closeAuthModal();
     updateMenuUserUI();
 
     if (authModalSource === 'menu') {
-        showToast('Logged in successfully', '', 'assets/hamsa-logo.svg');
+        showToast('Logged in successfully!', '', 'assets/hamsa-logo.svg');
         openMenuDrawer();
     } else {
         window.location.href = 'checkout.html';
@@ -481,6 +517,7 @@ function handleProceedToCheckout() {
         alert('Your Royal Cart is empty! Please add spices first.');
         return;
     }
+
     const isAuth = localStorage.getItem('persian_user_authenticated') === 'true';
     if (isAuth) {
         window.location.href = 'checkout.html';
@@ -504,8 +541,15 @@ function openMenuDrawer() {
     ensureModalsInDOM();
     updateMenuUserUI();
     updateWishlistCountBadge();
+
     const overlay = document.getElementById('menu-drawer-overlay');
-    if (overlay) overlay.classList.add('open');
+    if (overlay) {
+        overlay.style.display = 'block';
+        overlay.style.visibility = 'visible';
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        overlay.classList.add('open');
+    }
 }
 
 function closeMenuDrawer(event) {
@@ -513,8 +557,19 @@ function closeMenuDrawer(event) {
         return;
     }
     const overlay = document.getElementById('menu-drawer-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
+
 window.openMenuDrawer = openMenuDrawer;
 window.closeMenuDrawer = closeMenuDrawer;
 
@@ -559,8 +614,16 @@ function openSearchModal() {
     closeMenuDrawer();
     closeCartDrawer();
     ensureModalsInDOM();
+
     const overlay = document.getElementById('search-modal-overlay');
-    if (overlay) overlay.classList.add('open');
+    if (overlay) {
+        overlay.style.display = 'flex';
+        overlay.style.visibility = 'visible';
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        overlay.classList.add('open');
+    }
+
     const input = document.getElementById('global-search-input');
     if (input) {
         input.value = '';
@@ -574,8 +637,19 @@ function closeSearchModal(event) {
         return;
     }
     const overlay = document.getElementById('search-modal-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
+
 window.openSearchModal = openSearchModal;
 window.closeSearchModal = closeSearchModal;
 
@@ -590,8 +664,10 @@ function filterCatalogCategory(cat, el) {
             p.classList.remove('active');
         }
     });
+
     const cards = document.querySelectorAll('.product-card');
     let count = 0;
+
     cards.forEach(card => {
         const cCat = card.getAttribute('data-category') || '';
         if (catStr === 'all' || cCat === catStr) {
@@ -601,9 +677,11 @@ function filterCatalogCategory(cat, el) {
             card.style.display = 'none';
         }
     });
+
     const resultsCountEl = document.getElementById('results-count');
     if (resultsCountEl) resultsCountEl.textContent = count;
 }
+
 window.filterCatalogCategory = filterCatalogCategory;
 
 function handleGlobalSearchInput(val) {
@@ -717,7 +795,7 @@ function openOrdersModal() {
                             <h5 style="margin: 0; font-size: 0.88rem; color: #222;">${ord.items[0].name}</h5>
                             <span style="font-size: 0.75rem; color: #666;">${ord.items[0].pack || '100g'} &bull; Qty: ${ord.items[0].qty || 1}</span>
                         </div>
-        ` : '<span style="color:#555;">Royal Masala Pack</span>'}
+                    ` : '<span style="color:#555;">Royal Masala Pack</span>'}
                     <strong style="color: var(--color-dark-green);">${ord.total}</strong>
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -728,14 +806,28 @@ function openOrdersModal() {
                 </div>
             </div>
         `).join('');
-}
+    }
 
-overlay.classList.add('open');
+    overlay.style.display = 'flex';
+    overlay.style.visibility = 'visible';
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
+    overlay.classList.add('open');
 }
 
 function closeOrdersModal() {
     const overlay = document.getElementById('orders-modal-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
 
 // 2. Track Order Modal with Live Delhivery Timeline
@@ -759,12 +851,26 @@ function openTrackOrderModal(prefilledId = '') {
         }
     }
 
+    overlay.style.display = 'flex';
+    overlay.style.visibility = 'visible';
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
     overlay.classList.add('open');
 }
 
 function closeTrackOrderModal() {
     const overlay = document.getElementById('track-order-modal-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
 
 function trackDeliveryById(id) {
@@ -844,12 +950,26 @@ function openWishlistModal() {
         }
     }
 
+    overlay.style.display = 'flex';
+    overlay.style.visibility = 'visible';
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
     overlay.classList.add('open');
 }
 
 function closeWishlistModal() {
     const overlay = document.getElementById('wishlist-modal-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
 
 // 4. Saved Addresses Modal
@@ -880,7 +1000,6 @@ function openAddressesModal() {
                     <i class="fas fa-circle-check"></i> Verified for Delhivery 3-4 Days Express Delivery
                 </div>
             </div>
-
             <div class="my-order-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                     <strong style="color: var(--color-dark-green); font-size: 0.95rem;">
@@ -895,12 +1014,26 @@ function openAddressesModal() {
         `;
     }
 
+    overlay.style.display = 'flex';
+    overlay.style.visibility = 'visible';
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
     overlay.classList.add('open');
 }
 
 function closeAddressesModal() {
     const overlay = document.getElementById('addresses-modal-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
 
 // 5. Support & Shipping Info Modal
@@ -909,22 +1042,40 @@ function openSupportModal(section = 'support') {
     ensureModalsInDOM();
     const overlay = document.getElementById('support-modal-overlay');
     if (!overlay) return;
+
+    overlay.style.display = 'flex';
+    overlay.style.visibility = 'visible';
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
     overlay.classList.add('open');
 }
 
 function closeSupportModal() {
     const overlay = document.getElementById('support-modal-overlay');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+        overlay.classList.remove('open');
+        setTimeout(() => {
+            if (!overlay.classList.contains('open')) {
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        }, 300);
+    }
 }
 
 // ==========================================================================
 // DYNAMIC MODAL INJECTION (Ensures Menu & Search exist on every page)
 // ==========================================================================
 function ensureModalsInDOM() {
+    // Helper string for hidden state
+    const hiddenStyle = 'style="display: none; visibility: hidden; opacity: 0; position: fixed; pointer-events: none; z-index: -9999; top: 0; left: 0; width: 100vw; height: 100vh;"';
+
     // 1. Menu Drawer
     if (!document.getElementById('menu-drawer-overlay')) {
         const menuDrawerHTML = `
-            <div id="menu-drawer-overlay" class="menu-drawer-overlay" onclick="closeMenuDrawer(event)">
+            <div id="menu-drawer-overlay" class="menu-drawer-overlay" ${hiddenStyle} onclick="closeMenuDrawer(event)">
                 <div class="menu-drawer" onclick="event.stopPropagation()">
                     
                     <div class="menu-drawer-header">
@@ -936,7 +1087,6 @@ function ensureModalsInDOM() {
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-
                     <!-- User Header Profile Card -->
                     <div class="menu-user-card">
                         <!-- Logged Out State -->
@@ -952,7 +1102,6 @@ function ensureModalsInDOM() {
                                 <i class="fas fa-key"></i> LOGIN / SIGN UP
                             </button>
                         </div>
-
                         <!-- Logged In State -->
                         <div id="menu-user-loggedin" style="display: none;">
                             <div class="menu-user-row">
@@ -971,7 +1120,6 @@ function ensureModalsInDOM() {
                             </div>
                         </div>
                     </div>
-
                     <!-- Section: My Account & Orders -->
                     <div class="menu-nav-section">
                         <div class="menu-section-kicker">My Account &amp; Orders</div>
@@ -1000,7 +1148,6 @@ function ensureModalsInDOM() {
                             </button>
                         </div>
                     </div>
-
                     <!-- Section: Shop by Categories -->
                     <div class="menu-nav-section">
                         <div class="menu-section-kicker">Navigation &amp; Collections</div>
@@ -1027,7 +1174,6 @@ function ensureModalsInDOM() {
                             </a>
                         </div>
                     </div>
-
                     <!-- Section: Quick Links & Support -->
                     <div class="menu-nav-section">
                         <div class="menu-section-kicker">Heritage &amp; Support</div>
@@ -1049,7 +1195,6 @@ function ensureModalsInDOM() {
                             </button>
                         </div>
                     </div>
-
                     <!-- Footer -->
                     <div class="menu-drawer-footer">
                         <div class="menu-footer-motif">&#9670; ✦ &#9670;</div>
@@ -1060,7 +1205,6 @@ function ensureModalsInDOM() {
                             <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
-
                 </div>
             </div>
         `;
@@ -1070,7 +1214,7 @@ function ensureModalsInDOM() {
     // 2. Instant Search Modal
     if (!document.getElementById('search-modal-overlay')) {
         const searchModalHTML = `
-            <div id="search-modal-overlay" class="search-modal-overlay" onclick="closeSearchModal(event)">
+            <div id="search-modal-overlay" class="search-modal-overlay" ${hiddenStyle} onclick="closeSearchModal(event)">
                 <div class="search-modal-card" onclick="event.stopPropagation()">
                     
                     <div class="search-modal-header">
@@ -1079,13 +1223,11 @@ function ensureModalsInDOM() {
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-
                     <div class="search-input-box">
                         <i class="fas fa-search"></i>
                         <input type="text" id="global-search-input" placeholder="Search Biryani, Boti Delight, Turkish Shank, Sweet..." autocomplete="off" oninput="handleGlobalSearchInput(this.value)">
                         <button type="button" id="global-search-clear" class="search-clear-btn" onclick="clearGlobalSearch()">&times;</button>
                     </div>
-
                     <!-- Trending Quick Keyword Pills -->
                     <div class="search-keywords-row">
                         <span style="font-size: 0.75rem; color: #E2B66B; font-weight: 700; margin-right: 4px;">TRENDING:</span>
@@ -1096,12 +1238,10 @@ function ensureModalsInDOM() {
                         <button type="button" class="search-keyword-tag" onclick="setQuickSearchKeyword('Kalimiri')">Kalimiri</button>
                         <button type="button" class="search-keyword-tag" onclick="setQuickSearchKeyword('Lazeez')">Lazeez Dum</button>
                     </div>
-
                     <!-- Live Results Scroll List -->
                     <div class="search-results-list" id="search-live-results">
                         <!-- Populated dynamically -->
                     </div>
-
                 </div>
             </div>
         `;
@@ -1111,7 +1251,7 @@ function ensureModalsInDOM() {
     // 3. My Orders Modal
     if (!document.getElementById('orders-modal-overlay')) {
         const ordersModalHTML = `
-            <div id="orders-modal-overlay" class="royal-modal-overlay" onclick="closeOrdersModal()">
+            <div id="orders-modal-overlay" class="royal-modal-overlay" ${hiddenStyle} onclick="closeOrdersModal()">
                 <div class="royal-modal-card" onclick="event.stopPropagation()">
                     <div class="royal-modal-header">
                         <h3 class="royal-modal-title"><i class="fas fa-box-archive"></i> My Royal Orders</h3>
@@ -1129,7 +1269,7 @@ function ensureModalsInDOM() {
     // 4. Track Order Modal
     if (!document.getElementById('track-order-modal-overlay')) {
         const trackModalHTML = `
-            <div id="track-order-modal-overlay" class="royal-modal-overlay" onclick="closeTrackOrderModal()">
+            <div id="track-order-modal-overlay" class="royal-modal-overlay" ${hiddenStyle} onclick="closeTrackOrderModal()">
                 <div class="royal-modal-card" onclick="event.stopPropagation()">
                     <div class="royal-modal-header">
                         <h3 class="royal-modal-title"><i class="fas fa-truck-fast"></i> Live Delhivery Tracking</h3>
@@ -1143,7 +1283,6 @@ function ensureModalsInDOM() {
                                 TRACK
                             </button>
                         </div>
-
                         <div style="background: #FFFFFF; border: 1px solid rgba(15,44,36,0.12); border-radius: 12px; padding: 14px; display: flex; justify-content: space-between; align-items: center;">
                             <div>
                                 <span style="font-size: 0.75rem; color: #777;">Delhivery Waybill / AWB:</span>
@@ -1151,16 +1290,13 @@ function ensureModalsInDOM() {
                             </div>
                             <span class="order-badge-status transit"><i class="fas fa-clock"></i> In Transit</span>
                         </div>
-
                         <div class="delhivery-timeline" id="delhivery-timeline-container">
                             <!-- Populated dynamically -->
                         </div>
-
                         <div style="background: #E8F5E9; border: 1px solid #A5D6A7; border-radius: 10px; padding: 12px; font-size: 0.82rem; color: #2E7D32; display: flex; align-items: center; gap: 8px;">
                             <i class="fas fa-shield-halved" style="font-size: 1.1rem;"></i>
                             <span>Protected by Delhivery Secure Transport &amp; Persian Freshness Seal</span>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -1171,7 +1307,7 @@ function ensureModalsInDOM() {
     // 5. Wishlist Modal
     if (!document.getElementById('wishlist-modal-overlay')) {
         const wishlistModalHTML = `
-            <div id="wishlist-modal-overlay" class="royal-modal-overlay" onclick="closeWishlistModal()">
+            <div id="wishlist-modal-overlay" class="royal-modal-overlay" ${hiddenStyle} onclick="closeWishlistModal()">
                 <div class="royal-modal-card" onclick="event.stopPropagation()">
                     <div class="royal-modal-header">
                         <h3 class="royal-modal-title"><i class="fas fa-heart"></i> My Wishlist</h3>
@@ -1189,7 +1325,7 @@ function ensureModalsInDOM() {
     // 6. Saved Addresses Modal
     if (!document.getElementById('addresses-modal-overlay')) {
         const addrModalHTML = `
-            <div id="addresses-modal-overlay" class="royal-modal-overlay" onclick="closeAddressesModal()">
+            <div id="addresses-modal-overlay" class="royal-modal-overlay" ${hiddenStyle} onclick="closeAddressesModal()">
                 <div class="royal-modal-card" onclick="event.stopPropagation()">
                     <div class="royal-modal-header">
                         <h3 class="royal-modal-title"><i class="fas fa-location-dot"></i> Saved Addresses</h3>
@@ -1207,7 +1343,7 @@ function ensureModalsInDOM() {
     // 7. Support & Shipping Modal
     if (!document.getElementById('support-modal-overlay')) {
         const supportModalHTML = `
-            <div id="support-modal-overlay" class="royal-modal-overlay" onclick="closeSupportModal()">
+            <div id="support-modal-overlay" class="royal-modal-overlay" ${hiddenStyle} onclick="closeSupportModal()">
                 <div class="royal-modal-card" onclick="event.stopPropagation()">
                     <div class="royal-modal-header">
                         <h3 class="royal-modal-title"><i class="fas fa-headset"></i> Support &amp; Policies</h3>
@@ -1249,10 +1385,12 @@ function ensureModalsInDOM() {
 function closeIntro() {
     const introOverlay = document.getElementById('intro-overlay');
     const introVideo = document.getElementById('intro-video');
+
     if (!introOverlay || introOverlay.classList.contains('fade-out')) return;
 
     introOverlay.classList.add('fade-out');
     document.body.style.overflow = ''; // Restore full website scrolling
+
     setTimeout(() => {
         introOverlay.style.display = 'none';
         if (introVideo && typeof introVideo.pause === 'function') {
@@ -1264,6 +1402,7 @@ function closeIntro() {
 function initIntroAnimation() {
     const introVideo = document.getElementById('intro-video');
     const introOverlay = document.getElementById('intro-overlay');
+
     if (!introVideo || !introOverlay) return;
 
     // Lock body scrolling while intro video plays so website sits still behind
@@ -1303,6 +1442,7 @@ function initIntroAnimation() {
 // DOM INITIALIZATIONS & BINDINGS
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+
     // 0. Initialize Intro Animation
     initIntroAnimation();
 
@@ -1381,6 +1521,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check category parameter in URL: ?cat=blended or ?category=whole
         const urlParams = new URLSearchParams(window.location.search);
         const catParam = urlParams.get('cat') || urlParams.get('category');
+
         if (catParam) {
             activeCategory = catParam;
             categoryPills.forEach(p => {
@@ -1436,9 +1577,10 @@ document.addEventListener('DOMContentLoaded', () => {
         filterProducts();
 
         // Expose global category filter handler
-        window.filterCatalogCategory = function(cat, el) {
+        window.filterCatalogCategory = function (cat, el) {
             activeCategory = cat || 'all';
             const pills = document.querySelectorAll('.filter-pill');
+
             pills.forEach(p => {
                 if (p === el || p.getAttribute('data-category') === cat) {
                     p.classList.add('active');
@@ -1446,6 +1588,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     p.classList.remove('active');
                 }
             });
+
             filterProducts();
         };
 
@@ -1502,6 +1645,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 // ==========================================================================
 // GLOBAL PRODUCT CLICK INTERCEPTOR (Fixes npx serve stripping ?id= query)
 // ==========================================================================
@@ -1527,8 +1671,10 @@ window.addEventListener('click', (e) => {
     const cardEl = e.target.closest('.product-card');
     if (!detectedId && cardEl) {
         detectedId = cardEl.getAttribute('data-id') || '';
+
         if (!detectedId) {
             const titleText = (cardEl.getAttribute('data-name') || cardEl.querySelector('.card-title')?.textContent || '').toLowerCase();
+
             if (titleText.includes('lazeez')) detectedId = 'lazeez-dum';
             else if (titleText.includes('lababdar')) detectedId = 'murg-lababdar';
             else if (titleText.includes('murg') && titleText.includes('kalimiri')) detectedId = 'murg-kalimiri';
@@ -1543,6 +1689,7 @@ window.addEventListener('click', (e) => {
 
     if (detectedId) {
         localStorage.setItem('hamsa_selected_product_id', detectedId);
+
         if (linkEl) {
             e.preventDefault();
             e.stopPropagation();

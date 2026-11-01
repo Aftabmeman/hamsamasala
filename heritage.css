@@ -1,7 +1,6 @@
 /* ==========================================================================
    PERSIAN HERITAGE - CINEMATIC SCROLLYTELLING STYLES (heritage.css)
    ========================================================================== */
-
 /* Page Wrapper */
 .heritage-page {
     background: #0A1C16;
@@ -25,7 +24,7 @@
     text-align: center;
     overflow: hidden;
     isolation: isolate;
-    /* contain video stacking context — prevents bleed into sibling sections */
+    /* contain video stacking context prevents bleed into sibling sections */
 }
 
 /* Cinematic Video Background */
@@ -40,7 +39,7 @@
     pointer-events: none;
 }
 
-/* Dark gradient overlay — premium cinematic fade */
+/* Dark gradient overlay premium cinematic fade */
 .hero-video-overlay {
     position: absolute;
     top: 0;
@@ -1027,4 +1026,35 @@
 .silk-route-container {
     position: relative !important;
     z-index: 2 !important;
+}
+
+/* === MANUAL FIX: HIDE MODALS, DRAWERS & TOAST ON HERITAGE PAGE === */
+#cart-toast:not(.show),
+#menu-drawer-overlay:not(.open),
+#search-modal-overlay:not(.open),
+#cart-drawer-overlay:not(.open),
+#auth-modal-overlay:not(.open),
+#royal-modal-overlay:not(.open),
+#order-success-modal:not(.open),
+#orders-modal-overlay:not(.open),
+#track-order-modal-overlay:not(.open),
+#wishlist-modal-overlay:not(.open),
+#addresses-modal-overlay:not(.open),
+#support-modal-overlay:not(.open) {
+    pointer-events: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    display: none !important;
+}
+
+.menu-drawer-overlay.open,
+.search-modal-overlay.open,
+.cart-drawer-overlay.open,
+.auth-modal-overlay.open,
+.royal-modal-overlay.open,
+.order-success-modal.open {
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: flex !important;
 }

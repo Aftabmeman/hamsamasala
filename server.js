@@ -1,9 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-
 const PORT = process.env.PORT || 3000;
-
 const mimeTypes = {
     '.html': 'text/html',
     '.css': 'text/css',
@@ -16,7 +14,6 @@ const mimeTypes = {
 http.createServer((req, res) => {
     let filePath = '.' + req.url;
     if (filePath === './') filePath = './index.html';
-
     const extname = String(path.extname(filePath)).toLowerCase();
     const contentType = mimeTypes[extname] || 'application/octet-stream';
 
@@ -39,3 +36,4 @@ http.createServer((req, res) => {
 }).listen(PORT, () => {
     console.log(`Server running at port ${PORT}`);
 });
+git add.

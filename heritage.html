@@ -8,18 +8,61 @@
     <meta name="description"
         content="Discover the cinematic story of authentic Persian masala. From the grand royal kitchens of Isfahan and Tehran to your dining table.">
     <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=14">
-    <link rel="stylesheet" href="catalog.css?v=14">
-    <link rel="stylesheet" href="heritage.css">
+
+    <!-- Stylesheets (Version Bumped for Cache Breaking) -->
+    <link rel="stylesheet" href="style.css?v=16">
+    <link rel="stylesheet" href="catalog.css?v=16">
+    <link rel="stylesheet" href="heritage.css?v=16">
+
+    <!-- =========================================================
+         ULTIMATE HTML INLINE FIX FOR STRAY MODALS AT BOTTOM
+         (This bypasses all CSS caching issues)
+    ========================================================== -->
+    <style>
+        #cart-toast:not(.show),
+        #menu-drawer-overlay:not(.open),
+        #search-modal-overlay:not(.open),
+        #cart-drawer-overlay:not(.open),
+        #auth-modal-overlay:not(.open),
+        #orders-modal-overlay:not(.open),
+        #track-order-modal-overlay:not(.open),
+        #wishlist-modal-overlay:not(.open),
+        #addresses-modal-overlay:not(.open),
+        #support-modal-overlay:not(.open),
+        .royal-modal-overlay:not(.open) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: fixed !important;
+            pointer-events: none !important;
+            z-index: -9999 !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+        }
+
+        /* Force position fixed even when momentarily loading */
+        .cart-toast,
+        .menu-drawer-overlay,
+        .search-modal-overlay,
+        .cart-drawer-overlay,
+        .auth-modal-overlay,
+        .royal-modal-overlay {
+            position: fixed !important;
+        }
+    </style>
 </head>
 
 <body class="heritage-page">
@@ -48,13 +91,11 @@
 
     <!-- CHAPTER 1: MOVIE-STYLE HERO SECTION (ANTI-GRAVITY FLOATING SPICES) -->
     <section class="heritage-hero" id="hero-chapter">
-
         <!-- Cinematic Video Background -->
         <video class="heritage-bg-video" autoplay loop muted playsinline>
             <source src="assets/persian-masala-video.mp4" type="video/mp4">
         </video>
         <div class="hero-video-overlay"></div>
-
         <!-- Persian Arch Background -->
         <div class="hero-geometric-backdrop"></div>
         <div class="hero-arch-silhouette"></div>
@@ -112,6 +153,7 @@
             </div>
         </div>
     </section>
+
     <!-- Wavy Curve Divider -->
     <div class="divider">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -130,7 +172,6 @@
                 <h2 class="silk-route-heading">Where Fragrant Spice Caravans Crossed Desert Winds</h2>
                 <div style="width: 80px; height: 3px; background: #E2B66B; margin: 0 auto 20px auto;"></div>
             </div>
-
             <div class="silk-route-grid">
                 <!-- Left Storytelling Text -->
                 <div class="silk-route-story-text">
@@ -150,7 +191,6 @@
                         leather journal. Today, <strong>Hamsa Masala</strong> keeps this centuries-old tradition
                         completely alive—bringing authentic royal banquet flavors straight to your everyday kitchen.
                     </p>
-
                     <div class="silk-route-quote-card">
                         <i class="fas fa-quote-left"
                             style="color: #E2B66B; font-size: 1.4rem; margin-bottom: 8px; display: block;"></i>
@@ -158,7 +198,6 @@
                         succulent morsel into a symphony of royal fragrance."
                     </div>
                 </div>
-
                 <!-- Right Visual Card -->
                 <div class="silk-route-visual-card">
                     <img src="assets/town-sketch.jpg" alt="Ancient Persian Bazaar Town Sketch">
@@ -168,7 +207,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- 3 Historical Pillars -->
             <div class="silk-stats-grid">
                 <div class="silk-stat-box">
@@ -198,7 +236,6 @@
                     powders can never replicate.
                 </p>
             </div>
-
             <!-- Vertical Glowing Timeline -->
             <div class="craft-timeline-tree">
                 <!-- Step 1 -->
@@ -216,7 +253,6 @@
                         <img src="assets/biryani-raw.jpg" alt="Handpicked Whole Spices">
                     </div>
                 </div>
-
                 <!-- Step 2 -->
                 <div class="timeline-craft-node node-right" data-step="2">
                     <div class="node-visual-thumb">
@@ -232,7 +268,6 @@
                         </p>
                     </div>
                 </div>
-
                 <!-- Step 3 -->
                 <div class="timeline-craft-node node-left" data-step="3">
                     <div class="node-content-card">
@@ -277,7 +312,6 @@
                 everyday culinary creations into imperial feasts.
             </p>
         </div>
-
         <div class="showcase-cards-stack">
             <!-- Showcase Card 1: Original Classic Biryani -->
             <div class="cinematic-spice-card">
@@ -680,7 +714,6 @@
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
-
             <div class="finale-trust-pillars">
                 <div class="finale-trust-item">
                     <i class="fas fa-mortar-pestle"></i>
@@ -750,7 +783,6 @@
                 <h3 class="auth-title">Hamsa Masala</h3>
                 <p class="auth-subtitle">Login or Sign up to complete your royal feast order</p>
             </div>
-
             <div id="auth-phone-step" class="auth-step-pane">
                 <label class="auth-field-label">Enter Mobile Number</label>
                 <div class="phone-input-group">
@@ -782,7 +814,6 @@
                     Continue with Google
                 </button>
             </div>
-
             <div id="auth-otp-step" class="auth-step-pane" style="display: none;">
                 <p class="otp-instruction">
                     Enter the 4-digit code sent to <br>
@@ -819,13 +850,11 @@
         // Anti-Gravity Mouse Parallax Effect on Hero
         const heroSection = document.getElementById('hero-chapter');
         const floatingItems = document.querySelectorAll('.floating-spice-item');
-
         if (heroSection && floatingItems.length > 0) {
             heroSection.addEventListener('mousemove', (e) => {
                 const rect = heroSection.getBoundingClientRect();
                 const x = (e.clientX - rect.left) / rect.width - 0.5;
                 const y = (e.clientY - rect.top) / rect.height - 0.5;
-
                 floatingItems.forEach(item => {
                     const depth = parseFloat(item.getAttribute('data-depth') || '0.05');
                     const moveX = x * depth * 80;
@@ -833,7 +862,6 @@
                     item.style.transform = `translate(${moveX}px, ${moveY}px)`;
                 });
             });
-
             heroSection.addEventListener('mouseleave', () => {
                 floatingItems.forEach(item => {
                     item.style.transform = '';

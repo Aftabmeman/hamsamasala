@@ -20,8 +20,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=14">
-    <link rel="stylesheet" href="catalog.css?v=14">
+    <link rel="stylesheet" href="style.css?v=16">
+    <link rel="stylesheet" href="catalog.css?v=16">
+
+    <!-- =========================================================
+         ULTIMATE HTML INLINE FIX FOR STRAY MODALS AT BOTTOM
+         (This bypasses all CSS caching issues)
+    ========================================================== -->
+    <style>
+        #cart-toast:not(.show),
+        #menu-drawer-overlay:not(.open),
+        #search-modal-overlay:not(.open),
+        #cart-drawer-overlay:not(.open),
+        #auth-modal-overlay:not(.open),
+        #orders-modal-overlay:not(.open),
+        #track-order-modal-overlay:not(.open),
+        #wishlist-modal-overlay:not(.open),
+        #addresses-modal-overlay:not(.open),
+        #support-modal-overlay:not(.open),
+        .royal-modal-overlay:not(.open) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: fixed !important;
+            pointer-events: none !important;
+            z-index: -9999 !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+        }
+
+        /* Force position fixed even when momentarily loading */
+        .cart-toast,
+        .menu-drawer-overlay,
+        .search-modal-overlay,
+        .cart-drawer-overlay,
+        .auth-modal-overlay,
+        .royal-modal-overlay {
+            position: fixed !important;
+        }
+    </style>
 </head>
 
 <body>
