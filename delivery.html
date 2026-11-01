@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Delivery Boy OTP Verification | Hamsa Masala</title>
+    <meta name="description" content="Secure delivery agent portal for Hamsa Masala order lookup and Amazon-style customer OTP verification.">
+    <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --color-dark-green: #0F2C24;
+            --color-gold: #E2B66B;
+            --color-gold-hover: #D4A352;
+            --color-cream: #FAF7F0;
+            --color-card-bg: #FFFFFF;
+            --color-text-dark: #1A1A1A;
+            --color-text-muted: #666666;
+            --color-success: #2E7D32;
+            --color-danger: #D32F2F;
+            --color-warning: #ED6C02;
+            --font-main: 'Outfit', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-cream);
+            color: var(--color-text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 40px;
+        }
+
+        /* Top Header */
+        .portal-header {
+            background: linear-gradient(135deg, var(--color-dark-green), #183C32);
+            color: #FFFFFF;
+            padding: 16px 20px;
+            box-shadow: 0 4px 20px rgba(15, 44, 36, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo-img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .portal-titles h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .portal-titles p {
+            font-size: 0.74rem;
+            color: var(--color-gold);
+            margin: 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .agent-status-pill {
+            background: rgba(46, 125, 50, 0.25);
+            border: 1px solid #4CAF50;
+            color: #81C784;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .agent-status-pill::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #4CAF50;
+        }
+
+        /* Main Container */
+        .portal-container {
+            width: 100%;
+            max-width: 580px;
+            margin: 0 auto;
+            padding: 16px 14px;
+            flex: 1;
+        }
+
+        /* Search Section */
+        .search-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 18px 16px;
+            box-shadow: 0 4px 16px rgba(15, 44, 36, 0.06);
+            border: 1px solid rgba(226, 182, 107, 0.3);
+            margin-bottom: 18px;
+        }
+
+        .search-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--color-dark-green);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .order-id-input {
+            flex: 1;
+            padding: 13px 16px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: monospace;
+            text-transform: uppercase;
+            border: 2px solid rgba(15, 44, 36, 0.18);
+            border-radius: 10px;
+            background: #FAF7F0;
+            color: var(--color-dark-green);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .order-id-input:focus {
+            border-color: var(--color-gold);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(226, 182, 107, 0.25);
+        }
+
+        .lookup-btn {
+            background: var(--color-dark-green);
+            color: var(--color-gold);
+            border: 1px solid var(--color-gold);
+            border-radius: 10px;
+            padding: 0 20px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .lookup-btn:active {
+            transform: scale(0.97);
+            background: #091C17;
+        }
+
+        /* Recent Orders Bar */
+        .recent-chips-bar {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .recent-chips-label {
+            font-size: 0.72rem;
+            color: #777;
+            font-weight: 600;
+        }
+
+        .order-chip {
+            background: rgba(15, 44, 36, 0.05);
+            border: 1px solid rgba(15, 44, 36, 0.12);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-dark-green);
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .order-chip:hover {
+            background: rgba(226, 182, 107, 0.2);
+            border-color: var(--color-gold);
+        }
+
+        /* Order Details Card */
+        .order-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(15, 44, 36, 0.08);
+            border: 1px solid rgba(226, 182, 107, 0.35);
+            overflow: hidden;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .order-card-header {
+            background: linear-gradient(135deg, #FAF7F0, #F3ECE0);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(15, 44, 36, 0.08);
+        }
+
+        .order-tag-group h2 {
+            font-size: 1.25rem;
+            font-family: monospace;
+            font-weight: 800;
+            color: var(--color-dark-green);
+            margin: 0 0 2px 0;
+        }
+
+        .order-date-text {
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-badge.pending {
+            background: #FFF3E0;
+            color: #E65100;
+            border: 1px solid #FFE0B2;
+        }
+
+        .status-badge.delivered {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #C8E6C9;
+        }
+
+        .order-card-body {
+            padding: 18px 18px;
+        }
+
+        /* Customer Contact Box */
+        .contact-box {
+            background: #F9F6F0;
+            border-radius: 12px;
+            padding: 14px;
+            border: 1px solid rgba(15, 44, 36, 0.08);
+            margin-bottom: 16px;
+        }
+
+        .customer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .customer-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-dark-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .call-btn {
+            background: #2E7D32;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+            transition: transform 0.15s ease;
+        }
+
+        .call-btn:active {
+            transform: scale(0.96);
+        }
+
+        .address-box {
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.45;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .address-box i {
+            color: var(--color-gold);
+            margin-top: 3px;
+        }
+
+        /* Items List Section */
+        .items-section {
+            margin-bottom: 16px;
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #777;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .items-list {
+            background: #FFFFFF;
+            border-radius: 10px;
+            border: 1px solid rgba(15, 44, 36, 0.08);
+            overflow: hidden;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            border-bottom: 1px dashed rgba(15, 44, 36, 0.08);
+            font-size: 0.88rem;
+        }
+
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--color-dark-green);
+        }
+
+        .item-meta {
+            font-size: 0.76rem;
+            color: #777;
+        }
+
+        /* Payment Summary Box */
+        .payment-summary-box {
+            background: linear-gradient(135deg, rgba(226, 182, 107, 0.12), rgba(15, 44, 36, 0.04));
+            border: 1.5px dashed var(--color-gold);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .payment-label {
+            font-size: 0.82rem;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+        .payment-mode-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--color-dark-green);
+        }
+
+        .payment-amount {
+            text-align: right;
+        }
+
+        .collect-amount {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--color-dark-green);
+        }
+
+        .collect-instruction {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #C62828;
+            text-transform: uppercase;
+        }
+
+        /* OTP Verification Box (Amazon Style) */
+        .otp-verification-card {
+            background: linear-gradient(135deg, #0F2C24, #1B4D3E);
+            border-radius: 14px;
+            padding: 22px 18px;
+            color: #FFFFFF;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(15, 44, 36, 0.25);
+            border: 1px solid var(--color-gold);
+        }
+
+        .otp-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .otp-card-subtitle {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        .otp-inputs-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .otp-digit-box {
+            width: 54px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--color-gold);
+            border-radius: 10px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: monospace;
+            text-align: center;
+            color: var(--color-dark-green);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .otp-digit-box:focus {
+            background: #FFFFFF;
+            border-color: #FFFFFF;
+            box-shadow: 0 0 12px var(--color-gold);
+            transform: scale(1.05);
+        }
+
+        .verify-action-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--color-gold), var(--color-gold-hover));
+            color: var(--color-dark-green);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 20px;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(226, 182, 107, 0.4);
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+
+        .verify-action-btn:active {
+            transform: scale(0.98);
+            filter: brightness(0.95);
+        }
+
+        .verify-action-btn:disabled {
+            background: #888;
+            color: #CCC;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .otp-error-alert {
+            display: none;
+            background: rgba(211, 47, 47, 0.18);
+            border: 1px solid #FF5252;
+            color: #FFCDD2;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.84rem;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* Delivered Success State */
+        .delivered-success-banner {
+            display: none;
+            background: #E8F5E9;
+            border: 2px solid #4CAF50;
+            border-radius: 14px;
+            padding: 24px 20px;
+            text-align: center;
+            color: #1B5E20;
+            margin-top: 0;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .delivered-success-banner i.big-icon {
+            font-size: 3rem;
+            color: #2E7D32;
+            margin-bottom: 12px;
+        }
+
+        .delivered-success-banner h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .delivered-success-banner p {
+            font-size: 0.88rem;
+            color: #388E3C;
+            margin-bottom: 14px;
+        }
+
+        .delivered-timestamp {
+            display: inline-block;
+            background: rgba(46, 125, 50, 0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: monospace;
+        }
+
+        /* Empty & Loading states */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--color-dark-green);
+        }
+
+        .loading-spinner i {
+            font-size: 2.2rem;
+            animation: spin 1s infinite linear;
+            color: var(--color-gold);
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .not-found-card {
+            display: none;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px dashed rgba(15, 44, 36, 0.2);
+            margin-top: 10px;
+        }
+
+        .not-found-card i {
+            font-size: 2.5rem;
+            color: #B0BEC5;
+            margin-bottom: 12px;
+        }
+
+        .not-found-card h3 {
+            font-size: 1.1rem;
+            color: var(--color-dark-green);
+            margin-bottom: 6px;
+        }
+
+        .not-found-card p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* Responsive refinements */
+        @media (max-width: 480px) {
+            .portal-container {
+                padding: 12px 10px;
+            }
+            .otp-digit-box {
+                width: 48px;
+                height: 54px;
+                font-size: 1.5rem;
+            }
+            .order-id-input {
+                font-size: 0.95rem;
+                padding: 11px 12px;
+            }
+            .lookup-btn {
+                padding: 0 14px;
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sticky Header -->
+    <header class="portal-header">
+        <div class="header-content">
+            <div class="brand-badge">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
+                <div class="portal-titles">
+                    <h1>Delivery Partner Portal</h1>
+                    <p>OTP Verification &bull; Delhivery</p>
+                </div>
+            </div>
+            <div class="agent-status-pill">Active Agent</div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="portal-container">
+
+        <!-- Search Bar -->
+        <div class="search-card">
+            <label class="search-label" for="order-lookup-input">
+                <i class="fas fa-barcode"></i> Lookup Delivery Order
+            </label>
+            <div class="search-input-group">
+                <input type="text" id="order-lookup-input" class="order-id-input" placeholder="e.g. HM-1050"
+                    autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false"
+                    onkeypress="if(event.key === 'Enter') handleSearchOrder()">
+                <button type="button" class="lookup-btn" onclick="handleSearchOrder()">
+                    <i class="fas fa-search"></i> SEARCH
+                </button>
+            </div>
+
+            <!-- Recent Orders Quick-Fill Chips -->
+            <div class="recent-chips-bar" id="recent-chips-bar">
+                <span class="recent-chips-label">Quick select:</span>
+                <span class="order-chip" onclick="quickSelectOrder('HM-1050')">HM-1050</span>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loading-spinner">
+            <i class="fas fa-circle-notch"></i>
+            <p>Fetching order details from Hamsa server...</p>
+        </div>
+
+        <!-- Order Not Found Card -->
+        <div class="not-found-card" id="not-found-card">
+            <i class="fas fa-file-circle-xmark"></i>
+            <h3 id="not-found-title">Order Not Found</h3>
+            <p id="not-found-msg">Please double-check the Order ID with the customer or packaging label.</p>
+        </div>
+
+        <!-- Order Details & Verification Card -->
+        <div class="order-card" id="order-card">
+            
+            <!-- Card Header -->
+            <div class="order-card-header">
+                <div class="order-tag-group">
+                    <h2 id="card-order-id">#HM-1050</h2>
+                    <span class="order-date-text" id="card-order-date">Created on 01 Nov 2026</span>
+                </div>
+                <div id="card-status-badge" class="status-badge pending">
+                    <i class="fas fa-clock"></i> PENDING DELIVERY
+                </div>
+            </div>
+
+            <div class="order-card-body">
+
+                <!-- Customer Details & Click to Call -->
+                <div class="contact-box">
+                    <div class="customer-row">
+                        <div class="customer-name">
+                            <i class="fas fa-user-circle" style="color: var(--color-gold); font-size: 1.25rem;"></i>
+                            <span id="cust-name">Nawabzada Mirza</span>
+                        </div>
+                        <a href="tel:9167435089" id="cust-call-btn" class="call-btn">
+                            <i class="fas fa-phone-alt"></i> Call
+                        </a>
+                    </div>
+                    <div class="address-box">
+                        <i class="fas fa-location-dot"></i>
+                        <span id="cust-address">Flat 402, Royal Isfahan Heights, Chandni Chowk, New Delhi - 110006</span>
+                    </div>
+                </div>
+
+                <!-- Items to Deliver -->
+                <div class="items-section">
+                    <span class="section-label"><i class="fas fa-box"></i> Package Items</span>
+                    <div class="items-list" id="items-list-container">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Payment Status & Amount to Collect -->
+                <div class="payment-summary-box">
+                    <div>
+                        <div class="payment-label">Payment Method</div>
+                        <div class="payment-mode-title" id="payment-mode-title">Cash on Delivery (COD)</div>
+                    </div>
+                    <div class="payment-amount">
+                        <div class="collect-amount" id="collect-amount-val">₹747</div>
+                        <div class="collect-instruction" id="collect-instruction-text">Collect Cash</div>
+                    </div>
+                </div>
+
+                <!-- OTP Verification Box (Shown when PENDING) -->
+                <div class="otp-verification-card" id="otp-section">
+                    <div class="otp-card-title">
+                        <i class="fas fa-shield-halved"></i> Customer Delivery OTP
+                    </div>
+                    <p class="otp-card-subtitle">
+                        Ask the customer for their private 4-digit Delivery PIN to confirm package handover.
+                    </p>
+
+                    <!-- 4-Digit Inputs -->
+                    <div class="otp-inputs-row">
+                        <input type="text" class="otp-digit-box" id="pin-1" maxlength="1" inputmode="numeric" autocomplete="one-time-code" onkeyup="handlePinDigit(this, 'pin-2', '')">
+                        <input type="text" class="otp-digit-box" id="pin-2" maxlength="1" inputmode="numeric" onkeyup="handlePinDigit(this, 'pin-3', 'pin-1')">
+                        <input type="text" class="otp-digit-box" id="pin-3" maxlength="1" inputmode="numeric" onkeyup="handlePinDigit(this, 'pin-4', 'pin-2')">
+                        <input type="text" class="otp-digit-box" id="pin-4" maxlength="1" inputmode="numeric" onkeyup="handlePinDigit(this, '', 'pin-3')">
+                    </div>
+
+                    <button type="button" class="verify-action-btn" id="verify-submit-btn" onclick="submitOtpVerification()">
+                        <i class="fas fa-check-circle"></i> VERIFY &amp; MARK DELIVERED
+                    </button>
+
+                    <div class="otp-error-alert" id="otp-error-box">
+                        <i class="fas fa-triangle-exclamation"></i> <span id="otp-error-text">Incorrect PIN.</span>
+                    </div>
+                </div>
+
+                <!-- Delivered Success Banner (Shown when DELIVERED) -->
+                <div class="delivered-success-banner" id="delivered-banner">
+                    <i class="fas fa-circle-check big-icon"></i>
+                    <h3>Delivery Completed!</h3>
+                    <p>This package was verified via Customer Secret OTP and successfully handed over.</p>
+                    <div class="delivered-timestamp" id="delivered-timestamp-text">
+                        Delivered on 01 Nov 2026, 04:30 PM
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let currentLoadedOrder = null;
+
+        // Auto-advance between 4 PIN digits
+        function handlePinDigit(input, nextId, prevId) {
+            input.value = input.value.replace(/\D/g, '');
+            if (input.value.length === 1 && nextId) {
+                const nextEl = document.getElementById(nextId);
+                if (nextEl) nextEl.focus();
+            } else if (input.value.length === 0 && prevId && event && event.key === 'Backspace') {
+                const prevEl = document.getElementById(prevId);
+                if (prevEl) prevEl.focus();
+            }
+
+            // Auto-submit if all 4 digits are filled
+            const p1 = document.getElementById('pin-1').value;
+            const p2 = document.getElementById('pin-2').value;
+            const p3 = document.getElementById('pin-3').value;
+            const p4 = document.getElementById('pin-4').value;
+            if (p1 && p2 && p3 && p4) {
+                submitOtpVerification();
+            }
+        }
+
+        function quickSelectOrder(orderId) {
+            document.getElementById('order-lookup-input').value = orderId;
+            handleSearchOrder();
+        }
+
+        // Fetch recent orders to populate quick chips
+        async function loadRecentOrdersChips() {
+            try {
+                const res = await fetch('/api/orders');
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.orders && data.orders.length > 0) {
+                    const chipsBar = document.getElementById('recent-chips-bar');
+                    const chipsHTML = data.orders.slice(0, 5).map(o => `
+                        <span class="order-chip" onclick="quickSelectOrder('${o.orderId}')">
+                            ${o.orderId} ${o.status === 'DELIVERED' ? '✓' : ''}
+                        </span>
+                    `).join('');
+                    chipsBar.innerHTML = `<span class="recent-chips-label">Recent Orders:</span> ${chipsHTML}`;
+                }
+            } catch (e) {
+                console.log('Error loading recent chips:', e);
+            }
+        }
+
+        // Search Order
+        async function handleSearchOrder() {
+            const rawInput = document.getElementById('order-lookup-input').value.trim();
+            if (!rawInput) {
+                alert('Please enter an Order ID to search.');
+                return;
+            }
+
+            const cleanId = rawInput.replace(/^#/, '');
+            
+            // Show loading
+            document.getElementById('loading-spinner').style.display = 'block';
+            document.getElementById('order-card').style.display = 'none';
+            document.getElementById('not-found-card').style.display = 'none';
+            document.getElementById('otp-error-box').style.display = 'none';
+
+            try {
+                const res = await fetch(`/api/orders?id=${encodeURIComponent(cleanId)}`);
+                const data = await res.json();
+
+                document.getElementById('loading-spinner').style.display = 'none';
+
+                if (!res.ok || !data.success || !data.order) {
+                    document.getElementById('not-found-title').textContent = `Order #${cleanId} Not Found`;
+                    document.getElementById('not-found-msg').textContent = data.message || 'Please check the ID and try again.';
+                    document.getElementById('not-found-card').style.display = 'block';
+                    currentLoadedOrder = null;
+                    return;
+                }
+
+                currentLoadedOrder = data.order;
+                renderOrderDetails(data.order);
+            } catch (err) {
+                document.getElementById('loading-spinner').style.display = 'none';
+                document.getElementById('not-found-title').textContent = 'Server Connection Error';
+                document.getElementById('not-found-msg').textContent = 'Could not reach Hamsa verification server. Please verify your connection.';
+                document.getElementById('not-found-card').style.display = 'block';
+                currentLoadedOrder = null;
+            }
+        }
+
+        // Render Order in UI
+        function renderOrderDetails(order) {
+            document.getElementById('card-order-id').textContent = `#${order.orderId}`;
+            
+            const dateStr = order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-IN', {
+                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            }) : 'Recent Order';
+            document.getElementById('card-order-date').textContent = `Placed: ${dateStr}`;
+
+            // Customer
+            document.getElementById('cust-name').textContent = order.customerName || 'Royal Patron';
+            document.getElementById('cust-address').textContent = `${order.shippingAddress || 'Address on file'} ${order.pincode ? '- ' + order.pincode : ''}`;
+            
+            const callBtn = document.getElementById('cust-call-btn');
+            if (order.customerPhone) {
+                callBtn.href = `tel:${order.customerPhone}`;
+                callBtn.style.display = 'inline-flex';
+            } else {
+                callBtn.style.display = 'none';
+            }
+
+            // Items List
+            const itemsContainer = document.getElementById('items-list-container');
+            if (order.items && order.items.length > 0) {
+                itemsContainer.innerHTML = order.items.map(item => `
+                    <div class="item-row">
+                        <div>
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-meta">Pack: ${item.pack || '100g'} &bull; Qty: <strong>${item.qty || 1}</strong></div>
+                        </div>
+                        <strong>₹${(item.price || 0) * (item.qty || 1)}</strong>
+                    </div>
+                `).join('');
+            } else {
+                itemsContainer.innerHTML = `
+                    <div class="item-row">
+                        <div class="item-name">Royal Masala Blend Assortment</div>
+                        <strong>₹${order.totalAmount || 0}</strong>
+                    </div>
+                `;
+            }
+
+            // Payment Mode
+            const isCOD = (order.paymentMode || '').toLowerCase().includes('cash') || (order.paymentMode || '').toLowerCase().includes('cod');
+            document.getElementById('payment-mode-title').textContent = order.paymentMode || 'Cash on Delivery';
+            document.getElementById('collect-amount-val').textContent = `₹${order.totalAmount || 0}`;
+            
+            const instrEl = document.getElementById('collect-instruction-text');
+            if (isCOD) {
+                instrEl.textContent = 'Collect Cash Before Handover';
+                instrEl.style.color = '#C62828';
+            } else {
+                instrEl.textContent = 'Prepaid Online (No Cash to Collect)';
+                instrEl.style.color = '#2E7D32';
+            }
+
+            // Status State: PENDING vs DELIVERED
+            const statusBadge = document.getElementById('card-status-badge');
+            const otpSection = document.getElementById('otp-section');
+            const deliveredBanner = document.getElementById('delivered-banner');
+
+            // Clear any old PIN values
+            document.getElementById('pin-1').value = '';
+            document.getElementById('pin-2').value = '';
+            document.getElementById('pin-3').value = '';
+            document.getElementById('pin-4').value = '';
+            document.getElementById('otp-error-box').style.display = 'none';
+
+            if (order.status === 'DELIVERED') {
+                statusBadge.className = 'status-badge delivered';
+                statusBadge.innerHTML = '<i class="fas fa-check-circle"></i> DELIVERED';
+                otpSection.style.display = 'none';
+                deliveredBanner.style.display = 'block';
+
+                const delTime = order.deliveredAt ? new Date(order.deliveredAt).toLocaleString('en-IN', {
+                    day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                }) : 'Confirmed';
+                document.getElementById('delivered-timestamp-text').textContent = `Delivered & Verified: ${delTime}`;
+            } else {
+                statusBadge.className = 'status-badge pending';
+                statusBadge.innerHTML = '<i class="fas fa-clock"></i> PENDING DELIVERY';
+                otpSection.style.display = 'block';
+                deliveredBanner.style.display = 'none';
+                setTimeout(() => document.getElementById('pin-1').focus(), 150);
+            }
+
+            document.getElementById('order-card').style.display = 'block';
+        }
+
+        // Submit OTP Verification
+        async function submitOtpVerification() {
+            if (!currentLoadedOrder) return;
+
+            const p1 = document.getElementById('pin-1').value.trim();
+            const p2 = document.getElementById('pin-2').value.trim();
+            const p3 = document.getElementById('pin-3').value.trim();
+            const p4 = document.getElementById('pin-4').value.trim();
+            const fullPin = `${p1}${p2}${p3}${p4}`;
+
+            if (fullPin.length !== 4) {
+                showOtpError('Please enter all 4 digits of the Customer Delivery PIN.');
+                return;
+            }
+
+            const btn = document.getElementById('verify-submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> VERIFYING PIN...';
+            document.getElementById('otp-error-box').style.display = 'none';
+
+            try {
+                const res = await fetch('/api/orders/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        orderId: currentLoadedOrder.orderId,
+                        otp: fullPin
+                    })
+                });
+
+                const data = await res.json();
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> VERIFY &amp; MARK DELIVERED';
+
+                if (res.ok && data.success) {
+                    // Update state to delivered
+                    currentLoadedOrder.status = 'DELIVERED';
+                    currentLoadedOrder.deliveredAt = data.deliveredAt || new Date().toISOString();
+                    renderOrderDetails(currentLoadedOrder);
+                    loadRecentOrdersChips();
+                } else {
+                    showOtpError(data.message || 'Incorrect PIN! Ask customer for their 4-digit Delivery OTP.');
+                    document.getElementById('pin-1').focus();
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> VERIFY &amp; MARK DELIVERED';
+                showOtpError('Server connection error. Please try again.');
+            }
+        }
+
+        function showOtpError(msg) {
+            const errBox = document.getElementById('otp-error-box');
+            const errText = document.getElementById('otp-error-text');
+            errText.textContent = msg;
+            errBox.style.display = 'block';
+        }
+
+        // On Load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRecentOrdersChips();
+
+            // Auto-load if ?id= is in URL query parameter
+            const params = new URLSearchParams(window.location.search);
+            const queryId = params.get('id') || params.get('orderId');
+            if (queryId) {
+                document.getElementById('order-lookup-input').value = queryId;
+                handleSearchOrder();
+            }
+        });
+    </script>
+</body>
+
+</html>
+

@@ -459,65 +459,9 @@
         </div>
     </div>
 
-    <!-- Authentication (Login / Signup OTP Modal) -->
-    <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
-        <div class="auth-modal-card" onclick="event.stopPropagation()">
-            <button class="auth-close-btn" onclick="closeAuthModal()" aria-label="Close Modal">&times;</button>
-            <div class="auth-header">
-                <div class="auth-brand-emblem">
-                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="auth-brand-logo-img" style="height: 64px; width: auto; max-width: 140px; object-fit: contain; display: block; margin: 0 auto;">
-                </div>
-                <h3 class="auth-title">Hamsa Masala</h3>
-                <p class="auth-subtitle">Quick verification via WhatsApp to complete your royal order</p>
-            </div>
 
-            <!-- Step 1: Phone Input & Send OTP -->
-            <div id="auth-phone-step" class="auth-step-pane">
-                <label class="auth-field-label">Enter WhatsApp Mobile Number</label>
-                <div class="phone-input-group">
-                    <span class="country-code">+91</span>
-                    <input type="tel" id="auth-mobile-input" placeholder="Enter 10-digit number" maxlength="10"
-                        autocomplete="tel">
-                </div>
-                <div id="auth-phone-error" class="auth-error-msg" style="display: none;"></div>
 
-                <button type="button" class="auth-whatsapp-btn" onclick="sendAuthOTP('whatsapp')">
-                    <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Send OTP on WhatsApp
-                </button>
-            </div>
-
-            <!-- Step 2: 4-digit OTP Screen -->
-            <div id="auth-otp-step" class="auth-step-pane" style="display: none;">
-                <p class="otp-instruction">
-                    Enter the 4-digit code sent to <br>
-                    <strong id="auth-display-phone">+91 98765 43210</strong>
-                    <button type="button" class="change-phone-btn" onclick="backToPhoneStep()">(Change)</button>
-                </p>
-                <div class="otp-inputs-row">
-                    <input type="text" class="otp-digit" id="otp-1" maxlength="1" inputmode="numeric"
-                        onkeyup="handleOtpInput(this, 'otp-2', '')">
-                    <input type="text" class="otp-digit" id="otp-2" maxlength="1" inputmode="numeric"
-                        onkeyup="handleOtpInput(this, 'otp-3', 'otp-1')">
-                    <input type="text" class="otp-digit" id="otp-3" maxlength="1" inputmode="numeric"
-                        onkeyup="handleOtpInput(this, 'otp-4', 'otp-2')">
-                    <input type="text" class="otp-digit" id="otp-4" maxlength="1" inputmode="numeric"
-                        onkeyup="handleOtpInput(this, '', 'otp-3')">
-                </div>
-                <div class="otp-hint-note">
-                    <i class="fas fa-key"></i> Demo Verification: Enter any 4 digits (e.g., <strong>1234</strong>)
-                </div>
-                <div id="auth-otp-error" class="auth-error-msg" style="display: none; text-align: center;"></div>
-                <button type="button" class="auth-verify-btn" onclick="verifyOTP()">
-                    VERIFY &amp; CONTINUE &rarr;
-                </button>
-                <div class="resend-otp-row">
-                    Didn't receive code? <button type="button" onclick="resendOTP()">Resend OTP</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js?v=18"></script>
+    <script src="script.js?v=25"></script>
     <script>
         let currentQty = 1;
         let activePackPrice = 249;
@@ -573,12 +517,7 @@
             const title = document.getElementById('product-detail-title').textContent;
             const img = document.getElementById('main-product-img').getAttribute('src');
             addToCart(title, activePackPrice, img, currentQty, activePackWeight);
-            const isAuth = localStorage.getItem('persian_user_authenticated') === 'true';
-            if (isAuth) {
-                window.location.href = 'checkout.html';
-            } else {
-                openAuthModal('buynow');
-            }
+            window.location.href = 'checkout.html';
         }
 
         // Complete Product Data for all 8 Masalas

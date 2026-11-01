@@ -3,45 +3,1217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout & Address | Hamsa Masala</title>
-    <meta name="description" content="Secure checkout for your authentic Hamsa Masala spices. Fast delivery via Delhivery.">
+    <title>Checkout &amp; Delivery | Hamsa Masala</title>
+    <meta name="description" content="Secure checkout for your authentic Hamsa Masala royal spices. Fast delivery across India via Delhivery Express.">
     <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Base Styles -->
-    <link rel="stylesheet" href="style.css?v=18">
-    <!-- Catalog & Checkout Styles -->
-    <link rel="stylesheet" href="catalog.css?v=18">
+    <link rel="stylesheet" href="style.css?v=28">
+    <!-- Catalog Styles -->
+    <link rel="stylesheet" href="catalog.css?v=28">
+
+    <style>
+        /* ==========================================================================
+           HAMSA MASALA - ROYAL PERSIAN DARK-GOLD THEME FOR CHECKOUT
+           ========================================================================== */
+        :root {
+            --roy-bg: #071813;
+            --roy-bg-card: #0E2820;
+            --roy-bg-input: #071510;
+            --roy-gold: #E2B66B;
+            --roy-gold-light: #F4D396;
+            --roy-gold-dark: #C79056;
+            --roy-gold-border: rgba(226, 182, 107, 0.32);
+            --roy-gold-glow: rgba(226, 182, 107, 0.18);
+            --roy-text-ivory: #FAF7F0;
+            --roy-text-muted: #A6B5AF;
+            --roy-green-accent: #4ADE80;
+            --font-heading: 'Cinzel', 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Full Page Background Reset */
+        html, body {
+            background-color: var(--roy-bg) !important;
+            color: var(--roy-text-ivory) !important;
+            font-family: var(--font-body) !important;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Header Styling on Checkout */
+        .top-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 90px !important;
+            background: rgba(7, 24, 19, 0.94) !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border-bottom: 1px solid rgba(226, 182, 107, 0.22) !important;
+            z-index: 99999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 4% !important;
+            box-sizing: border-box !important;
+        }
+
+        .top-header .brand-logo-img {
+            height: 64px !important;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(226, 182, 107, 0.3));
+        }
+
+        .header-nav a {
+            color: var(--roy-text-ivory) !important;
+            text-decoration: none !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.25s ease;
+        }
+        .header-nav a:hover {
+            color: var(--roy-gold) !important;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(226, 182, 107, 0.1);
+            border: 1px solid var(--roy-gold-border);
+            color: var(--roy-gold);
+            font-size: 1.1rem;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: var(--roy-gold);
+            color: var(--roy-bg);
+            transform: scale(1.05);
+        }
+
+        /* Main Checkout Wrapper with Proper Top Clearance */
+        .checkout-wrapper {
+            padding-top: 120px !important;
+            padding-bottom: 80px !important;
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 15%, rgba(226, 182, 107, 0.08) 0%, transparent 65%),
+                        linear-gradient(180deg, #071813 0%, #092019 40%, #071813 100%) !important;
+            box-sizing: border-box;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Checkout Header Bar */
+        .checkout-header-bar {
+            margin-bottom: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 22px;
+            border-bottom: 1.5px solid var(--roy-gold-border);
+        }
+
+        .checkout-page-title-group h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            color: var(--roy-gold);
+            margin: 0 0 6px 0;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .checkout-page-title-group p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--roy-text-muted);
+        }
+
+        .checkout-steps-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--roy-bg-card);
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--roy-gold-border);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .checkout-step {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--roy-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .checkout-step.done {
+            color: var(--roy-green-accent);
+        }
+
+        .checkout-step.active {
+            color: var(--roy-gold);
+            font-weight: 700;
+            background: rgba(226, 182, 107, 0.18);
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(226, 182, 107, 0.35);
+        }
+
+        /* Two-Column Responsive Layout */
+        .checkout-main-grid {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* Left Column Section Cards */
+        .checkout-section-card {
+            background: var(--roy-bg-card);
+            border-radius: 22px;
+            border: 1.5px solid var(--roy-gold-border);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+            padding: 30px 28px;
+            margin-bottom: 28px;
+            box-sizing: border-box;
+            transition: border-color 0.25s ease;
+        }
+
+        .checkout-section-card:hover {
+            border-color: rgba(226, 182, 107, 0.5);
+        }
+
+        .checkout-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed rgba(226, 182, 107, 0.2);
+        }
+
+        /* Beautiful Circular Gold Step Badge (Never Floating!) */
+        .card-step-badge {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--roy-gold) 0%, var(--roy-gold-dark) 100%);
+            color: #071813 !important;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px rgba(226, 182, 107, 0.35);
+        }
+
+        .checkout-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--roy-text-ivory);
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Address Form Grid */
+        .address-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+
+        .form-field label {
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--roy-gold);
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="tel"] {
+            width: 100% !important;
+            padding: 13px 16px !important;
+            background: var(--roy-bg-input) !important;
+            border: 1.5px solid var(--roy-gold-border) !important;
+            border-radius: 12px !important;
+            font-size: 0.95rem !important;
+            color: var(--roy-text-ivory) !important;
+            outline: none !important;
+            box-sizing: border-box !important;
+            transition: all 0.25s ease !important;
+            font-family: inherit !important;
+        }
+
+        .form-field input::placeholder {
+            color: #6D7F77 !important;
+        }
+
+        .form-field input:focus {
+            background: #0B221B !important;
+            border-color: var(--roy-gold) !important;
+            box-shadow: 0 0 0 3px var(--roy-gold-glow) !important;
+        }
+
+        /* Integrated Phone Input */
+        .phone-input-group {
+            display: flex;
+            align-items: stretch;
+            background: var(--roy-bg-input);
+            border: 1.5px solid var(--roy-gold-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .phone-input-group:focus-within {
+            border-color: var(--roy-gold);
+            box-shadow: 0 0 0 3px var(--roy-gold-glow);
+            background: #0B221B;
+        }
+
+        .phone-input-prefix {
+            padding: 13px 16px;
+            background: rgba(226, 182, 107, 0.12);
+            color: var(--roy-gold);
+            font-weight: 700;
+            border-right: 1.5px solid var(--roy-gold-border);
+            font-size: 0.92rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .phone-input-group input {
+            border: none !important;
+            background: transparent !important;
+            flex: 1 !important;
+            padding: 13px 16px !important;
+            color: var(--roy-text-ivory) !important;
+            font-size: 0.95rem !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .pincode-autofill-hint {
+            display: none;
+            font-size: 0.78rem;
+            color: var(--roy-green-accent);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Address Type Pills */
+        .address-type-selector {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .type-pill {
+            padding: 10px 18px;
+            background: var(--roy-bg-input);
+            border: 1.5px solid var(--roy-gold-border);
+            border-radius: 12px;
+            color: var(--roy-text-muted);
+            font-size: 0.86rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .type-pill:hover {
+            border-color: var(--roy-gold);
+            color: var(--roy-text-ivory);
+        }
+
+        .type-pill.active {
+            background: rgba(226, 182, 107, 0.2);
+            color: var(--roy-gold);
+            border-color: var(--roy-gold);
+            box-shadow: 0 4px 15px rgba(226, 182, 107, 0.2);
+        }
+
+        /* Payment Methods List */
+        .payment-methods-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .payment-method-item {
+            background: var(--roy-bg-input);
+            border: 1.5px solid var(--roy-gold-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+        }
+
+        .payment-method-item:hover {
+            border-color: rgba(226, 182, 107, 0.6);
+            background: #092019;
+        }
+
+        .payment-method-item.active {
+            background: #0B241C;
+            border-color: var(--roy-gold);
+            box-shadow: 0 6px 24px rgba(226, 182, 107, 0.16);
+        }
+
+        .payment-method-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .payment-method-radio {
+            accent-color: var(--roy-gold);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .payment-method-title {
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--roy-text-ivory);
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .payment-badges {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--roy-gold);
+            font-size: 1.25rem;
+        }
+
+        .payment-subpanel {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed rgba(226, 182, 107, 0.25);
+            animation: fadeInSubpanel 0.25s ease forwards;
+        }
+
+        .payment-method-item.active .payment-subpanel {
+            display: block;
+        }
+
+        @keyframes fadeInSubpanel {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .payment-subpanel input,
+        .payment-subpanel select {
+            background: #071510 !important;
+            border: 1.5px solid var(--roy-gold-border) !important;
+            border-radius: 10px !important;
+            color: var(--roy-text-ivory) !important;
+            font-size: 0.9rem !important;
+            outline: none !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .payment-subpanel input:focus,
+        .payment-subpanel select:focus {
+            border-color: var(--roy-gold) !important;
+            box-shadow: 0 0 0 3px var(--roy-gold-glow) !important;
+        }
+
+        /* Right Column: Order Summary Card (Sticky) */
+        .checkout-right-col {
+            position: sticky;
+            top: 115px;
+        }
+
+        .order-summary-card {
+            background: var(--roy-bg-card);
+            border-radius: 22px;
+            border: 1.5px solid var(--roy-gold-border);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            padding: 28px 24px;
+            box-sizing: border-box;
+        }
+
+        .order-summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1.5px solid var(--roy-gold-border);
+        }
+
+        .order-summary-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--roy-gold);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .order-summary-count {
+            font-size: 0.84rem;
+            color: var(--roy-text-muted);
+            font-weight: 700;
+            background: rgba(226, 182, 107, 0.15);
+            padding: 4px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(226, 182, 107, 0.25);
+        }
+
+        .order-items-scroll {
+            max-height: 270px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .order-items-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .order-items-scroll::-webkit-scrollbar-thumb {
+            background: var(--roy-gold);
+            border-radius: 4px;
+        }
+
+        .checkout-item-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: var(--roy-bg-input);
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(226, 182, 107, 0.2);
+        }
+
+        .checkout-item-img {
+            width: 52px;
+            height: 52px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid rgba(226, 182, 107, 0.4);
+            flex-shrink: 0;
+            background: #000;
+        }
+
+        .checkout-item-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .checkout-item-title {
+            margin: 0 0 3px 0;
+            font-size: 0.92rem;
+            color: var(--roy-text-ivory);
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .checkout-item-meta {
+            font-size: 0.78rem;
+            color: var(--roy-text-muted);
+        }
+
+        .checkout-item-price {
+            color: var(--roy-gold);
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        /* Coupon Code Group */
+        .coupon-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .coupon-input-group input {
+            flex: 1;
+            padding: 11px 14px;
+            background: var(--roy-bg-input);
+            border: 1.5px solid var(--roy-gold-border);
+            border-radius: 10px;
+            color: var(--roy-text-ivory);
+            font-size: 0.88rem;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .coupon-input-group button {
+            background: linear-gradient(135deg, var(--roy-gold) 0%, var(--roy-gold-dark) 100%);
+            color: #071813;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 18px;
+            font-weight: 800;
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .coupon-input-group button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(226, 182, 107, 0.35);
+        }
+
+        /* Bill Rows */
+        .order-bill-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.92rem;
+            color: var(--roy-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .order-bill-row strong,
+        .order-bill-row span:last-child {
+            color: var(--roy-text-ivory);
+        }
+
+        .order-bill-row.total-row {
+            border-top: 1.5px dashed var(--roy-gold-border);
+            padding-top: 16px;
+            margin-top: 16px;
+            margin-bottom: 22px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--roy-text-ivory);
+        }
+
+        .order-bill-row.total-row #bill-total {
+            color: var(--roy-gold);
+            font-size: 1.45rem;
+        }
+
+        /* Primary Place Order Button */
+        .place-order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--roy-gold) 0%, #D4A35B 50%, var(--roy-gold-dark) 100%);
+            color: #071813 !important;
+            border: none;
+            border-radius: 14px;
+            padding: 16px 20px;
+            font-family: var(--font-heading);
+            font-size: 1.08rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(226, 182, 107, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .place-order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(226, 182, 107, 0.5);
+            filter: brightness(1.06);
+        }
+
+        .place-order-btn:active {
+            transform: translateY(0);
+        }
+
+        .safe-checkout-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--roy-text-muted);
+        }
+
+        /* ==========================================================================
+           ROYAL ORDER SUCCESS MODAL - GUARANTEED ROCK-SOLID BACKDROP & CARD
+           ========================================================================== */
+        #order-success-modal {
+            position: fixed !important;
+            inset: 0 !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: rgba(4, 14, 11, 0.92) !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            z-index: 9999999 !important;
+            display: none !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+            overflow-y: auto !important;
+        }
+
+        #order-success-modal.open {
+            display: flex !important;
+        }
+
+        .order-success-card {
+            background: #0E2820 !important;
+            border: 2px solid var(--roy-gold) !important;
+            border-radius: 24px !important;
+            max-width: 520px !important;
+            width: 100% !important;
+            max-height: 92vh !important;
+            overflow-y: auto !important;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 35px rgba(226, 182, 107, 0.25) !important;
+            position: relative !important;
+            margin: auto !important;
+            box-sizing: border-box !important;
+            animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes modalPopIn {
+            from { opacity: 0; transform: scale(0.92) translateY(12px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .order-success-header {
+            background: linear-gradient(135deg, #092019 0%, #12362B 100%) !important;
+            color: var(--roy-text-ivory) !important;
+            padding: 28px 24px 22px 24px !important;
+            text-align: center !important;
+            border-bottom: 1.5px solid var(--roy-gold-border) !important;
+            position: relative !important;
+        }
+
+        .order-success-close-btn {
+            position: absolute !important;
+            top: 16px !important;
+            right: 16px !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 50% !important;
+            background: rgba(226, 182, 107, 0.12) !important;
+            border: 1px solid var(--roy-gold-border) !important;
+            color: var(--roy-gold) !important;
+            font-size: 1.1rem !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .order-success-close-btn:hover {
+            background: var(--roy-gold) !important;
+            color: #071813 !important;
+        }
+
+        .order-success-icon {
+            width: 64px !important;
+            height: 64px !important;
+            background: linear-gradient(135deg, var(--roy-gold) 0%, var(--roy-gold-dark) 100%) !important;
+            color: #071813 !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 1.8rem !important;
+            margin: 0 auto 14px auto !important;
+            box-shadow: 0 6px 22px rgba(226, 182, 107, 0.4) !important;
+        }
+
+        .order-success-title {
+            font-family: var(--font-heading) !important;
+            font-size: 1.6rem !important;
+            color: var(--roy-gold) !important;
+            margin: 0 0 6px 0 !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.5px !important;
+        }
+
+        .order-success-body {
+            padding: 24px 22px !important;
+            background: #0B221B !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        .order-meta-box {
+            background: #071813 !important;
+            border: 1px solid var(--roy-gold-border) !important;
+            border-radius: 14px !important;
+            padding: 16px 18px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+
+        .order-meta-row {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            font-size: 0.88rem !important;
+            color: var(--roy-text-muted) !important;
+        }
+
+        .order-meta-row strong {
+            color: var(--roy-text-ivory) !important;
+        }
+
+        /* Secret Delivery OTP Card */
+        .delivery-otp-success-card {
+            background: linear-gradient(135deg, #12382D 0%, #071F18 100%) !important;
+            border: 2px solid var(--roy-gold) !important;
+            border-radius: 16px !important;
+            padding: 18px 20px !important;
+            text-align: center !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+            animation: popInOtp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes popInOtp {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .otp-unlocked-badge {
+            font-size: 0.8rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px !important;
+            color: var(--roy-gold) !important;
+            font-weight: 800 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+        }
+
+        .delivery-otp-digits {
+            font-size: 2.5rem !important;
+            font-weight: 900 !important;
+            font-family: monospace !important;
+            letter-spacing: 8px !important;
+            color: #FFFFFF !important;
+            text-shadow: 0 2px 10px rgba(226, 182, 107, 0.5) !important;
+            margin: 6px 0 !important;
+        }
+
+        /* 3-Step Instructional Banner */
+        .whatsapp-verify-guide {
+            background: rgba(226, 182, 107, 0.08) !important;
+            border: 1.5px solid rgba(226, 182, 107, 0.35) !important;
+            border-radius: 16px !important;
+            padding: 16px 18px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+            box-sizing: border-box !important;
+        }
+
+        .verify-guide-header {
+            font-size: 0.84rem !important;
+            font-weight: 800 !important;
+            color: var(--roy-gold) !important;
+            letter-spacing: 0.8px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            text-transform: uppercase !important;
+            border-bottom: 1px dashed rgba(226, 182, 107, 0.25) !important;
+            padding-bottom: 8px !important;
+        }
+
+        .verify-guide-list {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+
+        .verify-step-item {
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+            font-size: 0.86rem !important;
+            color: var(--roy-text-ivory) !important;
+            line-height: 1.45 !important;
+        }
+
+        .step-num-pill {
+            background: rgba(226, 182, 107, 0.22) !important;
+            color: var(--roy-gold) !important;
+            font-size: 0.74rem !important;
+            font-weight: 800 !important;
+            padding: 3px 8px !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(226, 182, 107, 0.4) !important;
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+        }
+
+        .step-desc-text strong {
+            color: var(--roy-gold) !important;
+        }
+
+        /* Step 1: WhatsApp Button */
+        .whatsapp-confirm-btn {
+            background: #25D366 !important;
+            color: #FFFFFF !important;
+            border: none !important;
+            border-radius: 14px !important;
+            padding: 15px 20px !important;
+            font-size: 1.02rem !important;
+            font-weight: 800 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            text-decoration: none !important;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35) !important;
+            transition: all 0.25s ease !important;
+        }
+
+        .whatsapp-confirm-btn:hover {
+            background: #1EBE5D !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45) !important;
+        }
+
+        /* Step 2: 'I Have Sent It' Button (Initially Locked!) */
+        .confirm-sent-btn {
+            width: 100% !important;
+            border-radius: 14px !important;
+            padding: 15px 20px !important;
+            font-size: 1.02rem !important;
+            font-weight: 800 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Initially Locked State (Before clicking WhatsApp) */
+        .confirm-sent-btn.locked {
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: #8E9E96 !important;
+            border: 1.5px dashed rgba(226, 182, 107, 0.4) !important;
+            cursor: not-allowed !important;
+            opacity: 0.6 !important;
+            pointer-events: none !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        /* Unlocked State (After clicking WhatsApp) */
+        .confirm-sent-btn.unlocked {
+            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%) !important;
+            color: #FFFFFF !important;
+            border: 1.5px solid #4ADE80 !important;
+            cursor: pointer !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            box-shadow: 0 0 25px rgba(74, 222, 128, 0.6) !important;
+            animation: popInBtn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, pulseUnlocked 2s infinite ease-in-out !important;
+        }
+
+        @keyframes pulseUnlocked {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(74, 222, 128, 0.6);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 32px rgba(74, 222, 128, 0.95);
+                transform: scale(1.015);
+            }
+        }
+
+        .confirm-sent-btn.unlocked:hover {
+            background: #2E7D32 !important;
+            box-shadow: 0 0 35px rgba(74, 222, 128, 0.85) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .confirm-sent-btn.sent-verified {
+            background: #0F5132 !important;
+            border-color: #4ADE80 !important;
+            color: #D1E7DD !important;
+            box-shadow: none !important;
+            transform: none !important;
+            cursor: default !important;
+            pointer-events: none !important;
+        }
+
+        /* Locked OTP Placeholder */
+        .otp-locked-card {
+            background: rgba(7, 21, 16, 0.75) !important;
+            border: 1.5px dashed rgba(226, 182, 107, 0.35) !important;
+            border-radius: 16px !important;
+            padding: 18px 20px !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+        }
+
+        .otp-lock-icon {
+            font-size: 1.8rem !important;
+            color: var(--roy-gold) !important;
+            margin-bottom: 6px !important;
+        }
+
+        .otp-lock-title {
+            color: var(--roy-gold) !important;
+            font-size: 0.95rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 1px !important;
+            text-transform: uppercase !important;
+        }
+
+        .otp-lock-desc {
+            font-size: 0.82rem !important;
+            color: var(--roy-text-muted) !important;
+            margin: 6px 0 0 0 !important;
+            line-height: 1.45 !important;
+        }
+
+        .otp-lock-desc strong {
+            color: var(--roy-text-ivory) !important;
+        }
+
+        /* Print Invoice Button */
+        .order-invoice-btn {
+            width: 100% !important;
+            padding: 13px 18px !important;
+            background: rgba(226, 182, 107, 0.12) !important;
+            border: 1.5px solid var(--roy-gold-border) !important;
+            border-radius: 12px !important;
+            color: var(--roy-gold) !important;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            transition: all 0.25s ease !important;
+            box-sizing: border-box !important;
+        }
+
+        .order-invoice-btn:hover:not(:disabled) {
+            background: var(--roy-gold) !important;
+            color: #071813 !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* Sequential WhatsApp Verification & Party Animation Styles */
+        .wa-pending-hint {
+            font-size: 0.82rem !important;
+            color: #A6B5AF !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            margin-top: -6px !important;
+            margin-bottom: 2px !important;
+            font-style: italic !important;
+        }
+
+        .wa-sent-reminder {
+            display: none !important;
+            background: rgba(74, 222, 128, 0.12) !important;
+            border: 1px dashed #4ADE80 !important;
+            border-radius: 12px !important;
+            padding: 10px 14px !important;
+            color: #4ADE80 !important;
+            font-size: 0.84rem !important;
+            text-align: center !important;
+            line-height: 1.4 !important;
+        }
+
+        .wa-sent-reminder.show {
+            display: block !important;
+            animation: fadeInDown 0.3s ease !important;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .celebration-party-banner {
+            display: none !important;
+            background: linear-gradient(135deg, rgba(226, 182, 107, 0.22) 0%, rgba(37, 211, 102, 0.2) 100%) !important;
+            border: 2px solid #E2B66B !important;
+            border-radius: 16px !important;
+            padding: 14px 18px !important;
+            align-items: center !important;
+            gap: 14px !important;
+            box-shadow: 0 0 30px rgba(226, 182, 107, 0.35) !important;
+        }
+
+        .celebration-party-banner.show {
+            display: flex !important;
+            animation: popInBtn 0.4s ease !important;
+        }
+
+        .celebration-party-banner .party-emoji {
+            font-size: 2.2rem !important;
+            animation: bounceParty 0.8s infinite alternate ease-in-out !important;
+        }
+
+        @keyframes bounceParty {
+            from { transform: translateY(0) rotate(-6deg); }
+            to { transform: translateY(-6px) rotate(6deg); }
+        }
+
+        .celebration-party-banner .party-text h4 {
+            margin: 0 !important;
+            font-family: var(--font-heading, 'Cinzel', serif) !important;
+            font-size: 1.1rem !important;
+            color: #E2B66B !important;
+            font-weight: 800 !important;
+        }
+
+        .celebration-party-banner .party-text p {
+            margin: 4px 0 0 0 !important;
+            font-size: 0.82rem !important;
+            color: #FAF7F0 !important;
+        }
+
+        #party-confetti-canvas {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            pointer-events: none !important;
+            z-index: 10000000 !important;
+            display: none;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .checkout-main-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .checkout-right-col {
+                position: static;
+            }
+            .checkout-wrapper {
+                padding-top: 105px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .address-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .checkout-section-card {
+                padding: 22px 16px;
+            }
+            .order-summary-card {
+                padding: 22px 16px;
+            }
+            .checkout-header-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .checkout-steps-indicator {
+                width: 100%;
+                justify-content: space-around;
+                padding: 8px 10px;
+                box-sizing: border-box;
+            }
+            .checkout-step {
+                font-size: 0.74rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <!-- Sticky Royal Header -->
     <header class="top-header">
-        <div class="header-left">
+        <div style="display: flex; align-items: center; gap: 14px;">
             <a href="javascript:history.back()" class="back-btn" aria-label="Go Back">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <a href="index.html" class="logo" aria-label="Hamsa Masala">
+            <a href="index.html" class="logo" aria-label="Hamsa Masala" style="display: flex; align-items: center;">
                 <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
             </a>
         </div>
 
-        <nav class="header-nav">
+        <nav class="header-nav" style="display: flex; align-items: center; gap: 24px;">
             <a href="index.html">Home</a>
             <a href="spices.html">Our Spices</a>
             <a href="heritage.html">Heritage</a>
         </nav>
 
-        <div class="header-right" style="display: flex; align-items: center; gap: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; color: var(--color-gold); font-size: 0.85rem; font-weight: 600; background: rgba(226,182,107,0.12); padding: 8px 14px; border-radius: 20px; border: 1px solid rgba(226,182,107,0.3);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; color: var(--roy-gold); font-size: 0.85rem; font-weight: 700; background: rgba(226,182,107,0.14); padding: 8px 14px; border-radius: 20px; border: 1px solid var(--roy-gold-border);">
                 <i class="fas fa-shield-halved"></i> 100% Secure Checkout
             </div>
-            <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()"><i class="fas fa-search"></i></button>
-            <button type="button" class="icon-btn menu-btn" id="open-menu-btn" aria-label="Menu" onclick="openMenuDrawer()"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
@@ -51,12 +1223,15 @@
 
             <!-- Checkout Header & Step Progress Indicator -->
             <div class="checkout-header-bar">
-                <h1 class="checkout-page-title">Royal Feast Checkout</h1>
+                <div class="checkout-page-title-group">
+                    <h1>Royal Feast Checkout</h1>
+                    <p>Enter your shipping address and choose your payment method.</p>
+                </div>
                 <div class="checkout-steps-indicator">
                     <span class="checkout-step done"><i class="fas fa-circle-check"></i> Bag</span>
-                    <i class="fas fa-chevron-right" style="font-size: 0.7rem; color: #aaa;"></i>
+                    <i class="fas fa-chevron-right" style="font-size: 0.7rem; color: #6D7F77;"></i>
                     <span class="checkout-step active"><i class="fas fa-circle-dot"></i> Shipping &amp; Payment</span>
-                    <i class="fas fa-chevron-right" style="font-size: 0.7rem; color: #aaa;"></i>
+                    <i class="fas fa-chevron-right" style="font-size: 0.7rem; color: #6D7F77;"></i>
                     <span class="checkout-step"><i class="far fa-circle"></i> Confirmation</span>
                 </div>
             </div>
@@ -83,9 +1258,9 @@
 
                             <div class="form-field">
                                 <label for="addr-phone">Mobile Number *</label>
-                                <div style="display: flex; align-items: center; background: #FAF7F0; border: 1.5px solid rgba(15,44,36,0.18); border-radius: 10px; overflow: hidden;">
-                                    <span style="padding: 12px 14px; background: rgba(15,44,36,0.06); font-weight: 700; border-right: 1px solid rgba(15,44,36,0.15); font-size: 0.9rem;">+91</span>
-                                    <input type="tel" id="addr-phone" placeholder="10-digit number" maxlength="10" style="border: none; background: none; flex: 1; padding: 12px 14px;" required>
+                                <div class="phone-input-group">
+                                    <span class="phone-input-prefix">+91</span>
+                                    <input type="tel" id="addr-phone" placeholder="10-digit mobile number" maxlength="10" required>
                                 </div>
                             </div>
 
@@ -157,12 +1332,12 @@
                                     </div>
                                 </div>
                                 <div class="payment-subpanel">
-                                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">
+                                    <p style="font-size: 0.85rem; color: var(--roy-text-muted); margin-bottom: 10px;">
                                         Enter your UPI ID (VPA) or scan QR code on the next screen:
                                     </p>
                                     <div style="display: flex; gap: 10px;">
-                                        <input type="text" id="upi-vpa-input" placeholder="e.g. mobile@upi / username@okhdfcbank" style="flex: 1; padding: 10px 14px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
-                                        <button type="button" style="background: var(--color-dark-green); color: var(--color-gold); border: 1px solid var(--color-gold); border-radius: 8px; padding: 10px 16px; font-weight: 700; font-size: 0.8rem; cursor: pointer;">
+                                        <input type="text" id="upi-vpa-input" placeholder="e.g. mobile@upi / username@okhdfcbank" style="flex: 1; padding: 12px 14px;">
+                                        <button type="button" style="background: linear-gradient(135deg, var(--roy-gold), var(--roy-gold-dark)); color: #071813; border: none; border-radius: 8px; padding: 12px 18px; font-weight: 800; font-size: 0.82rem; cursor: pointer;">
                                             VERIFY
                                         </button>
                                     </div>
@@ -184,13 +1359,13 @@
                                 <div class="payment-subpanel">
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                                         <div style="grid-column: 1 / -1;">
-                                            <input type="text" placeholder="Card Number (16 Digits)" maxlength="19" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
+                                            <input type="text" placeholder="Card Number (16 Digits)" maxlength="19" style="width: 100%; padding: 12px 14px;">
                                         </div>
                                         <div>
-                                            <input type="text" placeholder="MM / YY" maxlength="5" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
+                                            <input type="text" placeholder="MM / YY" maxlength="5" style="width: 100%; padding: 12px 14px;">
                                         </div>
                                         <div>
-                                            <input type="password" placeholder="CVV (3 Digits)" maxlength="3" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; outline: none;">
+                                            <input type="password" placeholder="CVV (3 Digits)" maxlength="3" style="width: 100%; padding: 12px 14px;">
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +1383,7 @@
                                     </div>
                                 </div>
                                 <div class="payment-subpanel">
-                                    <select style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-size: 0.88rem; background: #FAF7F0;">
+                                    <select style="width: 100%; padding: 12px 14px;">
                                         <option>HDFC Bank</option>
                                         <option>State Bank of India (SBI)</option>
                                         <option>ICICI Bank</option>
@@ -231,8 +1406,8 @@
                                     </div>
                                 </div>
                                 <div class="payment-subpanel">
-                                    <p style="font-size: 0.85rem; color: #2E7D32; font-weight: 600; margin: 0;">
-                                        <i class="fas fa-circle-check"></i> Verified COD Available. Pay in cash or scan QR via delivery agent upon arrival.
+                                    <p style="font-size: 0.86rem; color: var(--roy-green-accent); font-weight: 600; margin: 0;">
+                                        <i class="fas fa-circle-check"></i> Verified COD Available. Pay in cash or scan QR via delivery partner upon arrival.
                                     </p>
                                 </div>
                             </div>
@@ -246,26 +1421,24 @@
                 <div class="checkout-right-col">
                     <div class="order-summary-card">
                         
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1.5px solid rgba(15,44,36,0.1);">
-                            <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-text-dark); margin: 0;">
-                                Order Summary
-                            </h3>
-                            <span id="order-summary-count" style="font-size: 0.82rem; color: var(--color-accent); font-weight: 700;">
+                        <div class="order-summary-header">
+                            <h3>Order Summary</h3>
+                            <span id="order-summary-count" class="order-summary-count">
                                 0 Items
                             </span>
                         </div>
 
                         <!-- Scrollable Items List -->
                         <div class="order-items-scroll" id="checkout-items-list">
-                            <!-- Populated dynamically -->
+                            <!-- Populated dynamically via JS -->
                         </div>
 
                         <!-- Royal Coupon Input -->
                         <div class="coupon-input-group">
-                            <input type="text" id="coupon-code-input" placeholder="Enter Coupon (e.g. ROYAL10)">
+                            <input type="text" id="coupon-code-input" placeholder="Coupon (e.g. ROYAL10)">
                             <button type="button" onclick="applyPromoCode()">APPLY</button>
                         </div>
-                        <div id="coupon-status-msg" style="font-size: 0.78rem; margin-top: -12px; margin-bottom: 16px; display: none;"></div>
+                        <div id="coupon-status-msg" style="font-size: 0.78rem; margin-top: -10px; margin-bottom: 14px; display: none;"></div>
 
                         <!-- Price Breakdown -->
                         <div class="order-bill-row">
@@ -274,15 +1447,15 @@
                         </div>
                         <div class="order-bill-row">
                             <span>Royal Delivery Fee</span>
-                            <span id="bill-delivery" style="color: #2E7D32; font-weight: 600;">FREE</span>
+                            <span id="bill-delivery" style="color: var(--roy-green-accent); font-weight: 700;">FREE</span>
                         </div>
-                        <div class="order-bill-row" id="bill-discount-row" style="display: none; color: #2E7D32;">
+                        <div class="order-bill-row" id="bill-discount-row" style="display: none; color: var(--roy-green-accent);">
                             <span>Royal Promo Discount (10%)</span>
                             <span id="bill-discount">-₹0</span>
                         </div>
                         <div class="order-bill-row total-row">
                             <span>Total Payable</span>
-                            <span id="bill-total" style="color: var(--color-dark-green); font-size: 1.4rem;">₹0</span>
+                            <span id="bill-total">₹0</span>
                         </div>
 
                         <!-- Primary Place Order Button -->
@@ -291,13 +1464,13 @@
                         </button>
 
                         <div class="safe-checkout-note">
-                            <i class="fas fa-shield-halved" style="color: #2E7D32;"></i>
+                            <i class="fas fa-shield-halved" style="color: var(--roy-green-accent);"></i>
                             <span>256-Bit SSL Encrypted &bull; Authentic Persian Guarantee</span>
                         </div>
 
-                        <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(15,44,36,0.15); display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: #555;">
-                            <i class="fas fa-truck-fast" style="font-size: 1.2rem; color: var(--color-accent);"></i>
-                            <span>Delivery Partner: <strong>Delhivery Express</strong> (Estimated in 3-4 days)</span>
+                        <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--roy-gold-border); display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--roy-text-muted);">
+                            <i class="fas fa-truck-fast" style="font-size: 1.2rem; color: var(--roy-gold);"></i>
+                            <span>Delivery Partner: <strong>Delhivery Express</strong> (3-4 Days)</span>
                         </div>
 
                     </div>
@@ -308,61 +1481,135 @@
         </div>
     </main>
 
-    <!-- Royal Order Success Modal -->
+    <!-- Royal Order Success Modal (Amazon-Style Secret OTP Verification) -->
     <div id="order-success-modal" class="order-success-modal">
-        <div class="order-success-card">
+        <div class="order-success-card" onclick="event.stopPropagation()">
             
             <div class="order-success-header">
+                <button type="button" class="order-success-close-btn" onclick="closeOrderSuccessModal()" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
                 <div class="order-success-icon">
                     <i class="fas fa-check"></i>
                 </div>
                 <h2 class="order-success-title">Royal Order Confirmed!</h2>
-                <p style="font-size: 0.95rem; color: rgba(244,240,230,0.9); margin: 0;">
+                <p style="font-size: 0.92rem; color: var(--roy-text-muted); margin: 0;">
                     Shukriya! Your royal spices are being hand-blended with care.
                 </p>
             </div>
 
             <div class="order-success-body">
                 
+                <!-- Order Metadata Summary -->
                 <div class="order-meta-box">
                     <div class="order-meta-row">
-                        <span style="color: #666;">Order ID:</span>
-                        <strong id="modal-order-id" style="color: var(--color-dark-green); font-family: monospace; font-size: 1rem;">#PM-98421</strong>
+                        <span>Order ID:</span>
+                        <strong id="modal-order-id" style="color: var(--roy-gold); font-family: monospace; font-size: 1.05rem;">#HM-1050</strong>
                     </div>
                     <div class="order-meta-row">
-                        <span style="color: #666;">Estimated Delivery:</span>
-                        <strong style="color: #2E7D32;"><i class="fas fa-truck-fast"></i> 3-4 Days via Delhivery</strong>
+                        <span>Estimated Delivery:</span>
+                        <strong style="color: var(--roy-green-accent);"><i class="fas fa-truck-fast"></i> 3-4 Days via Delhivery Express</strong>
                     </div>
                     <div class="order-meta-row">
-                        <span style="color: #666;">Payment Mode:</span>
+                        <span>Payment Mode:</span>
                         <strong id="modal-payment-mode">UPI</strong>
                     </div>
                     <div class="order-meta-row">
-                        <span style="color: #666;">Total Paid:</span>
-                        <strong id="modal-total-paid" style="color: var(--color-dark-green); font-size: 1.1rem;">₹0</strong>
+                        <span>Total Payable:</span>
+                        <strong id="modal-total-paid" style="color: var(--roy-gold); font-size: 1.15rem;">₹0</strong>
                     </div>
-                    <div class="order-meta-row" style="border-top: 1px dashed rgba(15,44,36,0.15); padding-top: 8px; margin-top: 8px;">
-                        <span style="color: #666;">Shipping Address:</span>
-                        <span id="modal-address-summary" style="text-align: right; font-size: 0.82rem; color: #333; max-width: 60%;"></span>
+                    <div class="order-meta-row" style="border-top: 1px dashed var(--roy-gold-border); padding-top: 10px; margin-top: 6px;">
+                        <span>Shipping Address:</span>
+                        <span id="modal-address-summary" style="text-align: right; font-size: 0.82rem; color: var(--roy-text-ivory); max-width: 65%;"></span>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 12px;">
-                    <button type="button" class="order-continue-btn" onclick="window.location.href='spices.html'">
-                        <i class="fas fa-bag-shopping"></i> Continue Shopping
-                    </button>
-                    <button type="button" class="order-continue-btn" style="background: #FFFFFF; color: var(--color-dark-green);" onclick="window.print()">
-                        <i class="fas fa-receipt"></i> Print Invoice
-                    </button>
+                <!-- 1. Crystal Clear 3-Step Instructions Banner -->
+                <div class="whatsapp-verify-guide">
+                    <div class="verify-guide-header">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>HOW TO COMPLETE ORDER &amp; UNLOCK OTP:</span>
+                    </div>
+                    <div class="verify-guide-list">
+                        <div class="verify-step-item">
+                            <span class="step-num-pill">Step 1</span>
+                            <div class="step-desc-text">Click <strong>'Confirm Order on WhatsApp'</strong> below.</div>
+                        </div>
+                        <div class="verify-step-item">
+                            <span class="step-num-pill">Step 2</span>
+                            <div class="step-desc-text">Send the pre-filled order message to the official store WhatsApp.</div>
+                        </div>
+                        <div class="verify-step-item">
+                            <span class="step-num-pill">Step 3</span>
+                            <div class="step-desc-text">Return to this browser window and click <strong>'✅ I Have Sent It'</strong> to instantly unlock your 4-digit Secret Delivery OTP and Print Invoice.</div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- 2. Step 1 Action: WhatsApp Confirmation Redirect Button -->
+                <a id="modal-whatsapp-btn" href="https://wa.me/919167435089" target="_blank" rel="noopener noreferrer" class="whatsapp-confirm-btn" onclick="handleWhatsAppBtnClick()">
+                    <i class="fab fa-whatsapp" style="font-size: 1.35rem;"></i> Step 1: Confirm Order on WhatsApp
+                </a>
+                <div id="wa-pending-hint" class="wa-pending-hint">
+                    <i class="fas fa-lock"></i> Click WhatsApp above to unlock Step 2 verification
+                </div>
+
+                <!-- WhatsApp Sent Reminder (Shown only after clicking Step 1) -->
+                <div id="wa-sent-reminder" class="wa-sent-reminder" style="display: none;">
+                    <i class="fas fa-paper-plane"></i> WhatsApp opened! Once you send your order message, return here and click <strong>'✅ I Have Sent It'</strong> below.
+                </div>
+
+                <!-- 3. Step 2 Action: 'I Have Sent It' Button (Strictly Locked initially, Unlocked after Step 1) -->
+                <button type="button" id="btn-confirm-sent" class="confirm-sent-btn locked" onclick="handleCustomerConfirmedSent()" disabled>
+                    <i class="fas fa-lock"></i> Step 2: 🔒 I Have Sent It (Locked &bull; Complete Step 1 First)
+                </button>
+
+                <!-- Celebration Party Banner (Revealed on 'I Have Sent It') -->
+                <div id="celebration-banner" class="celebration-party-banner" style="display: none;">
+                    <div class="party-emoji">🎉</div>
+                    <div class="party-text">
+                        <h4>Royal Order Confirmed &amp; Verified!</h4>
+                        <p>Shukriya! Your royal spice order has been confirmed with our Isfahan kitchen.</p>
+                    </div>
+                </div>
+
+                <!-- 4. Secret Delivery OTP Card: Initially Locked -->
+                <div id="modal-otp-locked-notice" class="otp-locked-card">
+                    <div class="otp-lock-icon"><i class="fas fa-lock"></i></div>
+                    <div class="otp-lock-title">4-Digit Secret Delivery OTP (Locked)</div>
+                    <p class="otp-lock-desc">
+                        🔒 Complete Steps 1 &amp; 2 on WhatsApp, then click <strong>'✅ I Have Sent It'</strong> above to instantly reveal your secret delivery PIN.
+                    </p>
+                </div>
+
+                <!-- Secret Delivery OTP Card: Unlocked after Step 3 (Amazon Style) -->
+                <div id="delivery-otp-unlocked-card" class="delivery-otp-success-card" style="display: none;">
+                    <div class="otp-unlocked-badge">
+                        <i class="fas fa-circle-check" style="color: var(--roy-green-accent);"></i> WHATSAPP VERIFIED &bull; DELIVERY OTP UNLOCKED
+                    </div>
+                    <div id="modal-delivery-otp" class="delivery-otp-digits">
+                        5921
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--roy-text-muted); margin: 6px 0 0 0; line-height: 1.4;">
+                        🔒 <strong>Keep Strictly Confidential:</strong> Share this 4-digit PIN with your Delhivery courier partner only upon physical package arrival.
+                    </p>
+                </div>
+
+                <!-- 5. Print Invoice Button (Unlocks after Step 3) -->
+                <button type="button" id="modal-print-btn" class="order-invoice-btn" onclick="window.print()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                    <i class="fas fa-receipt"></i> Print Invoice (Unlocks after Step 2)
+                </button>
 
             </div>
 
         </div>
     </div>
 
+    <!-- Celebration Confetti Canvas -->
+    <canvas id="party-confetti-canvas"></canvas>
+
     <!-- Scripts -->
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=28"></script>
     <script>
         // Indian Pincode Directory Lookup
         const pincodeDirectory = {
@@ -421,7 +1668,7 @@
                     document.getElementById('addr-state').value = 'India';
                 }
                 hint.style.display = 'block';
-                hint.innerHTML = `<i class="fas fa-check-circle"></i> Pincode verified for Delhivery delivery`;
+                hint.innerHTML = `<i class="fas fa-check-circle"></i> Pincode verified for Delhivery Express`;
             } else {
                 hint.style.display = 'none';
             }
@@ -457,37 +1704,44 @@
 
             if (!listEl) return;
 
-            // If empty, add a default royal spice for smooth testing
-            if (!cart || cart.length === 0) {
-                cart = [
-                    { name: 'Biryani Masala', pack: '100g', price: 249, qty: 1, img: 'assets/biryani-jar.jpg' },
-                    { name: 'Kabab Masala', pack: '100g', price: 229, qty: 1, img: 'assets/kabab-card.jpg' }
-                ];
-                saveCart();
+            // Load cart from localStorage or fallback
+            let currentCart = [];
+            try {
+                currentCart = JSON.parse(localStorage.getItem('persian_masala_cart') || '[]');
+            } catch (e) {
+                currentCart = [];
             }
 
-            const totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+            if (!currentCart || currentCart.length === 0) {
+                currentCart = [
+                    { name: 'Original - Classic - Biryani', pack: '100g', price: 249, qty: 1, img: 'assets/original-classic-biryani.png' },
+                    { name: 'Turkish Lamb Shank', pack: '100g', price: 349, qty: 1, img: 'assets/turkish-lamb-shank.png' }
+                ];
+            }
+
+            const totalCount = currentCart.reduce((sum, item) => sum + (item.qty || 1), 0);
             if (countEl) countEl.textContent = `${totalCount} Item${totalCount > 1 ? 's' : ''}`;
 
             let subtotal = 0;
-            listEl.innerHTML = cart.map(item => {
+            listEl.innerHTML = currentCart.map(item => {
                 const itemTotal = item.price * (item.qty || 1);
                 subtotal += itemTotal;
+                const imgSrc = item.img || 'assets/hamsa-logo.svg';
                 return `
-                    <div style="display: flex; gap: 12px; align-items: center; background: #FAF7F0; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(15,44,36,0.08);">
-                        <img src="${item.img}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(226,182,107,0.4);">
-                        <div style="flex: 1;">
-                            <h5 style="margin: 0 0 2px 0; font-size: 0.9rem; color: var(--color-text-dark);">${item.name}</h5>
-                            <span style="font-size: 0.75rem; color: #666;">${item.pack || '100g'} &bull; Qty: <strong>${item.qty || 1}</strong></span>
+                    <div class="checkout-item-row">
+                        <img src="${imgSrc}" alt="${item.name}" class="checkout-item-img" onerror="this.src='assets/hamsa-logo.svg'">
+                        <div class="checkout-item-details">
+                            <h5 class="checkout-item-title">${item.name}</h5>
+                            <span class="checkout-item-meta">${item.pack || '100g'} &bull; Qty: <strong>${item.qty || 1}</strong></span>
                         </div>
-                        <strong style="color: var(--color-dark-green); font-size: 0.95rem;">₹${itemTotal}</strong>
+                        <strong class="checkout-item-price">₹${itemTotal}</strong>
                     </div>
                 `;
             }).join('');
 
             // Delivery Fee
             const deliveryFee = subtotal >= 499 ? 0 : 50;
-            billDeliveryEl.innerHTML = deliveryFee === 0 ? '<strong style="color: #2E7D32;">FREE</strong>' : '₹50';
+            billDeliveryEl.innerHTML = deliveryFee === 0 ? '<strong style="color: var(--roy-green-accent);">FREE</strong>' : '₹50';
 
             // Discount
             let discountAmount = 0;
@@ -515,23 +1769,24 @@
             if (code === 'ROYAL10') {
                 promoDiscountPercent = 10;
                 msg.style.display = 'block';
-                msg.style.color = '#2E7D32';
+                msg.style.color = 'var(--roy-green-accent)';
                 msg.innerHTML = '<i class="fas fa-circle-check"></i> <strong>ROYAL10</strong> applied! 10% Royal Discount!';
                 renderCheckoutOrderSummary();
             } else if (code) {
                 promoDiscountPercent = 0;
                 msg.style.display = 'block';
-                msg.style.color = '#C62828';
+                msg.style.color = '#F87171';
                 msg.innerHTML = '<i class="fas fa-circle-xmark"></i> Invalid code. Try <strong>ROYAL10</strong>';
                 renderCheckoutOrderSummary();
             }
         }
 
-        function handlePlaceOrder() {
+        async function handlePlaceOrder() {
             const name = document.getElementById('addr-fullname').value.trim();
             const phone = document.getElementById('addr-phone').value.trim();
             const pin = document.getElementById('addr-pincode').value.trim();
             const city = document.getElementById('addr-city').value.trim();
+            const state = document.getElementById('addr-state').value.trim();
             const flat = document.getElementById('addr-flat').value.trim();
             const street = document.getElementById('addr-street').value.trim();
 
@@ -545,45 +1800,304 @@
                 return;
             }
 
-            // Generate Order ID
-            const orderNum = Math.floor(10000 + Math.random() * 90000);
-            const orderId = `#PM-${orderNum}`;
-            const totalPaid = document.getElementById('bill-total').textContent;
+            if (!/^\d{10}$/.test(phone)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
 
-            document.getElementById('modal-order-id').textContent = orderId;
+            const totalPaid = document.getElementById('bill-total').textContent;
+            const fullAddress = `${flat}, ${street}, ${city} - ${pin} (${selectedAddressType})`;
+
+            // Load active cart
+            let activeCart = [];
+            try {
+                activeCart = JSON.parse(localStorage.getItem('persian_masala_cart') || '[]');
+            } catch (e) {
+                activeCart = [];
+            }
+            if (!activeCart || activeCart.length === 0) {
+                activeCart = [
+                    { name: 'Original - Classic - Biryani', pack: '100g', price: 249, qty: 1, img: 'assets/original-classic-biryani.png' },
+                    { name: 'Turkish Lamb Shank', pack: '100g', price: 349, qty: 1, img: 'assets/turkish-lamb-shank.png' }
+                ];
+            }
+
+            const orderItems = activeCart.map(item => ({
+                name: item.name,
+                pack: item.pack || '100g',
+                price: item.price,
+                qty: item.qty || 1,
+                img: item.img || 'assets/hamsa-logo.svg'
+            }));
+
+            const numericTotal = parseInt(totalPaid.replace(/\D/g, ''), 10) || 0;
+
+            let finalOrderId = 'HM-' + Math.floor(1000 + Math.random() * 9000);
+            let finalDeliveryOtp = String(Math.floor(1000 + Math.random() * 9000));
+
+            // POST to backend API to save persistently in orders.json
+            try {
+                const response = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customerName: name,
+                        customerPhone: phone,
+                        shippingAddress: fullAddress,
+                        pincode: pin,
+                        city: city,
+                        state: state,
+                        items: orderItems,
+                        totalAmount: numericTotal,
+                        paymentMode: selectedPaymentMethodName
+                    })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.orderId) {
+                        finalOrderId = data.orderId;
+                        if (data.deliveryOtp) finalDeliveryOtp = data.deliveryOtp;
+                    }
+                }
+            } catch (err) {
+                console.warn('Backend API note: Local fallback used:', err);
+            }
+
+            // Populate Success Modal
+            document.getElementById('modal-order-id').textContent = `#${finalOrderId}`;
             document.getElementById('modal-total-paid').textContent = totalPaid;
             document.getElementById('modal-payment-mode').textContent = selectedPaymentMethodName;
-            document.getElementById('modal-address-summary').textContent = `${flat}, ${street}, ${city} - ${pin} (${selectedAddressType})`;
+            document.getElementById('modal-address-summary').textContent = fullAddress;
+            document.getElementById('modal-delivery-otp').textContent = finalDeliveryOtp;
+
+            // Generate WhatsApp confirmation URL (STRICTLY WITHOUT DELIVERY OTP)
+            const itemsSummaryText = activeCart.map(i => `• ${i.name} (${i.pack || '100g'}) x ${i.qty || 1} = ₹${i.price * (i.qty || 1)}`).join('\n');
+            const waText = 
+`👑 *HAMSA MASALA - NEW ORDER* 👑
+---------------------------------
+📦 *Order ID:* #${finalOrderId}
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+📍 *Address:* ${fullAddress}
+
+🛒 *Items Ordered:*
+${itemsSummaryText}
+
+💰 *Total Payable:* ${totalPaid}
+💳 *Payment Mode:* ${selectedPaymentMethodName}
+🚚 *Estimated Delivery:* 3-4 Days (Delhivery Express)
+---------------------------------
+Please confirm my order. Thank you!`;
+
+            const waUrl = `https://wa.me/919167435089?text=${encodeURIComponent(waText)}`;
+            const waBtn = document.getElementById('modal-whatsapp-btn');
+            if (waBtn) {
+                waBtn.href = waUrl;
+                waBtn.innerHTML = '<i class="fab fa-whatsapp" style="font-size: 1.35rem;"></i> Step 1: Confirm Order on WhatsApp';
+                waBtn.onclick = function() {
+                    handleWhatsAppBtnClick();
+                };
+            }
 
             // Save order into history for My Orders and Track Order
             const newOrder = {
-                id: orderId,
+                id: `#${finalOrderId}`,
+                deliveryOtp: finalDeliveryOtp,
                 date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-                items: [...cart],
+                items: [...activeCart],
                 total: totalPaid,
                 status: 'In Transit',
                 trackingNumber: 'DLV' + Math.floor(100000000 + Math.random() * 900000000),
                 deliveryEta: '3-4 Days via Delhivery Express',
                 paymentMethod: selectedPaymentMethodName,
-                address: `${flat}, ${street}, ${city} - ${pin} (${selectedAddressType})`
+                address: fullAddress
             };
             let pastOrders = JSON.parse(localStorage.getItem('persian_masala_orders') || '[]');
             pastOrders.unshift(newOrder);
             localStorage.setItem('persian_masala_orders', JSON.stringify(pastOrders));
 
-            // Open Order Success Modal
+            // Save user details for next checkout
+            localStorage.setItem('persian_user_name', name);
+            localStorage.setItem('persian_user_phone', phone);
+
+            // Reset Locked State for Secret OTP
+            const lockedNotice = document.getElementById('modal-otp-locked-notice');
+            if (lockedNotice) lockedNotice.style.display = 'block';
+
+            const unlockedCard = document.getElementById('delivery-otp-unlocked-card');
+            if (unlockedCard) unlockedCard.style.display = 'none';
+
+            const celebrationBanner = document.getElementById('celebration-banner');
+            if (celebrationBanner) celebrationBanner.classList.remove('show');
+
+            const reminder = document.getElementById('wa-sent-reminder');
+            if (reminder) reminder.classList.remove('show');
+
+            const hint = document.getElementById('wa-pending-hint');
+            if (hint) hint.style.display = 'flex';
+
+            // Sequential Button: Strictly LOCKED initially until Step 1 is clicked
+            const confirmBtn = document.getElementById('btn-confirm-sent');
+            if (confirmBtn) {
+                confirmBtn.className = 'confirm-sent-btn locked';
+                confirmBtn.disabled = true;
+                confirmBtn.innerHTML = '<i class="fas fa-lock"></i> Step 2: 🔒 I Have Sent It (Locked &bull; Complete Step 1 First)';
+            }
+
+            const printBtn = document.getElementById('modal-print-btn');
+            if (printBtn) {
+                printBtn.disabled = true;
+                printBtn.style.opacity = '0.5';
+                printBtn.style.cursor = 'not-allowed';
+                printBtn.innerHTML = '<i class="fas fa-receipt"></i> Print Invoice (Unlocks after Step 2)';
+            }
+
+            // Open Order Success Modal (Persistent)
             const modal = document.getElementById('order-success-modal');
             modal.classList.add('open');
 
             // Clear Cart in localStorage after successful order
-            cart = [];
             localStorage.setItem('persian_masala_cart', '[]');
-            updateCartUI();
+            if (typeof updateCartUI === 'function') updateCartUI();
+        }
+
+        // Royal Celebratory Confetti Animation
+        function launchRoyalConfetti() {
+            let canvas = document.getElementById('party-confetti-canvas');
+            if (!canvas) {
+                canvas = document.createElement('canvas');
+                canvas.id = 'party-confetti-canvas';
+                document.body.appendChild(canvas);
+            }
+            canvas.style.display = 'block';
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
+            
+            const colors = ['#E2B66B', '#D4A35B', '#25D366', '#4ADE80', '#FFFFFF', '#FFD700', '#FF7043'];
+            const particles = [];
+            const count = 120;
+            
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: window.innerWidth / 2 + (Math.random() - 0.5) * 160,
+                    y: window.innerHeight * 0.42 + (Math.random() - 0.5) * 100,
+                    vx: (Math.random() - 0.5) * 18,
+                    vy: (Math.random() - 0.7) * 16 - 3,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rotSpeed: (Math.random() - 0.5) * 12,
+                    opacity: 1
+                });
+            }
+            
+            let startTime = Date.now();
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                if (elapsed > 3500) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    canvas.style.display = 'none';
+                    return;
+                }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.38; // gravity
+                    p.vx *= 0.98; // air resistance
+                    p.rotation += p.rotSpeed;
+                    if (elapsed > 2000) {
+                        p.opacity = Math.max(0, 1 - (elapsed - 2000) / 1500);
+                    }
+                    
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.globalAlpha = p.opacity;
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+                    ctx.restore();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Sequential WhatsApp Flow Handlers
+        function handleWhatsAppBtnClick() {
+            sessionStorage.setItem('hamsa_wa_clicked', 'true');
+            
+            // Hide lock hint
+            const hint = document.getElementById('wa-pending-hint');
+            if (hint) hint.style.display = 'none';
+
+            // Show friendly instruction reminder
+            const reminder = document.getElementById('wa-sent-reminder');
+            if (reminder) reminder.classList.add('show');
+
+            // Smoothly unlock Step 2 'I Have Sent It' button
+            const confirmBtn = document.getElementById('btn-confirm-sent');
+            if (confirmBtn) {
+                confirmBtn.className = 'confirm-sent-btn unlocked';
+                confirmBtn.disabled = false;
+                confirmBtn.innerHTML = '<i class="fas fa-circle-check"></i> Step 2: ✅ I Have Sent It (Click to Unlock OTP)';
+            }
+
+            // Update WhatsApp button state
+            const waBtn = document.getElementById('modal-whatsapp-btn');
+            if (waBtn) {
+                waBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Step 1: WhatsApp Opened (Send Message Now)';
+            }
+        }
+
+        function handleCustomerConfirmedSent() {
+            // Trigger Party Confetti Celebration
+            launchRoyalConfetti();
+
+            // 1. Smoothly hide locked placeholder & reminders
+            const lockedNotice = document.getElementById('modal-otp-locked-notice');
+            if (lockedNotice) lockedNotice.style.display = 'none';
+
+            const reminder = document.getElementById('wa-sent-reminder');
+            if (reminder) reminder.classList.remove('show');
+
+            const hint = document.getElementById('wa-pending-hint');
+            if (hint) hint.style.display = 'none';
+
+            // 2. Show celebratory party banner
+            const celebrationBanner = document.getElementById('celebration-banner');
+            if (celebrationBanner) celebrationBanner.classList.add('show');
+
+            // 3. Smoothly reveal OTP card
+            const unlockedCard = document.getElementById('delivery-otp-unlocked-card');
+            if (unlockedCard) unlockedCard.style.display = 'block';
+
+            // 4. Update 'I Have Sent It' button to verified state
+            const confirmBtn = document.getElementById('btn-confirm-sent');
+            if (confirmBtn) {
+                confirmBtn.className = 'confirm-sent-btn sent-verified';
+                confirmBtn.disabled = true;
+                confirmBtn.innerHTML = '<i class="fas fa-check-double"></i> WhatsApp Order Verified &bull; Secret OTP Active';
+            }
+
+            // 5. Activate Print Invoice button
+            const printBtn = document.getElementById('modal-print-btn');
+            if (printBtn) {
+                printBtn.disabled = false;
+                printBtn.style.opacity = '1';
+                printBtn.style.cursor = 'pointer';
+                printBtn.style.background = 'linear-gradient(135deg, rgba(226,182,107,0.2), rgba(199,144,86,0.2))';
+                printBtn.style.borderColor = 'var(--roy-gold)';
+                printBtn.innerHTML = '<i class="fas fa-print"></i> Print Official Order Invoice';
+            }
         }
 
         // Initialize Checkout Page
         document.addEventListener('DOMContentLoaded', () => {
-            // Pre-fill phone from login
+            // Pre-fill phone and name
             const savedPhone = localStorage.getItem('persian_user_phone');
             if (savedPhone) {
                 const phoneInput = document.getElementById('addr-phone');
@@ -598,6 +2112,15 @@
 
             renderCheckoutOrderSummary();
         });
+
+        function closeOrderSuccessModal(event) {
+            // Persistent Modal: ONLY close if clicking the explicit 'X' close button!
+            if (event && !event.target.closest('.order-success-close-btn')) {
+                return;
+            }
+            const modal = document.getElementById('order-success-modal');
+            if (modal) modal.classList.remove('open');
+        }
     </script>
 </body>
 </html>

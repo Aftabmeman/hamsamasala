@@ -1,0 +1,306 @@
+[
+  {
+    "orderId": "HM-9942",
+    "deliveryOtp": "7410",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "302, Amrut Nagar mumbra, Mumbai - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "items": [
+      {
+        "name": "Original - Classic - Biryani",
+        "pack": "100g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/original-classic-biryani.png"
+      },
+      {
+        "name": "Turkish Lamb Shank",
+        "pack": "100g",
+        "price": 349,
+        "qty": 1,
+        "img": "assets/turkish-lamb-shank.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 598,
+    "paymentMode": "UPI (Google Pay, PhonePe, QR)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T15:38:11.809Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-3352",
+    "deliveryOtp": "1978",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "302, Amrut Nagar mumbra, Mumbra - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbra",
+    "state": "Maharashtra",
+    "items": [
+      {
+        "name": "Original - Classic - Biryani",
+        "pack": "100g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/original-classic-biryani.png"
+      },
+      {
+        "name": "Turkish Lamb Shank",
+        "pack": "100g",
+        "price": 349,
+        "qty": 1,
+        "img": "assets/turkish-lamb-shank.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 299,
+    "paymentMode": "UPI (Google Pay, PhonePe, QR)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T15:21:15.489Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-8797",
+    "deliveryOtp": "2472",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "302, Amrut Nagar mumbra, Mumbra - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbra",
+    "state": "Maharashtra",
+    "items": [
+      {
+        "name": "Original - Classic - Biryani",
+        "pack": "60g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/original-classic-biryani.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 299,
+    "paymentMode": "UPI (Google Pay, PhonePe, QR)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T15:18:56.494Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-9870",
+    "deliveryOtp": "7337",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "302 amrut nagar mumbra, Amrut Nagar mumbra, Mumbai - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "items": [
+      {
+        "name": "Raaz-e-Kalimiri Biryani",
+        "pack": "60g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/raaz-e-kalimiri-biryani.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 299,
+    "paymentMode": "UPI (Google Pay, PhonePe, QR)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T15:04:05.584Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-3283",
+    "deliveryOtp": "9932",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "301, Amrut Nagar mumbra, Mumbai - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "items": [
+      {
+        "name": "Original - Classic - Biryani",
+        "pack": "60g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/original-classic-biryani.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 299,
+    "paymentMode": "Cash on Delivery (COD)",
+    "status": "DELIVERED",
+    "createdAt": "2026-11-01T14:57:33.630Z",
+    "deliveredAt": "2026-11-01T15:00:25.804Z"
+  },
+  {
+    "orderId": "HM-9650",
+    "deliveryOtp": "7111",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "302, Amrut Nagar mumbra, Mumbra - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbra",
+    "state": "Maharashtra",
+    "items": [
+      {
+        "name": "Raaz-e-Kalimiri Biryani",
+        "pack": "60g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/raaz-e-kalimiri-biryani.png"
+      },
+      {
+        "name": "Turkish Lamb Shank Gravy",
+        "pack": "100g",
+        "price": 299,
+        "qty": 1,
+        "img": "assets/turkish-lamb-shank.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 548,
+    "paymentMode": "Cash on Delivery (COD)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T13:40:58.695Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-5273",
+    "deliveryOtp": "8389",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "8291936077",
+    "shippingAddress": "402, Amrut Nagar mumbra, Mumbra - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbra",
+    "state": "",
+    "items": [],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 379,
+    "paymentMode": "Cash on Delivery (COD)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T13:30:32.798Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-9517",
+    "deliveryOtp": "5323",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "8291936077",
+    "shippingAddress": "402, Amrut Nagar mumbra, Mumbra - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbra",
+    "state": "",
+    "items": [
+      {
+        "name": "Ruz-Bi-Haleebia (Persian Sweet)",
+        "pack": "100g",
+        "price": 329,
+        "qty": 1,
+        "img": "assets/ruz-bi-haleebia.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 379,
+    "paymentMode": "Cash on Delivery (COD)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T13:05:48.184Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-6299",
+    "deliveryOtp": "4079",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "302, Amrut Nagar mumbra, Mumbra - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbra",
+    "state": "",
+    "items": [
+      {
+        "name": "Raaz-e-Kalimiri Biryani",
+        "pack": "60g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/raaz-e-kalimiri-biryani.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 299,
+    "paymentMode": "Cash on Delivery (COD)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T13:01:39.630Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-3268",
+    "deliveryOtp": "9540",
+    "customerName": "Aftab Ghaswala",
+    "customerPhone": "9619425597",
+    "shippingAddress": "302, Amrut Nagar mumbra, Mumbra - 400612 (Home)",
+    "pincode": "400612",
+    "city": "Mumbra",
+    "state": "",
+    "items": [
+      {
+        "name": "Original - Classic - Biryani",
+        "pack": "60g",
+        "price": 249,
+        "qty": 1,
+        "img": "assets/original-classic-biryani.png"
+      }
+    ],
+    "subtotal": 0,
+    "discount": 0,
+    "totalAmount": 274,
+    "paymentMode": "Cash on Delivery (COD)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T13:00:36.789Z",
+    "deliveredAt": null
+  },
+  {
+    "orderId": "HM-1050",
+    "deliveryOtp": "5921",
+    "customerName": "Nawabzada Mirza",
+    "customerPhone": "9167435089",
+    "shippingAddress": "Flat 402, Royal Isfahan Heights, Near Jama Masjid, Chandni Chowk, New Delhi - 110006 (Home)",
+    "pincode": "110006",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "items": [
+      {
+        "name": "Original - Classic - Biryani",
+        "pack": "100g",
+        "price": 249,
+        "qty": 2
+      },
+      {
+        "name": "Lazeez Dum Biryani",
+        "pack": "100g",
+        "price": 249,
+        "qty": 1
+      }
+    ],
+    "subtotal": 747,
+    "discount": 0,
+    "totalAmount": 747,
+    "paymentMode": "Cash on Delivery (COD)",
+    "status": "CONFIRMED",
+    "createdAt": "2026-11-01T12:00:00.000Z",
+    "deliveredAt": null
+  }
+]

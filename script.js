@@ -352,36 +352,18 @@ function checkDeliveryPincode() {
     }
 }
 
-// --- Authentication (Login / Signup OTP Modal) ---
+// --- Legacy Authentication Disabled: Replaced by Amazon-Style Delivery OTP ---
 let authModalSource = 'checkout';
 let enteredPhone = '';
 
 function openAuthModal(source = 'checkout') {
-    authModalSource = source;
     closeMenuDrawer();
-    const modal = document.getElementById('auth-modal-overlay');
-    if (!modal) return;
-
-    const phoneStep = document.getElementById('auth-phone-step');
-    const otpStep = document.getElementById('auth-otp-step');
-
-    if (phoneStep) phoneStep.style.display = 'block';
-    if (otpStep) otpStep.style.display = 'none';
-
-    const errPhone = document.getElementById('auth-phone-error');
-    if (errPhone) errPhone.style.display = 'none';
-
-    const errOtp = document.getElementById('auth-otp-error');
-    if (errOtp) errOtp.style.display = 'none';
-
-    modal.style.display = 'flex';
-    modal.style.visibility = 'visible';
-    modal.style.opacity = '1';
-    modal.style.pointerEvents = 'auto';
-    modal.classList.add('open');
-
-    const phoneInput = document.getElementById('auth-mobile-input');
-    if (phoneInput) setTimeout(() => phoneInput.focus(), 200);
+    closeCartDrawer();
+    if (source === 'checkout' || source === 'buynow') {
+        window.location.href = 'checkout.html';
+        return;
+    }
+    openOrdersModal();
 }
 
 function closeAuthModal(event) {
@@ -517,13 +499,7 @@ function handleProceedToCheckout() {
         alert('Your Royal Cart is empty! Please add spices first.');
         return;
     }
-
-    const isAuth = localStorage.getItem('persian_user_authenticated') === 'true';
-    if (isAuth) {
-        window.location.href = 'checkout.html';
-    } else {
-        openAuthModal('checkout');
-    }
+    window.location.href = 'checkout.html';
 }
 
 function logoutUser() {
@@ -798,7 +774,15 @@ function openOrdersModal() {
                     ` : '<span style="color:#555;">Royal Masala Pack</span>'}
                     <strong style="color: var(--color-dark-green);">${ord.total}</strong>
                 </div>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+                ${ord.deliveryOtp ? `
+                    <div style="background: rgba(15,44,36,0.05); border: 1px dashed var(--color-gold); border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+                        <span style="font-size: 0.76rem; color: #555; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-shield-halved" style="color: var(--color-gold);"></i> Secret Delivery OTP:
+                        </span>
+                        <strong style="font-family: monospace; letter-spacing: 2px; color: var(--color-dark-green); font-size: 1.05rem;">${ord.deliveryOtp}</strong>
+                    </div>
+                ` : ''}
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
                     <span style="font-size: 0.78rem; color: #666;"><i class="fas fa-location-dot"></i> Delhivery Express</span>
                     <button type="button" onclick="openTrackOrderModal('${ord.id}')" style="background: var(--color-dark-green); color: var(--color-gold); border: 1px solid var(--color-gold); border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
                         TRACK DELIVERY &rarr;
@@ -1098,8 +1082,8 @@ function ensureModalsInDOM() {
                                     <p class="menu-user-subtitle">Handcrafted Silk Route Spices</p>
                                 </div>
                             </div>
-                            <button type="button" class="menu-auth-btn" onclick="openAuthModal('menu')">
-                                <i class="fas fa-key"></i> LOGIN / SIGN UP
+                            <button type="button" class="menu-auth-btn" onclick="openOrdersModal()">
+                                <i class="fas fa-box-archive"></i> VIEW MY ORDERS &amp; OTP
                             </button>
                         </div>
                         <!-- Logged In State -->
@@ -1114,8 +1098,8 @@ function ensureModalsInDOM() {
                             </div>
                             <div class="menu-logout-row">
                                 <span style="font-size: 0.75rem; color: rgba(244,240,230,0.6);">Account Status: Active</span>
-                                <button type="button" class="menu-logout-btn" onclick="logoutUser()">
-                                    <i class="fas fa-arrow-right-from-bracket"></i> Logout
+                                <button type="button" class="menu-logout-btn" onclick="openOrdersModal()">
+                                    <i class="fas fa-box-archive"></i> My Orders
                                 </button>
                             </div>
                         </div>
@@ -1126,10 +1110,16 @@ function ensureModalsInDOM() {
                         <div class="menu-nav-list">
                             <button type="button" class="menu-nav-item" onclick="openOrdersModal()">
                                 <i class="fas fa-box-archive"></i>
-                                <span class="menu-nav-title">My Orders</span>
+                                <span class="menu-nav-title">My Orders &amp; Delivery OTP</span>
                                 <span class="menu-nav-badge" id="menu-orders-badge">1 Order</span>
                                 <i class="fas fa-chevron-right menu-nav-chevron"></i>
                             </button>
+                            <a href="delivery.html" class="menu-nav-item" style="text-decoration: none;">
+                                <i class="fas fa-shield-halved" style="color: var(--color-gold);"></i>
+                                <span class="menu-nav-title">Delivery Agent Portal (/delivery)</span>
+                                <span class="menu-nav-badge" style="background: rgba(226,182,107,0.2); color: var(--color-gold);">OTP Verify</span>
+                                <i class="fas fa-chevron-right menu-nav-chevron"></i>
+                            </a>
                             <button type="button" class="menu-nav-item" onclick="openTrackOrderModal()">
                                 <i class="fas fa-truck-fast"></i>
                                 <span class="menu-nav-title">Track Order (Delhivery)</span>
