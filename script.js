@@ -7,12 +7,13 @@ const royalSpicesCatalog = [
     {
         id: 'lazeez-dum',
         name: 'Lazeez - Dum - Biryani',
-        tagline: 'Royal Persian-Mughal Spice Blend For Majestic Dum Biryani',
+        tagline: 'Secrets 40 spices • Royal Persian-Mughal blend for imperial dum biryani',
         category: 'Royal Biryani Range',
         catKey: 'blended',
-        price: 249,
-        origPrice: 299,
-        discount: '17% OFF',
+        price: 232,
+        origPrice: 282,
+        discount: '18% OFF',
+        weight: '60g',
         rating: 4.9,
         reviews: '1.8K',
         img: 'assets/lazeez-dum-biryani.png'
@@ -20,12 +21,13 @@ const royalSpicesCatalog = [
     {
         id: 'classic-biryani',
         name: 'Original - Classic - Biryani',
-        tagline: 'Authentic Behruz Persian Biryani masala crafted with pure saffron',
+        tagline: 'Secret 36 spices • Authentic Behruz Persian Biryani masala crafted with pure saffron',
         category: 'Royal Biryani Range',
         catKey: 'blended',
-        price: 249,
-        origPrice: 299,
-        discount: '17% OFF',
+        price: 232,
+        origPrice: 282,
+        discount: '18% OFF',
+        weight: '60g',
         rating: 4.8,
         reviews: '2.1K',
         img: 'assets/original-classic-biryani.png'
@@ -33,12 +35,13 @@ const royalSpicesCatalog = [
     {
         id: 'raaz-e-kalimiri',
         name: 'Raaz-e-Kalimiri Biryani',
-        tagline: 'Prized Tellicherry pepper & slow-roasted royal Persian spices',
+        tagline: 'Secret 36 spices • Creamy & rich Malabar black pepper blend for royal chicken & biryani',
         category: 'Royal Biryani Range',
         catKey: 'blended',
-        price: 249,
-        origPrice: 299,
-        discount: '17% OFF',
+        price: 232,
+        origPrice: 282,
+        discount: '18% OFF',
+        weight: '60g',
         rating: 4.9,
         reviews: '1.5K',
         img: 'assets/raaz-e-kalimiri-biryani.png'
@@ -46,12 +49,13 @@ const royalSpicesCatalog = [
     {
         id: 'turkish-lamb-shank',
         name: 'Turkish Lamb Shank Gravy',
-        tagline: 'Royal Turkish-Mughal Spice Blend for Majestic Fall-off-Bone Gravy',
+        tagline: 'Secret 46 spices • Royal Turkish-Mughal blend for majestic fall-off-bone gravy',
         category: 'Royal Gravy Range',
         catKey: 'blended',
-        price: 299,
-        origPrice: 349,
+        price: 304,
+        origPrice: 354,
         discount: '14% OFF',
+        weight: '100g',
         rating: 4.9,
         reviews: '1.4K',
         img: 'assets/turkish-lamb-shank.png'
@@ -59,12 +63,13 @@ const royalSpicesCatalog = [
     {
         id: 'boti-delight',
         name: 'Boti Delight - Behruz Gravy Instant Masala',
-        tagline: 'Authentic Persian instant gravy blend for velvety caramelized boti',
+        tagline: 'Secret 38 spices • Authentic Persian instant gravy blend for velvety caramelized boti',
         category: 'Royal Gravy Range',
         catKey: 'blended',
-        price: 279,
-        origPrice: 329,
-        discount: '15% OFF',
+        price: 180,
+        origPrice: 230,
+        discount: '22% OFF',
+        weight: '80g',
         rating: 4.9,
         reviews: '1.9K',
         img: 'assets/boti-delight.png'
@@ -72,12 +77,13 @@ const royalSpicesCatalog = [
     {
         id: 'murg-lababdar',
         name: 'Shabnami Murg Lababdar Gravy',
-        tagline: 'Royal Persian-Mughal instant gravy blend for velvety tomato-cashew lababdar',
+        tagline: 'Secrets 58 spices • Royal Shabnami instant gravy blend for velvety tomato-cashew lababdar',
         category: 'Royal Gravy Range',
         catKey: 'blended',
-        price: 289,
-        origPrice: 339,
-        discount: '15% OFF',
+        price: 268,
+        origPrice: 318,
+        discount: '16% OFF',
+        weight: '100g',
         rating: 4.9,
         reviews: '1.6K',
         img: 'assets/murg-lababdar.png'
@@ -85,12 +91,13 @@ const royalSpicesCatalog = [
     {
         id: 'murg-kalimiri',
         name: 'Mukhmali Murg Kalimiri Gravy Masala',
-        tagline: 'Royal Tellicherry black pepper gravy instant masala with rich almond cream',
+        tagline: 'Secrets 58 spices • Royal Tellicherry black pepper gravy instant masala with rich almond cream',
         category: 'Royal Gravy Range',
         catKey: 'blended',
-        price: 279,
-        origPrice: 329,
-        discount: '15% OFF',
+        price: 268,
+        origPrice: 318,
+        discount: '16% OFF',
+        weight: '100g',
         rating: 4.9,
         reviews: '1.3K',
         img: 'assets/murg-kalimiri.png'
@@ -98,12 +105,13 @@ const royalSpicesCatalog = [
     {
         id: 'ruz-bi-haleebia',
         name: 'Ruz-Bi-Haleebia (Persian Sweet)',
-        tagline: 'Creamy Saffron & Rosewater Traditional Recipe | Gourmet Selection',
+        tagline: 'Creamy Saffron & Rosewater Traditional Recipe | Gourmet Royal Sweet Selection',
         category: 'Gourmet Sweets',
         catKey: 'royal',
-        price: 329,
-        origPrice: 389,
-        discount: '15% OFF',
+        price: 205,
+        origPrice: 255,
+        discount: '20% OFF',
+        weight: '100g',
         rating: 5.0,
         reviews: '2.4K',
         img: 'assets/ruz-bi-haleebia.png'
@@ -156,18 +164,10 @@ function updateCartUI() {
         subtotal += (item.price || 0) * (item.qty || 1);
     });
 
-    // Free Delivery Progress Bar (Threshold: ₹499)
-    if (shippingProgressFill && shippingProgressText) {
-        const threshold = 499;
-        if (subtotal >= threshold) {
-            shippingProgressFill.style.width = '100%';
-            shippingProgressText.innerHTML = `🎉 <strong>Congratulations!</strong> You unlocked <strong>Free Royal Delivery</strong>!`;
-        } else {
-            const percentage = Math.min(100, Math.round((subtotal / threshold) * 100));
-            const needed = threshold - subtotal;
-            shippingProgressFill.style.width = `${percentage}%`;
-            shippingProgressText.innerHTML = `<i class="fas fa-truck-fast"></i> Add <strong>₹${needed}</strong> more for <strong>Free Royal Delivery</strong>`;
-        }
+    // Hide shipping progress bar per brand guidelines
+    const shippingBar = document.getElementById('cart-shipping-bar');
+    if (shippingBar) {
+        shippingBar.style.display = 'none';
     }
 
     if (drawerContainer && subtotalEl) {
@@ -1173,9 +1173,24 @@ function ensureModalsInDOM() {
                                 <span class="menu-nav-title">Our Persian Heritage</span>
                                 <i class="fas fa-chevron-right menu-nav-chevron"></i>
                             </a>
+                            <a href="about.html" class="menu-nav-item">
+                                <i class="fas fa-crown"></i>
+                                <span class="menu-nav-title">About Hamsa Masala</span>
+                                <i class="fas fa-chevron-right menu-nav-chevron"></i>
+                            </a>
+                            <a href="privacy.html" class="menu-nav-item">
+                                <i class="fas fa-shield-halved"></i>
+                                <span class="menu-nav-title">Privacy Policy</span>
+                                <i class="fas fa-chevron-right menu-nav-chevron"></i>
+                            </a>
+                            <a href="terms.html" class="menu-nav-item">
+                                <i class="fas fa-scale-balanced"></i>
+                                <span class="menu-nav-title">Terms &amp; Conditions</span>
+                                <i class="fas fa-chevron-right menu-nav-chevron"></i>
+                            </a>
                             <button type="button" class="menu-nav-item" onclick="openSupportModal('shipping')">
-                                <i class="fas fa-rotate-left"></i>
-                                <span class="menu-nav-title">Shipping &amp; Easy Returns</span>
+                                <i class="fas fa-truck-fast"></i>
+                                <span class="menu-nav-title">Express Shipping &amp; Logistics</span>
                                 <i class="fas fa-chevron-right menu-nav-chevron"></i>
                             </button>
                             <button type="button" class="menu-nav-item" onclick="openSupportModal('support')">
@@ -1190,7 +1205,7 @@ function ensureModalsInDOM() {
                         <div class="menu-footer-motif">&#9670; ✦ &#9670;</div>
                         <div class="menu-footer-text">&copy; 2026 Hamsa Masala. Handcrafted in Royal Traditions.</div>
                         <div class="menu-social-links">
-                            <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://wa.me/919167435089" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                             <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         </div>
@@ -1341,25 +1356,35 @@ function ensureModalsInDOM() {
                     </div>
                     <div class="royal-modal-body">
                         <div class="my-order-card">
-                            <h4 style="margin: 0 0 6px 0; color: var(--color-dark-green);"><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp Royal Assistance</h4>
+                            <h4 style="margin: 0 0 6px 0; color: var(--color-dark-green);"><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp Royal Concierge</h4>
                             <p style="margin: 0 0 10px 0; font-size: 0.85rem; color: #555;">Instant spice recommendations, recipe advice, and order assistance directly on WhatsApp.</p>
-                            <a href="https://wa.me/919876543210" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #FFFFFF; padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none;">
-                                <i class="fab fa-whatsapp"></i> Chat on WhatsApp (+91 98765 43210)
+                            <a href="https://wa.me/919167435089" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #FFFFFF; padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none;">
+                                <i class="fab fa-whatsapp"></i> Chat on WhatsApp (+91 91674 35089)
                             </a>
                         </div>
                         <div class="my-order-card">
-                            <h4 style="margin: 0 0 6px 0; color: var(--color-dark-green);"><i class="fas fa-truck-fast" style="color: #E2B66B;"></i> Shipping &amp; Free Delivery</h4>
+                            <h4 style="margin: 0 0 6px 0; color: var(--color-dark-green);"><i class="fas fa-truck-fast" style="color: #E2B66B;"></i> Express Shipping &amp; Logistics</h4>
                             <p style="margin: 0; font-size: 0.85rem; color: #555; line-height: 1.5;">
-                                &bull; <strong>Free Delivery:</strong> On all orders above ₹499 across all Indian pin-codes.<br>
                                 &bull; <strong>Express Logistics:</strong> Dispatched via <strong>Delhivery Express</strong> within 24 hours of roasting.<br>
-                                &bull; <strong>Delivery Timeline:</strong> Estimated 3-4 days to your doorstep.
+                                &bull; <strong>Delivery Timeline:</strong> Estimated 3-4 days to your doorstep.<br>
+                                &bull; <strong>Doorstep OTP:</strong> Verified with your 4-digit secret delivery PIN.
                             </p>
                         </div>
                         <div class="my-order-card">
-                            <h4 style="margin: 0 0 6px 0; color: var(--color-dark-green);"><i class="fas fa-shield-halved" style="color: #E2B66B;"></i> 7-Day Freshness &amp; Easy Returns</h4>
+                            <h4 style="margin: 0 0 6px 0; color: var(--color-dark-green);"><i class="fas fa-shield-halved" style="color: #E2B66B;"></i> Authentic Freshness &amp; Quality Guarantee</h4>
                             <p style="margin: 0; font-size: 0.85rem; color: #555; line-height: 1.5;">
-                                If you are not completely enchanted by the aroma and flavor of our Persian spices, enjoy a 100% no-questions-asked refund or replacement within 7 days.
+                                100% pure cold stone-ground spices. If your package arrives damaged in transit, enjoy an immediate replacement upon photo verification.
                             </p>
+                        </div>
+                        <div class="my-order-card" style="background: rgba(226, 182, 107, 0.08); border: 1px solid rgba(226, 182, 107, 0.3);">
+                            <h4 style="margin: 0 0 8px 0; color: #0F2C24;"><i class="fas fa-scale-balanced" style="color: #E2B66B;"></i> Legal &amp; Brand Policies</h4>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                <a href="privacy.html" style="color: #0F2C24; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-shield-halved"></i> Privacy Policy</a>
+                                <span style="color: #999;">&bull;</span>
+                                <a href="terms.html" style="color: #0F2C24; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</a>
+                                <span style="color: #999;">&bull;</span>
+                                <a href="about.html" style="color: #0F2C24; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-crown"></i> About Us</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1669,7 +1694,7 @@ window.addEventListener('click', (e) => {
             else if (titleText.includes('lababdar')) detectedId = 'murg-lababdar';
             else if (titleText.includes('murg') && titleText.includes('kalimiri')) detectedId = 'murg-kalimiri';
             else if (titleText.includes('mukhmali')) detectedId = 'murg-kalimiri';
-            else if (titleText.includes('raaz') || titleText.includes('kalimiri')) detectedId = 'raaz-e-kalimiri';
+            else if (titleText.includes('raaz') || titleText.includes('kalimiri') || titleText.includes('kalimirgi')) detectedId = 'raaz-e-kalimiri';
             else if (titleText.includes('turkish') || titleText.includes('shank')) detectedId = 'turkish-lamb-shank';
             else if (titleText.includes('boti')) detectedId = 'boti-delight';
             else if (titleText.includes('ruz') || titleText.includes('sweet') || titleText.includes('haleebia')) detectedId = 'ruz-bi-haleebia';

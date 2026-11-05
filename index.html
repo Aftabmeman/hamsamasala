@@ -25,6 +25,15 @@
     <link rel="preload" as="video" href="assets/introvideomobile.mp4" type="video/mp4" media="(max-width: 768px)">
     <link rel="preload" as="video" href="assets/introvideo.mp4" type="video/mp4" media="(min-width: 769px)">
 
+    <script>
+        // Immediate Session Check: Prevents intro replay when returning to Home from other pages or clicking logo
+        try {
+            if (sessionStorage.getItem('hamsa_intro_seen') === 'true') {
+                document.documentElement.classList.add('intro-bypassed');
+            }
+        } catch (e) {}
+    </script>
+
     <!-- =========================================================
          ULTIMATE HTML INLINE FIX FOR STRAY MODALS AT BOTTOM
          (This bypasses all CSS caching issues)
@@ -33,6 +42,13 @@
         /* Royal Cinematic Intro Video Overlay */
         body.intro-playing {
             overflow: hidden !important;
+        }
+
+        /* When intro has already been seen in this session, immediately restore normal flow */
+        html.intro-bypassed body.intro-playing,
+        html.intro-bypassed body,
+        body:not(.intro-playing) {
+            overflow: auto !important;
         }
 
         #intro-video-overlay {
@@ -54,13 +70,16 @@
             will-change: opacity, visibility;
         }
 
+        html.intro-bypassed #intro-video-overlay,
         #intro-video-overlay.fade-out {
             opacity: 0 !important;
             visibility: hidden !important;
             pointer-events: none !important;
         }
 
-        #intro-video-overlay.hidden {
+        html.intro-bypassed #intro-video-overlay,
+        #intro-video-overlay.hidden,
+        #intro-video-overlay.bypassed {
             display: none !important;
         }
 
@@ -293,7 +312,18 @@
     </style>
 </head>
 
-<body class="intro-playing">
+<body>
+    <script>
+        // Check if intro has already been seen in this browser session
+        try {
+            if (sessionStorage.getItem('hamsa_intro_seen') !== 'true') {
+                document.body.classList.add('intro-playing');
+            } else {
+                document.documentElement.classList.add('intro-bypassed');
+            }
+        } catch (e) {}
+    </script>
+
     <!-- Royal Cinematic Intro Video Overlay -->
     <div id="intro-video-overlay" class="intro-video-overlay" aria-label="Intro Sequence">
         <video id="intro-video" class="intro-video-player" autoplay muted playsinline webkit-playsinline preload="auto">
@@ -311,6 +341,36 @@
             const video = document.getElementById('intro-video');
             if (!overlay || !video) return;
 
+            // Session check: If user already saw intro in this session, bypass immediately!
+            const alreadySeen = (function() {
+                try {
+                    return sessionStorage.getItem('hamsa_intro_seen') === 'true';
+                } catch (e) {
+                    return false;
+                }
+            })();
+
+            if (alreadySeen) {
+                document.body.classList.remove('intro-playing');
+                overlay.classList.add('hidden', 'bypassed');
+                overlay.style.display = 'none';
+                try {
+                    overlay.remove();
+                } catch (e) {}
+
+                // Ensure home hero background video plays smoothly
+                const homeBgVideo = document.querySelector('.home-bg-video');
+                if (homeBgVideo && homeBgVideo.paused) {
+                    homeBgVideo.play().catch(function() {});
+                }
+                return; // STOP! Do not play intro video again
+            }
+
+            // First time in this session: Mark as seen so subsequent home visits don't replay
+            try {
+                sessionStorage.setItem('hamsa_intro_seen', 'true');
+            } catch (e) {}
+
             // Detect mobile vs desktop immediately
             const isMobile = window.matchMedia('(max-width: 768px)').matches;
             const chosenSrc = isMobile ? 'assets/introvideomobile.mp4' : 'assets/introvideo.mp4';
@@ -325,6 +385,10 @@
             window.dismissIntroVideo = function() {
                 if (hasFinished) return;
                 hasFinished = true;
+
+                try {
+                    sessionStorage.setItem('hamsa_intro_seen', 'true');
+                } catch (e) {}
 
                 document.body.classList.remove('intro-playing');
                 overlay.classList.add('fade-out');
@@ -385,6 +449,7 @@
             <a href="index.html" class="active">Home</a>
             <a href="spices.html">Spices</a>
             <a href="heritage.html">Heritage</a>
+            <a href="about.html">About</a>
         </nav>
         <div class="header-icons">
             <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()"><i
@@ -433,7 +498,7 @@
                 <div class="icon-motif"><i class="fas fa-crown"></i></div>
                 <h4 class="section-kicker">ROYAL PERSIAN-MUGHAL DUM BIRYANI</h4>
                 <h2 class="section-title">Original - Classic - Biryani</h2>
-                <h3 class="section-subtitle">The legendary Persian secret crafted with pure royal saffron</h3>
+                <h3 class="section-subtitle">Secret 36 spices • The legendary Persian recipe crafted with pure royal saffron</h3>
                 <p class="section-desc">Honoring the ancient banquets of the Persian Behruz dynasty, Original - Classic
                     - Biryani is our crown jewel blend. Micro-roasted Super Negin royal saffron, highland green cardamom
                     quills, black pepper, and handmade spices infuse long-grain basmati with an unmistakable aroma
@@ -470,7 +535,7 @@
                 <div class="icon-motif"><i class="fas fa-crown"></i></div>
                 <h4 class="section-kicker">IMPERIAL GRAVY &amp; BOTI SPECIALTY</h4>
                 <h2 class="section-title">Boti Delight Gravy Masala</h2>
-                <h3 class="section-subtitle">Velvety caramelized gravy instant masala crowned with crispy salli</h3>
+                <h3 class="section-subtitle">Secret 38 spices • Velvety caramelized gravy instant masala crowned with crispy salli</h3>
                 <p class="section-desc">Inspired by the royal courts of Behruz, Boti Delight instant gravy masala
                     brings restaurant-grade richness to your kitchen in just 15 minutes. Toasted shallot extracts,
                     handmade garam masala, and fragrant Kashmiri spices create a deep, glossy gravy for succulent
@@ -554,12 +619,26 @@
                 <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="footer-logo-img">
             </div>
             <p class="footer-desc">Curating rare royal spices and traditional artisanal blends since 1928.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="footer-nav-links" style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; margin: 16px 0 18px 0; font-size: 0.88rem;">
+                <a href="about.html" style="color: #E2B66B; text-decoration: none; font-weight: 600;">About Us</a>
+                <span style="color: rgba(226, 182, 107, 0.4);">&bull;</span>
+                <a href="heritage.html" style="color: #FAF7F0; text-decoration: none;">Royal Heritage</a>
+                <span style="color: rgba(226, 182, 107, 0.4);">&bull;</span>
+                <a href="privacy.html" style="color: #FAF7F0; text-decoration: none;">Privacy Policy</a>
+                <span style="color: rgba(226, 182, 107, 0.4);">&bull;</span>
+                <a href="terms.html" style="color: #FAF7F0; text-decoration: none;">Terms &amp; Conditions</a>
+                <span style="color: rgba(226, 182, 107, 0.4);">&bull;</span>
+                <a href="delivery.html" style="color: #4ADE80; text-decoration: none; font-weight: 600;"><i class="fas fa-shield-halved"></i> Delivery Portal</a>
             </div>
+            <div class="social-links">
+                <a href="https://wa.me/919167435089" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p style="margin: 18px 0 0 0; font-size: 0.8rem; color: rgba(250, 247, 240, 0.5);">
+                &copy; 2026 Hamsa Masala. All Rights Reserved. Crafted with Royal Heritage.
+            </p>
         </div>
     </section>
 
@@ -584,8 +663,8 @@
                 <button class="close-cart-btn" onclick="closeCartDrawer()" aria-label="Close Cart"><i
                         class="fas fa-times"></i></button>
             </div>
-            <!-- Free Delivery Progress Bar (Threshold: ₹499) -->
-            <div class="cart-free-shipping-bar" id="cart-shipping-bar">
+            <!-- Cart Drawer Notification Bar -->
+            <div class="cart-free-shipping-bar" id="cart-shipping-bar" style="display: none;">
                 <div class="shipping-progress-text" id="shipping-progress-text">
                     <i class="fas fa-truck-fast"></i> Add <strong>₹499</strong> more for <strong>Free Royal
                         Delivery</strong>

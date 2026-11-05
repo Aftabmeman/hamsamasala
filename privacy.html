@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Hamsa Masala Royal Guarantee</title>
+    <meta name="description"
+        content="Read Hamsa Masala's official Privacy Policy. Your personal data, delivery addresses, and phone numbers are strictly protected, never sold, and used solely for royal spice fulfillment.">
+    <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Base Stylesheets -->
+    <link rel="stylesheet" href="style.css?v=28">
+    <link rel="stylesheet" href="catalog.css?v=28">
+
+    <style>
+        :root {
+            --roy-bg: #071813;
+            --roy-bg-card: #0E2820;
+            --roy-bg-card-hover: #13352B;
+            --roy-gold: #E2B66B;
+            --roy-gold-light: #F4D396;
+            --roy-gold-dark: #C79056;
+            --roy-gold-border: rgba(226, 182, 107, 0.32);
+            --roy-gold-glow: rgba(226, 182, 107, 0.18);
+            --roy-text-ivory: #FAF7F0;
+            --roy-text-muted: #A6B5AF;
+            --roy-accent-green: #4ADE80;
+            --font-heading: 'Cinzel', 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html, body {
+            background-color: var(--roy-bg) !important;
+            color: var(--roy-text-ivory) !important;
+            font-family: var(--font-body) !important;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Header */
+        .top-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 90px !important;
+            background: rgba(7, 24, 19, 0.94) !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border-bottom: 1px solid rgba(226, 182, 107, 0.22) !important;
+            z-index: 99999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 4% !important;
+            box-sizing: border-box !important;
+        }
+
+        .top-header .brand-logo-img {
+            height: 62px !important;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(226, 182, 107, 0.3));
+        }
+
+        .header-nav a {
+            color: var(--roy-text-ivory) !important;
+            text-decoration: none !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: color 0.25s ease;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--roy-gold) !important;
+        }
+
+        /* Hero Banner */
+        .legal-hero-section {
+            padding-top: 145px;
+            padding-bottom: 60px;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(226, 182, 107, 0.14) 0%, rgba(7, 24, 19, 0.98) 75%);
+            border-bottom: 1px solid var(--roy-gold-border);
+        }
+
+        .legal-kicker {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--roy-gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(226, 182, 107, 0.12);
+            border: 1px solid var(--roy-gold-border);
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 18px;
+        }
+
+        .legal-hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            color: var(--roy-gold-light);
+            margin: 0 0 14px 0;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .legal-hero-subtitle {
+            font-size: 1.05rem;
+            max-width: 760px;
+            margin: 0 auto;
+            color: var(--roy-text-muted);
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+
+        /* Breadcrumb Bar */
+        .brand-breadcrumb-bar {
+            background: rgba(14, 40, 32, 0.6);
+            border-bottom: 1px solid rgba(226, 182, 107, 0.15);
+            padding: 12px 5%;
+            font-size: 0.85rem;
+            color: var(--roy-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-breadcrumb-bar a {
+            color: var(--roy-gold);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .brand-breadcrumb-bar a:hover {
+            color: #FFFFFF;
+        }
+
+        /* Main Legal Content Container */
+        .legal-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 50px 24px 90px 24px;
+        }
+
+        /* Trust Highlight Card */
+        .trust-pledge-card {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.12) 0%, rgba(14, 40, 32, 0.95) 100%);
+            border: 2px solid var(--roy-accent-green);
+            border-radius: 20px;
+            padding: 28px 30px;
+            margin-bottom: 45px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(74, 222, 128, 0.15);
+        }
+
+        @media (max-width: 680px) {
+            .trust-pledge-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
+
+        .pledge-icon-wrap {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid var(--roy-accent-green);
+            color: var(--roy-accent-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .pledge-text h3 {
+            margin: 0 0 6px 0;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: #FFFFFF;
+        }
+
+        .pledge-text p {
+            margin: 0;
+            font-size: 0.92rem;
+            color: #E2ECE8;
+            line-height: 1.6;
+        }
+
+        /* Legal Content Sections */
+        .legal-section-card {
+            background: var(--roy-bg-card);
+            border: 1px solid var(--roy-gold-border);
+            border-radius: 18px;
+            padding: 34px 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            position: relative;
+        }
+
+        .legal-section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid rgba(226, 182, 107, 0.2);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .sec-number {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 800;
+            color: #071813;
+            background: var(--roy-gold);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sec-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--roy-gold-light);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .legal-p {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: var(--roy-text-ivory);
+            margin-bottom: 16px;
+        }
+
+        .legal-p:last-child {
+            margin-bottom: 0;
+        }
+
+        .legal-p strong {
+            color: var(--roy-gold-light);
+        }
+
+        .legal-list {
+            margin: 14px 0 18px 20px;
+            padding: 0;
+            color: var(--roy-text-ivory);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .legal-list li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-notice-box {
+            background: rgba(226, 182, 107, 0.08);
+            border-left: 3px solid var(--roy-gold);
+            padding: 14px 18px;
+            border-radius: 0 10px 10px 0;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            color: #FAF7F0;
+            line-height: 1.6;
+        }
+
+        /* Concierge Contact Box */
+        .concierge-box {
+            background: radial-gradient(circle at 50% 50%, rgba(226,182,107,0.15) 0%, rgba(14,40,32,0.9) 80%);
+            border: 1.5px solid var(--roy-gold);
+            border-radius: 20px;
+            padding: 34px 28px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .concierge-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--roy-gold-light);
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .concierge-p {
+            color: var(--roy-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 22px;
+            line-height: 1.6;
+        }
+
+        .wa-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: #FFFFFF !important;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .wa-contact-btn:hover {
+            background: #1EBE5D;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Unified Royal Footer */
+        .unified-footer {
+            background: #040F0C;
+            border-top: 1px solid var(--roy-gold-border);
+            padding: 60px 5% 40px 5%;
+            color: var(--roy-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-main-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        .footer-col h5 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--roy-gold);
+            margin: 0 0 18px 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--roy-text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--roy-gold);
+            transform: translateX(3px);
+        }
+
+        .footer-brand-info img {
+            height: 48px;
+            width: auto;
+            margin-bottom: 14px;
+        }
+
+        .footer-brand-info p {
+            line-height: 1.6;
+            margin: 0 0 16px 0;
+            font-size: 0.88rem;
+        }
+
+        .footer-social-row {
+            display: flex;
+            gap: 14px;
+        }
+
+        .footer-social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(226, 182, 107, 0.1);
+            border: 1px solid var(--roy-gold-border);
+            color: var(--roy-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .footer-social-row a:hover {
+            background: var(--roy-gold);
+            color: #071813;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom-bar {
+            max-width: 1120px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(226, 182, 107, 0.15);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.82rem;
+        }
+
+        .footer-bottom-bar a {
+            color: var(--roy-gold);
+            text-decoration: none;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <a href="index.html" class="logo" aria-label="Hamsa Masala">
+            <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
+        </a>
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="spices.html">Spices</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="about.html">About Us</a>
+        </nav>
+        <div class="header-icons">
+            <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()">
+                <i class="fas fa-search"></i>
+            </button>
+            <button type="button" class="icon-btn cart-btn" id="open-cart-btn" aria-label="Cart" onclick="openCartDrawer()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </button>
+            <button type="button" class="icon-btn menu-btn" id="open-menu-btn" aria-label="Menu" onclick="openMenuDrawer()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Bar -->
+    <div class="brand-breadcrumb-bar" style="margin-top: 90px;">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <span>&rsaquo;</span>
+        <span>Privacy Policy &amp; Customer Data Protection</span>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="legal-hero-section">
+        <div class="legal-kicker">
+            <i class="fas fa-shield-halved"></i> Royal Trust Guarantee
+        </div>
+        <h1 class="legal-hero-title">Privacy Policy &amp; Data Protection</h1>
+        <p class="legal-hero-subtitle">
+            At Hamsa Masala, we treat our customers' personal privacy with the same sacred reverence as our 100-year-old spice formulas. Read our clear, honest, and strict privacy commitments below.
+        </p>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="legal-container">
+
+        <!-- Trust Pledge Card -->
+        <div class="trust-pledge-card">
+            <div class="pledge-icon-wrap">
+                <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <div class="pledge-text">
+                <h3>Our Unconditional Zero-Spam &amp; Zero-Resale Pledge</h3>
+                <p>
+                    We <strong>never sell, lease, rent, trade, or share</strong> your personal name, mobile number, or delivery address with third-party advertisers, data aggregators, or marketing brokers. Your data is used exclusively to pack your royal spices and deliver them safely to your doorstep.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 1 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">1</span>
+                <h2 class="sec-title">Introduction &amp; Our Ethical Code</h2>
+            </div>
+            <p class="legal-p">
+                This Privacy Policy outlines how <strong>Hamsa Masala</strong> (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;the House of Hamsa&rdquo;) collects, handles, safeguards, and utilizes personal information when you browse our website, place an order through our online checkout, or interact with our official WhatsApp Concierge (+91 91674 35089).
+            </p>
+            <p class="legal-p">
+                We operate under the fundamental principle that royal hospitality is rooted in <strong>unwavering trust</strong>. When you invite our spices into your home, you entrust us with personal details such as your physical residence and contact information. We honor that trust with enterprise-grade data hygiene, transparent practices, and strict legal compliance.
+            </p>
+        </article>
+
+        <!-- Section 2 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">2</span>
+                <h2 class="sec-title">Information We Collect</h2>
+            </div>
+            <p class="legal-p">
+                We collect only the precise information necessary to provide an authentic, seamless shopping and doorstep delivery experience:
+            </p>
+            <ul class="legal-list">
+                <li>
+                    <strong>Customer Identity:</strong> Full Name of the recipient for invoice generation and delivery recipient verification.
+                </li>
+                <li>
+                    <strong>Contact Credentials:</strong> Primary 10-digit Indian Mobile Phone Number, used for WhatsApp order confirmation receipts, courier SMS tracking updates, and delivery boy arrival coordination.
+                </li>
+                <li>
+                    <strong>Delivery Logistics Information:</strong> Flat/House No., Building Name, Street, Landmark, City, State, and 6-digit Pincode to ensure precision dispatch via our logistics partners.
+                </li>
+                <li>
+                    <strong>Order &amp; Spice Selection:</strong> Items ordered, net weights (e.g. 60g, 120g), selected packaging variants, order timestamps, and total transactional values.
+                </li>
+                <li>
+                    <strong>Payment Mode Preference:</strong> Record of whether an order is processed via UPI, Card, Net Banking, or Cash on Delivery (COD). Note: We do <em>not</em> store sensitive credit/debit card numbers or bank account passwords on our servers.
+                </li>
+            </ul>
+        </article>
+
+        <!-- Section 3 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">3</span>
+                <h2 class="sec-title">How We Use Your Information</h2>
+            </div>
+            <p class="legal-p">
+                Every piece of information collected is deployed strictly for purposeful culinary fulfillment:
+            </p>
+            <ul class="legal-list">
+                <li><strong>Order Fulfillment &amp; Packing:</strong> Directing our warehouse blenders to prepare and fresh-seal your artisanal spices.</li>
+                <li><strong>Doorstep Delivery Logistics:</strong> Generating verified airway bills (AWB) and dispatching packages via <strong>Delhivery Express</strong>.</li>
+                <li><strong>WhatsApp Real-Time Notifications:</strong> Transmitting order summaries, real-time courier tracking URLs, and delivery confirmations directly to your personal WhatsApp chat without manual hold-ups.</li>
+                <li><strong>Customer Concierge Support:</strong> Assisting you immediately with recipe inquiries, spice shelf-life questions, order modifications, or address updates.</li>
+            </ul>
+            <div class="highlight-notice-box">
+                <i class="fas fa-info-circle" style="color: var(--roy-gold);"></i>
+                <strong>Zero Unsolicited Marketing:</strong> We will never inundate your phone with automated robocalls, marketing blasts, or irrelevant promotional spam. Any communication from Hamsa Masala is strictly related to orders you place or inquiries you initiate.
+            </div>
+        </article>
+
+        <!-- Section 4 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">4</span>
+                <h2 class="sec-title">Secret Delivery OTP &amp; Doorstep Confidentiality</h2>
+            </div>
+            <p class="legal-p">
+                To eradicate courier theft, parcel misplacement, and fraudulent delivery disputes, Hamsa Masala employs a proprietary <strong>Amazon-Style 4-Digit Secret Delivery OTP System</strong>:
+            </p>
+            <p class="legal-p">
+                When your order is created, our backend generates a confidential 4-digit numeric PIN (e.g., 5921). <strong>This PIN is never broadcast in public WhatsApp messages or courier labels.</strong> It is displayed exclusively on your personal browser confirmation screen and stored within your private device session.
+            </p>
+            <p class="legal-p">
+                Couriers and delivery agents have zero advance access to this secret OTP. It must be disclosed by you <em>only upon physical receipt and inspection of your spice package</em>. This guarantees that no package can ever be falsely marked as delivered without your explicit doorstep authorization.
+            </p>
+        </article>
+
+        <!-- Section 5 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">5</span>
+                <h2 class="sec-title">Data Storage &amp; Encryption Standards</h2>
+            </div>
+            <p class="legal-p">
+                We take security seriously. All network communications between your web browser and our servers are encrypted via industry-standard <strong>256-bit Secure Sockets Layer (SSL) / TLS technology</strong>.
+            </p>
+            <p class="legal-p">
+                Our backend order repository is housed behind authenticated firewalls with strict administrative access control. Only verified store operations personnel have authorized clearance to view shipping addresses for the express purpose of printing dispatch labels.
+            </p>
+        </article>
+
+        <!-- Section 6 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">6</span>
+                <h2 class="sec-title">Trusted Service Providers &amp; Disclosures</h2>
+            </div>
+            <p class="legal-p">
+                We share data solely with verified infrastructure partners who uphold equivalent data protection standards:
+            </p>
+            <ul class="legal-list">
+                <li><strong>Delhivery Express:</strong> Authorized courier logistics provider receiving recipient name, delivery address, and phone number for transit coordination and last-mile delivery.</li>
+                <li><strong>Meta / WhatsApp Business Platform:</strong> Used strictly to transmit direct order confirmation messages triggered by customer consent.</li>
+                <li><strong>Statutory Authorities:</strong> We disclose personal data only when strictly mandated by applicable Indian law, court order, or governmental legal proceeding.</li>
+            </ul>
+        </article>
+
+        <!-- Section 7 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">7</span>
+                <h2 class="sec-title">Your Rights: Data Access &amp; Erasure</h2>
+            </div>
+            <p class="legal-p">
+                As a valued patron of Hamsa Masala, you maintain complete ownership of your personal data:
+            </p>
+            <ul class="legal-list">
+                <li><strong>Right to Review:</strong> You may request a complete summary of all past orders and stored contact details linked to your phone number at any time.</li>
+                <li><strong>Right to Rectification:</strong> If your delivery address, landmark, or mobile number has changed, contact our concierge to update your master profile instantly.</li>
+                <li><strong>Right to Erasure (Forget Me):</strong> You have the absolute right to request the complete deletion of your customer record and contact information from our databases once pending deliveries have concluded.</li>
+            </ul>
+        </article>
+
+        <!-- Section 8 -->
+        <article class="legal-section-card">
+            <div class="legal-section-header">
+                <span class="sec-number">8</span>
+                <h2 class="sec-title">Cookies &amp; Device Session Storage</h2>
+            </div>
+            <p class="legal-p">
+                Our website utilizes local storage and minimal session cookies strictly to preserve your cart contents, retain your active shopping bag between page refreshes, and remember your shipping address for effortless future checkouts. We do <em>not</em> run invasive cross-site tracking pixels or third-party behavioral cookies.
+            </p>
+        </article>
+
+        <!-- Concierge Contact Box -->
+        <div class="concierge-box">
+            <h3 class="concierge-title">Have Questions About Your Privacy?</h3>
+            <p class="concierge-p">
+                Our Data Grievance Officer and Royal Customer Concierge are available directly on WhatsApp to resolve any questions or handle data deletion requests immediately.
+            </p>
+            <a href="https://wa.me/919167435089?text=Hi%20Hamsa%20Masala,%20I%20have%20a%20question%20regarding%20my%20privacy%20and%20data." target="_blank" class="wa-contact-btn">
+                <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Chat with Privacy Concierge (+91 91674 35089)
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Unified Royal Footer -->
+    <footer class="unified-footer">
+        <div class="footer-main-grid">
+            <div class="footer-col footer-brand-info">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala">
+                <p>
+                    Curating authentic Persian-style hand-blended spices and artisanal heritage recipes since 1928. Hand-sorted, stone-ground, and packed with royal pride.
+                </p>
+                <div class="footer-social-row">
+                    <a href="https://wa.me/919167435089" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="spices.html">Our Spices</a></li>
+                    <li><a href="heritage.html">Persian Heritage</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Legal &amp; Trust</h5>
+                <ul>
+                    <li><a href="privacy.html" style="color: var(--roy-gold);">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                    <li><a href="delivery.html">Delivery Agent Portal</a></li>
+                    <li><a href="admin.html">Store Owner Admin</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Royal Concierge</h5>
+                <ul>
+                    <li><a href="https://wa.me/919167435089" target="_blank"><i class="fab fa-whatsapp" style="color: #25D366;"></i> +91 91674 35089</a></li>
+                    <li><span style="color: var(--roy-text-muted);">Mon &ndash; Sat: 9 AM &ndash; 8 PM</span></li>
+                    <li><span style="color: var(--roy-text-muted);">Delhivery Express Pan-India</span></li>
+                    <li><span style="color: var(--roy-accent-green);"><i class="fas fa-shield-halved"></i> 100% Secret OTP Verified</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div>
+                &copy; 2026 Hamsa Masala. All Rights Reserved. Crafted with Royal Heritage.
+            </div>
+            <div class="footer-legal-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <span>&bull;</span>
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <span>&bull;</span>
+                <a href="about.html">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-out Cart Drawer -->
+    <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCartDrawer(event)">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-drawer-header">
+                <div class="cart-drawer-brand">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="cart-brand-logo-img" style="height: 38px; width: auto; max-width: 42px; object-fit: contain; flex-shrink: 0; display: block;">
+                    <h3>Royal Shopping Bag (<span id="cart-drawer-count">0</span>)</h3>
+                </div>
+                <button class="close-cart-btn" onclick="closeCartDrawer()" aria-label="Close Cart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-drawer-body" id="cart-drawer-items"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="checkout-btn" onclick="handleProceedToCheckout()">PROCEED TO CHECKOUT &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js?v=28"></script>
+</body>
+
+</html>

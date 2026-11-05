@@ -386,6 +386,17 @@ const server = http.createServer(async (req, res) => {
         decodedPath = '/delivery.html';
     }
 
+    // Direct shortcut routes for legal and brand pages
+    if (decodedPath === '/privacy' || decodedPath === '/privacy/') {
+        decodedPath = '/privacy.html';
+    }
+    if (decodedPath === '/terms' || decodedPath === '/terms/') {
+        decodedPath = '/terms.html';
+    }
+    if (decodedPath === '/about' || decodedPath === '/about/') {
+        decodedPath = '/about.html';
+    }
+
     // Default root to index.html
     let relativePath = (decodedPath === '/' || decodedPath === '') ? '/index.html' : decodedPath;
 

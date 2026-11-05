@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us & Royal Heritage | Hamsa Masala</title>
+    <meta name="description"
+        content="Discover the royal story of Hamsa Masala. Handcrafted Persian-style artisanal spices, slow-ground heritage blends, and pure culinary excellence since 1928.">
+    <link rel="icon" type="image/svg+xml" href="assets/hamsa-logo.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Base Stylesheets -->
+    <link rel="stylesheet" href="style.css?v=28">
+    <link rel="stylesheet" href="catalog.css?v=28">
+
+    <style>
+        :root {
+            --roy-bg: #071813;
+            --roy-bg-card: #0E2820;
+            --roy-bg-card-hover: #13352B;
+            --roy-gold: #E2B66B;
+            --roy-gold-light: #F4D396;
+            --roy-gold-dark: #C79056;
+            --roy-gold-border: rgba(226, 182, 107, 0.32);
+            --roy-gold-glow: rgba(226, 182, 107, 0.18);
+            --roy-text-ivory: #FAF7F0;
+            --roy-text-muted: #A6B5AF;
+            --roy-accent-green: #4ADE80;
+            --font-heading: 'Cinzel', 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html, body {
+            background-color: var(--roy-bg) !important;
+            color: var(--roy-text-ivory) !important;
+            font-family: var(--font-body) !important;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Header */
+        .top-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 90px !important;
+            background: rgba(7, 24, 19, 0.94) !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border-bottom: 1px solid rgba(226, 182, 107, 0.22) !important;
+            z-index: 99999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 4% !important;
+            box-sizing: border-box !important;
+        }
+
+        .top-header .brand-logo-img {
+            height: 62px !important;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(226, 182, 107, 0.3));
+        }
+
+        .header-nav a {
+            color: var(--roy-text-ivory) !important;
+            text-decoration: none !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: color 0.25s ease;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--roy-gold) !important;
+        }
+
+        /* Hero Banner */
+        .brand-hero-section {
+            padding-top: 150px;
+            padding-bottom: 70px;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(226, 182, 107, 0.15) 0%, rgba(7, 24, 19, 0.98) 75%);
+            border-bottom: 1px solid var(--roy-gold-border);
+        }
+
+        .brand-kicker {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--roy-gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(226, 182, 107, 0.12);
+            border: 1px solid var(--roy-gold-border);
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        .brand-hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 800;
+            color: var(--roy-gold-light);
+            margin: 0 0 16px 0;
+            letter-spacing: 1px;
+            line-height: 1.15;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .brand-hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 780px;
+            margin: 0 auto 30px auto;
+            color: var(--roy-text-muted);
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+
+        /* Breadcrumb Bar */
+        .brand-breadcrumb-bar {
+            background: rgba(14, 40, 32, 0.6);
+            border-bottom: 1px solid rgba(226, 182, 107, 0.15);
+            padding: 12px 5%;
+            font-size: 0.85rem;
+            color: var(--roy-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-breadcrumb-bar a {
+            color: var(--roy-gold);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .brand-breadcrumb-bar a:hover {
+            color: #FFFFFF;
+        }
+
+        /* Content Container */
+        .brand-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 60px 24px 100px 24px;
+        }
+
+        /* Story Grid */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 860px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .story-text-card {
+            background: var(--roy-bg-card);
+            border: 1px solid var(--roy-gold-border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .story-text-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--roy-gold), transparent);
+        }
+
+        .story-section-title {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            color: var(--roy-gold);
+            margin: 0 0 16px 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .story-p {
+            font-size: 0.98rem;
+            line-height: 1.8;
+            color: var(--roy-text-ivory);
+            margin-bottom: 18px;
+        }
+
+        .story-p strong {
+            color: var(--roy-gold-light);
+        }
+
+        .story-visual-card {
+            background: radial-gradient(circle, rgba(226,182,107,0.12) 0%, rgba(14,40,32,0.85) 80%);
+            border: 1.5px solid var(--roy-gold-border);
+            border-radius: 24px;
+            padding: 36px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-visual-card img {
+            width: 130px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 6px 18px rgba(226, 182, 107, 0.45));
+        }
+
+        .story-stat-badge {
+            background: rgba(226, 182, 107, 0.15);
+            border: 1px solid var(--roy-gold);
+            color: var(--roy-gold-light);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 8px 22px;
+            border-radius: 30px;
+            margin-top: 14px;
+            display: inline-block;
+        }
+
+        /* 4 Royal Pillars */
+        .pillars-section {
+            margin-bottom: 90px;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-family: var(--font-heading);
+            font-size: 0.82rem;
+            letter-spacing: 2.5px;
+            color: var(--roy-gold);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-heading-royal {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--roy-gold-light);
+            margin: 0 0 40px 0;
+            font-weight: 800;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            text-align: left;
+        }
+
+        .pillar-card {
+            background: var(--roy-bg-card);
+            border: 1px solid var(--roy-gold-border);
+            border-radius: 18px;
+            padding: 30px 24px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--roy-gold);
+            background: var(--roy-bg-card-hover);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(226, 182, 107, 0.2);
+        }
+
+        .pillar-icon-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(226,182,107,0.2), rgba(199,144,86,0.25));
+            border: 1px solid var(--roy-gold);
+            color: var(--roy-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .pillar-title {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--roy-gold-light);
+            margin: 0 0 10px 0;
+        }
+
+        .pillar-desc {
+            font-size: 0.92rem;
+            color: var(--roy-text-muted);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Master Blender Quote */
+        .blender-quote-box {
+            background: linear-gradient(135deg, rgba(14, 40, 32, 0.92) 0%, rgba(7, 24, 19, 0.95) 100%);
+            border: 2px solid var(--roy-gold);
+            border-radius: 24px;
+            padding: 48px 40px;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(226, 182, 107, 0.2);
+        }
+
+        .blender-quote-icon {
+            font-size: 3rem;
+            color: var(--roy-gold);
+            line-height: 1;
+            margin-bottom: 16px;
+            opacity: 0.6;
+            font-family: serif;
+        }
+
+        .blender-quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+            font-style: italic;
+            color: #FAF7F0;
+            line-height: 1.8;
+            max-width: 860px;
+            margin: 0 auto 20px auto;
+        }
+
+        .blender-author {
+            font-family: var(--font-heading);
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--roy-gold);
+            text-transform: uppercase;
+        }
+
+        /* CTA Bar */
+        .brand-cta-bar {
+            text-align: center;
+            background: radial-gradient(circle, rgba(226,182,107,0.18) 0%, rgba(14,40,32,0.6) 80%);
+            border: 1.5px solid var(--roy-gold-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+        }
+
+        .brand-cta-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--roy-gold-light);
+            margin: 0 0 12px 0;
+            font-weight: 800;
+        }
+
+        .brand-cta-desc {
+            color: var(--roy-text-muted);
+            font-size: 1rem;
+            margin: 0 0 26px 0;
+        }
+
+        .royal-gold-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #E2B66B 0%, #C79056 100%);
+            color: #071813 !important;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 14px 34px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(226, 182, 107, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .royal-gold-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(226, 182, 107, 0.6);
+            background: linear-gradient(135deg, #F4D396 0%, #E2B66B 100%);
+        }
+
+        /* Unified Royal Footer */
+        .unified-footer {
+            background: #040F0C;
+            border-top: 1px solid var(--roy-gold-border);
+            padding: 60px 5% 40px 5%;
+            color: var(--roy-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-main-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        .footer-col h5 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--roy-gold);
+            margin: 0 0 18px 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--roy-text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--roy-gold);
+            transform: translateX(3px);
+        }
+
+        .footer-brand-info img {
+            height: 48px;
+            width: auto;
+            margin-bottom: 14px;
+        }
+
+        .footer-brand-info p {
+            line-height: 1.6;
+            margin: 0 0 16px 0;
+            font-size: 0.88rem;
+        }
+
+        .footer-social-row {
+            display: flex;
+            gap: 14px;
+        }
+
+        .footer-social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(226, 182, 107, 0.1);
+            border: 1px solid var(--roy-gold-border);
+            color: var(--roy-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .footer-social-row a:hover {
+            background: var(--roy-gold);
+            color: #071813;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom-bar {
+            max-width: 1120px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(226, 182, 107, 0.15);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.82rem;
+        }
+
+        .footer-bottom-bar a {
+            color: var(--roy-gold);
+            text-decoration: none;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <a href="index.html" class="logo" aria-label="Hamsa Masala">
+            <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="brand-logo-img">
+        </a>
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="spices.html">Spices</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="about.html" class="active">About Us</a>
+        </nav>
+        <div class="header-icons">
+            <button type="button" class="icon-btn search-btn" aria-label="Search Spices" onclick="openSearchModal()">
+                <i class="fas fa-search"></i>
+            </button>
+            <button type="button" class="icon-btn cart-btn" id="open-cart-btn" aria-label="Cart" onclick="openCartDrawer()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </button>
+            <button type="button" class="icon-btn menu-btn" id="open-menu-btn" aria-label="Menu" onclick="openMenuDrawer()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Bar -->
+    <div class="brand-breadcrumb-bar" style="margin-top: 90px;">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <span>&rsaquo;</span>
+        <span>About Us &amp; Royal Heritage</span>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="brand-hero-section">
+        <div class="brand-kicker">
+            <i class="fas fa-crown"></i> The House of Hamsa &bull; Estd. 1928
+        </div>
+        <h1 class="brand-hero-title">The Royal Persian Spice Legacy</h1>
+        <p class="brand-hero-subtitle">
+            Curating rare royal spices and traditional Behruz Persian hand-blended recipes. Bringing centuries of Safavid palace dining and artisanal stone-ground aroma directly to your home kitchen.
+        </p>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="brand-container">
+
+        <!-- Story Chapter 1: The Origin -->
+        <div class="story-grid">
+            <div class="story-text-card">
+                <h2 class="story-section-title">
+                    <i class="fas fa-landmark"></i> Whispers of Old Isfahan
+                </h2>
+                <p class="story-p">
+                    In the majestic 16th-century royal courts of <strong>Isfahan and Tehran</strong>, master spice alchemists were revered not merely as cooks, but as artists of aroma and health. Spices were carefully hand-harvested along ancient Silk Road caravans — fragrant wild saffron from Khorasan, fragrant cardamom pods from green mountain slopes, and delicate sun-dried rose petals.
+                </p>
+                <p class="story-p">
+                    <strong>Hamsa Masala</strong> was born out of a relentless dedication to preserve these lost artisanal blending secrets. In 1928, our founding blenders began formulating small-batch spice blends inspired by royal banquet menus recorded in ancient Persian culinary manuscripts.
+                </p>
+                <p class="story-p">
+                    Unlike modern industrialized spice factories that pulverize raw ingredients at extreme friction heat, our method honors the historic <em>slow stone-crush method</em> — preserving delicate volatile essential oils, natural rich pigmentation, and unparalleled lingering fragrance.
+                </p>
+            </div>
+            <div class="story-visual-card">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala Crest">
+                <h3 style="font-family: var(--font-heading); color: var(--roy-gold-light); margin: 0 0 8px 0; font-size: 1.4rem;">
+                    Artisanal Hand-Crafted Blends
+                </h3>
+                <p style="color: var(--roy-text-muted); font-size: 0.92rem; max-width: 320px; margin: 0 auto; line-height: 1.6;">
+                    Every small batch is hand-sorted, slow-roasted over gentle embers, and stone-ground to royal perfection.
+                </p>
+                <div class="story-stat-badge">
+                    <i class="fas fa-certificate"></i> 100% PURE &bull; ZERO ADDITIVES
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Chapter 2: The Behruz Persian Blend Philosophy -->
+        <div class="story-grid" style="margin-bottom: 90px;">
+            <div class="story-visual-card" style="order: 2;">
+                <div style="font-size: 3.5rem; color: var(--roy-gold); margin-bottom: 12px;">
+                    <i class="fas fa-mortar-pestle"></i>
+                </div>
+                <h3 style="font-family: var(--font-heading); color: var(--roy-gold-light); margin: 0 0 8px 0; font-size: 1.4rem;">
+                    Slow Stone-Grinding
+                </h3>
+                <p style="color: var(--roy-text-muted); font-size: 0.92rem; max-width: 320px; margin: 0 auto; line-height: 1.6;">
+                    Industrial grinders destroy spice aroma with high heat (>70&deg;C). Our slow stone-crush keeps temperatures below 28&deg;C, locking 100% essential oils inside every grain.
+                </p>
+                <div class="story-stat-badge" style="border-color: var(--roy-accent-green); color: var(--roy-accent-green); background: rgba(74, 222, 128, 0.1);">
+                    <i class="fas fa-shield-heart"></i> Cold-Ground Aroma Lock
+                </div>
+            </div>
+            <div class="story-text-card" style="order: 1;">
+                <h2 class="story-section-title">
+                    <i class="fas fa-gem"></i> The Behruz Persian Spice Philosophy
+                </h2>
+                <p class="story-p">
+                    What sets authentic royal Persian masala apart from everyday curry powders? In Persian cuisine, spices are never meant to overpower the palate with burning chili heat; instead, they create an exquisite, layered symphony of <strong>warmth, floral undertones, citrus whispers, and rich savory depth</strong>.
+                </p>
+                <p class="story-p">
+                    Each Hamsa Masala signature blend — from our prized <em>Original Classic Biryani Masala</em> to our aromatic <em>Royal Tikka Kabab Marinade</em> and velvety <em>Shahi Korma Blend</em> — undergoes 18 distinct steps of quality inspection.
+                </p>
+                <p class="story-p">
+                    We select whole spices from trusted heritage farms: whole green cardamom with plump pods, dried Kashmiri red peppers for natural velvet ruby color without artificial dyes, hand-peeled Sri Lankan cinnamon, and whole black peppercorns bursting with organic piperine.
+                </p>
+            </div>
+        </div>
+
+        <!-- 4 Royal Pillars -->
+        <section class="pillars-section">
+            <span class="section-eyebrow">Our Uncompromising Standards</span>
+            <h2 class="section-heading-royal">The Four Royal Pillars of Hamsa Masala</h2>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="pillar-title">1. Single-Origin Sourcing</h3>
+                    <p class="pillar-desc">
+                        Direct relationships with generational spice farmers across Kashmir, Kerala, and the Persian plateaus. We inspect every crop before harvest.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3 class="pillar-title">2. Cold Stone Processing</h3>
+                    <p class="pillar-desc">
+                        Our slow stone mills preserve natural volatile oils that give spices their authentic medicinal properties, rich aroma, and natural digestive benefits.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3 class="pillar-title">3. Zero Fillers &amp; Dyes</h3>
+                    <p class="pillar-desc">
+                        Strictly 0% MSG, zero synthetic food colorings, zero chemical anti-caking agents, and zero cheap starchy fillers. What you taste is 100% whole spice.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="pillar-title">4. Doorstep Trust &amp; OTP</h3>
+                    <p class="pillar-desc">
+                        Every order is dispatched via Delhivery Express in vacuum-sealed luxury packs and verified at your doorstep with our proprietary 4-digit secret delivery OTP.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Master Blender Quote -->
+        <div class="blender-quote-box">
+            <div class="blender-quote-icon">&ldquo;</div>
+            <p class="blender-quote-text">
+                "A true royal banquet is not merely remembered by how it tastes, but by the fragrance that greets guests at the door and lingers in the memory for days. That is the soul of Hamsa Masala."
+            </p>
+            <div class="blender-author">
+                &mdash; The Master Blender &bull; Isfahan Heritage Kitchen
+            </div>
+        </div>
+
+        <!-- CTA Bar -->
+        <div class="brand-cta-bar">
+            <h3 class="brand-cta-title">Bring the Royal Feast to Your Table</h3>
+            <p class="brand-cta-desc">
+                Experience authentic Persian culinary majesty in your everyday cooking. Fast doorstep delivery across India.
+            </p>
+            <a href="spices.html" class="royal-gold-btn">
+                <i class="fas fa-crown"></i> EXPLORE ROYAL SPICE BLENDS &rarr;
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Unified Royal Footer -->
+    <footer class="unified-footer">
+        <div class="footer-main-grid">
+            <div class="footer-col footer-brand-info">
+                <img src="assets/hamsa-logo.svg" alt="Hamsa Masala">
+                <p>
+                    Curating authentic Persian-style hand-blended spices and artisanal heritage recipes since 1928. Hand-sorted, stone-ground, and packed with royal pride.
+                </p>
+                <div class="footer-social-row">
+                    <a href="https://wa.me/919167435089" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="spices.html">Our Spices</a></li>
+                    <li><a href="heritage.html">Persian Heritage</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Legal &amp; Trust</h5>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                    <li><a href="delivery.html">Delivery Agent Portal</a></li>
+                    <li><a href="admin.html">Store Owner Admin</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Royal Concierge</h5>
+                <ul>
+                    <li><a href="https://wa.me/919167435089" target="_blank"><i class="fab fa-whatsapp" style="color: #25D366;"></i> +91 91674 35089</a></li>
+                    <li><span style="color: var(--roy-text-muted);">Mon &ndash; Sat: 9 AM &ndash; 8 PM</span></li>
+                    <li><span style="color: var(--roy-text-muted);">Delhivery Express Pan-India</span></li>
+                    <li><span style="color: var(--roy-accent-green);"><i class="fas fa-shield-halved"></i> 100% Secret OTP Verified</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div>
+                &copy; 2026 Hamsa Masala. All Rights Reserved. Crafted with Royal Heritage.
+            </div>
+            <div class="footer-legal-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <span>&bull;</span>
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <span>&bull;</span>
+                <a href="about.html">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-out Cart Drawer -->
+    <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCartDrawer(event)">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-drawer-header">
+                <div class="cart-drawer-brand">
+                    <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="cart-brand-logo-img" style="height: 38px; width: auto; max-width: 42px; object-fit: contain; flex-shrink: 0; display: block;">
+                    <h3>Royal Shopping Bag (<span id="cart-drawer-count">0</span>)</h3>
+                </div>
+                <button class="close-cart-btn" onclick="closeCartDrawer()" aria-label="Close Cart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-drawer-body" id="cart-drawer-items"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="checkout-btn" onclick="handleProceedToCheckout()">PROCEED TO CHECKOUT &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js?v=28"></script>
+</body>
+
+</html>
