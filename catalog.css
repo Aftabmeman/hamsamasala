@@ -383,17 +383,7 @@ body {
 
 /* Persian Ornate Corner/Border Accents */
 .persian-corner-top-left {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 24px;
-    height: 24px;
-    border-top: 2px solid var(--color-gold);
-    border-left: 2px solid var(--color-gold);
-    border-top-left-radius: 8px;
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0.85;
+    display: none !important;
 }
 
 .persian-corner-top-right {
@@ -425,7 +415,7 @@ body {
     font-size: 0.95rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     cursor: pointer;
-    z-index: 3;
+    z-index: 5;
     transition: all 0.25s ease;
 }
 
@@ -443,21 +433,42 @@ body {
     font-weight: 900;
 }
 
-/* Badge */
+/* Badge - Positioned Top-Left with High Z-Index so it is NEVER Covered by Image */
 .card-badge {
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     left: 10px;
+    bottom: auto;
     background: var(--color-dark-green);
     color: var(--color-gold);
-    font-size: 0.65rem;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 12px;
+    font-size: 0.64rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    z-index: 2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 10 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(226, 182, 107, 0.4);
+    pointer-events: none;
+    max-width: calc(100% - 56px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .card-badge {
+        top: 8px;
+        left: 8px;
+        font-size: 0.58rem;
+        padding: 3px 8px;
+        max-width: calc(100% - 46px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
 }
 
 /* Card Body Content */
