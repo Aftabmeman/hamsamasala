@@ -3,7 +3,7 @@
    ========================================================================== */
 /* Page Wrapper */
 .heritage-page {
-    background: #0A1C16;
+    background: #0C231B;
     color: #FAF7F0;
     overflow-x: hidden;
     position: relative;
@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background: #0A1C16;
+    background: #0C231B;
     /* fallback if video fails to load */
     padding: calc(var(--nav-height) + 40px) 6% 80px 6%;
     text-align: center;
@@ -37,18 +37,19 @@
     object-fit: cover;
     z-index: 0;
     pointer-events: none;
+    opacity: 1;
+    display: block;
 }
 
-/* Dark gradient overlay premium cinematic fade */
+/* Dark gradient overlay premium cinematic fade - clear view of video with readable text */
 .hero-video-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right,
-            rgba(15, 44, 36, 0.85) 0%,
-            rgba(11, 23, 41, 0.60) 100%);
+    background: radial-gradient(circle at center, rgba(10, 28, 22, 0.35) 0%, rgba(10, 28, 22, 0.72) 100%),
+                linear-gradient(to bottom, rgba(10, 28, 22, 0.5) 0%, transparent 40%, rgba(10, 28, 22, 0.85) 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -108,7 +109,7 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: rgba(15, 44, 36, 0.7);
+    background: rgba(18, 52, 42, 0.7);
     border: 1.5px solid #E2B66B;
     display: flex;
     align-items: center;
@@ -265,7 +266,7 @@
 
 .scroll-journey-btn {
     background: linear-gradient(135deg, #E2B66B 0%, #D4A35B 100%);
-    color: #0F2C24;
+    color: #12342A;
     border: none;
     border-radius: 30px;
     padding: 16px 36px;
@@ -289,7 +290,7 @@
 }
 
 .hero-explore-shop-btn {
-    background: rgba(15, 44, 36, 0.8);
+    background: rgba(18, 52, 42, 0.8);
     color: #E2B66B;
     border: 1.5px solid #E2B66B;
     border-radius: 30px;
@@ -355,7 +356,7 @@
 .silk-route-heading {
     font-family: var(--font-heading);
     font-size: clamp(2rem, 4vw, 3.2rem);
-    color: #0F2C24;
+    color: #12342A;
     line-height: 1.2;
     margin-bottom: 24px;
 }
@@ -376,13 +377,13 @@
 }
 
 .silk-route-story-text p strong {
-    color: #0F2C24;
+    color: #12342A;
 }
 
 .silk-route-quote-card {
     background: #FFFFFF;
     border: 1.5px solid rgba(226, 182, 107, 0.4);
-    border-left: 5px solid #0F2C24;
+    border-left: 5px solid #12342A;
     border-radius: 12px;
     padding: 20px 24px;
     margin-top: 28px;
@@ -397,7 +398,7 @@
     border-radius: 20px;
     overflow: hidden;
     border: 2px solid #E2B66B;
-    box-shadow: 0 20px 50px rgba(15, 44, 36, 0.15);
+    box-shadow: 0 20px 50px rgba(18, 52, 42, 0.15);
 }
 
 .silk-route-visual-card img {
@@ -417,7 +418,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(15, 44, 36, 0.95) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(18, 52, 42, 0.95) 100%);
     padding: 30px 24px 20px 24px;
     color: #FAF7F0;
 }
@@ -449,7 +450,7 @@
     border-radius: 16px;
     padding: 28px 20px;
     text-align: center;
-    box-shadow: 0 8px 24px rgba(15, 44, 36, 0.05);
+    box-shadow: 0 8px 24px rgba(18, 52, 42, 0.05);
     transition: transform 0.3s;
 }
 
@@ -461,7 +462,7 @@
 .silk-stat-number {
     font-family: var(--font-heading);
     font-size: 2.2rem;
-    color: #0F2C24;
+    color: #12342A;
     font-weight: 700;
     margin-bottom: 6px;
 }
@@ -557,7 +558,7 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #0F2C24;
+    background: #12342A;
     border: 2px solid #E2B66B;
     color: #E2B66B;
     font-family: var(--font-heading);
@@ -836,7 +837,7 @@
 
 .experience-blend-btn:hover {
     background: #E2B66B;
-    color: #0F2C24;
+    color: #12342A;
     transform: translateX(4px);
     box-shadow: 0 6px 22px rgba(226, 182, 107, 0.4);
 }
@@ -845,7 +846,7 @@
    CHAPTER 5: GRAND FINALE & QUOTE
    ========================================================================== */
 .chapter-grand-finale {
-    background: radial-gradient(circle at 50% 30%, #164034 0%, #0A1C16 80%, #05100C 100%);
+    background: radial-gradient(circle at 50% 30%, #164034 0%, #0C231B 80%, #05100C 100%);
     padding: 130px 6% 140px 6%;
     text-align: center;
     position: relative;
@@ -896,7 +897,7 @@
 
 .finale-explore-btn {
     background: linear-gradient(135deg, #E2B66B 0%, #D4A35B 100%);
-    color: #0F2C24;
+    color: #12342A;
     border: none;
     border-radius: 35px;
     padding: 18px 45px;

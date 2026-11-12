@@ -111,7 +111,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(15, 44, 36, 0.78) 0%, rgba(15, 44, 36, 0.88) 100%);
+    background: linear-gradient(180deg, rgba(18, 52, 42, 0.78) 0%, rgba(18, 52, 42, 0.88) 100%);
     z-index: 1;
     pointer-events: none !important;
 }
@@ -194,14 +194,14 @@ body {
     font-size: 0.95rem;
     font-family: var(--font-body);
     color: var(--color-text-dark);
-    box-shadow: 0 4px 15px rgba(15, 44, 36, 0.05);
+    box-shadow: 0 4px 15px rgba(18, 52, 42, 0.05);
     outline: none;
     transition: all 0.3s ease;
 }
 
 .search-input-box input:focus {
     border-color: var(--color-dark-green);
-    box-shadow: 0 6px 20px rgba(15, 44, 36, 0.12);
+    box-shadow: 0 6px 20px rgba(18, 52, 42, 0.12);
 }
 
 .clear-search-btn {
@@ -247,7 +247,7 @@ body {
     color: var(--color-text-dark);
     font-size: 0.85rem;
     font-weight: 500;
-    border: 1px solid rgba(15, 44, 36, 0.15);
+    border: 1px solid rgba(18, 52, 42, 0.15);
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.25s ease;
@@ -262,7 +262,7 @@ body {
     background: var(--color-dark-green);
     color: var(--color-gold);
     border-color: var(--color-dark-green);
-    box-shadow: 0 3px 10px rgba(15, 44, 36, 0.2);
+    box-shadow: 0 3px 10px rgba(18, 52, 42, 0.2);
 }
 
 .sort-wrapper {
@@ -281,7 +281,7 @@ body {
 .sort-select {
     padding: 8px 16px;
     background: #FFFFFF;
-    border: 1px solid rgba(15, 44, 36, 0.15);
+    border: 1px solid rgba(18, 52, 42, 0.15);
     border-radius: 20px;
     font-size: 0.85rem;
     font-family: var(--font-body);
@@ -300,7 +300,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px 0 0 0;
-    border-bottom: 1px solid rgba(15, 44, 36, 0.08);
+    border-bottom: 1px solid rgba(18, 52, 42, 0.08);
     font-size: 0.85rem;
     color: #666;
 }
@@ -328,7 +328,7 @@ body {
     background: #FFFFFF;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 18px rgba(15, 44, 36, 0.06);
+    box-shadow: 0 4px 18px rgba(18, 52, 42, 0.06);
     border: 1px solid rgba(226, 182, 107, 0.25);
     display: flex;
     flex-direction: column;
@@ -339,7 +339,7 @@ body {
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(15, 44, 36, 0.12);
+    box-shadow: 0 12px 30px rgba(18, 52, 42, 0.12);
     border-color: var(--color-gold);
 }
 
@@ -365,6 +365,33 @@ body {
     pointer-events: none !important;
 }
 
+/* Skeleton Shimmer on Real Card Images while loading */
+.card-img-wrapper:not(.shimmer-loaded)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(226, 182, 107, 0.08) 0%,
+        rgba(226, 182, 107, 0.24) 30%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(226, 182, 107, 0.24) 70%,
+        rgba(226, 182, 107, 0.08) 100%
+    );
+    background-size: 250% 100%;
+    animation: royalShimmerWave 1.6s infinite ease-in-out;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.card-img-wrapper.shimmer-loaded::after {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
 .card-img {
     width: 100%;
     height: 100%;
@@ -372,8 +399,16 @@ body {
     display: block;
     position: relative !important;
     z-index: 2 !important;
-    transition: transform 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
     filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+
+.card-img:not(.shimmer-loaded) {
+    opacity: 0;
+}
+
+.card-img.shimmer-loaded {
+    opacity: 1 !important;
 }
 
 .product-card:hover .card-img {
@@ -559,14 +594,14 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.25s ease;
-    box-shadow: 0 3px 8px rgba(15, 44, 36, 0.25);
+    box-shadow: 0 3px 8px rgba(18, 52, 42, 0.25);
 }
 
 .add-cart-btn:hover {
     background: #174236;
     color: var(--color-gold);
     transform: scale(1.08);
-    box-shadow: 0 5px 14px rgba(15, 44, 36, 0.35);
+    box-shadow: 0 5px 14px rgba(18, 52, 42, 0.35);
 }
 
 /* No Results Container */
@@ -576,7 +611,7 @@ body {
     padding: 60px 20px;
     background: #FFFFFF;
     border-radius: 16px;
-    border: 1px dashed rgba(15, 44, 36, 0.2);
+    border: 1px dashed rgba(18, 52, 42, 0.2);
 }
 
 .no-results i {
@@ -651,7 +686,7 @@ body {
     aspect-ratio: 1/1;
     border-radius: 20px;
     overflow: hidden !important;
-    box-shadow: 0 10px 30px rgba(15, 44, 36, 0.12);
+    box-shadow: 0 10px 30px rgba(18, 52, 42, 0.12);
     border: 2px solid rgba(226, 182, 107, 0.4);
     background: #FAF7F0 !important;
     display: flex;
@@ -673,6 +708,32 @@ body {
     pointer-events: none !important;
 }
 
+.detail-main-img-box:not(.shimmer-loaded)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(226, 182, 107, 0.08) 0%,
+        rgba(226, 182, 107, 0.24) 30%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(226, 182, 107, 0.24) 70%,
+        rgba(226, 182, 107, 0.08) 100%
+    );
+    background-size: 250% 100%;
+    animation: royalShimmerWave 1.6s infinite ease-in-out;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.detail-main-img-box.shimmer-loaded::after {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
 .detail-main-img {
     width: 100%;
     height: 100%;
@@ -681,7 +742,15 @@ body {
     position: relative !important;
     z-index: 2 !important;
     filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
+}
+
+.detail-main-img:not(.shimmer-loaded) {
+    opacity: 0;
+}
+
+.detail-main-img.shimmer-loaded {
+    opacity: 1 !important;
 }
 
 .detail-wishlist-btn {
@@ -719,7 +788,7 @@ body {
     aspect-ratio: 1/1;
     border-radius: 10px;
     overflow: hidden;
-    border: 2px solid rgba(15, 44, 36, 0.15);
+    border: 2px solid rgba(18, 52, 42, 0.15);
     cursor: pointer;
     position: relative;
     transition: all 0.25s ease;
@@ -794,7 +863,7 @@ body {
     gap: 12px;
     margin-bottom: 24px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(15, 44, 36, 0.1);
+    border-bottom: 1px solid rgba(18, 52, 42, 0.1);
 }
 
 .detail-price {
@@ -827,7 +896,7 @@ body {
 
 .feature-badge-box {
     background: #FFFFFF;
-    border: 1px solid rgba(15, 44, 36, 0.1);
+    border: 1px solid rgba(18, 52, 42, 0.1);
     border-radius: 10px;
     padding: 12px 6px;
     text-align: center;
@@ -869,7 +938,7 @@ body {
 
 .pack-size-pill {
     background: #FFFFFF;
-    border: 1.5px solid rgba(15, 44, 36, 0.2);
+    border: 1.5px solid rgba(18, 52, 42, 0.2);
     border-radius: 12px;
     padding: 10px 18px;
     text-align: center;
@@ -898,7 +967,7 @@ body {
 .pack-size-pill.active {
     background: var(--color-dark-green);
     border-color: var(--color-dark-green);
-    box-shadow: 0 4px 12px rgba(15, 44, 36, 0.25);
+    box-shadow: 0 4px 12px rgba(18, 52, 42, 0.25);
 }
 
 .pack-size-pill.active .size-weight {
@@ -920,7 +989,7 @@ body {
     display: inline-flex;
     align-items: center;
     background: #FFFFFF;
-    border: 1px solid rgba(15, 44, 36, 0.2);
+    border: 1px solid rgba(18, 52, 42, 0.2);
     border-radius: 30px;
     overflow: hidden;
 }
@@ -940,7 +1009,7 @@ body {
 }
 
 .qty-btn:hover {
-    background: rgba(15, 44, 36, 0.08);
+    background: rgba(18, 52, 42, 0.08);
 }
 
 .qty-value {
@@ -989,13 +1058,13 @@ body {
     gap: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(15, 44, 36, 0.3);
+    box-shadow: 0 4px 15px rgba(18, 52, 42, 0.3);
 }
 
 .detail-add-cart-btn:hover {
     background: #174538;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(15, 44, 36, 0.4);
+    box-shadow: 0 8px 20px rgba(18, 52, 42, 0.4);
 }
 
 .detail-buy-now-btn {
@@ -1030,11 +1099,11 @@ body {
 /* Pincode Availability Checker */
 .pincode-check-card {
     background: #FFFFFF;
-    border: 1.5px solid rgba(15, 44, 36, 0.12);
+    border: 1.5px solid rgba(18, 52, 42, 0.12);
     border-radius: 14px;
     padding: 18px 22px;
     margin-bottom: 24px;
-    box-shadow: 0 4px 14px rgba(15, 44, 36, 0.04);
+    box-shadow: 0 4px 14px rgba(18, 52, 42, 0.04);
 }
 
 .pincode-header {
@@ -1043,7 +1112,7 @@ body {
     gap: 8px;
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     margin-bottom: 12px;
 }
 
@@ -1071,11 +1140,11 @@ body {
     flex: 1;
     padding: 11px 14px 11px 38px;
     background: #FAF7F0;
-    border: 1.5px solid rgba(15, 44, 36, 0.2);
+    border: 1.5px solid rgba(18, 52, 42, 0.2);
     border-radius: 10px;
     font-size: 0.92rem;
     font-family: inherit;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     outline: none;
     transition: all 0.2s;
 }
@@ -1087,7 +1156,7 @@ body {
 }
 
 .pincode-input-wrapper button {
-    background: var(--color-dark-green, #0F2C24);
+    background: var(--color-dark-green, #12342A);
     color: var(--color-gold, #E2B66B);
     border: 1px solid var(--color-gold, #E2B66B);
     padding: 11px 22px;
@@ -1135,8 +1204,8 @@ body {
     padding: 18px 16px;
     background: #FFFFFF;
     border-radius: 14px;
-    border: 1.5px solid rgba(15, 44, 36, 0.1);
-    box-shadow: 0 4px 14px rgba(15, 44, 36, 0.03);
+    border: 1.5px solid rgba(18, 52, 42, 0.1);
+    box-shadow: 0 4px 14px rgba(18, 52, 42, 0.03);
     margin-bottom: 24px;
 }
 
@@ -1155,7 +1224,7 @@ body {
 .policy-item .policy-text h5 {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     margin: 0 0 2px 0;
 }
 
@@ -1172,7 +1241,7 @@ body {
     padding: 40px;
     margin-bottom: 50px;
     border: 1px solid rgba(226, 182, 107, 0.3);
-    box-shadow: 0 8px 30px rgba(15, 44, 36, 0.05);
+    box-shadow: 0 8px 30px rgba(18, 52, 42, 0.05);
 }
 
 .story-grid {
@@ -1197,7 +1266,7 @@ body {
 .story-left .story-heading {
     font-family: var(--font-heading, 'Cinzel', serif);
     font-size: 2.1rem;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     margin-bottom: 18px;
     line-height: 1.25;
 }
@@ -1215,7 +1284,7 @@ body {
     border-radius: 16px;
     padding: 24px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(15, 44, 36, 0.03);
+    box-shadow: 0 4px 15px rgba(18, 52, 42, 0.03);
 }
 
 .card-subtitle-motif {
@@ -1223,7 +1292,7 @@ body {
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 2.5px;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     text-transform: uppercase;
     margin-bottom: 16px;
     display: flex;
@@ -1264,7 +1333,7 @@ body {
 
 .flavor-icon-item span {
     font-size: 0.74rem;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     font-weight: 600;
     line-height: 1.25;
 }
@@ -1275,7 +1344,7 @@ body {
     border: 1px solid rgba(226, 182, 107, 0.4);
     border-radius: 16px;
     padding: 22px 24px;
-    box-shadow: 0 4px 15px rgba(15, 44, 36, 0.03);
+    box-shadow: 0 4px 15px rgba(18, 52, 42, 0.03);
 }
 
 .ingredients-header {
@@ -1288,7 +1357,7 @@ body {
 .ingredients-header h4 {
     font-family: var(--font-heading, 'Cinzel', serif);
     font-size: 1.15rem;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     margin: 0;
 }
 
@@ -1301,7 +1370,7 @@ body {
 }
 
 .ingredients-header a:hover {
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
 }
 
 .ingredients-list-text {
@@ -1318,13 +1387,13 @@ body {
     padding: 32px 36px;
     margin-bottom: 50px;
     border: 1px solid rgba(226, 182, 107, 0.3);
-    box-shadow: 0 8px 30px rgba(15, 44, 36, 0.06);
+    box-shadow: 0 8px 30px rgba(18, 52, 42, 0.06);
 }
 
 .tabs-nav {
     display: flex;
     gap: 28px;
-    border-bottom: 2px solid rgba(15, 44, 36, 0.08);
+    border-bottom: 2px solid rgba(18, 52, 42, 0.08);
     margin-bottom: 28px;
     overflow-x: auto;
     scrollbar-width: none;
@@ -1349,11 +1418,11 @@ body {
 }
 
 .tab-btn:hover {
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
 }
 
 .tab-btn.active {
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     font-weight: 700;
 }
 
@@ -1399,7 +1468,7 @@ body {
 }
 
 .tab-pane strong {
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
 }
 
 /* Royal Customer Reviews Design */
@@ -1415,13 +1484,13 @@ body {
     border-left: 4px solid var(--color-gold, #E2B66B);
     border-radius: 12px;
     padding: 18px 22px;
-    box-shadow: 0 3px 12px rgba(15, 44, 36, 0.03);
+    box-shadow: 0 3px 12px rgba(18, 52, 42, 0.03);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .review-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(15, 44, 36, 0.08);
+    box-shadow: 0 6px 18px rgba(18, 52, 42, 0.08);
 }
 
 .review-card-header {
@@ -1461,7 +1530,7 @@ body {
 .review-author {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     font-family: var(--font-heading, 'Cinzel', serif);
     letter-spacing: 0.5px;
     text-align: right;
@@ -1479,14 +1548,14 @@ body {
     border: 1px solid rgba(226, 182, 107, 0.35);
     border-radius: 12px;
     padding: 18px 22px;
-    box-shadow: 0 2px 10px rgba(15, 44, 36, 0.02);
+    box-shadow: 0 2px 10px rgba(18, 52, 42, 0.02);
 }
 
 .faq-q {
     font-family: var(--font-heading, 'Cinzel', serif);
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     margin: 0 0 8px 0;
     display: flex;
     align-items: center;
@@ -1520,7 +1589,7 @@ body {
 .related-title {
     font-family: var(--font-heading, 'Cinzel', serif);
     font-size: 1.7rem;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1544,7 +1613,7 @@ body {
 }
 
 .view-all-link:hover {
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
 }
 
 /* Responsive Media Queries */
@@ -2135,7 +2204,7 @@ body {
 }
 
 .order-success-card {
-    background: #0E2820 !important;
+    background: #113026 !important;
     border-radius: 24px !important;
     border: 2px solid var(--color-gold, #E2B66B) !important;
     max-width: 520px !important;
@@ -2182,14 +2251,14 @@ body {
 
 .order-success-close-btn:hover {
     background: #E2B66B !important;
-    color: #071813 !important;
+    color: #092019 !important;
 }
 
 .order-success-icon {
     width: 64px !important;
     height: 64px !important;
     background: linear-gradient(135deg, #E2B66B, #C2964B) !important;
-    color: #071813 !important;
+    color: #092019 !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
@@ -2219,7 +2288,7 @@ body {
 }
 
 .order-meta-box {
-    background: #071813 !important;
+    background: #092019 !important;
     border: 1px solid rgba(226, 182, 107, 0.25) !important;
     border-radius: 14px !important;
     padding: 16px 18px !important;
@@ -2554,7 +2623,7 @@ body {
 
 .order-invoice-btn:hover:not(:disabled) {
     background: #E2B66B !important;
-    color: #071813 !important;
+    color: #092019 !important;
     transform: translateY(-1px) !important;
 }
 
@@ -2588,7 +2657,7 @@ body {
 }
 
 .cart-drawer-header {
-    background: var(--color-dark-green, #0F2C24);
+    background: var(--color-dark-green, #12342A);
     color: var(--color-gold, #E2B66B);
     padding: 20px 24px;
     display: flex;
@@ -2637,12 +2706,12 @@ body {
 .cart-free-shipping-bar {
     background: #F4F0E6;
     padding: 12px 20px;
-    border-bottom: 1px solid rgba(15, 44, 36, 0.1);
+    border-bottom: 1px solid rgba(18, 52, 42, 0.1);
 }
 
 .shipping-progress-text {
     font-size: 0.8rem;
-    color: #0F2C24;
+    color: #12342A;
     margin-bottom: 6px;
     display: flex;
     align-items: center;
@@ -2652,7 +2721,7 @@ body {
 .shipping-progress-track {
     width: 100%;
     height: 6px;
-    background: rgba(15, 44, 36, 0.1);
+    background: rgba(18, 52, 42, 0.1);
     border-radius: 10px;
     overflow: hidden;
 }
@@ -2678,7 +2747,7 @@ body {
     align-items: center;
     gap: 14px;
     padding-bottom: 16px;
-    border-bottom: 1px solid rgba(15, 44, 36, 0.08);
+    border-bottom: 1px solid rgba(18, 52, 42, 0.08);
 }
 
 .cart-item-img {
@@ -2703,7 +2772,7 @@ body {
 .cart-item-price {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-dark-green, #0F2C24);
+    color: var(--color-dark-green, #12342A);
     margin-top: 2px;
 }
 
@@ -2734,7 +2803,7 @@ body {
 .cart-drawer-footer {
     padding: 20px 24px;
     background: var(--color-cream, #FAF7F0);
-    border-top: 1px solid rgba(15, 44, 36, 0.1);
+    border-top: 1px solid rgba(18, 52, 42, 0.1);
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -2749,7 +2818,7 @@ body {
 }
 
 .checkout-btn {
-    background: var(--color-dark-green, #0F2C24);
+    background: var(--color-dark-green, #12342A);
     color: var(--color-gold, #E2B66B);
     padding: 14px;
     border-radius: 12px;
@@ -2765,7 +2834,7 @@ body {
 
 .checkout-btn:hover {
     background: #174236;
-    box-shadow: 0 4px 15px rgba(15, 44, 36, 0.3);
+    box-shadow: 0 4px 15px rgba(18, 52, 42, 0.3);
 }
 
 /* --- Menu Slide-out Drawer --- */
@@ -2788,7 +2857,7 @@ body {
     width: 100%;
     max-width: 380px;
     height: 100%;
-    background: #0F2C24;
+    background: #12342A;
     color: #FAF7F0;
     border-left: 2px solid #E2B66B;
     display: flex;
@@ -2802,7 +2871,7 @@ body {
 
 .menu-drawer-header {
     padding: 18px 20px;
-    background: linear-gradient(180deg, rgba(226, 182, 107, 0.12) 0%, rgba(15, 44, 36, 0.4) 100%);
+    background: linear-gradient(180deg, rgba(226, 182, 107, 0.12) 0%, rgba(18, 52, 42, 0.4) 100%);
     border-bottom: 1.5px solid rgba(226, 182, 107, 0.25);
     display: flex;
     align-items: center;
@@ -2898,7 +2967,7 @@ body {
     height: 48px;
     border-radius: 50%;
     background: linear-gradient(135deg, #E2B66B 0%, #B8860B 100%);
-    color: #0F2C24;
+    color: #12342A;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2926,7 +2995,7 @@ body {
 .menu-auth-btn {
     width: 100%;
     background: linear-gradient(135deg, #E2B66B 0%, #D4A35B 100%);
-    color: #0F2C24;
+    color: #12342A;
     border: none;
     border-radius: 10px;
     padding: 10px 16px;
@@ -3095,7 +3164,7 @@ body {
 
 .menu-social-links a:hover {
     background: #E2B66B;
-    color: #0F2C24;
+    color: #12342A;
     transform: translateY(-2px);
 }
 
@@ -3118,7 +3187,7 @@ body {
 }
 
 .search-modal-card {
-    background: #0F2C24;
+    background: #12342A;
     border: 2px solid #E2B66B;
     border-radius: 22px;
     max-width: 680px;
@@ -3184,7 +3253,7 @@ body {
 .search-modal-card .search-input-box i.fa-search {
     position: absolute;
     left: 16px;
-    color: #0F2C24;
+    color: #12342A;
     font-size: 1.15rem;
 }
 
@@ -3195,7 +3264,7 @@ body {
     background: none;
     font-size: 1.05rem;
     font-family: var(--font-body);
-    color: #0F2C24;
+    color: #12342A;
     outline: none;
 }
 
@@ -3235,7 +3304,7 @@ body {
 
 .search-keyword-tag:hover {
     background: #E2B66B;
-    color: #0F2C24;
+    color: #12342A;
     border-color: #E2B66B;
 }
 
@@ -3358,7 +3427,7 @@ body {
 }
 
 .auth-header {
-    background: var(--color-dark-green, #0F2C24);
+    background: var(--color-dark-green, #12342A);
     padding: 36px 24px 24px 24px;
     text-align: center;
 }
@@ -3423,8 +3492,8 @@ body {
 .phone-input-group .country-code {
     padding: 12px 14px;
     font-weight: 700;
-    color: #0F2C24;
-    background: rgba(15, 44, 36, 0.06);
+    color: #12342A;
+    background: rgba(18, 52, 42, 0.06);
     border-right: 1px solid #DDD;
 }
 
@@ -3459,7 +3528,7 @@ body {
 }
 
 .auth-verify-btn {
-    background: var(--color-dark-green, #0F2C24);
+    background: var(--color-dark-green, #12342A);
     color: var(--color-gold, #E2B66B);
     border: 1px solid var(--color-gold, #E2B66B);
     padding: 13px;
@@ -3489,7 +3558,7 @@ body {
     border: 2px solid #DDD;
     border-radius: 12px;
     background: #FAF7F0;
-    color: #0F2C24;
+    color: #12342A;
     outline: none;
     transition: border-color 0.2s;
 }
@@ -3508,7 +3577,7 @@ body {
 .change-phone-btn {
     background: none;
     border: none;
-    color: #0F2C24;
+    color: #12342A;
     text-decoration: underline;
     font-weight: 600;
     cursor: pointer;
@@ -3534,7 +3603,7 @@ body {
 .resend-otp-row button {
     background: none;
     border: none;
-    color: #0F2C24;
+    color: #12342A;
     font-weight: 700;
     text-decoration: underline;
     cursor: pointer;
@@ -3574,7 +3643,7 @@ body {
 }
 
 .royal-modal-header {
-    background: #0F2C24;
+    background: #12342A;
     color: #FAF7F0;
     padding: 20px 24px;
     border-bottom: 2px solid #E2B66B;
@@ -3633,7 +3702,7 @@ body {
     max-width: 420px !important;
     width: auto !important;
     height: auto !important;
-    background: #0F2C24 !important;
+    background: #12342A !important;
     color: #FAF7F0 !important;
     border: 1.5px solid #E2B66B !important;
     border-radius: 16px !important;
@@ -3695,7 +3764,7 @@ body {
 
 .cart-toast-link {
     background: #E2B66B;
-    color: #0F2C24 !important;
+    color: #12342A !important;
     font-size: 0.8rem;
     font-weight: 700;
     padding: 6px 14px;
@@ -3720,3 +3789,230 @@ body {
         justify-content: space-between !important;
     }
 }
+
+/* ==========================================================================
+   ROYAL SKELETON SHIMMER LOADER SYSTEM
+   Matches Persian Luxury Palette: Warm Cream, Royal Gold & Velvety Emerald
+   ========================================================================== */
+@keyframes royalShimmerWave {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton-shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(226, 182, 107, 0.08) 0%,
+        rgba(226, 182, 107, 0.24) 30%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(226, 182, 107, 0.24) 70%,
+        rgba(226, 182, 107, 0.08) 100%
+    ) !important;
+    background-size: 250% 100% !important;
+    animation: royalShimmerWave 1.6s infinite ease-in-out !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark Shimmer variant for search modal & dark overlays */
+.skeleton-shimmer-dark {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(226, 182, 107, 0.14) 30%,
+        rgba(226, 182, 107, 0.28) 50%,
+        rgba(226, 182, 107, 0.14) 70%,
+        rgba(255, 255, 255, 0.04) 100%
+    ) !important;
+    background-size: 250% 100% !important;
+    animation: royalShimmerWave 1.6s infinite ease-in-out !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Skeleton Product Card - Exact replica of Hamsa product card layout */
+.skeleton-product-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(18, 52, 42, 0.06);
+    border: 1px solid rgba(226, 182, 107, 0.25);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.3s ease;
+}
+
+.skeleton-img-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #FAF7F0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skeleton-badge-pill {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 84px;
+    height: 18px;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.skeleton-wishlist-circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.skeleton-product-silhouette {
+    width: 62%;
+    height: 72%;
+    border-radius: 14px;
+    margin: auto;
+}
+
+.skeleton-card-body {
+    padding: 14px 14px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+}
+
+.skeleton-line {
+    border-radius: 4px;
+}
+
+.skeleton-line.skeleton-title {
+    height: 18px;
+    width: 82%;
+    border-radius: 6px;
+    margin-bottom: 2px;
+}
+
+.skeleton-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.skeleton-line.skeleton-price {
+    height: 18px;
+    width: 52px;
+    border-radius: 4px;
+}
+
+.skeleton-line.skeleton-cutprice {
+    height: 14px;
+    width: 42px;
+    border-radius: 4px;
+}
+
+.skeleton-line.skeleton-weight {
+    height: 14px;
+    width: 32px;
+    border-radius: 4px;
+}
+
+.skeleton-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.skeleton-line.skeleton-rating {
+    height: 14px;
+    width: 64px;
+    border-radius: 4px;
+}
+
+.skeleton-circle.skeleton-cart-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+}
+
+/* Live Search Modal Skeleton Items */
+.skeleton-search-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    margin-bottom: 10px;
+    border: 1px solid rgba(226, 182, 107, 0.12);
+}
+
+.skeleton-search-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.skeleton-search-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.skeleton-search-title {
+    height: 15px;
+    width: 70%;
+    border-radius: 4px;
+}
+
+.skeleton-search-desc {
+    height: 12px;
+    width: 40%;
+    border-radius: 4px;
+}
+
+/* Mobile responsive tuning for skeleton cards */
+@media (max-width: 600px) {
+    .skeleton-card-body {
+        padding: 10px 10px 12px 10px;
+    }
+    .skeleton-badge-pill {
+        top: 8px;
+        left: 8px;
+        width: 64px;
+        height: 15px;
+    }
+    .skeleton-wishlist-circle {
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+    }
+    .skeleton-line.skeleton-title {
+        height: 15px;
+        width: 90%;
+    }
+    .skeleton-circle.skeleton-cart-btn {
+        width: 32px;
+        height: 32px;
+    }
+}
+

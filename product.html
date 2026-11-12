@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=19">
-    <link rel="stylesheet" href="catalog.css?v=19">
+    <link rel="stylesheet" href="style.css?v=31">
+    <link rel="stylesheet" href="catalog.css?v=31">
 
     <!-- =========================================================
          ULTIMATE HTML INLINE FIX FOR STRAY MODALS AT BOTTOM
@@ -391,7 +391,7 @@
     <!-- Transition Divider to Footer -->
     <div class="divider div-3" style="background: var(--color-cream);">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-            <path d="M0,0 C400,80 800,150 1440,20 L1440,120 L0,120 Z" fill="#0F2C24"></path>
+            <path d="M0,0 C400,80 800,150 1440,20 L1440,120 L0,120 Z" fill="#12342A"></path>
         </svg>
     </div>
 
@@ -461,7 +461,7 @@
 
 
 
-    <script src="script.js?v=25"></script>
+    <script src="script.js?v=31"></script>
     <script>
         let currentQty = 1;
         let activePackPrice = 249;
@@ -484,11 +484,21 @@
 
         function switchMainImage(src, thumbEl) {
             const mainImg = document.getElementById('main-product-img');
-            mainImg.style.opacity = '0.4';
-            setTimeout(() => {
+            const box = mainImg ? mainImg.closest('.detail-main-img-box') : null;
+            if (mainImg) {
+                mainImg.classList.remove('shimmer-loaded');
+                if (box) box.classList.remove('shimmer-loaded');
                 mainImg.src = src;
-                mainImg.style.opacity = '1';
-            }, 150);
+                if (mainImg.complete && mainImg.naturalWidth > 0) {
+                    mainImg.classList.add('shimmer-loaded');
+                    if (box) box.classList.add('shimmer-loaded');
+                } else {
+                    mainImg.onload = function () {
+                        mainImg.classList.add('shimmer-loaded');
+                        if (box) box.classList.add('shimmer-loaded');
+                    };
+                }
+            }
             document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
             if (thumbEl) thumbEl.classList.add('active');
         }
@@ -523,8 +533,8 @@
         // Complete Product Data for all 8 Masalas
         const productData = {
             'classic-biryani': {
-                title: 'Original - Classic - Biryani',
-                subtitle: 'Secret 36 spices • Authentic Behruz Persian Biryani Masala',
+                title: 'Hamsa Original Classic Biryani Masala',
+                subtitle: 'Secret 36 spices • The Persian Biryani Tradition',
                 badge: 'Bestseller',
                 img: 'assets/original-classic-biryani.png',
                 thumbs: ['assets/original-classic-biryani.png'],
@@ -535,12 +545,12 @@
                 reviews: '114',
                 storyKicker: 'A STORY IN EVERY SPICE',
                 storyTitle: 'The Persian Biryani Tradition',
-                story1: 'Experience the true essence of royal feasts with our Behruz Persian Biryani Masala. Carefully crafted by Team Hamsa Centre, this authentic heritage blend brings the timeless, majestic flavors of Persian kitchens directly to your home. We use only the finest hand-picked spices, perfectly roasted and blended to preserve their deep aromatic oils. Whether you are cooking succulent chicken, tender mutton, or rich vegetables, this masala guarantees a rich, unforgettable, and highly aromatic biryani experience. 100% natural, cold stone-ground, and pure royal flavor.',
+                story1: 'Bring home the authentic aroma of slow-cooked royal feasts with Hamsa Original Classic Biryani Masala. Crafted carefully by Team Hamsa Centre, this signature blend combines hand-picked spices, lightly roasted to seal in their natural fragrant oils. Designed for chicken, mutton, or vegetable biryani, it delivers a deeply flavorful, aromatic dum experience with every grain of rice. 100% natural, cold stone-ground, and packed with authentic spices.',
                 story2: '',
-                flavorNotes: ['Aromatic Saffron', 'Warm Cinnamon', 'Rich Star Anise', 'Balanced Cardamom'],
-                ingredientsShort: 'Persian Saffron, Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Bay Leaves, Nutmeg, Mace, Black Cumin.',
-                tabDesc: 'Experience the true essence of royal feasts with our Behruz Persian Biryani Masala. Carefully crafted by Team Hamsa Centre, this authentic heritage blend brings the timeless, majestic flavors of Persian kitchens directly to your home. We use only the finest hand-picked spices, perfectly roasted and blended to preserve their deep aromatic oils. Whether you are cooking succulent chicken, tender mutton, or rich vegetables, this masala guarantees a rich, unforgettable, and highly aromatic biryani experience. 100% natural, cold stone-ground, and pure royal flavor.',
-                tabIngredients: '<strong>Ingredients:</strong> Royal Persian Saffron, Green Cardamom, Black Cardamom, Ceylon Cinnamon Quills, Cloves, Mace (Javitri), Nutmeg (Jaiphal), Shahi Jeera, Star Anise, Bay Leaves, Kashmiri Chili, Dagad Phool.',
+                flavorNotes: ['Aromatic Saffron', 'Warm Cinnamon', 'Rich Star Anise', 'Fragrant Green Cardamom'],
+                ingredientsShort: 'Persian Saffron, Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Bay Leaves, Nutmeg, Mace, Black Cumin (Shahi Jeera).',
+                tabDesc: 'Bring home the authentic aroma of slow-cooked royal feasts with Hamsa Original Classic Biryani Masala. Crafted carefully by Team Hamsa Centre, this signature blend combines hand-picked spices, lightly roasted to seal in their natural fragrant oils. Designed for chicken, mutton, or vegetable biryani, it delivers a deeply flavorful, aromatic dum experience with every grain of rice. 100% natural, cold stone-ground, and packed with authentic spices.',
+                tabIngredients: '<strong>Key Ingredients:</strong> Persian Saffron, Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Bay Leaves, Nutmeg, Mace, Black Cumin (Shahi Jeera).',
                 tabHowToUse: '<strong>PREPARATION:</strong><br>• Boil 500gm India Gate or any premium Basmati rice with 2 tbsp salt.<br>• Fry 300gm potato wedges (optional).<br>• Fry 500gm onion (400g for Biryani gravy, 100g for topping).<br>• Marinate 750g chicken/mutton/vegetable with 250g curd, 20g garlic paste, 30g ginger paste, 400g fried onion crushed, and Behruz Persian Biryani Masala. Mix well. Leave for 1 hr.<br>• Heat 100g barista oil. Add marinated chicken. Bhune well for 10 mins. If using mutton, pressure cook till it is done. Biryani Gravy masala is ready.<br><br><strong>ASSEMBLE:</strong><br>• Lay down the gravy masala, keep potato wedges and 8-10 whole green chilli over gravy.<br>• Spread boiled rice on it.<br>• Pour mixture of 50g butter/desi ghee and 100 ml milk.<br>• Add optional saffron/yellow food colour over rice. Spread fried onion.<br>• Dum for 30 mins.<br>• Serve with Raita and Ruz-bi-Haleebia.<br><br><strong>FOR CLASSIC PANEER SABZ BIRYANI:</strong> Use soft paneer and fresh veggies, follow the same process.<br><br><strong>PRO TIP FOR RAITA:</strong> For better result in raita, you can add 50g cream in 250g curd. (Optional: add sugar and pineapple pieces)',
                 tabReviews: '★★★★★ <strong>"The aroma filled my entire home!"</strong> - Farhan R.<br><br>★★★★★ <strong>"Pure nostalgia of authentic Persian cooking. 10/10 quality."</strong> - Sneha K.<br><br>★★★★★ <strong>"The saffron notes in this classic blend are unmatched."</strong> - Rohan V.',
                 packSizes: [
@@ -549,7 +559,7 @@
                 ]
             },
             'lazeez-dum': {
-                title: 'Lazeez - Dum - Biryani',
+                title: 'Hamsa Lazeez Dum Biryani Masala',
                 subtitle: 'Secrets 40 spices • Authentic Behruz Persian Spice Blend For Lazeez Dum Biryani',
                 badge: 'Imperial Dum Biryani',
                 img: 'assets/lazeez-dum-biryani.png',
@@ -561,12 +571,12 @@
                 reviews: '92',
                 storyKicker: 'IMPERIAL MAJESTIC SPICE HERITAGE',
                 storyTitle: 'The Grand Art of Lazeez Dum Biryani',
-                story1: 'Indulge in the ultimate royal decadence with our Behruz Persian Lazeez Dum Biryani Masala. Crafted meticulously by Team Hamsa Centre, this rich heritage blend is designed for those who crave a deeply luxurious and creamy texture. Infused with authentic Persian spices, this masala works beautifully with mawa and pure desi ghee to create a melt-in-the-mouth experience. Whether preparing succulent chicken, tender mutton, or rich vegetables, this blend guarantees a majestic, unforgettable feast straight from the ancient royal kitchens. 100% natural, cold stone-ground, and pure authentic flavor.',
+                story1: 'Bring home the authentic taste of royal kitchens with Hamsa Lazeez Dum Biryani Masala. Crafted carefully by Team Hamsa Centre, this rich blend is designed for a creamy, velvety texture and deep aroma. Infused with traditional Persian spices, it pairs wonderfully with mawa and pure desi ghee to give a melt-in-the-mouth experience. Perfect for chicken, mutton, or rich vegetable preparations, this cold stone-ground blend guarantees an unforgettable feast. 100% natural and pure authentic flavor.',
                 story2: '',
                 flavorNotes: ['Velvety Dum Aroma', 'Sweet Mace & Nutmeg', 'Golden Cardamom', 'Subtle Kashmiri Spice'],
                 ingredientsShort: 'Royal Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Black Peppercorns, Bay Leaf, Kashmiri Red Chilies, Mace, Dried Rose Petals, Saffron.',
-                tabDesc: 'Indulge in the ultimate royal decadence with our Behruz Persian Lazeez Dum Biryani Masala. Crafted meticulously by Team Hamsa Centre, this rich heritage blend is designed for those who crave a deeply luxurious and creamy texture. Infused with authentic Persian spices, this masala works beautifully with mawa and pure desi ghee to create a melt-in-the-mouth experience. Whether preparing succulent chicken, tender mutton, or rich vegetables, this blend guarantees a majestic, unforgettable feast straight from the ancient royal kitchens. 100% natural, cold stone-ground, and pure authentic flavor.',
-                tabIngredients: '<strong>Ingredients:</strong> Royal Persian Saffron, Highland Green Cardamom, Ceylon Cinnamon, Imperial Star Anise, Cloves, Mace (Javitri), Nutmeg (Jaiphal), Dried Kashmiri Red Chilies, Shahi Cumin, Black Pepper, Coriander Seeds, Dried Rose Petals.',
+                tabDesc: 'Bring home the authentic taste of royal kitchens with Hamsa Lazeez Dum Biryani Masala. Crafted carefully by Team Hamsa Centre, this rich blend is designed for a creamy, velvety texture and deep aroma. Infused with traditional Persian spices, it pairs wonderfully with mawa and pure desi ghee to give a melt-in-the-mouth experience. Perfect for chicken, mutton, or rich vegetable preparations, this cold stone-ground blend guarantees an unforgettable feast. 100% natural and pure authentic flavor.',
+                tabIngredients: '<strong>Key Ingredients:</strong> Royal Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Black Peppercorns, Bay Leaf, Kashmiri Red Chilies, Mace, Dried Rose Petals, Saffron.',
                 tabHowToUse: '<strong>PREPARATION:</strong><br>• Note: If using ready-made fried onion, take 100gm for gravy & 25gm for topping.<br>• Boil 500gm India Gate or any premium Basmati rice with 2 tbsp salt.<br>• Fry 300gm potato wedges.<br>• Fry 500g onion (400g for Biryani gravy, 100g for topping).<br>• Marinate 750g chicken/mutton/vegetable with 250g curd, 20g garlic paste, 30g ginger paste, 400g fried onion crushed, 100g mawa, and Behruz Persian Biryani Masala. Mix well. Leave for 1 hr.<br>• Heat 100g desi ghee. Add marinated chicken. Bhune well for 10 mins. If using mutton, pressure cook till it is done. Biryani Gravy masala is ready.<br><br><strong>ASSEMBLE:</strong><br>• Lay down the gravy masala, keep potato wedges and 8-10 whole green chilli over gravy.<br>• Spread boiled rice on it.<br>• Pour mixture of 50g butter/desi ghee and 100 ml milk.<br>• Add optional saffron/yellow food colour over rice. Spread fried onion.<br>• Dum for 30 mins.<br>• Serve with Raita and Ruz-bi-Haleebia.<br><br><strong>YOU CAN TRY OTHER RECIPES:</strong><br>• Lazeez-bhuna-murg Biryani, Dum-gosht-biryani, Kheema-gosht-biryani, Raan-e-murg-biryani... follow the same process.<br><br><strong>PRO TIP FOR RAITA:</strong> For better result in raita, you can add 50g cream in 250g curd. (Optional: add sugar and pineapple pieces).',
                 tabReviews: '★★★★★ <strong>"Truly Lazeez! The aroma filled the entire apartment block. Absolute royal masterpiece."</strong> - Kabir S.<br><br>★★★★★ <strong>"Perfect balance of whole spices and warmth. My guests thought it was catered by a royal chef."</strong> - Rehana B.<br><br>★★★★★ <strong>"Authentic Persian dum taste. 10/10."</strong> - Danish Q.',
                 packSizes: [
@@ -653,8 +663,8 @@
                 ]
             },
             'murg-lababdar': {
-                title: 'Shabnami Murg Lababdar Gravy',
-                subtitle: 'Secrets 58 spices • Authentic Behruz Persian Style Instant Gravy Blend',
+                title: 'Hamsa Shabnami Murg Lababdar Instant Gravy Masala',
+                subtitle: 'Secrets 58 spices • The Shahi Lababdar Tradition',
                 badge: 'Persian Lababdar Gravy',
                 img: 'assets/murg-lababdar.png',
                 thumbs: ['assets/murg-lababdar.png'],
@@ -664,13 +674,13 @@
                 rating: '4.9',
                 reviews: '89',
                 storyKicker: 'SHABNAMI ROYAL PALACE RECIPE',
-                storyTitle: 'The Luscious Shabnami Murg Lababdar',
-                story1: 'Bring the rich, velvety indulgence of royal Persian kitchens to your table in minutes with our Behruz Shabnami Murg Lababdar Instant Gravy Masala. Specially crafted from select, pure ingredients following traditional Persian heritage, this instant gravy blend eliminates hours of chopping and grinding. Simply soak, simmer with butter and fresh cream, and enjoy a restaurant-style, aromatic Shahi Lababdar gravy with chicken, paneer, eggs, or vegetables. 100% pure taste — strictly no added artificial colors, no artificial fragrances, and cold stone-ground freshness.',
+                storyTitle: 'The Shahi Lababdar Tradition',
+                story1: 'Bring home the authentic rich taste of royal feasts with Hamsa Shabnami Murg Lababdar Instant Gravy Masala. Specially blended by Team Hamsa Centre, this gravy base combines slow-roasted cashews, melon seeds, and fragrant whole spices to save hours of prep time. Simply simmer with butter or ghee and fresh cream for a velvety, aromatic gravy with chicken, paneer, eggs, or vegetables. 100% natural, cold stone-ground, with no artificial colors or synthetic fragrances.',
                 story2: '',
-                flavorNotes: ['Roasted Cashew & Magaz', 'Sun-Ripened Tomato Velvet', 'Fragrant Kasuri Methi', 'Sweet Mace & Cardamom'],
-                ingredientsShort: 'Toasted Cashew Flour, Melon Seed Powder, Kashmiri Chili, Roasted Garlic, Dried Kasuri Methi, Green Cardamom, Mace, Cinnamon, Clove, Turmeric, Sea Salt.',
-                tabDesc: 'Bring the rich, velvety indulgence of royal Persian kitchens to your table in minutes with our Behruz Shabnami Murg Lababdar Instant Gravy Masala. Specially crafted from select, pure ingredients following traditional Persian heritage, this instant gravy blend eliminates hours of chopping and grinding. Simply soak, simmer with butter and fresh cream, and enjoy a restaurant-style, aromatic Shahi Lababdar gravy with chicken, paneer, eggs, or vegetables. 100% pure taste — strictly no added artificial colors, no artificial fragrances, and cold stone-ground freshness.',
-                tabIngredients: '<strong>Ingredients:</strong> Cashew Paste Granules, Toasted Watermelon Seeds (Char Magaz), Dehydrated Tomato Powder, Kashmiri Mild Chili, Roasted Onion Flakes, Green Cardamom, Royal Cumin, Kasuri Methi, Mace, Ginger Powder, Rock Salt.',
+                flavorNotes: ['Roasted Cashew & Magaz Base', 'Fragrant Kasuri Methi', 'Sweet Mace & Green Cardamom', 'Mild Kashmiri Spice'],
+                ingredientsShort: 'Toasted Cashew Flour, Melon Seed Powder (Magaz), Kashmiri Red Chili, Roasted Garlic, Dried Kasuri Methi, Green Cardamom, Mace, Ceylon Cinnamon, Cloves, Turmeric, Sea Salt.',
+                tabDesc: 'Bring home the authentic rich taste of royal feasts with Hamsa Shabnami Murg Lababdar Instant Gravy Masala. Specially blended by Team Hamsa Centre, this gravy base combines slow-roasted cashews, melon seeds, and fragrant whole spices to save hours of prep time. Simply simmer with butter or ghee and fresh cream for a velvety, aromatic gravy with chicken, paneer, eggs, or vegetables. 100% natural, cold stone-ground, with no artificial colors or synthetic fragrances.',
+                tabIngredients: '<strong>Key Ingredients:</strong> Toasted Cashew Flour, Melon Seed Powder (Magaz), Kashmiri Red Chili, Roasted Garlic, Dried Kasuri Methi, Green Cardamom, Mace, Ceylon Cinnamon, Cloves, Turmeric, Sea Salt.',
                 tabHowToUse: '<strong>PREPARATION (METHOD - PERSIAN STYLE):</strong><br>• Soak 100g Shabnami Murg Lababdar Instant Gravy Masala in 1000ml (1 litre) water.<br>• Heat 150g butter and 50ml oil.<br>• Add 1kg chicken and fry for 15 min.<br>• Add the soaked masala (with water), stir, cover, and cook for 20 min till oil separates and chicken is done.<br>• Now add the remaining 50g butter and 200ml cream, and cook for only 2–3 min.<br>• Garnish with chopped kotmir (coriander) and ginger juliennes.<br>• If you want it spicy, add green chilli slits.<br><br><strong>SERVE & VARIATIONS:</strong><br>• Serve hot with Naan, Tandoori roti, Romali roti, or Zeera rice.<br>• Versatile Recipe: You can also make it with paneer, eggs, or vegetables following the same process.',
                 tabReviews: '★★★★★ <strong>"Better than 5-star Mughlai restaurant Lababdar! Creamy, rich, and so easy."</strong> - Ananya D.<br><br>★★★★★ <strong>"The balance of cashew creaminess and fragrant Kasuri methi is perfection."</strong> - Zubair H.<br><br>★★★★★ <strong>"My children couldn\'t get enough of this with garlic naan. A kitchen essential!"</strong> - Priya S.',
                 packSizes: [
@@ -810,11 +820,25 @@
             if (document.getElementById('product-detail-subtitle')) document.getElementById('product-detail-subtitle').textContent = p.subtitle;
 
             const mainImgEl = document.getElementById('main-product-img');
+            const mainBoxEl = mainImgEl ? mainImgEl.closest('.detail-main-img-box') : null;
             if (mainImgEl) {
+                mainImgEl.classList.remove('shimmer-loaded');
+                if (mainBoxEl) mainBoxEl.classList.remove('shimmer-loaded');
+
                 mainImgEl.src = p.img;
                 mainImgEl.alt = p.title;
                 mainImgEl.style.objectFit = 'contain';
                 mainImgEl.style.mixBlendMode = 'normal';
+
+                if (mainImgEl.complete && mainImgEl.naturalWidth > 0) {
+                    mainImgEl.classList.add('shimmer-loaded');
+                    if (mainBoxEl) mainBoxEl.classList.add('shimmer-loaded');
+                } else {
+                    mainImgEl.onload = function () {
+                        mainImgEl.classList.add('shimmer-loaded');
+                        if (mainBoxEl) mainBoxEl.classList.add('shimmer-loaded');
+                    };
+                }
             }
 
             // Wishlist button on main image
@@ -998,6 +1022,24 @@
                         </div>
                     `;
                 }).join('');
+
+                // Initialize shimmer loader on related card images
+                if (window.initSkeletonShimmerLoaders) {
+                    window.initSkeletonShimmerLoaders();
+                } else {
+                    relatedGrid.querySelectorAll('.card-img').forEach(img => {
+                        const parent = img.closest('.card-img-wrapper');
+                        if (img.complete && img.naturalWidth > 0) {
+                            img.classList.add('shimmer-loaded');
+                            if (parent) parent.classList.add('shimmer-loaded');
+                        } else {
+                            img.addEventListener('load', function () {
+                                img.classList.add('shimmer-loaded');
+                                if (parent) parent.classList.add('shimmer-loaded');
+                            }, { once: true });
+                        }
+                    });
+                }
             }
         }
 

@@ -6,8 +6,10 @@
 const royalSpicesCatalog = [
     {
         id: 'lazeez-dum',
-        name: 'Lazeez - Dum - Biryani',
-        tagline: 'Secrets 40 spices • Royal Persian-Mughal blend for imperial dum biryani',
+        name: 'Hamsa Lazeez Dum Biryani Masala',
+        tagline: 'Secrets 40 spices • Authentic royal blend for creamy texture & deep aroma',
+        description: 'Bring home the authentic taste of royal kitchens with Hamsa Lazeez Dum Biryani Masala. Crafted carefully by Team Hamsa Centre, this rich blend is designed for a creamy, velvety texture and deep aroma. Infused with traditional Persian spices, it pairs wonderfully with mawa and pure desi ghee to give a melt-in-the-mouth experience. Perfect for chicken, mutton, or rich vegetable preparations, this cold stone-ground blend guarantees an unforgettable feast. 100% natural and pure authentic flavor.',
+        ingredients: 'Royal Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Black Peppercorns, Bay Leaf, Kashmiri Red Chilies, Mace, Dried Rose Petals, Saffron.',
         category: 'Royal Biryani Range',
         catKey: 'blended',
         price: 232,
@@ -20,8 +22,10 @@ const royalSpicesCatalog = [
     },
     {
         id: 'classic-biryani',
-        name: 'Original - Classic - Biryani',
-        tagline: 'Secret 36 spices • Authentic Behruz Persian Biryani masala crafted with pure saffron',
+        name: 'Hamsa Original Classic Biryani Masala',
+        tagline: 'Secret 36 spices • The Persian Biryani Tradition',
+        description: 'Bring home the authentic aroma of slow-cooked royal feasts with Hamsa Original Classic Biryani Masala. Crafted carefully by Team Hamsa Centre, this signature blend combines hand-picked spices, lightly roasted to seal in their natural fragrant oils. Designed for chicken, mutton, or vegetable biryani, it delivers a deeply flavorful, aromatic dum experience with every grain of rice. 100% natural, cold stone-ground, and packed with authentic spices.',
+        ingredients: 'Persian Saffron, Green Cardamom, Star Anise, Ceylon Cinnamon, Cloves, Bay Leaves, Nutmeg, Mace, Black Cumin (Shahi Jeera).',
         category: 'Royal Biryani Range',
         catKey: 'blended',
         price: 232,
@@ -76,8 +80,10 @@ const royalSpicesCatalog = [
     },
     {
         id: 'murg-lababdar',
-        name: 'Shabnami Murg Lababdar Gravy',
-        tagline: 'Secrets 58 spices • Royal Shabnami instant gravy blend for velvety tomato-cashew lababdar',
+        name: 'Hamsa Shabnami Murg Lababdar Instant Gravy Masala',
+        tagline: 'Secrets 58 spices • The Shahi Lababdar Tradition',
+        description: 'Bring home the authentic rich taste of royal feasts with Hamsa Shabnami Murg Lababdar Instant Gravy Masala. Specially blended by Team Hamsa Centre, this gravy base combines slow-roasted cashews, melon seeds, and fragrant whole spices to save hours of prep time. Simply simmer with butter or ghee and fresh cream for a velvety, aromatic gravy with chicken, paneer, eggs, or vegetables. 100% natural, cold stone-ground, with no artificial colors or synthetic fragrances.',
+        ingredients: 'Toasted Cashew Flour, Melon Seed Powder (Magaz), Kashmiri Red Chili, Roasted Garlic, Dried Kasuri Methi, Green Cardamom, Mace, Ceylon Cinnamon, Cloves, Turmeric, Sea Salt.',
         category: 'Royal Gravy Range',
         catKey: 'blended',
         price: 268,
@@ -660,10 +666,43 @@ function filterCatalogCategory(cat, el) {
 
 window.filterCatalogCategory = filterCatalogCategory;
 
+let searchDebounceTimer = null;
 function handleGlobalSearchInput(val) {
     const clearBtn = document.getElementById('global-search-clear');
     if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
-    renderLiveSearchResults(val.trim().toLowerCase());
+    const resultsContainer = document.getElementById('search-live-results');
+
+    if (resultsContainer && val.trim().length > 0) {
+        // Show royal dark skeleton shimmer placeholders while user types
+        resultsContainer.innerHTML = `
+            <div class="skeleton-search-item">
+                <div class="skeleton-search-thumb skeleton-shimmer-dark"></div>
+                <div class="skeleton-search-info">
+                    <div class="skeleton-line skeleton-search-title skeleton-shimmer-dark"></div>
+                    <div class="skeleton-line skeleton-search-desc skeleton-shimmer-dark"></div>
+                </div>
+            </div>
+            <div class="skeleton-search-item">
+                <div class="skeleton-search-thumb skeleton-shimmer-dark"></div>
+                <div class="skeleton-search-info">
+                    <div class="skeleton-line skeleton-search-title skeleton-shimmer-dark"></div>
+                    <div class="skeleton-line skeleton-search-desc skeleton-shimmer-dark"></div>
+                </div>
+            </div>
+            <div class="skeleton-search-item">
+                <div class="skeleton-search-thumb skeleton-shimmer-dark"></div>
+                <div class="skeleton-search-info">
+                    <div class="skeleton-line skeleton-search-title skeleton-shimmer-dark"></div>
+                    <div class="skeleton-line skeleton-search-desc skeleton-shimmer-dark"></div>
+                </div>
+            </div>
+        `;
+    }
+
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(() => {
+        renderLiveSearchResults(val.trim().toLowerCase());
+    }, 180);
 }
 
 function clearGlobalSearch() {
@@ -764,7 +803,7 @@ function openOrdersModal() {
                         <i class="fas fa-truck-fast"></i> ${ord.status}
                     </span>
                 </div>
-                <div style="display: flex; gap: 10px; align-items: center; border-top: 1px dashed rgba(15,44,36,0.1); border-bottom: 1px dashed rgba(15,44,36,0.1); padding: 8px 0;">
+                <div style="display: flex; gap: 10px; align-items: center; border-top: 1px dashed rgba(18, 52, 42,0.1); border-bottom: 1px dashed rgba(18, 52, 42,0.1); padding: 8px 0;">
                     ${ord.items && ord.items.length > 0 ? `
                         <img src="${ord.items[0].img}" alt="" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover;">
                         <div style="flex: 1;">
@@ -775,7 +814,7 @@ function openOrdersModal() {
                     <strong style="color: var(--color-dark-green);">${ord.total}</strong>
                 </div>
                 ${ord.deliveryOtp ? `
-                    <div style="background: rgba(15,44,36,0.05); border: 1px dashed var(--color-gold); border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+                    <div style="background: rgba(18, 52, 42,0.05); border: 1px dashed var(--color-gold); border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
                         <span style="font-size: 0.76rem; color: #555; display: flex; align-items: center; gap: 6px;">
                             <i class="fas fa-shield-halved" style="color: var(--color-gold);"></i> Secret Delivery OTP:
                         </span>
@@ -1283,12 +1322,12 @@ function ensureModalsInDOM() {
                     <div class="royal-modal-body">
                         
                         <div style="display: flex; gap: 8px;">
-                            <input type="text" id="track-order-id-input" placeholder="Enter Order ID (e.g. #PM-84920)" style="flex: 1; padding: 10px 14px; border: 1.5px solid rgba(15,44,36,0.2); border-radius: 8px; font-weight: 600; outline: none; background: #FFFFFF;">
+                            <input type="text" id="track-order-id-input" placeholder="Enter Order ID (e.g. #PM-84920)" style="flex: 1; padding: 10px 14px; border: 1.5px solid rgba(18, 52, 42,0.2); border-radius: 8px; font-weight: 600; outline: none; background: #FFFFFF;">
                             <button type="button" onclick="trackDeliveryById()" style="background: var(--color-dark-green); color: var(--color-gold); border: 1px solid var(--color-gold); border-radius: 8px; padding: 10px 18px; font-weight: 700; cursor: pointer;">
                                 TRACK
                             </button>
                         </div>
-                        <div style="background: #FFFFFF; border: 1px solid rgba(15,44,36,0.12); border-radius: 12px; padding: 14px; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="background: #FFFFFF; border: 1px solid rgba(18, 52, 42,0.12); border-radius: 12px; padding: 14px; display: flex; justify-content: space-between; align-items: center;">
                             <div>
                                 <span style="font-size: 0.75rem; color: #777;">Delhivery Waybill / AWB:</span>
                                 <div id="delhivery-waybill-no" style="font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--color-dark-green);">DLV928471029</div>
@@ -1377,13 +1416,13 @@ function ensureModalsInDOM() {
                             </p>
                         </div>
                         <div class="my-order-card" style="background: rgba(226, 182, 107, 0.08); border: 1px solid rgba(226, 182, 107, 0.3);">
-                            <h4 style="margin: 0 0 8px 0; color: #0F2C24;"><i class="fas fa-scale-balanced" style="color: #E2B66B;"></i> Legal &amp; Brand Policies</h4>
+                            <h4 style="margin: 0 0 8px 0; color: #12342A;"><i class="fas fa-scale-balanced" style="color: #E2B66B;"></i> Legal &amp; Brand Policies</h4>
                             <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                <a href="privacy.html" style="color: #0F2C24; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-shield-halved"></i> Privacy Policy</a>
+                                <a href="privacy.html" style="color: #12342A; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-shield-halved"></i> Privacy Policy</a>
                                 <span style="color: #999;">&bull;</span>
-                                <a href="terms.html" style="color: #0F2C24; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</a>
+                                <a href="terms.html" style="color: #12342A; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</a>
                                 <span style="color: #999;">&bull;</span>
-                                <a href="about.html" style="color: #0F2C24; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-crown"></i> About Us</a>
+                                <a href="about.html" style="color: #12342A; font-weight: 700; text-decoration: underline; font-size: 0.85rem;"><i class="fas fa-crown"></i> About Us</a>
                             </div>
                         </div>
                     </div>
@@ -1454,12 +1493,84 @@ function initIntroAnimation() {
 }
 
 // ==========================================================================
+// ROYAL SKELETON SHIMMER LOADER CONTROLLER
+// Matches Persian Luxury Theme (Cream, Gold & Velvety Emerald Shimmer)
+// ==========================================================================
+function initSkeletonShimmerLoaders() {
+    const images = document.querySelectorAll('.card-img, .detail-main-img, .spice-showcase-img, .search-result-thumb');
+
+    images.forEach(img => {
+        function markLoaded() {
+            img.classList.add('shimmer-loaded');
+            const wrapper = img.closest('.card-img-wrapper, .detail-main-img-box, .spice-showcase-container');
+            if (wrapper) {
+                wrapper.classList.add('shimmer-loaded');
+            }
+        }
+
+        if (img.complete && img.naturalWidth > 0) {
+            markLoaded();
+        } else {
+            img.addEventListener('load', markLoaded, { once: true });
+            img.addEventListener('error', markLoaded, { once: true });
+        }
+    });
+
+    // Failsafe timer: after 1800ms, reveal all images regardless of network delays
+    setTimeout(() => {
+        document.querySelectorAll('.card-img:not(.shimmer-loaded), .detail-main-img:not(.shimmer-loaded), .spice-showcase-img:not(.shimmer-loaded)').forEach(img => {
+            img.classList.add('shimmer-loaded');
+            const wrapper = img.closest('.card-img-wrapper, .detail-main-img-box, .spice-showcase-container');
+            if (wrapper) wrapper.classList.add('shimmer-loaded');
+        });
+    }, 1800);
+}
+
+// Global Skeleton test trigger for live preview & developer verification
+window.triggerSkeletonTest = function (durationMs = 2000) {
+    const skeletonGrid = document.getElementById('catalog-skeleton-grid');
+    const productGrid = document.getElementById('product-grid');
+    if (skeletonGrid && productGrid) {
+        skeletonGrid.style.display = 'grid';
+        productGrid.style.display = 'none';
+        setTimeout(() => {
+            skeletonGrid.style.display = 'none';
+            productGrid.style.display = 'grid';
+        }, durationMs);
+    }
+    document.querySelectorAll('.card-img-wrapper, .detail-main-img-box, .spice-showcase-container').forEach(el => {
+        el.classList.remove('shimmer-loaded');
+        setTimeout(() => el.classList.add('shimmer-loaded'), durationMs);
+    });
+    document.querySelectorAll('.card-img, .detail-main-img, .spice-showcase-img').forEach(img => {
+        img.classList.remove('shimmer-loaded');
+        setTimeout(() => img.classList.add('shimmer-loaded'), durationMs);
+    });
+};
+
+window.initSkeletonShimmerLoaders = initSkeletonShimmerLoaders;
+
+// ==========================================================================
 // DOM INITIALIZATIONS & BINDINGS
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 0. Initialize Intro Animation
+    // 0. Initialize Intro Animation & Skeleton Loaders
     initIntroAnimation();
+    initSkeletonShimmerLoaders();
+
+    // Ensure background videos (.heritage-bg-video, .home-bg-video) play smoothly
+    const bgVideos = document.querySelectorAll('.heritage-bg-video, .home-bg-video');
+    bgVideos.forEach(v => {
+        try {
+            v.muted = true;
+            v.defaultMuted = true;
+            v.playsInline = true;
+            if (v.paused) {
+                v.play().catch(() => {});
+            }
+        } catch (e) {}
+    });
 
     // 1. Ensure modal and drawer elements exist
     ensureModalsInDOM();
@@ -1588,10 +1699,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Apply initial filter
-        filterProducts();
+        // Apply initial filter with smooth skeleton reveal
+        const skeletonGrid = document.getElementById('catalog-skeleton-grid');
+        if (skeletonGrid) {
+            skeletonGrid.style.display = 'grid';
+            productGrid.style.display = 'none';
+            setTimeout(() => {
+                filterProducts();
+                skeletonGrid.style.display = 'none';
+                productGrid.style.display = 'grid';
+                initSkeletonShimmerLoaders();
+            }, 300);
+        } else {
+            filterProducts();
+            initSkeletonShimmerLoaders();
+        }
 
-        // Expose global category filter handler
+        // Expose global category filter handler with skeleton transition
         window.filterCatalogCategory = function (cat, el) {
             activeCategory = cat || 'all';
             const pills = document.querySelectorAll('.filter-pill');
@@ -1604,7 +1728,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            filterProducts();
+            const skeleton = document.getElementById('catalog-skeleton-grid');
+            if (skeleton) {
+                skeleton.style.display = 'grid';
+                productGrid.style.display = 'none';
+                setTimeout(() => {
+                    filterProducts();
+                    skeleton.style.display = 'none';
+                    productGrid.style.display = 'grid';
+                    initSkeletonShimmerLoaders();
+                }, 220);
+            } else {
+                filterProducts();
+            }
         };
 
         // Category Pills Click event listeners
@@ -1637,7 +1773,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Sort Select
+        // Sort Select with skeleton transition
         if (sortSelect) {
             sortSelect.addEventListener('change', (e) => {
                 const sortType = e.target.value;
@@ -1655,7 +1791,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     return 0;
                 });
 
-                cards.forEach(card => productGrid.appendChild(card));
+                const skeleton = document.getElementById('catalog-skeleton-grid');
+                if (skeleton) {
+                    skeleton.style.display = 'grid';
+                    productGrid.style.display = 'none';
+                    setTimeout(() => {
+                        cards.forEach(card => productGrid.appendChild(card));
+                        skeleton.style.display = 'none';
+                        productGrid.style.display = 'grid';
+                        initSkeletonShimmerLoaders();
+                    }, 220);
+                } else {
+                    cards.forEach(card => productGrid.appendChild(card));
+                }
             });
         }
     }
