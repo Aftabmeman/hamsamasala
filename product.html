@@ -161,7 +161,7 @@
             <nav class="breadcrumbs">
                 <a href="index.html">Home</a>
                 <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
-                <a href="spices.html">All Masalas</a>
+                <a href="spices.html" id="breadcrumb-category-link">All Masalas</a>
                 <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
                 <span class="current" id="breadcrumb-current">Loading...</span>
             </nav>
@@ -210,7 +210,7 @@
                     </div>
 
                     <!-- 4 Feature Badges -->
-                    <div class="feature-badges-grid">
+                    <div class="feature-badges-grid" id="feature-badges-grid">
                         <div class="feature-badge-box">
                             <i class="fas fa-leaf"></i>
                             <span>100% Natural</span>
@@ -231,7 +231,7 @@
 
                     <!-- Pack Size Selector -->
                     <div class="size-selector-section">
-                        <label class="selector-label">Pack Size</label>
+                        <label class="selector-label" id="size-selector-label">Pack Size</label>
                         <div class="pack-sizes-row">
                             <!-- Dynamically populated by JS -->
                         </div>
@@ -278,7 +278,7 @@
                     </div>
 
                     <!-- Trust Policies Bar -->
-                    <div class="trust-policies-bar">
+                    <div class="trust-policies-bar" id="trust-policies-bar">
                         <div class="policy-item">
                             <i class="fas fa-box-open"></i>
                             <div class="policy-text">
@@ -324,7 +324,7 @@
 
                     <div class="story-right">
                         <div class="flavor-profile-card">
-                            <div class="card-subtitle-motif">FLAVOR PROFILE</div>
+                            <div class="card-subtitle-motif" id="flavor-profile-title">FLAVOR PROFILE</div>
                             <div class="flavor-icons-row">
                                 <!-- Populated dynamically -->
                             </div>
@@ -346,7 +346,7 @@
                 <div class="tabs-nav">
                     <button class="tab-btn active" onclick="switchTab('desc', this)">Description</button>
                     <button class="tab-btn" onclick="switchTab('ingredients', this)">Ingredients</button>
-                    <button class="tab-btn" onclick="switchTab('how-to-use', this)">How to Use</button>
+                    <button class="tab-btn" id="how-to-use-tab-btn" onclick="switchTab('how-to-use', this)">How to Use</button>
                     <button class="tab-btn" id="reviews-tab-btn" onclick="switchTab('reviews', this)">Reviews</button>
                     <button class="tab-btn" onclick="switchTab('faqs', this)">FAQs</button>
                 </div>
@@ -846,11 +846,89 @@
             localStorage.setItem('hamsa_selected_product_id', prodId);
 
             const p = productData[prodId];
+            const isBeverage = prodId === 'destiny-queen-mojito';
+            const isSweet = prodId === 'ruz-bi-haleebia';
             document.title = `${p.title} | Hamsa Masala`;
 
+            const breadcrumbCatEl = document.getElementById('breadcrumb-category-link');
+            if (breadcrumbCatEl) {
+                breadcrumbCatEl.textContent = isBeverage ? 'Royal Beverages' : (isSweet ? 'Gourmet Sweets' : 'All Masalas');
+            }
             if (document.getElementById('breadcrumb-current')) document.getElementById('breadcrumb-current').textContent = p.title;
             if (document.getElementById('product-detail-title')) document.getElementById('product-detail-title').textContent = p.title;
             if (document.getElementById('product-detail-subtitle')) document.getElementById('product-detail-subtitle').textContent = p.subtitle;
+
+            // Dynamic 4 Feature Badges (Juice vs Sweet vs Masala)
+            const badgesGridEl = document.getElementById('feature-badges-grid');
+            if (badgesGridEl) {
+                if (isBeverage) {
+                    badgesGridEl.innerHTML = `
+                        <div class="feature-badge-box"><i class="fas fa-champagne-glasses"></i><span>Non-Alcoholic</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-leaf"></i><span>Real Mulberry &amp; Mint</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-snowflake"></i><span>Serve Chilled</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-award"></i><span>Premium Quality</span></div>
+                    `;
+                } else if (isSweet) {
+                    badgesGridEl.innerHTML = `
+                        <div class="feature-badge-box"><i class="fas fa-leaf"></i><span>100% Natural</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-crown"></i><span>Saffron &amp; Rosewater</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-award"></i><span>Premium Quality</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-heart"></i><span>Authentic Recipe</span></div>
+                    `;
+                } else {
+                    badgesGridEl.innerHTML = `
+                        <div class="feature-badge-box"><i class="fas fa-leaf"></i><span>100% Natural</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-mortar-pestle"></i><span>Cold Stone-Ground</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-award"></i><span>Premium Quality</span></div>
+                        <div class="feature-badge-box"><i class="fas fa-wind"></i><span>Rich Aroma</span></div>
+                    `;
+                }
+            }
+
+            // Pack / Bottle Size Label
+            const sizeLabelEl = document.getElementById('size-selector-label');
+            if (sizeLabelEl) {
+                sizeLabelEl.textContent = isBeverage ? 'Bottle Size' : 'Pack Size';
+            }
+
+            // Dynamic Trust Policies Bar (Juice vs Sweet vs Masala)
+            const trustBarEl = document.getElementById('trust-policies-bar');
+            if (trustBarEl) {
+                const firstPolicyIcon = isBeverage ? 'fa-wine-bottle' : 'fa-box-open';
+                const firstPolicyTitle = isBeverage ? 'Fizz-Lock Bottle' : (isSweet ? 'Freshness Seal Pack' : 'Aroma-Lock Pouch');
+                const firstPolicyDesc = isBeverage ? 'Sparkling freshness seal' : 'Maximum freshness seal';
+                const thirdPolicyDesc = isBeverage ? 'Cured royal beverage' : (isSweet ? 'Traditional royal recipe' : 'Handcrafted royal spices');
+                trustBarEl.innerHTML = `
+                    <div class="policy-item">
+                        <i class="fas ${firstPolicyIcon}"></i>
+                        <div class="policy-text">
+                            <h5>${firstPolicyTitle}</h5>
+                            <p>${firstPolicyDesc}</p>
+                        </div>
+                    </div>
+                    <div class="policy-item">
+                        <i class="fas fa-shield-halved"></i>
+                        <div class="policy-text">
+                            <h5>Secure Payment</h5>
+                            <p>UPI, Cards, COD</p>
+                        </div>
+                    </div>
+                    <div class="policy-item">
+                        <i class="fas fa-certificate"></i>
+                        <div class="policy-text">
+                            <h5>100% Authentic</h5>
+                            <p>${thirdPolicyDesc}</p>
+                        </div>
+                    </div>
+                    <div class="policy-item">
+                        <i class="fas fa-headset"></i>
+                        <div class="policy-text">
+                            <h5>24/7 Support</h5>
+                            <p>We're here to help</p>
+                        </div>
+                    </div>
+                `;
+            }
 
             const mainImgEl = document.getElementById('main-product-img');
             const mainBoxEl = mainImgEl ? mainImgEl.closest('.detail-main-img-box') : null;
@@ -933,10 +1011,16 @@
             }
 
             // Flavor notes
+            const flavorTitleEl = document.getElementById('flavor-profile-title');
+            if (flavorTitleEl) {
+                flavorTitleEl.textContent = isBeverage ? 'TASTING NOTES' : 'FLAVOR PROFILE';
+            }
             if (p.flavorNotes && p.flavorNotes.length > 0) {
                 const flavorIconsRow = document.querySelector('.flavor-icons-row');
                 if (flavorIconsRow) {
-                    const icons = ['fa-spray-can-sparkles', 'fa-fire-flame-curved', 'fa-gem', 'fa-scale-balanced'];
+                    const icons = isBeverage
+                        ? ['fa-droplet', 'fa-leaf', 'fa-lemon', 'fa-champagne-glasses']
+                        : ['fa-spray-can-sparkles', 'fa-fire-flame-curved', 'fa-gem', 'fa-scale-balanced'];
                     flavorIconsRow.innerHTML = p.flavorNotes.map((note, idx) => `
                         <div class="flavor-icon-item">
                             <i class="fas ${icons[idx % icons.length]}"></i>
@@ -953,6 +1037,11 @@
             }
 
             // Tabs
+            const howToUseBtn = document.getElementById('how-to-use-tab-btn');
+            if (howToUseBtn) {
+                howToUseBtn.textContent = isBeverage ? 'How to Serve' : 'How to Use';
+            }
+
             const tabDescEl = document.getElementById('tab-desc');
             if (tabDescEl && p.tabDesc) tabDescEl.innerHTML = `<p>${p.tabDesc}</p>`;
 
@@ -961,6 +1050,62 @@
 
             const tabHowEl = document.getElementById('tab-how-to-use');
             if (tabHowEl && p.tabHowToUse) tabHowEl.innerHTML = `<p>${p.tabHowToUse}</p>`;
+
+            const tabFaqsEl = document.getElementById('tab-faqs');
+            if (tabFaqsEl) {
+                if (isBeverage) {
+                    tabFaqsEl.innerHTML = `
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> Is Destiny Queen Mulberry Mojito non-alcoholic?</h4>
+                                <p class="faq-a">Yes! Destiny Queen Mulberry Mojito is 100% non-alcoholic (0.0% ABV), crafted with real black mulberries, fresh garden mint, and crisp lemon for everyone to enjoy.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> How should it be served for the best taste?</h4>
+                                <p class="faq-a">Serve well-chilled at 4°C–6°C in crystal flutes or tall glasses. Gently tilt before opening without shaking, and garnish with fresh mint leaves or ice if desired.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> How should I store the bottle before and after opening?</h4>
+                                <p class="faq-a">Store unopened bottles in a cool, dark place away from direct heat or sunlight. Once opened, tightly reseal the cap, keep refrigerated, and consume within 2–3 days for peak fizz and flavor.</p>
+                            </div>
+                        </div>
+                    `;
+                } else if (isSweet) {
+                    tabFaqsEl.innerHTML = `
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> What is the shelf life of Ruz-Bi-Haleebia?</h4>
+                                <p class="faq-a">12 months from the packaging date when stored in a cool, dry place away from direct sunlight.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> Are there any artificial preservatives or colors?</h4>
+                                <p class="faq-a">No. It is made in small batches with pure saffron, fragrant cardamom, and traditional ingredients with zero artificial colors or chemical preservatives.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> How should I store it after opening?</h4>
+                                <p class="faq-a">Seal the pack tightly or transfer to an airtight container in a cool, dry place to keep its delicate saffron and rosewater fragrance fresh.</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    tabFaqsEl.innerHTML = `
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> What is the shelf life?</h4>
+                                <p class="faq-a">12 months from the packaging date when stored in an airtight container in a cool, dry place away from direct sunlight.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> Are there any artificial preservatives or added MSG?</h4>
+                                <p class="faq-a">No. All Hamsa Masala blends are 100% natural, handmade in small batches, and strictly free from artificial colors, chemical preservatives, or MSG.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4 class="faq-q"><i class="fas fa-circle-question"></i> How should I store the spices after opening?</h4>
+                                <p class="faq-a">Keep the blend in its resealable freshness pouch or transfer to an airtight glass container to preserve the volatile essential oils and royal aroma.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
 
             const tabReviewsEl = document.getElementById('tab-reviews');
             if (tabReviewsEl && p.tabReviews) {

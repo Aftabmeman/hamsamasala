@@ -749,7 +749,9 @@ function renderLiveSearchResults(q) {
         matched = royalSpicesCatalog.filter(s =>
             s.name.toLowerCase().includes(q) ||
             s.tagline.toLowerCase().includes(q) ||
-            s.category.toLowerCase().includes(q)
+            s.category.toLowerCase().includes(q) ||
+            (s.description && s.description.toLowerCase().includes(q)) ||
+            (s.id === 'destiny-queen-mojito' && q.includes('juice'))
         );
     }
 
@@ -976,7 +978,7 @@ function openWishlistModal() {
                             <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-dark-green);">₹${s.price}</span>
                         </div>
                         <div style="display: flex; gap: 8px;">
-                            <button type="button" onclick="addToCart('${s.name}', ${s.price}, '${s.img}', 1, '100g'); closeWishlistModal(); openCartDrawer();" style="background: var(--color-dark-green); color: var(--color-gold); border: 1px solid var(--color-gold); border-radius: 8px; padding: 8px 12px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
+                            <button type="button" onclick="addToCart('${s.name}', ${s.price}, '${s.img}', 1, '${s.weight || '100g'}'); closeWishlistModal(); openCartDrawer();" style="background: var(--color-dark-green); color: var(--color-gold); border: 1px solid var(--color-gold); border-radius: 8px; padding: 8px 12px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
                                 ADD TO BAG
                             </button>
                             <button type="button" onclick="toggleWishlist(null, '${s.id}'); openWishlistModal();" style="background: none; border: 1px solid #CCC; border-radius: 8px; padding: 8px 10px; color: #888; cursor: pointer;">
@@ -1214,7 +1216,7 @@ function ensureModalsInDOM() {
                             </a>
                             <a href="spices.html?cat=royal" class="menu-nav-item">
                                 <i class="fas fa-gem"></i>
-                                <span class="menu-nav-title">Gourmet Sweets &amp; Saffron</span>
+                                <span class="menu-nav-title">Gourmet Sweets &amp; Beverages</span>
                                 <i class="fas fa-chevron-right menu-nav-chevron"></i>
                             </a>
                         </div>
