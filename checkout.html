@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Base Styles -->
-    <link rel="stylesheet" href="style.css?v=30">
+    <link rel="stylesheet" href="style.css?v=32">
     <!-- Catalog Styles -->
-    <link rel="stylesheet" href="catalog.css?v=30">
+    <link rel="stylesheet" href="catalog.css?v=32">
 
     <style>
         /* ==========================================================================
@@ -40,15 +40,20 @@
             --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Full Page Background Reset */
+        /* Global Box-Sizing & Full Page Viewport Containment */
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+        }
+
         html, body {
             background-color: var(--roy-bg) !important;
             color: var(--roy-text-ivory) !important;
             font-family: var(--font-body) !important;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -58,8 +63,9 @@
             top: 0 !important;
             left: 0 !important;
             width: 100% !important;
-            height: 90px !important;
-            background: rgba(7, 24, 19, 0.94) !important;
+            max-width: 100vw !important;
+            height: 82px !important;
+            background: rgba(7, 24, 19, 0.96) !important;
             backdrop-filter: blur(14px) !important;
             -webkit-backdrop-filter: blur(14px) !important;
             border-bottom: 1px solid rgba(226, 182, 107, 0.22) !important;
@@ -67,14 +73,40 @@
             display: flex !important;
             align-items: center !important;
             justify-content: space-between !important;
+            gap: 10px !important;
             padding: 0 4% !important;
             box-sizing: border-box !important;
         }
 
+        .top-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            flex-shrink: 0;
+        }
+
         .top-header .brand-logo-img {
-            height: 64px !important;
+            height: 58px !important;
             width: auto;
+            max-width: 120px;
+            object-fit: contain;
             filter: drop-shadow(0 2px 8px rgba(226, 182, 107, 0.3));
+        }
+
+        .secure-checkout-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--roy-gold);
+            font-size: 0.82rem;
+            font-weight: 700;
+            background: rgba(226, 182, 107, 0.14);
+            padding: 7px 13px;
+            border-radius: 20px;
+            border: 1px solid var(--roy-gold-border);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .header-nav a {
@@ -92,13 +124,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
             border-radius: 50%;
             background: rgba(226, 182, 107, 0.1);
             border: 1px solid var(--roy-gold-border);
             color: var(--roy-gold);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             transition: all 0.25s ease;
             text-decoration: none;
         }
@@ -110,8 +143,11 @@
 
         /* Main Checkout Wrapper with Proper Top Clearance */
         .checkout-wrapper {
-            padding-top: 120px !important;
-            padding-bottom: 80px !important;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            padding-top: 110px !important;
+            padding-bottom: 70px !important;
             min-height: 100vh;
             background: radial-gradient(circle at 50% 15%, rgba(226, 182, 107, 0.08) 0%, transparent 65%),
                         linear-gradient(180deg, #071813 0%, #092019 40%, #071813 100%) !important;
@@ -119,6 +155,7 @@
         }
 
         .checkout-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -127,50 +164,65 @@
 
         /* Checkout Header Bar */
         .checkout-header-bar {
-            margin-bottom: 32px;
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 28px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            padding-bottom: 22px;
+            gap: 14px;
+            padding-bottom: 20px;
             border-bottom: 1.5px solid var(--roy-gold-border);
+        }
+
+        .checkout-page-title-group {
+            min-width: 0;
+            max-width: 100%;
         }
 
         .checkout-page-title-group h1 {
             font-family: var(--font-heading);
-            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-size: clamp(1.5rem, 4vw, 2.4rem);
             color: var(--roy-gold);
             margin: 0 0 6px 0;
             font-weight: 800;
             letter-spacing: 0.5px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .checkout-page-title-group p {
             margin: 0;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--roy-text-muted);
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .checkout-steps-indicator {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
+            max-width: 100%;
             background: var(--roy-bg-card);
-            padding: 8px 18px;
+            padding: 8px 14px;
             border-radius: 30px;
             border: 1px solid var(--roy-gold-border);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
         }
 
         .checkout-step {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--roy-text-muted);
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+            white-space: nowrap;
         }
 
         .checkout-step.done {
@@ -181,28 +233,41 @@
             color: var(--roy-gold);
             font-weight: 700;
             background: rgba(226, 182, 107, 0.18);
-            padding: 4px 14px;
+            padding: 4px 11px;
             border-radius: 20px;
             border: 1px solid rgba(226, 182, 107, 0.35);
         }
 
-        /* Two-Column Responsive Layout */
+        /* Two-Column Responsive Layout — minmax(0, 1fr) prevents Grid blowout */
         .checkout-main-grid {
             display: grid;
-            grid-template-columns: 1.45fr 1fr;
-            gap: 32px;
+            grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+            gap: 28px;
             align-items: start;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .checkout-left-col,
+        .checkout-right-col {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
         }
 
         /* Left Column Section Cards */
         .checkout-section-card {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
             background: var(--roy-bg-card);
-            border-radius: 22px;
+            border-radius: 20px;
             border: 1.5px solid var(--roy-gold-border);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-            padding: 30px 28px;
-            margin-bottom: 28px;
+            padding: 26px 24px;
+            margin-bottom: 24px;
             box-sizing: border-box;
+            overflow: hidden;
             transition: border-color 0.25s ease;
         }
 
@@ -213,16 +278,20 @@
         .checkout-card-header {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
+            gap: 12px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
             border-bottom: 1px dashed rgba(226, 182, 107, 0.2);
         }
 
         /* Beautiful Circular Gold Step Badge (Never Floating!) */
         .card-step-badge {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
             background: linear-gradient(135deg, var(--roy-gold) 0%, var(--roy-gold-dark) 100%);
             color: #071813 !important;
             border-radius: 50%;
@@ -230,26 +299,33 @@
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.05rem;
+            font-size: 1rem;
             flex-shrink: 0;
             box-shadow: 0 4px 14px rgba(226, 182, 107, 0.35);
         }
 
         .checkout-card-title {
             font-family: var(--font-heading);
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             color: var(--roy-text-ivory);
             margin: 0;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
+            flex: 1;
+            min-width: 0;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            line-height: 1.3;
         }
 
         /* Address Form Grid */
         .address-form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px 16px;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 16px 14px;
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
             box-sizing: border-box;
         }
 
@@ -258,6 +334,8 @@
             flex-direction: column;
             gap: 7px;
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
             box-sizing: border-box;
         }
 
@@ -266,21 +344,25 @@
         }
 
         .form-field label {
-            font-size: 0.84rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--roy-gold);
             letter-spacing: 0.4px;
             text-transform: uppercase;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
-        .form-field input[type="text"],
-        .form-field input[type="tel"] {
+        .form-field > input[type="text"],
+        .form-field > input[type="tel"] {
             width: 100% !important;
-            padding: 13px 16px !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            padding: 12px 14px !important;
             background: var(--roy-bg-input) !important;
             border: 1.5px solid var(--roy-gold-border) !important;
             border-radius: 12px !important;
-            font-size: 0.95rem !important;
+            font-size: 0.94rem !important;
             color: var(--roy-text-ivory) !important;
             outline: none !important;
             box-sizing: border-box !important;
@@ -292,47 +374,59 @@
             color: #6D7F77 !important;
         }
 
-        .form-field input:focus {
+        .form-field > input:focus {
             background: #0B221B !important;
             border-color: var(--roy-gold) !important;
             box-shadow: 0 0 0 3px var(--roy-gold-glow) !important;
         }
 
-        /* Integrated Phone Input */
+        /* Integrated Phone Input (+91 Prefix + 10-Digit Mobile Number) */
         .phone-input-group {
-            display: flex;
-            align-items: stretch;
-            background: var(--roy-bg-input);
-            border: 1.5px solid var(--roy-gold-border);
-            border-radius: 12px;
-            overflow: hidden;
+            display: flex !important;
+            align-items: stretch !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            background: var(--roy-bg-input) !important;
+            border: 1.5px solid var(--roy-gold-border) !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
             transition: all 0.25s ease;
         }
 
         .phone-input-group:focus-within {
-            border-color: var(--roy-gold);
-            box-shadow: 0 0 0 3px var(--roy-gold-glow);
-            background: #0B221B;
+            border-color: var(--roy-gold) !important;
+            box-shadow: 0 0 0 3px var(--roy-gold-glow) !important;
+            background: #0B221B !important;
         }
 
         .phone-input-prefix {
-            padding: 13px 16px;
-            background: rgba(226, 182, 107, 0.12);
-            color: var(--roy-gold);
-            font-weight: 700;
-            border-right: 1.5px solid var(--roy-gold-border);
-            font-size: 0.92rem;
-            display: flex;
-            align-items: center;
+            width: 56px !important;
+            min-width: 56px !important;
+            flex-shrink: 0 !important;
+            padding: 0 !important;
+            background: rgba(226, 182, 107, 0.12) !important;
+            color: var(--roy-gold) !important;
+            font-weight: 700 !important;
+            border-right: 1.5px solid var(--roy-gold-border) !important;
+            font-size: 0.9rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
 
+        .form-field .phone-input-group input[type="tel"],
         .phone-input-group input {
             border: none !important;
+            border-radius: 0 !important;
             background: transparent !important;
-            flex: 1 !important;
-            padding: 13px 16px !important;
+            flex: 1 1 0% !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            padding: 12px 12px !important;
             color: var(--roy-text-ivory) !important;
-            font-size: 0.95rem !important;
+            font-size: 0.94rem !important;
             outline: none !important;
             box-shadow: none !important;
         }
@@ -385,17 +479,24 @@
         .payment-methods-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
         }
 
         .payment-method-item {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
             background: var(--roy-bg-input);
             border: 1.5px solid var(--roy-gold-border);
             border-radius: 16px;
-            padding: 18px 20px;
+            padding: 16px 18px;
             cursor: pointer;
             transition: all 0.25s ease;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .payment-method-item:hover {
@@ -412,36 +513,48 @@
         .payment-method-header {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
         }
 
         .payment-method-radio {
             accent-color: var(--roy-gold);
             width: 18px;
             height: 18px;
+            flex-shrink: 0;
             cursor: pointer;
         }
 
         .payment-method-title {
             font-weight: 700;
-            font-size: 0.98rem;
+            font-size: 0.94rem;
             color: var(--roy-text-ivory);
-            flex: 1;
+            flex: 1 1 0%;
+            min-width: 0;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            line-height: 1.35;
             cursor: pointer;
         }
 
         .payment-badges {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: var(--roy-gold);
-            font-size: 1.25rem;
+            font-size: 1.15rem;
+            flex-shrink: 0;
         }
 
         .payment-subpanel {
             display: none;
-            margin-top: 16px;
-            padding-top: 16px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin-top: 14px;
+            padding-top: 14px;
             border-top: 1px dashed rgba(226, 182, 107, 0.25);
             animation: fadeInSubpanel 0.25s ease forwards;
         }
@@ -457,6 +570,9 @@
 
         .payment-subpanel input,
         .payment-subpanel select {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
             background: #071510 !important;
             border: 1.5px solid var(--roy-gold-border) !important;
             border-radius: 10px !important;
@@ -473,56 +589,135 @@
             box-shadow: 0 0 0 3px var(--roy-gold-glow) !important;
         }
 
+        .upi-verify-row {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        .upi-verify-row input {
+            flex: 1 1 0% !important;
+            min-width: 0 !important;
+            width: 100% !important;
+            padding: 11px 12px !important;
+        }
+
+        .upi-verify-row button {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--roy-gold), var(--roy-gold-dark));
+            color: #071813;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 15px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        /* Cancellation, Return & Refund Policy Card */
+        .checkout-policy-card {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .checkout-policy-list {
+            margin: 0;
+            padding-left: 18px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            color: var(--roy-text-ivory);
+            font-size: 0.85rem;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+            box-sizing: border-box;
+        }
+
+        .checkout-policy-list li {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
         /* Right Column: Order Summary Card (Sticky) */
         .checkout-right-col {
             position: sticky;
-            top: 115px;
+            top: 105px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
         }
 
         .order-summary-card {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
             background: var(--roy-bg-card);
-            border-radius: 22px;
+            border-radius: 20px;
             border: 1.5px solid var(--roy-gold-border);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            padding: 28px 24px;
+            padding: 26px 22px;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .order-summary-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 18px;
             padding-bottom: 14px;
             border-bottom: 1.5px solid var(--roy-gold-border);
+            min-width: 0;
         }
 
         .order-summary-header h3 {
             font-family: var(--font-heading);
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             color: var(--roy-gold);
             margin: 0;
             font-weight: 700;
+            min-width: 0;
+            overflow-wrap: break-word;
         }
 
         .order-summary-count {
-            font-size: 0.84rem;
+            font-size: 0.8rem;
             color: var(--roy-text-muted);
             font-weight: 700;
             background: rgba(226, 182, 107, 0.15);
-            padding: 4px 12px;
+            padding: 4px 11px;
             border-radius: 14px;
             border: 1px solid rgba(226, 182, 107, 0.25);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .order-items-scroll {
             max-height: 270px;
             overflow-y: auto;
-            margin-bottom: 20px;
-            padding-right: 6px;
+            overflow-x: hidden;
+            margin-bottom: 18px;
+            padding-right: 4px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
         }
 
         .order-items-scroll::-webkit-scrollbar {
@@ -535,17 +730,20 @@
 
         .checkout-item-row {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
             background: var(--roy-bg-input);
-            padding: 10px 14px;
+            padding: 10px 12px;
             border-radius: 14px;
             border: 1px solid rgba(226, 182, 107, 0.2);
         }
 
         .checkout-item-img {
-            width: 52px;
-            height: 52px;
+            width: 48px;
+            height: 48px;
             object-fit: cover;
             border-radius: 10px;
             border: 1px solid rgba(226, 182, 107, 0.4);
@@ -554,13 +752,13 @@
         }
 
         .checkout-item-details {
-            flex: 1;
+            flex: 1 1 0%;
             min-width: 0;
         }
 
         .checkout-item-title {
             margin: 0 0 3px 0;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: var(--roy-text-ivory);
             font-weight: 600;
             white-space: nowrap;
@@ -569,43 +767,50 @@
         }
 
         .checkout-item-meta {
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: var(--roy-text-muted);
         }
 
         .checkout-item-price {
             color: var(--roy-gold);
-            font-size: 1rem;
+            font-size: 0.96rem;
             font-weight: 800;
+            flex-shrink: 0;
         }
 
         /* Coupon Code Group */
         .coupon-input-group {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
             margin-bottom: 18px;
         }
 
         .coupon-input-group input {
-            flex: 1;
-            padding: 11px 14px;
+            flex: 1 1 0% !important;
+            min-width: 0 !important;
+            width: 100% !important;
+            padding: 11px 12px;
             background: var(--roy-bg-input);
             border: 1.5px solid var(--roy-gold-border);
             border-radius: 10px;
             color: var(--roy-text-ivory);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             outline: none;
             text-transform: uppercase;
         }
 
         .coupon-input-group button {
+            flex-shrink: 0;
             background: linear-gradient(135deg, var(--roy-gold) 0%, var(--roy-gold-dark) 100%);
             color: #071813;
             border: none;
             border-radius: 10px;
-            padding: 11px 18px;
+            padding: 11px 16px;
             font-weight: 800;
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -648,20 +853,26 @@
         /* Primary Place Order Button */
         .place-order-btn {
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
             background: linear-gradient(135deg, var(--roy-gold) 0%, #D4A35B 50%, var(--roy-gold-dark) 100%);
             color: #071813 !important;
             border: none;
             border-radius: 14px;
-            padding: 16px 20px;
+            padding: 15px 16px;
             font-family: var(--font-heading);
-            font-size: 1.08rem;
+            font-size: 0.98rem;
             font-weight: 800;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
             cursor: pointer;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            text-align: center;
+            gap: 8px;
+            line-height: 1.35;
+            white-space: normal;
             box-shadow: 0 8px 25px rgba(226, 182, 107, 0.35);
             transition: all 0.25s ease;
         }
@@ -1154,39 +1365,131 @@
         /* Responsive Breakpoints */
         @media (max-width: 992px) {
             .checkout-main-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
+                grid-template-columns: minmax(0, 1fr);
+                gap: 20px;
             }
             .checkout-right-col {
                 position: static;
             }
             .checkout-wrapper {
-                padding-top: 105px !important;
+                padding-top: 96px !important;
+                padding-bottom: 50px !important;
+            }
+            .header-nav {
+                display: none !important;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
+            .top-header {
+                height: 68px !important;
+                padding: 0 12px !important;
+                gap: 8px !important;
+            }
+            .top-header-left {
+                gap: 8px;
+            }
+            .back-btn {
+                width: 34px !important;
+                height: 34px !important;
+                font-size: 0.95rem !important;
+            }
+            .top-header .brand-logo-img {
+                height: 44px !important;
+                max-width: 96px !important;
+            }
+            .secure-checkout-pill {
+                font-size: 0.72rem !important;
+                padding: 6px 10px !important;
+                gap: 5px !important;
+            }
+            .checkout-wrapper {
+                padding-top: 82px !important;
+                padding-bottom: 40px !important;
+            }
+            .checkout-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 12px 14px !important;
+                margin: 0 auto !important;
+            }
             .address-form-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr) !important;
+                gap: 14px !important;
             }
-            .checkout-section-card {
-                padding: 22px 16px;
+            .checkout-section-card,
+            .order-summary-card,
+            .checkout-policy-card {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 18px 15px !important;
+                margin-bottom: 18px !important;
+                border-radius: 16px !important;
             }
-            .order-summary-card {
-                padding: 22px 16px;
+            .checkout-card-header {
+                gap: 10px !important;
+                margin-bottom: 14px !important;
+                padding-bottom: 12px !important;
+                align-items: flex-start !important;
+            }
+            .checkout-card-title {
+                font-size: 1.05rem !important;
+                line-height: 1.35 !important;
+            }
+            .checkout-policy-list {
+                padding-left: 16px !important;
+                font-size: 0.82rem !important;
+                line-height: 1.58 !important;
             }
             .checkout-header-bar {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 12px;
+                margin-bottom: 20px;
+                padding-bottom: 16px;
             }
             .checkout-steps-indicator {
                 width: 100%;
-                justify-content: space-around;
-                padding: 8px 10px;
+                justify-content: space-between;
+                padding: 7px 10px;
+                gap: 4px;
                 box-sizing: border-box;
             }
             .checkout-step {
-                font-size: 0.74rem;
+                font-size: 0.71rem;
+                gap: 4px;
+            }
+            .checkout-step.active {
+                padding: 3px 8px;
+            }
+            .payment-method-item {
+                padding: 14px 12px !important;
+            }
+            .payment-method-header {
+                gap: 10px;
+            }
+            .payment-method-title {
+                font-size: 0.86rem;
+            }
+            .payment-badges {
+                font-size: 1rem;
+                gap: 6px;
+            }
+            .upi-verify-row {
+                flex-direction: column;
+            }
+            .upi-verify-row button {
+                width: 100%;
+                padding: 11px;
+            }
+            .order-success-card {
+                border-radius: 18px !important;
+            }
+            .order-success-header {
+                padding: 22px 16px 18px 16px !important;
+            }
+            .order-success-body {
+                padding: 16px 14px !important;
             }
         }
     </style>
@@ -1195,7 +1498,7 @@
 
     <!-- Sticky Royal Header -->
     <header class="top-header">
-        <div style="display: flex; align-items: center; gap: 14px;">
+        <div class="top-header-left">
             <a href="javascript:history.back()" class="back-btn" aria-label="Go Back">
                 <i class="fas fa-arrow-left"></i>
             </a>
@@ -1211,10 +1514,8 @@
             <a href="about.html">About</a>
         </nav>
 
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; color: var(--roy-gold); font-size: 0.85rem; font-weight: 700; background: rgba(226,182,107,0.14); padding: 8px 14px; border-radius: 20px; border: 1px solid var(--roy-gold-border);">
-                <i class="fas fa-shield-halved"></i> 100% Secure Checkout
-            </div>
+        <div class="secure-checkout-pill">
+            <i class="fas fa-shield-halved"></i> <span>100% Secure Checkout</span>
         </div>
     </header>
 
@@ -1336,9 +1637,9 @@
                                     <p style="font-size: 0.85rem; color: var(--roy-text-muted); margin-bottom: 10px;">
                                         Enter your UPI ID (VPA) or scan QR code on the next screen:
                                     </p>
-                                    <div style="display: flex; gap: 10px;">
-                                        <input type="text" id="upi-vpa-input" placeholder="e.g. mobile@upi / username@okhdfcbank" style="flex: 1; padding: 12px 14px;">
-                                        <button type="button" style="background: linear-gradient(135deg, var(--roy-gold), var(--roy-gold-dark)); color: #071813; border: none; border-radius: 8px; padding: 12px 18px; font-weight: 800; font-size: 0.82rem; cursor: pointer;">
+                                    <div class="upi-verify-row">
+                                        <input type="text" id="upi-vpa-input" placeholder="e.g. mobile@upi">
+                                        <button type="button">
                                             VERIFY
                                         </button>
                                     </div>
@@ -1358,14 +1659,14 @@
                                     </div>
                                 </div>
                                 <div class="payment-subpanel">
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                                        <div style="grid-column: 1 / -1;">
+                                    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; width: 100%; max-width: 100%; min-width: 0;">
+                                        <div style="grid-column: 1 / -1; min-width: 0;">
                                             <input type="text" placeholder="Card Number (16 Digits)" maxlength="19" style="width: 100%; padding: 12px 14px;">
                                         </div>
-                                        <div>
+                                        <div style="min-width: 0;">
                                             <input type="text" placeholder="MM / YY" maxlength="5" style="width: 100%; padding: 12px 14px;">
                                         </div>
-                                        <div>
+                                        <div style="min-width: 0;">
                                             <input type="password" placeholder="CVV (3 Digits)" maxlength="3" style="width: 100%; padding: 12px 14px;">
                                         </div>
                                     </div>
@@ -1417,25 +1718,27 @@
                     </div>
 
                     <!-- Section 3: Cancellation, Return & Refund Policy — Hamsa Masala -->
-                    <div class="checkout-section-card" style="padding: 22px 24px;">
-                        <div class="checkout-card-header" style="margin-bottom: 16px; padding-bottom: 12px;">
+                    <div class="checkout-section-card checkout-policy-card">
+                        <div class="checkout-card-header" style="margin-bottom: 14px; padding-bottom: 12px;">
                             <span class="card-step-badge"><i class="fas fa-shield-halved" style="font-size: 0.9rem;"></i></span>
-                            <h2 class="checkout-card-title" style="font-size: 1.15rem;">Cancellation, Return &amp; Refund Policy &mdash; Hamsa Masala</h2>
+                            <h2 class="checkout-card-title">Cancellation, Return &amp; Refund Policy &mdash; Hamsa Masala</h2>
                         </div>
-                        <ul style="margin: 0; padding-left: 18px; color: var(--roy-text-ivory); font-size: 0.85rem; line-height: 1.65; display: flex; flex-direction: column; gap: 10px;">
-                            <li>
-                                <strong style="color: var(--roy-gold);">1. Order Cancellation (Before Dispatch):</strong>
-                                You can cancel your order anytime before it is handed over to our courier partner (while status is "Pending" or "Confirmed") for a 100% full refund. Once an order has been dispatched/shipped, it cannot be cancelled. If a prepaid shipment is refused at the doorstep without a valid damage/wrong-item reason, round-trip shipping charges (<strong>₹80</strong>) will be deducted before refunding the remaining balance.
-                            </li>
-                            <li>
-                                <strong style="color: var(--roy-gold);">2. Food Hygiene &amp; No-Return Policy:</strong>
-                                Due to FSSAI food safety and hygiene standards, we strictly do not accept returns or exchanges on opened, unsealed, or used spice packets and beverages, or for personal taste preferences once delivered intact.
-                            </li>
-                            <li>
-                                <strong style="color: var(--roy-gold);">3. Free Replacement / Refund for Damaged, Leaked, or Wrong Items:</strong>
-                                Your satisfaction is our priority. If you receive a damaged package, leaked bottle, expired product, or wrong item, we offer a 100% Free Replacement or Full Refund. To claim this, please share a clear photo or continuous unboxing video showing the outer shipping label and product issue on our WhatsApp support within <strong>48 hours of delivery</strong>. Approved refunds are processed within <strong>5&ndash;7 business days</strong> to your original payment method.
-                            </li>
-                        </ul>
+                        <div style="min-width: 0; width: 100%; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word;">
+                            <ul class="checkout-policy-list">
+                                <li>
+                                    <strong style="color: var(--roy-gold);">1. Order Cancellation (Before Dispatch):</strong>
+                                    You can cancel your order anytime before it is handed over to our courier partner (while status is "Pending" or "Confirmed") for a 100% full refund. Once an order has been dispatched/shipped, it cannot be cancelled. If a prepaid shipment is refused at the doorstep without a valid damage/wrong-item reason, round-trip shipping charges (<strong>₹80</strong>) will be deducted before refunding the remaining balance.
+                                </li>
+                                <li>
+                                    <strong style="color: var(--roy-gold);">2. Food Hygiene &amp; No-Return Policy:</strong>
+                                    Due to FSSAI food safety and hygiene standards, we strictly do not accept returns or exchanges on opened, unsealed, or used spice packets and beverages, or for personal taste preferences once delivered intact.
+                                </li>
+                                <li>
+                                    <strong style="color: var(--roy-gold);">3. Free Replacement / Refund for Damaged, Leaked, or Wrong Items:</strong>
+                                    Your satisfaction is our priority. If you receive a damaged package, leaked bottle, expired product, or wrong item, we offer a 100% Free Replacement or Full Refund. To claim this, please share a clear photo or continuous unboxing video showing the outer shipping label and product issue on our WhatsApp support within <strong>48 hours of delivery</strong>. Approved refunds are processed within <strong>5&ndash;7 business days</strong> to your original payment method.
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -1621,7 +1924,7 @@
     <canvas id="party-confetti-canvas"></canvas>
 
     <!-- Scripts -->
-    <script src="script.js?v=31"></script>
+    <script src="script.js?v=32"></script>
     <script>
         // Indian Pincode Directory Lookup
         const pincodeDirectory = {

@@ -2,6 +2,7 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const ROOT_DIR = path.resolve(__dirname);
 const ENV_FILE = path.join(ROOT_DIR, '.env');
@@ -1444,14 +1445,16 @@ const server = http.createServer(async (req, res) => {
                         'Content-Range': `bytes ${start}-${end}/${total}`,
                         'Accept-Ranges': 'bytes',
                         'Content-Length': chunksize,
-                        'Content-Type': 'video/mp4'
+                        'Content-Type': 'video/mp4',
+                        'Cache-Control': 'public, max-age=604800'
                     });
                     file.pipe(res);
                 } else {
                     res.writeHead(200, {
                         'Content-Length': total,
                         'Content-Type': 'video/mp4',
-                        'Accept-Ranges': 'bytes'
+                        'Accept-Ranges': 'bytes',
+                        'Cache-Control': 'public, max-age=604800'
                     });
                     fs.createReadStream(safePath).pipe(res);
                 }
@@ -1464,9 +1467,31 @@ const server = http.createServer(async (req, res) => {
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 return res.end('500 Internal Server Error');
             }
+            const isStaticAsset = ['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.ico', '.woff', '.woff2', '.ttf'].includes(extname);
+            const cacheHeader = isStaticAsset ? 'public, max-age=604800' : 'no-cache';
+            const acceptEncoding = String(req.headers['accept-encoding'] || '');
+            const isCompressible = ['.svg', '.html', '.css', '.js', '.json'].includes(extname) && content.length > 1024;
+
+            if (isCompressible && acceptEncoding.includes('gzip')) {
+                zlib.gzip(content, (gzErr, compressed) => {
+                    if (gzErr) {
+                        res.writeHead(200, { 'Content-Type': contentType, 'Cache-Control': cacheHeader });
+                        return res.end(content);
+                    }
+                    res.writeHead(200, {
+                        'Content-Type': contentType,
+                        'Content-Encoding': 'gzip',
+                        'Vary': 'Accept-Encoding',
+                        'Cache-Control': cacheHeader
+                    });
+                    res.end(compressed);
+                });
+                return;
+            }
+
             res.writeHead(200, {
                 'Content-Type': contentType,
-                'Cache-Control': 'no-cache'
+                'Cache-Control': cacheHeader
             });
             res.end(content);
         });
