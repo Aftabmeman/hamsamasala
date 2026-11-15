@@ -856,9 +856,6 @@
                 <a href="index.html" class="header-btn" target="_blank" title="Open Customer Website">
                     <i class="fas fa-store"></i> View Store
                 </a>
-                <a href="delivery.html" class="header-btn" target="_blank" title="Open Delivery Boy OTP Portal">
-                    <i class="fas fa-truck-fast"></i> Delivery Portal
-                </a>
                 <button type="button" class="header-btn logout-btn" onclick="handleAdminLogout()">
                     <i class="fas fa-arrow-right-from-bracket"></i> Logout
                 </button>
@@ -871,7 +868,7 @@
         <div class="login-card">
             <img src="assets/hamsa-logo.svg" alt="Hamsa Masala" class="login-logo">
             <h2 class="login-title">Store Owner Access</h2>
-            <p class="login-subtitle">Enter owner password to manage orders and delivery verification</p>
+            <p class="login-subtitle">Enter owner password to manage orders, WhatsApp OTP verification, and NimbusPost Surface logistics</p>
 
             <form onsubmit="handleAdminLogin(event)">
                 <div class="login-input-group">
@@ -896,6 +893,36 @@
     <!-- Main Dashboard -->
     <main class="dashboard-container" id="dashboard-content" style="display: none;">
 
+        <!-- NimbusPost Smart Surface Logistics & Auto-Push Settings Bar -->
+        <div class="toolbar-card" style="background: linear-gradient(135deg, #12342A, #1B473A); color: #FAF7F0; border: 1.5px solid var(--color-gold); margin-bottom: 18px;">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <span style="background: rgba(226,182,107,0.2); color: var(--color-gold); padding: 8px 12px; border-radius: 10px; font-weight: 800; font-size: 0.85rem; border: 1px solid rgba(226,182,107,0.4);">
+                    <i class="fas fa-truck-ramp-box"></i> NimbusPost Smart Surface Engine
+                </span>
+                <div style="font-size: 0.83rem; color: #E5E7EB;">
+                    Origin Hub: <strong style="color: var(--color-gold);">400612</strong> &bull;
+                    Mode: <strong style="color: #4ADE80;">Surface Only (Lowest Price First)</strong> &bull;
+                    Customer Markup: <strong style="color: var(--color-gold);">+₹10 Hidden</strong>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.28); padding: 8px 14px; border-radius: 10px; border: 1px solid rgba(226,182,107,0.3);">
+                <label for="auto-push-nimbus-toggle" style="font-size: 0.82rem; font-weight: 700; color: #FAF7F0; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-bolt" style="color: var(--color-gold);"></i>
+                    Auto-Push to NimbusPost on Customer OTP Verify:
+                </label>
+                <input
+                    type="checkbox"
+                    id="auto-push-nimbus-toggle"
+                    onchange="handleToggleAutoPush(this.checked)"
+                    style="width: 18px; height: 18px; accent-color: var(--color-gold); cursor: pointer;"
+                >
+                <span id="auto-push-status-pill" style="font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.12); color: #FBBF24;">
+                    OFF (Manual Admin Booking)
+                </span>
+            </div>
+        </div>
+
         <!-- 4 Quick Stats -->
         <div class="stats-grid">
             <div class="stat-card">
@@ -910,11 +937,11 @@
 
             <div class="stat-card">
                 <div class="stat-icon-box stat-icon-orders">
-                    <i class="fas fa-box-open"></i>
+                    <i class="fas fa-user-check"></i>
                 </div>
                 <div class="stat-info">
-                    <h3 id="stat-orders">0</h3>
-                    <p>Total Orders</p>
+                    <h3 id="stat-verified">0</h3>
+                    <p>Verified (Ready to Ship)</p>
                 </div>
             </div>
 
@@ -924,17 +951,17 @@
                 </div>
                 <div class="stat-info">
                     <h3 id="stat-pending">0</h3>
-                    <p>Pending Delivery</p>
+                    <p>OTP Pending</p>
                 </div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-icon-box stat-icon-delivered">
-                    <i class="fas fa-circle-check"></i>
+                    <i class="fas fa-truck-fast"></i>
                 </div>
                 <div class="stat-info">
                     <h3 id="stat-delivered">0</h3>
-                    <p>Delivered</p>
+                    <p>Shipped / Delivered</p>
                 </div>
             </div>
         </div>
@@ -943,13 +970,15 @@
         <div class="toolbar-card">
             <div class="search-box-wrapper">
                 <i class="fas fa-search"></i>
-                <input type="text" id="order-search-input" class="search-input" placeholder="Search by Order ID, Customer Name, Phone, or City..." oninput="handleSearchFilter()">
+                <input type="text" id="order-search-input" class="search-input" placeholder="Search by Order ID, Customer Name, Phone, AWB, or Pincode..." oninput="handleSearchFilter()">
             </div>
 
-            <div class="filter-tabs">
-                <button type="button" class="filter-tab-btn active" onclick="setFilter('ALL', this)">All Orders (<span id="filter-count-all">0</span>)</button>
-                <button type="button" class="filter-tab-btn" onclick="setFilter('PENDING', this)">Pending (<span id="filter-count-pending">0</span>)</button>
-                <button type="button" class="filter-tab-btn" onclick="setFilter('DELIVERED', this)">Delivered (<span id="filter-count-delivered">0</span>)</button>
+            <div class="filter-tabs" style="flex-wrap: wrap;">
+                <button type="button" class="filter-tab-btn active" onclick="setFilter('ALL', this)">All (<span id="filter-count-all">0</span>)</button>
+                <button type="button" class="filter-tab-btn" onclick="setFilter('VERIFIED', this)">Verified - Confirmed (<span id="filter-count-verified">0</span>)</button>
+                <button type="button" class="filter-tab-btn" onclick="setFilter('OTP_PENDING', this)">OTP Pending (<span id="filter-count-pending">0</span>)</button>
+                <button type="button" class="filter-tab-btn" onclick="setFilter('SHIPPED', this)">Shipped / Delivered (<span id="filter-count-delivered">0</span>)</button>
+                <button type="button" class="filter-tab-btn" onclick="setFilter('CANCELLED', this)">Cancelled / Refund (<span id="filter-count-cancelled">0</span>)</button>
             </div>
 
             <div class="toolbar-buttons">
@@ -985,8 +1014,8 @@
     <script>
         let allOrders = [];
         let currentFilter = 'ALL';
+        let adminSettings = { autoPushToNimbusOnVerify: false };
 
-        // Check authentication on page load
         document.addEventListener('DOMContentLoaded', () => {
             const isAuth = localStorage.getItem('hamsa_admin_authenticated') === 'true';
             if (isAuth) {
@@ -1009,7 +1038,6 @@
             }
         }
 
-        // Login Handler
         async function handleAdminLogin(event) {
             event.preventDefault();
             const pass = document.getElementById('admin-pass-input').value.trim();
@@ -1061,7 +1089,43 @@
             loadDashboardData();
         }
 
-        // Load all orders and stats from backend
+        function syncAutoPushToggleUI(enabled) {
+            const toggle = document.getElementById('auto-push-nimbus-toggle');
+            const pill = document.getElementById('auto-push-status-pill');
+            if (toggle) toggle.checked = Boolean(enabled);
+            if (pill) {
+                if (enabled) {
+                    pill.style.background = 'rgba(74, 222, 128, 0.2)';
+                    pill.style.color = '#4ADE80';
+                    pill.textContent = 'ON (Auto-Push Active)';
+                } else {
+                    pill.style.background = 'rgba(255, 255, 255, 0.12)';
+                    pill.style.color = '#FBBF24';
+                    pill.textContent = 'OFF (Manual Admin Booking)';
+                }
+            }
+        }
+
+        async function handleToggleAutoPush(enabled) {
+            try {
+                const res = await fetch('/api/admin/settings', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ autoPushToNimbusOnVerify: Boolean(enabled) })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    adminSettings = data.settings;
+                    syncAutoPushToggleUI(adminSettings.autoPushToNimbusOnVerify);
+                    showToast(data.message || 'Settings updated.');
+                } else {
+                    showToast('Failed to update setting.');
+                }
+            } catch (e) {
+                showToast('Error saving auto-push setting.');
+            }
+        }
+
         async function loadDashboardData(showRefreshToast = false) {
             try {
                 const res = await fetch('/api/admin/orders');
@@ -1069,17 +1133,26 @@
 
                 if (res.ok && data.success) {
                     allOrders = data.orders || [];
-                    
-                    // Update Stats
-                    document.getElementById('stat-revenue').textContent = '₹' + (data.stats.totalRevenue || 0).toLocaleString('en-IN');
-                    document.getElementById('stat-orders').textContent = data.stats.totalOrders || 0;
-                    document.getElementById('stat-pending').textContent = data.stats.pendingCount || 0;
-                    document.getElementById('stat-delivered').textContent = data.stats.deliveredCount || 0;
+                    if (data.settings) {
+                        adminSettings = data.settings;
+                        syncAutoPushToggleUI(adminSettings.autoPushToNimbusOnVerify);
+                    }
 
-                    // Update Tab Counts
+                    const verifiedCount = allOrders.filter(o => o.status === 'Verified - Confirmed').length;
+                    const otpPendingCount = allOrders.filter(o => o.status === 'OTP Verification Pending').length;
+                    const shippedOrDeliveredCount = allOrders.filter(o => ['Shipped', 'In Transit', 'Out for Delivery', 'Delivered'].includes(o.status)).length;
+                    const cancelledCount = allOrders.filter(o => ['Cancelled', 'Cancelled (OTP Expired)', 'Refund Initiated', 'RTO Initiated'].includes(o.status)).length;
+
+                    document.getElementById('stat-revenue').textContent = '₹' + (data.stats.totalRevenue || 0).toLocaleString('en-IN');
+                    document.getElementById('stat-verified').textContent = verifiedCount;
+                    document.getElementById('stat-pending').textContent = otpPendingCount;
+                    document.getElementById('stat-delivered').textContent = shippedOrDeliveredCount;
+
                     document.getElementById('filter-count-all').textContent = allOrders.length;
-                    document.getElementById('filter-count-pending').textContent = data.stats.pendingCount || 0;
-                    document.getElementById('filter-count-delivered').textContent = data.stats.deliveredCount || 0;
+                    document.getElementById('filter-count-verified').textContent = verifiedCount;
+                    document.getElementById('filter-count-pending').textContent = otpPendingCount;
+                    document.getElementById('filter-count-delivered').textContent = shippedOrDeliveredCount;
+                    document.getElementById('filter-count-cancelled').textContent = cancelledCount;
 
                     renderOrdersList();
                     if (showRefreshToast) showToast('Orders refreshed from server!');
@@ -1092,7 +1165,6 @@
             }
         }
 
-        // Filter selection
         function setFilter(filter, btn) {
             currentFilter = filter;
             document.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
@@ -1104,17 +1176,16 @@
             renderOrdersList();
         }
 
-        // Render Orders Cards
         function renderOrdersList() {
             const container = document.getElementById('orders-container');
             const emptyCard = document.getElementById('empty-orders-card');
             const searchQuery = (document.getElementById('order-search-input')?.value || '').trim().toLowerCase();
 
-            // Filter logic
             let filtered = allOrders.filter(o => {
-                const isDelivered = o.status === 'DELIVERED';
-                if (currentFilter === 'PENDING' && isDelivered) return false;
-                if (currentFilter === 'DELIVERED' && !isDelivered) return false;
+                if (currentFilter === 'VERIFIED' && o.status !== 'Verified - Confirmed') return false;
+                if (currentFilter === 'OTP_PENDING' && o.status !== 'OTP Verification Pending') return false;
+                if (currentFilter === 'SHIPPED' && !['Shipped', 'In Transit', 'Out for Delivery', 'Delivered'].includes(o.status)) return false;
+                if (currentFilter === 'CANCELLED' && !['Cancelled', 'Cancelled (OTP Expired)', 'Refund Initiated', 'RTO Initiated'].includes(o.status)) return false;
 
                 if (searchQuery) {
                     const matchId = (o.orderId || '').toLowerCase().includes(searchQuery);
@@ -1122,9 +1193,18 @@
                     const matchPhone = (o.customerPhone || '').toLowerCase().includes(searchQuery);
                     const matchAddr = (o.shippingAddress || '').toLowerCase().includes(searchQuery);
                     const matchPin = (o.pincode || '').toLowerCase().includes(searchQuery);
-                    return matchId || matchName || matchPhone || matchAddr || matchPin;
+                    const matchAwb = (o.awbNumber || '').toLowerCase().includes(searchQuery);
+                    return matchId || matchName || matchPhone || matchAddr || matchPin || matchAwb;
                 }
                 return true;
+            });
+
+            // Always prioritize "Verified - Confirmed" at the top of the Admin Dashboard
+            filtered.sort((a, b) => {
+                const aPri = a.status === 'Verified - Confirmed' ? 0 : (a.status === 'OTP Verification Pending' ? 1 : 2);
+                const bPri = b.status === 'Verified - Confirmed' ? 0 : (b.status === 'OTP Verification Pending' ? 1 : 2);
+                if (aPri !== bPri) return aPri - bPri;
+                return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
             });
 
             if (filtered.length === 0) {
@@ -1136,7 +1216,12 @@
             emptyCard.style.display = 'none';
 
             container.innerHTML = filtered.map(order => {
-                const isDelivered = order.status === 'DELIVERED';
+                const status = order.status || 'OTP Verification Pending';
+                const isVerified = status === 'Verified - Confirmed';
+                const isPendingOtp = status === 'OTP Verification Pending';
+                const isShippedOrLater = ['Shipped', 'In Transit', 'Out for Delivery', 'Delivered'].includes(status);
+                const isCancelledOrRefund = ['Cancelled', 'Cancelled (OTP Expired)', 'Refund Initiated', 'RTO Initiated'].includes(status);
+
                 const isCOD = (order.paymentMode || '').toLowerCase().includes('cash') || (order.paymentMode || '').toLowerCase().includes('cod');
                 const dateStr = order.createdAt ? new Date(order.createdAt).toLocaleString('en-IN', {
                     day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
@@ -1149,27 +1234,55 @@
                     </div>
                 `).join('') : '<div class="dossier-item-row"><span>Royal Spice Assortment</span><strong>₹' + (order.totalAmount || 0) + '</strong></div>';
 
+                const surfaceCouriers = Array.isArray(order.surfaceCouriers) && order.surfaceCouriers.length > 0
+                    ? order.surfaceCouriers
+                    : [
+                        { id: 'xpressbees_surface', name: 'Xpressbees Surface', mode: 'Surface', rawPrepaidRate: 48, rawCodFee: 35, rawCodTotalRate: 83, eta: '3-5 Days', isCheapest: true },
+                        { id: 'delhivery_surface', name: 'Delhivery Surface', mode: 'Surface', rawPrepaidRate: 52, rawCodFee: 35, rawCodTotalRate: 87, eta: '3-5 Days', isCheapest: false },
+                        { id: 'ekart_surface', name: 'Ekart Surface', mode: 'Surface', rawPrepaidRate: 56, rawCodFee: 40, rawCodTotalRate: 96, eta: '4-6 Days', isCheapest: false },
+                        { id: 'bluedart_surface', name: 'BlueDart Surface', mode: 'Surface', rawPrepaidRate: 68, rawCodFee: 45, rawCodTotalRate: 113, eta: '2-4 Days', isCheapest: false }
+                    ];
+
+                const selectedCourierId = order.selectedCourierId || surfaceCouriers[0].id;
+                const activeCourier = surfaceCouriers.find(c => String(c.id) === String(selectedCourierId)) || surfaceCouriers[0];
+                const rawCostToShow = isCOD ? activeCourier.rawCodTotalRate : activeCourier.rawPrepaidRate;
+
+                const courierOptionsHTML = surfaceCouriers.map((c, idx) => {
+                    const cRaw = isCOD ? c.rawCodTotalRate : c.rawPrepaidRate;
+                    const tag = idx === 0 ? ' [CHEAPEST SURFACE]' : '';
+                    const selectedAttr = String(c.id) === String(selectedCourierId) ? 'selected' : '';
+                    return `<option value="${c.id}" ${selectedAttr}>${c.name} (Surface) — Raw: ₹${cRaw} (${c.eta})${tag}</option>`;
+                }).join('');
+
+                let statusBadgeStyle = 'background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2;';
+                if (isVerified) statusBadgeStyle = 'background: #E8F5E9; color: #1B5E20; border: 1.5px solid #4CAF50;';
+                else if (isShippedOrLater) statusBadgeStyle = 'background: #E3F2FD; color: #0D47A1; border: 1px solid #90CAF9;';
+                else if (isCancelledOrRefund) statusBadgeStyle = 'background: #FFEBEE; color: #B71C1C; border: 1px solid #EF9A9A;';
+
+                const whatsappOtpCode = order.whatsappOtp || '----';
+
                 return `
-                    <div class="order-dossier-card" id="card-${order.orderId}">
+                    <div class="order-dossier-card" id="card-${order.orderId}" style="${isVerified ? 'border: 2px solid #2E7D32; box-shadow: 0 6px 24px rgba(46,125,50,0.12);' : ''}">
                         
                         <!-- Dossier Header -->
-                        <div class="dossier-header">
+                        <div class="dossier-header" style="${isVerified ? 'background: linear-gradient(135deg, #E8F5E9, #F1F8E9);' : ''}">
                             <div class="dossier-id-group">
                                 <span class="dossier-order-id">#${order.orderId}</span>
                                 <span class="dossier-date"><i class="fas fa-calendar-day"></i> ${dateStr}</span>
+                                ${isVerified ? '<span style="background:#2E7D32; color:#FFF; font-size:0.7rem; font-weight:800; padding:3px 8px; border-radius:6px;">READY TO SHIP</span>' : ''}
                             </div>
-                            <span class="status-pill ${isDelivered ? 'delivered' : 'pending'}">
-                                <i class="fas ${isDelivered ? 'fa-circle-check' : 'fa-clock'}"></i>
-                                ${isDelivered ? 'DELIVERED' : 'PENDING DELIVERY'}
+                            <span class="status-pill" style="${statusBadgeStyle}">
+                                <i class="fas ${isVerified ? 'fa-user-check' : isShippedOrLater ? 'fa-truck-fast' : isCancelledOrRefund ? 'fa-ban' : 'fa-clock'}"></i>
+                                ${status}
                             </span>
                         </div>
 
                         <!-- Dossier Body -->
                         <div class="dossier-body">
                             
-                            <!-- Col 1: Customer Contact & Address -->
+                            <!-- Col 1: Customer Contact & WhatsApp OTP Status -->
                             <div class="customer-col">
-                                <h4><i class="fas fa-user-circle"></i> Customer Details</h4>
+                                <h4><i class="fas fa-user-circle"></i> Customer &amp; WhatsApp OTP</h4>
                                 <div class="cust-name-text">${order.customerName || 'Royal Patron'}</div>
                                 
                                 <div class="cust-phone-row">
@@ -1183,49 +1296,87 @@
                                     ` : '<span style="color: #999;">No phone on file</span>'}
                                 </div>
 
-                                <div class="cust-address-text">
+                                <div class="cust-address-text" style="margin-bottom: 10px;">
                                     <i class="fas fa-location-dot" style="color: var(--color-gold);"></i>
-                                    ${order.shippingAddress || 'Address on record'} ${order.pincode ? '&bull; PIN: ' + order.pincode : ''}
+                                    ${order.shippingAddress || 'Address on record'} ${order.pincode ? '&bull; <strong>PIN: ' + order.pincode + '</strong>' : ''}
+                                </div>
+
+                                <div style="background: #FAF7F0; border: 1px dashed rgba(18,52,42,0.2); border-radius: 8px; padding: 8px 10px; font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+                                    <span><i class="fab fa-whatsapp" style="color: #25D366;"></i> Customer OTP: <strong style="font-family: monospace; font-size: 0.95rem; color: var(--color-dark-green);">${whatsappOtpCode}</strong></span>
+                                    ${isPendingOtp ? `
+                                        <button type="button" onclick="adminVerifyOtpNow('${order.orderId}', '${whatsappOtpCode}')" style="background: #2E7D32; color: #FFF; border: none; border-radius: 6px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer;">
+                                            Verify OTP
+                                        </button>
+                                    ` : `<span style="color: #2E7D32; font-weight: 700; font-size: 0.75rem;"><i class="fas fa-check-double"></i> Verified</span>`}
                                 </div>
                             </div>
 
-                            <!-- Col 2: Items Ordered & Bill -->
+                            <!-- Col 2: Items Ordered & Bill Breakdown -->
                             <div class="items-col">
-                                <h4><i class="fas fa-box"></i> Items (${order.items ? order.items.length : 1})</h4>
+                                <h4><i class="fas fa-box"></i> Items (${order.items ? order.items.length : 1}) &amp; Payment</h4>
                                 <div class="dossier-items-list">
                                     ${itemsHTML}
+                                </div>
+                                <div style="font-size: 0.78rem; color: #555; margin-bottom: 6px; display: flex; justify-content: space-between;">
+                                    <span>Customer Paid Shipping (+₹10 markup):</span>
+                                    <strong>₹${order.deliveryCharge || (rawCostToShow + 10)}</strong>
                                 </div>
                                 <div class="dossier-total-row">
                                     <span>Total: ₹${order.totalAmount || 0}</span>
                                     <span class="payment-mode-pill ${isCOD ? 'cod' : ''}">
-                                        ${order.paymentMode || 'COD'}
+                                        ${order.paymentMode || 'Online / Prepaid'}
                                     </span>
                                 </div>
                             </div>
 
-                            <!-- Col 3: OTP Display & Control Actions -->
+                            <!-- Col 3: Smart NimbusPost Surface Courier & Admin Booking Controls -->
                             <div class="control-col">
-                                <h4><i class="fas fa-key"></i> Secret Delivery OTP</h4>
-                                <div class="otp-display-box" title="Secret OTP required for delivery confirmation">
-                                    <span>PIN Code:</span>
-                                    <span class="otp-display-code">${order.deliveryOtp || '----'}</span>
-                                    <button type="button" onclick="copyOtp('${order.deliveryOtp}')" style="background: none; border: none; color: var(--color-gold); cursor: pointer;" title="Copy OTP">
-                                        <i class="far fa-copy"></i>
-                                    </button>
+                                <h4><i class="fas fa-truck-ramp-box"></i> NimbusPost Surface Logistics</h4>
+
+                                <div style="background: #FAF7F0; border: 1.5px solid rgba(18,52,42,0.15); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; margin-bottom: 6px;">
+                                        <span style="color: #555; font-weight: 600;">Selected Surface Partner:</span>
+                                        <strong style="color: #12342A;">Raw Cost: ₹${rawCostToShow}</strong>
+                                    </div>
+
+                                    <!-- Courier Partner Switcher Dropdown (Surface Only, Cheapest First) -->
+                                    <select
+                                        id="courier-select-${order.orderId}"
+                                        onchange="handleSwitchCourier('${order.orderId}', this.value)"
+                                        ${isShippedOrLater || isCancelledOrRefund ? 'disabled' : ''}
+                                        style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--color-dark-green); background: #FFFFFF; color: var(--color-dark-green); font-size: 0.8rem; font-weight: 700; outline: none; cursor: pointer;"
+                                    >
+                                        ${courierOptionsHTML}
+                                    </select>
+
+                                    ${order.awbNumber ? `
+                                        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(18,52,42,0.15); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;">
+                                            <span>AWB: <strong style="font-family: monospace; color: #0D47A1;">${order.awbNumber}</strong></span>
+                                            <a href="${order.labelUrl || ('/api/admin/orders/label?id=' + order.orderId)}" target="_blank" style="background: #12342A; color: var(--color-gold); text-decoration: none; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 0.74rem;">
+                                                <i class="fas fa-print"></i> Print Label
+                                            </a>
+                                        </div>
+                                    ` : ''}
                                 </div>
 
                                 <div class="action-btns-group">
-                                    ${isDelivered ? `
-                                        <button type="button" class="status-toggle-btn btn-revert" onclick="updateOrderStatus('${order.orderId}', 'CONFIRMED')">
-                                            <i class="fas fa-rotate-left"></i> Revert to Pending
+                                    ${!isShippedOrLater && !isCancelledOrRefund ? `
+                                        <button type="button" class="status-toggle-btn btn-deliver" onclick="handleBookShipment('${order.orderId}')" style="background: linear-gradient(135deg, #12342A, #1E5343); color: var(--color-gold); border: 1.5px solid var(--color-gold);">
+                                            <i class="fas fa-paper-plane"></i> Confirm &amp; Book Shipment
                                         </button>
-                                    ` : `
-                                        <button type="button" class="status-toggle-btn btn-deliver" onclick="updateOrderStatus('${order.orderId}', 'DELIVERED')">
+                                        <button type="button" class="delete-order-btn" onclick="handleCancelOrder('${order.orderId}', ${isCOD})" style="padding: 8px 12px; font-size: 0.78rem; font-weight: 700;">
+                                            <i class="fas fa-ban"></i> Cancel Order ${!isCOD ? '(Initiate Refund)' : ''}
+                                        </button>
+                                    ` : ''}
+
+                                    ${isShippedOrLater && status !== 'Delivered' ? `
+                                        <button type="button" class="status-toggle-btn btn-deliver" onclick="updateOrderStatus('${order.orderId}', 'Delivered')">
                                             <i class="fas fa-check"></i> Mark as Delivered
                                         </button>
-                                    `}
-                                    <button type="button" class="delete-order-btn" onclick="deleteOrder('${order.orderId}')">
-                                        <i class="fas fa-trash-can"></i> Delete Order
+                                    ` : ''}
+
+                                    <button type="button" class="delete-order-btn" onclick="deleteOrder('${order.orderId}')" style="opacity: 0.75;">
+                                        <i class="fas fa-trash-can"></i> Delete Record
                                     </button>
                                 </div>
                             </div>
@@ -1236,7 +1387,94 @@
             }).join('');
         }
 
-        // Update Order Status (Mark as Delivered / Revert)
+        // Switch / Override Surface Courier Partner
+        async function handleSwitchCourier(orderId, courierId) {
+            try {
+                const res = await fetch('/api/admin/orders/select-courier', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderId, courierId })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(data.message || 'Surface courier partner updated!');
+                    loadDashboardData();
+                } else {
+                    showToast(data.message || 'Failed to switch courier.');
+                }
+            } catch (e) {
+                showToast('Server error switching courier.');
+            }
+        }
+
+        // Confirm & Book Shipment on NimbusPost
+        async function handleBookShipment(orderId) {
+            const selectEl = document.getElementById(`courier-select-${orderId}`);
+            const courierId = selectEl ? selectEl.value : undefined;
+
+            try {
+                const res = await fetch('/api/admin/orders/book-shipment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderId, courierId })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(data.message || `Order #${orderId} Shipped!`);
+                    loadDashboardData();
+                } else {
+                    showToast(data.message || 'Failed to book shipment.');
+                }
+            } catch (e) {
+                showToast('Server error booking shipment.');
+            }
+        }
+
+        // Admin Cancel Unshipped Order (Prepaid -> Refund Initiated, COD -> Cancelled)
+        async function handleCancelOrder(orderId, isCOD) {
+            const actionNote = isCOD
+                ? `Cancel COD Order #${orderId}? Status will be marked as "Cancelled".`
+                : `Cancel Prepaid Order #${orderId}? Status will be marked as "Refund Initiated".`;
+            if (!confirm(actionNote)) return;
+
+            try {
+                const res = await fetch('/api/admin/orders/cancel', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderId, reason: 'Cancelled by Store Admin before pickup' })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(data.message || `Order #${orderId} cancelled.`);
+                    loadDashboardData();
+                } else {
+                    showToast(data.message || 'Could not cancel order.');
+                }
+            } catch (e) {
+                showToast('Server error cancelling order.');
+            }
+        }
+
+        // Admin Manual OTP Verify helper
+        async function adminVerifyOtpNow(orderId, otp) {
+            try {
+                const res = await fetch('/api/orders/verify-whatsapp-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderId, otp })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(`Order #${orderId} marked Verified - Confirmed!`);
+                    loadDashboardData();
+                } else {
+                    showToast(data.message || 'Could not verify OTP.');
+                }
+            } catch (e) {
+                showToast('Error verifying OTP.');
+            }
+        }
+
         async function updateOrderStatus(orderId, newStatus) {
             try {
                 const res = await fetch('/api/admin/orders/update-status', {
@@ -1257,7 +1495,6 @@
             }
         }
 
-        // Delete Order
         async function deleteOrder(orderId) {
             if (!confirm(`Are you sure you want to delete order #${orderId}? This cannot be undone.`)) {
                 return;
@@ -1282,21 +1519,13 @@
             }
         }
 
-        function copyOtp(otp) {
-            if (!otp) return;
-            navigator.clipboard.writeText(otp).then(() => {
-                showToast(`OTP ${otp} copied to clipboard!`);
-            });
-        }
-
-        // Export Orders to CSV (Excel compatible)
         function exportOrdersToCSV() {
             if (!allOrders || allOrders.length === 0) {
                 alert('No orders available to export.');
                 return;
             }
 
-            const headers = ['Order ID', 'Date', 'Customer Name', 'Phone', 'Address', 'Pincode', 'Items', 'Total Amount', 'Payment Mode', 'Status', 'Delivery OTP'];
+            const headers = ['Order ID', 'Date', 'Customer Name', 'Phone', 'Address', 'Pincode', 'Items', 'Total Amount', 'Payment Mode', 'Status', 'WhatsApp OTP', 'Surface Courier', 'Raw Courier Cost', 'AWB Number'];
             const rows = allOrders.map(o => {
                 const itemsSummary = (o.items || []).map(i => `${i.name} (${i.pack}) x ${i.qty}`).join('; ');
                 return [
@@ -1310,7 +1539,10 @@
                     `"${o.totalAmount || 0}"`,
                     `"${o.paymentMode || ''}"`,
                     `"${o.status || ''}"`,
-                    `"${o.deliveryOtp || ''}"`
+                    `"${o.whatsappOtp || ''}"`,
+                    `"${o.courierName || ''}"`,
+                    `"${o.rawCourierCost || ''}"`,
+                    `"${o.awbNumber || ''}"`
                 ];
             });
 

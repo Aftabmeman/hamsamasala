@@ -1407,13 +1407,35 @@
                                     </div>
                                 </div>
                                 <div class="payment-subpanel">
-                                    <p style="font-size: 0.86rem; color: var(--roy-green-accent); font-weight: 600; margin: 0;">
-                                        <i class="fas fa-circle-check"></i> Verified COD Available. Pay in cash or scan QR via delivery partner upon arrival.
-                                    </p>
+                                    <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.45); border-radius: 10px; padding: 10px 14px; color: #FBBF24; font-size: 0.85rem; font-weight: 600; line-height: 1.45;">
+                                        <i class="fas fa-circle-info"></i> Cash on Delivery includes ₹35+ courier COD handling fee. Pay online to save on COD charges!
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
+                    </div>
+
+                    <!-- Section 3: Cancellation, Return & Refund Policy — Hamsa Masala -->
+                    <div class="checkout-section-card" style="padding: 22px 24px;">
+                        <div class="checkout-card-header" style="margin-bottom: 16px; padding-bottom: 12px;">
+                            <span class="card-step-badge"><i class="fas fa-shield-halved" style="font-size: 0.9rem;"></i></span>
+                            <h2 class="checkout-card-title" style="font-size: 1.15rem;">Cancellation, Return &amp; Refund Policy &mdash; Hamsa Masala</h2>
+                        </div>
+                        <ul style="margin: 0; padding-left: 18px; color: var(--roy-text-ivory); font-size: 0.85rem; line-height: 1.65; display: flex; flex-direction: column; gap: 10px;">
+                            <li>
+                                <strong style="color: var(--roy-gold);">1. Order Cancellation (Before Dispatch):</strong>
+                                You can cancel your order anytime before it is handed over to our courier partner (while status is "Pending" or "Confirmed") for a 100% full refund. Once an order has been dispatched/shipped, it cannot be cancelled. If a prepaid shipment is refused at the doorstep without a valid damage/wrong-item reason, round-trip shipping charges (<strong>₹80</strong>) will be deducted before refunding the remaining balance.
+                            </li>
+                            <li>
+                                <strong style="color: var(--roy-gold);">2. Food Hygiene &amp; No-Return Policy:</strong>
+                                Due to FSSAI food safety and hygiene standards, we strictly do not accept returns or exchanges on opened, unsealed, or used spice packets and beverages, or for personal taste preferences once delivered intact.
+                            </li>
+                            <li>
+                                <strong style="color: var(--roy-gold);">3. Free Replacement / Refund for Damaged, Leaked, or Wrong Items:</strong>
+                                Your satisfaction is our priority. If you receive a damaged package, leaked bottle, expired product, or wrong item, we offer a 100% Free Replacement or Full Refund. To claim this, please share a clear photo or continuous unboxing video showing the outer shipping label and product issue on our WhatsApp support within <strong>48 hours of delivery</strong>. Approved refunds are processed within <strong>5&ndash;7 business days</strong> to your original payment method.
+                            </li>
+                        </ul>
                     </div>
 
                 </div>
@@ -1447,8 +1469,15 @@
                             <span id="bill-subtotal">₹0</span>
                         </div>
                         <div class="order-bill-row">
-                            <span>Royal Delivery Fee</span>
-                            <span id="bill-delivery" style="color: var(--roy-green-accent); font-weight: 700;">FREE</span>
+                            <span id="bill-delivery-label">Delivery Charge (Surface)</span>
+                            <span id="bill-delivery" style="color: var(--roy-gold); font-weight: 700;">₹58</span>
+                        </div>
+                        <div class="order-bill-row" id="bill-cod-fee-row">
+                            <span>COD Handling Fee</span>
+                            <span id="bill-cod-fee" style="color: var(--roy-green-accent); font-weight: 700;">₹0</span>
+                        </div>
+                        <div id="cod-savings-notice" style="display: none; background: rgba(245, 158, 11, 0.12); border: 1px dashed rgba(245, 158, 11, 0.5); border-radius: 10px; padding: 9px 12px; margin-bottom: 12px; font-size: 0.8rem; color: #FBBF24; line-height: 1.4;">
+                            <i class="fas fa-triangle-exclamation"></i> Cash on Delivery includes ₹35+ courier COD handling fee. Pay online to save on COD charges!
                         </div>
                         <div class="order-bill-row" id="bill-discount-row" style="display: none; color: var(--roy-green-accent);">
                             <span>Royal Promo Discount (10%)</span>
@@ -1459,26 +1488,26 @@
                             <span id="bill-total">₹0</span>
                         </div>
 
-                        <!-- Primary Place Order Button -->
+                        <!-- Primary Verify Order on WhatsApp Button -->
                         <button type="button" class="place-order-btn" onclick="handlePlaceOrder()">
-                            <i class="fas fa-lock"></i> PLACE ORDER &bull; <span id="btn-total-val">₹0</span>
+                            <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Verify Order on WhatsApp &bull; <span id="btn-total-val">₹0</span>
                         </button>
 
                         <div class="safe-checkout-note">
                             <i class="fas fa-shield-halved" style="color: var(--roy-green-accent);"></i>
-                            <span>256-Bit SSL Encrypted &bull; Authentic Persian Guarantee</span>
+                            <span>256-Bit SSL Encrypted &bull; WhatsApp OTP Protected</span>
                         </div>
 
                         <div style="margin-top: 10px; font-size: 0.76rem; color: var(--roy-text-muted); text-align: center; line-height: 1.4;">
                             By placing your order, you agree to Hamsa Masala's
-                            <a href="terms.html" target="_blank" style="color: var(--roy-gold); text-decoration: underline;">Terms &amp; Conditions</a>
+                            <a href="terms.html" target="_blank" style="color: var(--roy-gold); text-decoration: underline;">Terms, Cancellation &amp; No-Return Policy</a>
                             and
                             <a href="privacy.html" target="_blank" style="color: var(--roy-gold); text-decoration: underline;">Privacy Policy</a>.
                         </div>
 
                         <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--roy-gold-border); display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--roy-text-muted);">
                             <i class="fas fa-truck-fast" style="font-size: 1.2rem; color: var(--roy-gold);"></i>
-                            <span>Delivery Partner: <strong>Delhivery Express</strong> (3-4 Days)</span>
+                            <span id="checkout-logistics-note">Smart Surface Logistics &bull; Dispatched from <strong>400612</strong></span>
                         </div>
 
                     </div>
@@ -1489,20 +1518,20 @@
         </div>
     </main>
 
-    <!-- Royal Order Success Modal (Amazon-Style Secret OTP Verification) -->
+    <!-- Royal WhatsApp OTP Verification & Order Confirmation Modal -->
     <div id="order-success-modal" class="order-success-modal">
         <div class="order-success-card" onclick="event.stopPropagation()">
             
             <div class="order-success-header">
-                <button type="button" class="order-success-close-btn" onclick="closeOrderSuccessModal()" aria-label="Close">
+                <button type="button" class="order-success-close-btn" onclick="closeOrderSuccessModal(event)" aria-label="Close">
                     <i class="fas fa-times"></i>
                 </button>
-                <div class="order-success-icon">
-                    <i class="fas fa-check"></i>
+                <div class="order-success-icon" id="modal-header-icon">
+                    <i class="fab fa-whatsapp"></i>
                 </div>
-                <h2 class="order-success-title">Royal Order Confirmed!</h2>
-                <p style="font-size: 0.92rem; color: var(--roy-text-muted); margin: 0;">
-                    Shukriya! Your royal spices are being hand-blended with care.
+                <h2 class="order-success-title" id="modal-header-title">Verify Your WhatsApp OTP</h2>
+                <p id="modal-header-subtitle" style="font-size: 0.9rem; color: var(--roy-text-muted); margin: 0;">
+                    Send the pre-filled WhatsApp message &amp; enter your 4-digit OTP below to confirm your order.
                 </p>
             </div>
 
@@ -1515,8 +1544,8 @@
                         <strong id="modal-order-id" style="color: var(--roy-gold); font-family: monospace; font-size: 1.05rem;">#HM-1050</strong>
                     </div>
                     <div class="order-meta-row">
-                        <span>Estimated Delivery:</span>
-                        <strong style="color: var(--roy-green-accent);"><i class="fas fa-truck-fast"></i> 3-4 Days via Delhivery Express</strong>
+                        <span>Verification Status:</span>
+                        <strong id="modal-order-status-badge" style="color: #FBBF24;"><i class="fas fa-clock"></i> OTP Verification Pending</strong>
                     </div>
                     <div class="order-meta-row">
                         <span>Payment Mode:</span>
@@ -1532,80 +1561,55 @@
                     </div>
                 </div>
 
-                <!-- 1. Crystal Clear 3-Step Instructions Banner -->
-                <div class="whatsapp-verify-guide">
-                    <div class="verify-guide-header">
-                        <i class="fas fa-shield-halved"></i>
-                        <span>HOW TO COMPLETE ORDER &amp; UNLOCK OTP:</span>
+                <!-- Auto-Cancel Warning Notice -->
+                <div id="modal-pending-warning" style="background: rgba(245, 158, 11, 0.12); border: 1.5px solid rgba(245, 158, 11, 0.45); border-radius: 12px; padding: 12px 14px; color: #FBBF24; font-size: 0.83rem; line-height: 1.45; display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fas fa-triangle-exclamation" style="margin-top: 3px; font-size: 1rem;"></i>
+                    <span>OTP verification is pending. Please verify your OTP soon, otherwise your order will be automatically cancelled.</span>
+                </div>
+
+                <!-- Pending OTP Entry Section -->
+                <div id="modal-otp-entry-section" style="background: rgba(226, 182, 107, 0.08); border: 1.5px solid rgba(226, 182, 107, 0.38); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+                    <div style="font-size: 0.84rem; color: var(--roy-text-ivory); line-height: 1.5;">
+                        <strong style="color: var(--roy-gold); display: block; margin-bottom: 4px;"><i class="fab fa-whatsapp" style="color: #25D366;"></i> Step 1: Send Your WhatsApp Message</strong>
+                        We opened WhatsApp with your 4-digit OTP code (<strong id="modal-otp-preview-hint" style="color: var(--roy-gold); font-family: monospace;">----</strong>). Send that message to our official WhatsApp, then enter the 4-digit OTP below:
                     </div>
-                    <div class="verify-guide-list">
-                        <div class="verify-step-item">
-                            <span class="step-num-pill">Step 1</span>
-                            <div class="step-desc-text">Click <strong>'Confirm Order on WhatsApp'</strong> below.</div>
-                        </div>
-                        <div class="verify-step-item">
-                            <span class="step-num-pill">Step 2</span>
-                            <div class="step-desc-text">Send the pre-filled order message to the official store WhatsApp.</div>
-                        </div>
-                        <div class="verify-step-item">
-                            <span class="step-num-pill">Step 3</span>
-                            <div class="step-desc-text">Return to this browser window and click <strong>'✅ I Have Sent It'</strong> to instantly unlock your 4-digit Secret Delivery OTP and Print Invoice.</div>
-                        </div>
+
+                    <a id="modal-whatsapp-btn" href="https://wa.me/919167435089" target="_blank" rel="noopener noreferrer" class="whatsapp-confirm-btn" style="padding: 12px 16px !important; font-size: 0.92rem !important;">
+                        <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Open WhatsApp Message Again
+                    </a>
+
+                    <div style="border-top: 1px dashed rgba(226, 182, 107, 0.25); padding-top: 12px;">
+                        <label for="customer-otp-input" style="display: block; font-size: 0.82rem; font-weight: 800; color: var(--roy-gold); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px;">
+                            Step 2: Enter 4-Digit WhatsApp OTP
+                        </label>
+                        <input
+                            type="text"
+                            id="customer-otp-input"
+                            maxlength="4"
+                            inputmode="numeric"
+                            placeholder="Enter 4-digit OTP (e.g. 4829)"
+                            style="width: 100%; padding: 14px 16px; background: #071510; border: 2px solid var(--roy-gold); border-radius: 12px; color: #FFFFFF; font-family: monospace; font-size: 1.35rem; font-weight: 800; letter-spacing: 6px; text-align: center; outline: none; box-sizing: border-box;"
+                        >
+                        <div id="customer-otp-error" style="display: none; color: #F87171; font-size: 0.82rem; font-weight: 600; margin-top: 8px; text-align: center;"></div>
                     </div>
+
+                    <button type="button" id="btn-verify-my-number" class="place-order-btn" onclick="handleVerifyMyNumber()" style="margin-top: 2px;">
+                        <i class="fas fa-user-check"></i> Verify My Number
+                    </button>
                 </div>
 
-                <!-- 2. Step 1 Action: WhatsApp Confirmation Redirect Button -->
-                <a id="modal-whatsapp-btn" href="https://wa.me/919167435089" target="_blank" rel="noopener noreferrer" class="whatsapp-confirm-btn" onclick="handleWhatsAppBtnClick()">
-                    <i class="fab fa-whatsapp" style="font-size: 1.35rem;"></i> Step 1: Confirm Order on WhatsApp
-                </a>
-                <div id="wa-pending-hint" class="wa-pending-hint">
-                    <i class="fas fa-lock"></i> Click WhatsApp above to unlock Step 2 verification
-                </div>
-
-                <!-- WhatsApp Sent Reminder (Shown only after clicking Step 1) -->
-                <div id="wa-sent-reminder" class="wa-sent-reminder" style="display: none;">
-                    <i class="fas fa-paper-plane"></i> WhatsApp opened! Once you send your order message, return here and click <strong>'✅ I Have Sent It'</strong> below.
-                </div>
-
-                <!-- 3. Step 2 Action: 'I Have Sent It' Button (Strictly Locked initially, Unlocked after Step 1) -->
-                <button type="button" id="btn-confirm-sent" class="confirm-sent-btn locked" onclick="handleCustomerConfirmedSent()" disabled>
-                    <i class="fas fa-lock"></i> Step 2: 🔒 I Have Sent It (Locked &bull; Complete Step 1 First)
-                </button>
-
-                <!-- Celebration Party Banner (Revealed on 'I Have Sent It') -->
+                <!-- Celebratory Order Confirmed Section (Shown after OTP Verified) -->
                 <div id="celebration-banner" class="celebration-party-banner" style="display: none;">
                     <div class="party-emoji">🎉</div>
                     <div class="party-text">
-                        <h4>Royal Order Confirmed &amp; Verified!</h4>
-                        <p>Shukriya! Your royal spice order has been confirmed with our Isfahan kitchen.</p>
+                        <h4>Order Confirmed!</h4>
+                        <p>Shukriya! Your WhatsApp number is verified and your royal order is confirmed for dispatch.</p>
                     </div>
                 </div>
 
-                <!-- 4. Secret Delivery OTP Card: Initially Locked -->
-                <div id="modal-otp-locked-notice" class="otp-locked-card">
-                    <div class="otp-lock-icon"><i class="fas fa-lock"></i></div>
-                    <div class="otp-lock-title">4-Digit Secret Delivery OTP (Locked)</div>
-                    <p class="otp-lock-desc">
-                        🔒 Complete Steps 1 &amp; 2 on WhatsApp, then click <strong>'✅ I Have Sent It'</strong> above to instantly reveal your secret delivery PIN.
-                    </p>
-                </div>
-
-                <!-- Secret Delivery OTP Card: Unlocked after Step 3 (Amazon Style) -->
-                <div id="delivery-otp-unlocked-card" class="delivery-otp-success-card" style="display: none;">
-                    <div class="otp-unlocked-badge">
-                        <i class="fas fa-circle-check" style="color: var(--roy-green-accent);"></i> WHATSAPP VERIFIED &bull; DELIVERY OTP UNLOCKED
-                    </div>
-                    <div id="modal-delivery-otp" class="delivery-otp-digits">
-                        5921
-                    </div>
-                    <p style="font-size: 0.8rem; color: var(--roy-text-muted); margin: 6px 0 0 0; line-height: 1.4;">
-                        🔒 <strong>Keep Strictly Confidential:</strong> Share this 4-digit PIN with your Delhivery courier partner only upon physical package arrival.
-                    </p>
-                </div>
-
-                <!-- 5. Print Invoice Button (Unlocks after Step 3) -->
+                <!-- Print Invoice Button -->
                 <button type="button" id="modal-print-btn" class="order-invoice-btn" onclick="window.print()" disabled style="opacity: 0.5; cursor: not-allowed;">
-                    <i class="fas fa-receipt"></i> Print Invoice (Unlocks after Step 2)
+                    <i class="fas fa-receipt"></i> Print Invoice (Unlocks after OTP Verification)
                 </button>
 
             </div>
@@ -1617,7 +1621,7 @@
     <canvas id="party-confetti-canvas"></canvas>
 
     <!-- Scripts -->
-    <script src="script.js?v=28"></script>
+    <script src="script.js?v=31"></script>
     <script>
         // Indian Pincode Directory Lookup
         const pincodeDirectory = {
@@ -1653,8 +1657,84 @@
         };
 
         let selectedAddressType = 'Home';
-        let selectedPaymentMethodName = 'UPI (Google Pay, PhonePe, QR)';
+        let selectedPaymentType = 'upi';
+        let selectedPaymentMethodName = 'UPI (GPay / PhonePe)';
         let promoDiscountPercent = 0;
+
+        // Smart NimbusPost Surface Shipping Quote State (includes +₹10 hidden markup)
+        let currentShippingQuote = {
+            originPincode: '400612',
+            destinationPincode: '400612',
+            prepaidDeliveryCharge: 58,
+            codTotalDeliveryCharge: 93,
+            codHandlingFee: 35,
+            eta: '3-5 Days'
+        };
+
+        let activeModalOrderId = '';
+        let activeModalOtp = '';
+
+        // Client-side fallback Surface calculator (matches server.js origin 400612 + ₹10 hidden markup)
+        function computeLocalFallbackQuote(destPin) {
+            const cleanDest = String(destPin || '400612').replace(/\D/g, '');
+            const prefix2 = cleanDest.substring(0, 2);
+            const prefix3 = cleanDest.substring(0, 3);
+            let zoneExtra = 18;
+            if (prefix3 === '400' || prefix3 === '401' || prefix3 === '410' || prefix3 === '421') {
+                zoneExtra = 0; // Mumbai / Thane / Navi Mumbai local to 400612
+            } else if (['40', '41', '42', '43', '44', '38', '39'].includes(prefix2)) {
+                zoneExtra = 8; // Maharashtra & Gujarat
+            }
+            const rawCheapestSurface = 48 + zoneExtra;
+            const codFee = 35;
+            const markup = 10;
+            return {
+                originPincode: '400612',
+                destinationPincode: cleanDest || '400612',
+                prepaidDeliveryCharge: rawCheapestSurface + markup,
+                codTotalDeliveryCharge: rawCheapestSurface + codFee + markup,
+                codHandlingFee: codFee,
+                eta: zoneExtra === 0 ? '2-3 Days' : '3-5 Days'
+            };
+        }
+
+        async function fetchSmartSurfaceRates(pincode) {
+            const cleanPin = String(pincode || '400612').replace(/\D/g, '');
+            let currentCart = [];
+            try {
+                currentCart = JSON.parse(localStorage.getItem('persian_masala_cart') || '[]');
+            } catch (e) { currentCart = []; }
+
+            try {
+                const res = await fetch('/api/shipping/rates', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        pincode: cleanPin.length === 6 ? cleanPin : '400612',
+                        items: currentCart
+                    })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.success && data.customerShipping) {
+                        currentShippingQuote = {
+                            originPincode: data.originPincode || '400612',
+                            destinationPincode: data.destinationPincode || cleanPin,
+                            prepaidDeliveryCharge: data.customerShipping.prepaidDeliveryCharge,
+                            codTotalDeliveryCharge: data.customerShipping.codTotalDeliveryCharge,
+                            codHandlingFee: data.customerShipping.codHandlingFee || 35,
+                            eta: data.customerShipping.eta || '3-5 Days'
+                        };
+                        renderCheckoutOrderSummary();
+                        return;
+                    }
+                }
+            } catch (e) {
+                // Offline/fallback mode
+            }
+            currentShippingQuote = computeLocalFallbackQuote(cleanPin);
+            renderCheckoutOrderSummary();
+        }
 
         function handlePincodeAutoFill(pin) {
             const cleanPin = pin.trim().replace(/\D/g, '');
@@ -1667,7 +1747,6 @@
                     document.getElementById('addr-state').value = info.state;
                     hint.style.display = 'block';
                     hint.innerHTML = `<i class="fas fa-check-circle"></i> Auto-filled: ${info.city}, ${info.state}`;
-                    return;
                 }
             }
             if (cleanPin.length === 6) {
@@ -1676,8 +1755,9 @@
                     document.getElementById('addr-state').value = 'India';
                 }
                 hint.style.display = 'block';
-                hint.innerHTML = `<i class="fas fa-check-circle"></i> Pincode verified for Delhivery Express`;
-            } else {
+                hint.innerHTML = `<i class="fas fa-check-circle"></i> Surface shipping rate calculated from 400612`;
+                fetchSmartSurfaceRates(cleanPin);
+            } else if (cleanPin.length < 2) {
                 hint.style.display = 'none';
             }
         }
@@ -1694,17 +1774,24 @@
             const radio = itemEl.querySelector('input[type="radio"]');
             if (radio) radio.checked = true;
 
+            selectedPaymentType = type;
             if (type === 'upi') selectedPaymentMethodName = 'UPI (GPay / PhonePe)';
             else if (type === 'card') selectedPaymentMethodName = 'Credit / Debit Card';
             else if (type === 'netbanking') selectedPaymentMethodName = 'Net Banking';
             else if (type === 'cod') selectedPaymentMethodName = 'Cash on Delivery (COD)';
+
+            renderCheckoutOrderSummary();
         }
 
         function renderCheckoutOrderSummary() {
             const listEl = document.getElementById('checkout-items-list');
             const countEl = document.getElementById('order-summary-count');
             const billSubtotalEl = document.getElementById('bill-subtotal');
+            const billDeliveryLabelEl = document.getElementById('bill-delivery-label');
             const billDeliveryEl = document.getElementById('bill-delivery');
+            const billCodFeeRow = document.getElementById('bill-cod-fee-row');
+            const billCodFeeEl = document.getElementById('bill-cod-fee');
+            const codSavingsNotice = document.getElementById('cod-savings-notice');
             const billTotalEl = document.getElementById('bill-total');
             const btnTotalValEl = document.getElementById('btn-total-val');
             const discountRow = document.getElementById('bill-discount-row');
@@ -1712,7 +1799,6 @@
 
             if (!listEl) return;
 
-            // Load cart from localStorage or fallback
             let currentCart = [];
             try {
                 currentCart = JSON.parse(localStorage.getItem('persian_masala_cart') || '[]');
@@ -1747,9 +1833,31 @@
                 `;
             }).join('');
 
-            // Delivery Fee
-            const deliveryFee = subtotal >= 499 ? 0 : 50;
-            billDeliveryEl.innerHTML = deliveryFee === 0 ? '<strong style="color: var(--roy-green-accent);">FREE</strong>' : '₹50';
+            const isCOD = selectedPaymentType === 'cod';
+            // Hidden +₹10 markup is already baked into prepaidDeliveryCharge & codTotalDeliveryCharge
+            const deliveryCharge = isCOD
+                ? currentShippingQuote.codTotalDeliveryCharge
+                : currentShippingQuote.prepaidDeliveryCharge;
+
+            if (isCOD) {
+                if (billDeliveryLabelEl) billDeliveryLabelEl.textContent = 'Delivery + COD Charge (Surface)';
+                billDeliveryEl.innerHTML = `<strong style="color: #FBBF24;">₹${deliveryCharge}</strong>`;
+                if (billCodFeeRow) billCodFeeRow.style.display = 'flex';
+                if (billCodFeeEl) {
+                    billCodFeeEl.style.color = '#FBBF24';
+                    billCodFeeEl.textContent = `Included (₹${currentShippingQuote.codHandlingFee}+)`;
+                }
+                if (codSavingsNotice) codSavingsNotice.style.display = 'block';
+            } else {
+                if (billDeliveryLabelEl) billDeliveryLabelEl.textContent = 'Delivery Charge (Surface)';
+                billDeliveryEl.innerHTML = `<strong style="color: var(--roy-gold);">₹${deliveryCharge}</strong>`;
+                if (billCodFeeRow) billCodFeeRow.style.display = 'flex';
+                if (billCodFeeEl) {
+                    billCodFeeEl.style.color = 'var(--roy-green-accent)';
+                    billCodFeeEl.textContent = '₹0';
+                }
+                if (codSavingsNotice) codSavingsNotice.style.display = 'none';
+            }
 
             // Discount
             let discountAmount = 0;
@@ -1761,7 +1869,7 @@
                 discountRow.style.display = 'none';
             }
 
-            const finalTotal = Math.max(0, subtotal + deliveryFee - discountAmount);
+            const finalTotal = Math.max(0, subtotal + deliveryCharge - discountAmount);
 
             billSubtotalEl.textContent = '₹' + subtotal;
             billTotalEl.textContent = '₹' + finalTotal;
@@ -1789,6 +1897,7 @@
             }
         }
 
+        // Step 1: Order Creation on "Verify Order on WhatsApp" Click
         async function handlePlaceOrder() {
             const name = document.getElementById('addr-fullname').value.trim();
             const phone = document.getElementById('addr-phone').value.trim();
@@ -1816,7 +1925,6 @@
             const totalPaid = document.getElementById('bill-total').textContent;
             const fullAddress = `${flat}, ${street}, ${city} - ${pin} (${selectedAddressType})`;
 
-            // Load active cart
             let activeCart = [];
             try {
                 activeCart = JSON.parse(localStorage.getItem('persian_masala_cart') || '[]');
@@ -1838,12 +1946,18 @@
                 img: item.img || 'assets/hamsa-logo.svg'
             }));
 
-            const numericTotal = parseInt(totalPaid.replace(/\D/g, ''), 10) || 0;
+            const subtotalVal = orderItems.reduce((s, i) => s + (i.price * (i.qty || 1)), 0);
+            const isCOD = selectedPaymentType === 'cod';
+            const deliveryChargeVal = isCOD ? currentShippingQuote.codTotalDeliveryCharge : currentShippingQuote.prepaidDeliveryCharge;
+            const discountVal = promoDiscountPercent > 0 ? Math.round((subtotalVal * promoDiscountPercent) / 100) : 0;
+            const numericTotal = parseInt(totalPaid.replace(/\D/g, ''), 10) || (subtotalVal + deliveryChargeVal - discountVal);
 
             let finalOrderId = 'HM-' + Math.floor(1000 + Math.random() * 9000);
-            let finalDeliveryOtp = String(Math.floor(1000 + Math.random() * 9000));
+            let finalWhatsappOtp = String(Math.floor(1000 + Math.random() * 9000));
+            const createdAtIso = new Date().toISOString();
+            const expiresAtIso = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
 
-            // POST to backend API to save persistently in orders.json
+            // POST to backend API to save immediately in orders.json with status "OTP Verification Pending"
             try {
                 const response = await fetch('/api/orders', {
                     method: 'POST',
@@ -1856,117 +1970,258 @@
                         city: city,
                         state: state,
                         items: orderItems,
+                        subtotalAmount: subtotalVal,
+                        deliveryCharge: deliveryChargeVal,
+                        discountAmount: discountVal,
                         totalAmount: numericTotal,
-                        paymentMode: selectedPaymentMethodName
+                        paymentMode: selectedPaymentMethodName,
+                        whatsappOtp: finalWhatsappOtp
                     })
                 });
                 if (response.ok) {
                     const data = await response.json();
                     if (data.success && data.orderId) {
-                        finalOrderId = data.orderId;
-                        if (data.deliveryOtp) finalDeliveryOtp = data.deliveryOtp;
+                        finalOrderId = String(data.orderId).replace(/^#/, '');
+                        if (data.whatsappOtp) finalWhatsappOtp = String(data.whatsappOtp);
                     }
                 }
             } catch (err) {
                 console.warn('Backend API note: Local fallback used:', err);
             }
 
-            // Populate Success Modal
-            document.getElementById('modal-order-id').textContent = `#${finalOrderId}`;
-            document.getElementById('modal-total-paid').textContent = totalPaid;
-            document.getElementById('modal-payment-mode').textContent = selectedPaymentMethodName;
-            document.getElementById('modal-address-summary').textContent = fullAddress;
-            document.getElementById('modal-delivery-otp').textContent = finalDeliveryOtp;
+            activeModalOrderId = finalOrderId;
+            activeModalOtp = finalWhatsappOtp;
 
-            // Generate WhatsApp confirmation URL (STRICTLY WITHOUT DELIVERY OTP)
-            const itemsSummaryText = activeCart.map(i => `• ${i.name} (${i.pack || '100g'}) x ${i.qty || 1} = ₹${i.price * (i.qty || 1)}`).join('\n');
-            const waText = 
-`👑 *HAMSA MASALA - NEW ORDER* 👑
----------------------------------
-📦 *Order ID:* #${finalOrderId}
-👤 *Name:* ${name}
-📞 *Phone:* ${phone}
-📍 *Address:* ${fullAddress}
-
-🛒 *Items Ordered:*
-${itemsSummaryText}
-
-💰 *Total Payable:* ${totalPaid}
-💳 *Payment Mode:* ${selectedPaymentMethodName}
-🚚 *Estimated Delivery:* 3-4 Days (Delhivery Express)
----------------------------------
-Please confirm my order. Thank you!`;
-
+            // Exact reframed WhatsApp message required
+            const waText = `Hello Hamsa Masala! Confirm my Order #${finalOrderId}. My OTP to verify on the website is: ${finalWhatsappOtp}. (Please verify this OTP on the website to confirm your order).`;
             const waUrl = `https://wa.me/919167435089?text=${encodeURIComponent(waText)}`;
-            const waBtn = document.getElementById('modal-whatsapp-btn');
-            if (waBtn) {
-                waBtn.href = waUrl;
-                waBtn.innerHTML = '<i class="fab fa-whatsapp" style="font-size: 1.35rem;"></i> Step 1: Confirm Order on WhatsApp';
-                waBtn.onclick = function() {
-                    handleWhatsAppBtnClick();
-                };
-            }
 
-            // Save order into history for My Orders and Track Order
+            // Save order immediately in browser localStorage with status "OTP Verification Pending"
             const newOrder = {
                 id: `#${finalOrderId}`,
-                deliveryOtp: finalDeliveryOtp,
+                orderId: finalOrderId,
+                whatsappOtp: finalWhatsappOtp,
+                otpVerified: false,
+                status: 'OTP Verification Pending',
+                createdAt: createdAtIso,
+                expiresAt: expiresAtIso,
                 date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-                items: [...activeCart],
+                customerName: name,
+                customerPhone: phone,
+                items: [...orderItems],
+                subtotalAmount: subtotalVal,
+                deliveryCharge: deliveryChargeVal,
                 total: totalPaid,
-                status: 'In Transit',
-                trackingNumber: 'DLV' + Math.floor(100000000 + Math.random() * 900000000),
-                deliveryEta: '3-4 Days via Delhivery Express',
+                totalAmount: numericTotal,
+                trackingNumber: 'Pending Dispatch',
+                deliveryEta: `${currentShippingQuote.eta || '3-5 Days'} (Surface Courier)`,
                 paymentMethod: selectedPaymentMethodName,
-                address: fullAddress
+                paymentMode: selectedPaymentMethodName,
+                address: fullAddress,
+                pincode: pin,
+                whatsappMessage: waText
             };
-            let pastOrders = JSON.parse(localStorage.getItem('persian_masala_orders') || '[]');
+
+            let pastOrders = [];
+            try {
+                pastOrders = JSON.parse(localStorage.getItem('persian_masala_orders') || '[]');
+            } catch (e) { pastOrders = []; }
+            pastOrders = pastOrders.filter(o => String(o.orderId || o.id).replace(/^#/, '') !== finalOrderId);
             pastOrders.unshift(newOrder);
             localStorage.setItem('persian_masala_orders', JSON.stringify(pastOrders));
+            localStorage.setItem('hamsa_pending_otp_order', JSON.stringify(newOrder));
 
             // Save user details for next checkout
             localStorage.setItem('persian_user_name', name);
             localStorage.setItem('persian_user_phone', phone);
 
-            // Reset Locked State for Secret OTP
-            const lockedNotice = document.getElementById('modal-otp-locked-notice');
-            if (lockedNotice) lockedNotice.style.display = 'block';
+            // Populate Inline OTP Verification Modal
+            document.getElementById('modal-order-id').textContent = `#${finalOrderId}`;
+            document.getElementById('modal-total-paid').textContent = totalPaid;
+            document.getElementById('modal-payment-mode').textContent = selectedPaymentMethodName;
+            document.getElementById('modal-address-summary').textContent = fullAddress;
 
-            const unlockedCard = document.getElementById('delivery-otp-unlocked-card');
-            if (unlockedCard) unlockedCard.style.display = 'none';
+            const otpHintEl = document.getElementById('modal-otp-preview-hint');
+            if (otpHintEl) otpHintEl.textContent = finalWhatsappOtp;
+
+            const waBtn = document.getElementById('modal-whatsapp-btn');
+            if (waBtn) waBtn.href = waUrl;
+
+            // Reset modal UI to Pending OTP Verification state
+            document.getElementById('modal-header-icon').innerHTML = '<i class="fab fa-whatsapp"></i>';
+            document.getElementById('modal-header-title').textContent = 'Verify Your WhatsApp OTP';
+            document.getElementById('modal-header-subtitle').textContent = 'Send the pre-filled WhatsApp message & enter your 4-digit OTP below to confirm your order.';
+
+            const statusBadge = document.getElementById('modal-order-status-badge');
+            if (statusBadge) {
+                statusBadge.style.color = '#FBBF24';
+                statusBadge.innerHTML = '<i class="fas fa-clock"></i> OTP Verification Pending';
+            }
+
+            const warningBox = document.getElementById('modal-pending-warning');
+            if (warningBox) warningBox.style.display = 'flex';
+
+            const entrySection = document.getElementById('modal-otp-entry-section');
+            if (entrySection) entrySection.style.display = 'flex';
+
+            const otpInput = document.getElementById('customer-otp-input');
+            if (otpInput) otpInput.value = '';
+
+            const otpErr = document.getElementById('customer-otp-error');
+            if (otpErr) otpErr.style.display = 'none';
 
             const celebrationBanner = document.getElementById('celebration-banner');
             if (celebrationBanner) celebrationBanner.classList.remove('show');
-
-            const reminder = document.getElementById('wa-sent-reminder');
-            if (reminder) reminder.classList.remove('show');
-
-            const hint = document.getElementById('wa-pending-hint');
-            if (hint) hint.style.display = 'flex';
-
-            // Sequential Button: Strictly LOCKED initially until Step 1 is clicked
-            const confirmBtn = document.getElementById('btn-confirm-sent');
-            if (confirmBtn) {
-                confirmBtn.className = 'confirm-sent-btn locked';
-                confirmBtn.disabled = true;
-                confirmBtn.innerHTML = '<i class="fas fa-lock"></i> Step 2: 🔒 I Have Sent It (Locked &bull; Complete Step 1 First)';
-            }
 
             const printBtn = document.getElementById('modal-print-btn');
             if (printBtn) {
                 printBtn.disabled = true;
                 printBtn.style.opacity = '0.5';
                 printBtn.style.cursor = 'not-allowed';
-                printBtn.innerHTML = '<i class="fas fa-receipt"></i> Print Invoice (Unlocks after Step 2)';
+                printBtn.innerHTML = '<i class="fas fa-receipt"></i> Print Invoice (Unlocks after OTP Verification)';
             }
 
-            // Open Order Success Modal (Persistent)
+            // Open inline OTP verification modal
             const modal = document.getElementById('order-success-modal');
             modal.classList.add('open');
 
-            // Clear Cart in localStorage after successful order
+            // Refresh global sticky recovery banner if function exists
+            if (typeof window.refreshPendingOtpRecoveryBanner === 'function') {
+                window.refreshPendingOtpRecoveryBanner();
+            }
+
+            // Open WhatsApp link with the exact reframed message
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+            // Clear Cart in localStorage after order creation
             localStorage.setItem('persian_masala_cart', '[]');
             if (typeof updateCartUI === 'function') updateCartUI();
+        }
+
+        // Step 2: Verify Customer OTP & Confirm Order ("Verify My Number")
+        async function handleVerifyMyNumber() {
+            const otpInput = document.getElementById('customer-otp-input');
+            const errEl = document.getElementById('customer-otp-error');
+            const verifyBtn = document.getElementById('btn-verify-my-number');
+            if (!otpInput) return;
+
+            const enteredOtp = otpInput.value.trim();
+            if (!/^\d{4}$/.test(enteredOtp)) {
+                if (errEl) {
+                    errEl.style.display = 'block';
+                    errEl.innerHTML = '<i class="fas fa-circle-exclamation"></i> Please enter your 4-digit WhatsApp OTP.';
+                }
+                return;
+            }
+
+            if (verifyBtn) {
+                verifyBtn.disabled = true;
+                verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying OTP...';
+            }
+
+            let verifiedOk = false;
+            let serverMsg = '';
+
+            // 1. Verify against backend API
+            try {
+                const res = await fetch('/api/orders/verify-whatsapp-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        orderId: activeModalOrderId,
+                        otp: enteredOtp
+                    })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    verifiedOk = true;
+                } else {
+                    serverMsg = data.message || '';
+                }
+            } catch (e) {
+                // Fallback to local verification if server unreachable
+            }
+
+            // 2. Also verify against localStorage OTP if matching
+            if (!verifiedOk && activeModalOtp && enteredOtp === String(activeModalOtp).trim()) {
+                verifiedOk = true;
+            }
+
+            if (verifyBtn) {
+                verifyBtn.disabled = false;
+                verifyBtn.innerHTML = '<i class="fas fa-user-check"></i> Verify My Number';
+            }
+
+            if (!verifiedOk) {
+                if (errEl) {
+                    errEl.style.display = 'block';
+                    errEl.innerHTML = `<i class="fas fa-circle-xmark"></i> ${serverMsg || 'Incorrect OTP. Please check your WhatsApp message and enter the exact 4-digit OTP.'}`;
+                }
+                return;
+            }
+
+            // Update order status in localStorage to "Verified - Confirmed"
+            const cleanId = String(activeModalOrderId).replace(/^#/, '');
+            try {
+                let pastOrders = JSON.parse(localStorage.getItem('persian_masala_orders') || '[]');
+                pastOrders = pastOrders.map(o => {
+                    if (String(o.orderId || o.id).replace(/^#/, '') === cleanId) {
+                        return {
+                            ...o,
+                            status: 'Verified - Confirmed',
+                            otpVerified: true,
+                            verifiedAt: new Date().toISOString()
+                        };
+                    }
+                    return o;
+                });
+                localStorage.setItem('persian_masala_orders', JSON.stringify(pastOrders));
+
+                const pendingRaw = localStorage.getItem('hamsa_pending_otp_order');
+                if (pendingRaw) {
+                    const pendingObj = JSON.parse(pendingRaw);
+                    if (String(pendingObj.orderId || pendingObj.id).replace(/^#/, '') === cleanId) {
+                        localStorage.removeItem('hamsa_pending_otp_order');
+                    }
+                }
+            } catch (e) {}
+
+            // Refresh global sticky banner
+            if (typeof window.refreshPendingOtpRecoveryBanner === 'function') {
+                window.refreshPendingOtpRecoveryBanner();
+            }
+
+            // Show celebratory "Order Confirmed!" screen
+            launchRoyalConfetti();
+
+            document.getElementById('modal-header-icon').innerHTML = '<i class="fas fa-check"></i>';
+            document.getElementById('modal-header-title').textContent = 'Order Confirmed!';
+            document.getElementById('modal-header-subtitle').textContent = 'Shukriya! Your WhatsApp OTP is verified and your royal spices are being prepared.';
+
+            const statusBadge = document.getElementById('modal-order-status-badge');
+            if (statusBadge) {
+                statusBadge.style.color = 'var(--roy-green-accent)';
+                statusBadge.innerHTML = '<i class="fas fa-circle-check"></i> Verified - Confirmed';
+            }
+
+            const warningBox = document.getElementById('modal-pending-warning');
+            if (warningBox) warningBox.style.display = 'none';
+
+            const entrySection = document.getElementById('modal-otp-entry-section');
+            if (entrySection) entrySection.style.display = 'none';
+
+            const celebrationBanner = document.getElementById('celebration-banner');
+            if (celebrationBanner) celebrationBanner.classList.add('show');
+
+            const printBtn = document.getElementById('modal-print-btn');
+            if (printBtn) {
+                printBtn.disabled = false;
+                printBtn.style.opacity = '1';
+                printBtn.style.cursor = 'pointer';
+                printBtn.style.background = 'linear-gradient(135deg, rgba(226,182,107,0.2), rgba(199,144,86,0.2))';
+                printBtn.style.borderColor = 'var(--roy-gold)';
+                printBtn.innerHTML = '<i class="fas fa-print"></i> Print Official Order Invoice';
+            }
         }
 
         // Royal Celebratory Confetti Animation
@@ -2013,8 +2268,8 @@ Please confirm my order. Thank you!`;
                 particles.forEach(p => {
                     p.x += p.vx;
                     p.y += p.vy;
-                    p.vy += 0.38; // gravity
-                    p.vx *= 0.98; // air resistance
+                    p.vy += 0.38;
+                    p.vx *= 0.98;
                     p.rotation += p.rotSpeed;
                     if (elapsed > 2000) {
                         p.opacity = Math.max(0, 1 - (elapsed - 2000) / 1500);
@@ -2034,78 +2289,8 @@ Please confirm my order. Thank you!`;
             requestAnimationFrame(animate);
         }
 
-        // Sequential WhatsApp Flow Handlers
-        function handleWhatsAppBtnClick() {
-            sessionStorage.setItem('hamsa_wa_clicked', 'true');
-            
-            // Hide lock hint
-            const hint = document.getElementById('wa-pending-hint');
-            if (hint) hint.style.display = 'none';
-
-            // Show friendly instruction reminder
-            const reminder = document.getElementById('wa-sent-reminder');
-            if (reminder) reminder.classList.add('show');
-
-            // Smoothly unlock Step 2 'I Have Sent It' button
-            const confirmBtn = document.getElementById('btn-confirm-sent');
-            if (confirmBtn) {
-                confirmBtn.className = 'confirm-sent-btn unlocked';
-                confirmBtn.disabled = false;
-                confirmBtn.innerHTML = '<i class="fas fa-circle-check"></i> Step 2: ✅ I Have Sent It (Click to Unlock OTP)';
-            }
-
-            // Update WhatsApp button state
-            const waBtn = document.getElementById('modal-whatsapp-btn');
-            if (waBtn) {
-                waBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Step 1: WhatsApp Opened (Send Message Now)';
-            }
-        }
-
-        function handleCustomerConfirmedSent() {
-            // Trigger Party Confetti Celebration
-            launchRoyalConfetti();
-
-            // 1. Smoothly hide locked placeholder & reminders
-            const lockedNotice = document.getElementById('modal-otp-locked-notice');
-            if (lockedNotice) lockedNotice.style.display = 'none';
-
-            const reminder = document.getElementById('wa-sent-reminder');
-            if (reminder) reminder.classList.remove('show');
-
-            const hint = document.getElementById('wa-pending-hint');
-            if (hint) hint.style.display = 'none';
-
-            // 2. Show celebratory party banner
-            const celebrationBanner = document.getElementById('celebration-banner');
-            if (celebrationBanner) celebrationBanner.classList.add('show');
-
-            // 3. Smoothly reveal OTP card
-            const unlockedCard = document.getElementById('delivery-otp-unlocked-card');
-            if (unlockedCard) unlockedCard.style.display = 'block';
-
-            // 4. Update 'I Have Sent It' button to verified state
-            const confirmBtn = document.getElementById('btn-confirm-sent');
-            if (confirmBtn) {
-                confirmBtn.className = 'confirm-sent-btn sent-verified';
-                confirmBtn.disabled = true;
-                confirmBtn.innerHTML = '<i class="fas fa-check-double"></i> WhatsApp Order Verified &bull; Secret OTP Active';
-            }
-
-            // 5. Activate Print Invoice button
-            const printBtn = document.getElementById('modal-print-btn');
-            if (printBtn) {
-                printBtn.disabled = false;
-                printBtn.style.opacity = '1';
-                printBtn.style.cursor = 'pointer';
-                printBtn.style.background = 'linear-gradient(135deg, rgba(226,182,107,0.2), rgba(199,144,86,0.2))';
-                printBtn.style.borderColor = 'var(--roy-gold)';
-                printBtn.innerHTML = '<i class="fas fa-print"></i> Print Official Order Invoice';
-            }
-        }
-
         // Initialize Checkout Page
         document.addEventListener('DOMContentLoaded', () => {
-            // Pre-fill phone and name
             const savedPhone = localStorage.getItem('persian_user_phone');
             if (savedPhone) {
                 const phoneInput = document.getElementById('addr-phone');
@@ -2118,11 +2303,11 @@ Please confirm my order. Thank you!`;
                 if (nameInput && !nameInput.value) nameInput.value = savedName;
             }
 
+            fetchSmartSurfaceRates('400612');
             renderCheckoutOrderSummary();
         });
 
         function closeOrderSuccessModal(event) {
-            // Persistent Modal: ONLY close if clicking the explicit 'X' close button!
             if (event && !event.target.closest('.order-success-close-btn')) {
                 return;
             }
