@@ -186,7 +186,7 @@
                     <button class="filter-pill" data-category="blended"
                         onclick="filterCatalogCategory('blended', this)">Royal Biryanis &amp; Gravies</button>
                     <button class="filter-pill" data-category="royal"
-                        onclick="filterCatalogCategory('royal', this)">Gourmet Sweets &amp; Royal</button>
+                        onclick="filterCatalogCategory('royal', this)">Gourmet Sweets &amp; Beverages</button>
                 </div>
                 <div class="sort-wrapper">
                     <label for="sort-select" class="sort-label">Sort by:</label>
@@ -200,7 +200,7 @@
             </div>
             <!-- Results Meta Info -->
             <div class="results-info-row">
-                <span id="results-count-text">Showing <strong id="results-count">8</strong> handcrafted royal
+                <span id="results-count-text">Showing <strong id="results-count">9</strong> handcrafted royal
                     specialties</span>
                 <span style="color: var(--color-accent); font-weight: 500;"><i class="fas fa-crown"></i> 100% Pure Royal
                     Spices</span>
@@ -372,6 +372,26 @@
                         </div>
                     </div>
                 </div>
+                <!-- Skeleton Card 9 -->
+                <div class="skeleton-product-card" aria-hidden="true">
+                    <div class="skeleton-img-box">
+                        <div class="skeleton-badge-pill skeleton-shimmer"></div>
+                        <div class="skeleton-wishlist-circle skeleton-shimmer"></div>
+                        <div class="skeleton-product-silhouette skeleton-shimmer"></div>
+                    </div>
+                    <div class="skeleton-card-body">
+                        <div class="skeleton-line skeleton-title skeleton-shimmer"></div>
+                        <div class="skeleton-price-row">
+                            <div class="skeleton-line skeleton-price skeleton-shimmer"></div>
+                            <div class="skeleton-line skeleton-cutprice skeleton-shimmer"></div>
+                            <div class="skeleton-line skeleton-weight skeleton-shimmer"></div>
+                        </div>
+                        <div class="skeleton-footer-row">
+                            <div class="skeleton-line skeleton-rating skeleton-shimmer"></div>
+                            <div class="skeleton-circle skeleton-cart-btn skeleton-shimmer"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="product-grid" id="product-grid">
                 <!-- Product 1: Hamsa Lazeez Dum Biryani Masala -->
@@ -385,7 +405,7 @@
                             onclick="event.stopPropagation(); toggleWishlist(this, 'lazeez-dum')" aria-label="Wishlist">
                             <i class="far fa-heart"></i>
                         </button>
-                        <span class="card-badge" style="background: #E2B66B; color: #12342A;">Imperial Dum
+                        <span class="card-badge" style="background: #E2B66B; color: #12342A;">Royal Dum
                             Biryani</span>
                     </div>
                     <div class="card-body" onclick="openRoyalProduct('lazeez-dum')">
@@ -649,6 +669,41 @@
                             <button class="add-cart-btn"
                                 onclick="event.stopPropagation(); addToCart('Ruz-Bi-Haleebia (Persian Sweet)', 205, 'assets/ruz-bi-haleebia.png', 1, '100g')"
                                 aria-label="Add Ruz-Bi-Haleebia to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 9: Destiny Queen Mulberry Mojito -->
+                <div class="product-card" data-id="destiny-queen-mojito"
+                    data-name="Destiny Queen Mulberry Mojito Non-Alcoholic Champagne Premium Sparkling Drink" data-category="royal"
+                    data-price="750" data-rating="5.0">
+                    <div class="card-img-wrapper" onclick="openRoyalProduct('destiny-queen-mojito')">
+                        <img src="assets/Destiny%20Queen%20Mulberry%20Mojito.png" alt="Destiny Queen Mulberry Mojito" class="card-img"
+                            loading="lazy" style="object-fit: contain; padding: 6px;">
+                        <button class="wishlist-btn"
+                            onclick="event.stopPropagation(); toggleWishlist(this, 'destiny-queen-mojito')"
+                            aria-label="Wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <span class="card-badge" style="background: #E2B66B; color: #12342A;">Royal Sparkling</span>
+                    </div>
+                    <div class="card-body" onclick="openRoyalProduct('destiny-queen-mojito')">
+                        <h3 class="card-title">Destiny Queen Mulberry Mojito</h3>
+                        <div class="card-price-row">
+                            <span class="price-val">₹750</span>
+                            <span class="orig-price-val">₹899</span>
+                            <span class="weight-val">750 ml</span>
+                        </div>
+                        <div class="card-footer-row">
+                            <div class="card-rating">
+                                <i class="fas fa-star rating-star"></i>
+                                <span class="rating-score">5.0</span>
+                                <span class="review-count">(850)</span>
+                            </div>
+                            <button class="add-cart-btn"
+                                onclick="event.stopPropagation(); addToCart('Destiny Queen Mulberry Mojito', 750, 'assets/Destiny%20Queen%20Mulberry%20Mojito.png', 1, '750 ml')"
+                                aria-label="Add Destiny Queen Mulberry Mojito to Cart">
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
                         </div>

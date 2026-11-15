@@ -121,6 +121,22 @@ const royalSpicesCatalog = [
         rating: 5.0,
         reviews: '2.4K',
         img: 'assets/ruz-bi-haleebia.png'
+    },
+    {
+        id: 'destiny-queen-mojito',
+        name: 'Destiny Queen Mulberry Mojito',
+        tagline: 'Non-Alcoholic Champagne • Premium Sparkling Drink (750 ml)',
+        description: 'A royal sparkling mulberry beverage crafted with real mulberries, fresh garden mint, and zesty lemon. Refreshing, healthy, and cured by Hamsa.',
+        ingredients: 'Real Black Mulberry Extract, Fresh Garden Mint Leaves, Zesty Persian Lime/Lemon, Sparkling Spring Water, Natural Fruit Sugar, Mild Botanicals.',
+        category: 'Royal Beverages',
+        catKey: 'royal',
+        price: 750,
+        origPrice: 899,
+        discount: '17% OFF',
+        weight: '750 ml',
+        rating: 5.0,
+        reviews: '850',
+        img: 'assets/Destiny%20Queen%20Mulberry%20Mojito.png'
     }
 ];
 
@@ -1846,6 +1862,7 @@ window.addEventListener('click', (e) => {
             else if (titleText.includes('turkish') || titleText.includes('shank')) detectedId = 'turkish-lamb-shank';
             else if (titleText.includes('boti')) detectedId = 'boti-delight';
             else if (titleText.includes('ruz') || titleText.includes('sweet') || titleText.includes('haleebia')) detectedId = 'ruz-bi-haleebia';
+            else if (titleText.includes('destiny') || titleText.includes('mulberry') || titleText.includes('mojito')) detectedId = 'destiny-queen-mojito';
             else if (titleText.includes('classic') || titleText.includes('biryani')) detectedId = 'classic-biryani';
         }
     }

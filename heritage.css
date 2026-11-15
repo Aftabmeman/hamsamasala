@@ -15,12 +15,13 @@
 .heritage-hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     background: #0C231B;
     /* fallback if video fails to load */
-    padding: calc(var(--nav-height) + 40px) 6% 80px 6%;
+    padding: calc(var(--nav-height, 75px) + 60px) 6% 80px 6%;
     text-align: center;
     overflow: hidden;
     isolation: isolate;
@@ -210,26 +211,29 @@
 /* Hero Content Box */
 .heritage-hero-content {
     position: relative;
-    z-index: 5;
+    z-index: 20 !important;
     max-width: 860px;
-    margin: 0 auto;
+    margin: 20px auto 0 auto !important;
 }
 
 .hero-legacy-badge {
+    position: relative !important;
+    z-index: 25 !important;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 8px 20px;
     border-radius: 30px;
-    background: rgba(226, 182, 107, 0.12);
+    background: rgba(226, 182, 107, 0.15);
     border: 1.5px solid #E2B66B;
     color: #E2B66B;
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin-top: 10px;
     margin-bottom: 24px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .heritage-hero-title {
@@ -734,7 +738,8 @@
     position: absolute;
     top: 20px;
     left: 20px;
-    background: rgba(10, 28, 22, 0.85);
+    z-index: 20 !important;
+    background: rgba(10, 28, 22, 0.9);
     border: 1px solid #E2B66B;
     color: #E2B66B;
     padding: 6px 14px;
@@ -744,6 +749,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     backdrop-filter: blur(4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .spice-card-info {
@@ -1006,6 +1012,27 @@
 
     .floating-spice-item {
         transform: scale(0.75);
+    }
+
+    .heritage-hero {
+        padding-top: calc(var(--nav-height, 70px) + 70px) !important;
+        min-height: auto;
+        padding-bottom: 70px;
+    }
+
+    .hero-legacy-badge {
+        font-size: 0.72rem;
+        padding: 6px 14px;
+        letter-spacing: 1px;
+        margin-top: 15px;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 25 !important;
+    }
+
+    .floating-spices-stage {
+        z-index: 1 !important;
+        pointer-events: none;
     }
 }
 
