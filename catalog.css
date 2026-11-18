@@ -308,68 +308,72 @@ body {
 /* --- Catalog Grid Section --- */
 .catalog-grid-section {
     background: var(--color-cream);
-    padding: 20px 5% 80px 5%;
+    padding: 20px 3% 80px 3%;
     min-height: 500px;
+    overflow-x: hidden;
 }
 
 .catalog-grid-container {
-    max-width: 1240px;
+    max-width: 1380px;
     margin: 0 auto;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px 20px;
+    width: 100%;
+    max-width: 100%;
 }
 
-/* --- Product Card Design --- */
+/* --- Product Card Design (Frameless Open Top Showcase + Attached Compact Bottom Box) --- */
 .product-card {
-    background: #FFFFFF;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(18, 52, 42, 0.06);
-    border: 1px solid rgba(226, 182, 107, 0.25);
+    background: transparent !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
     cursor: pointer;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(18, 52, 42, 0.12);
-    border-color: var(--color-gold);
+    transform: translateY(-4px);
 }
 
-/* Image Container (Square 1:1) with Persian City Sketch Background */
+/* Open Top Showcase Area (Badges cleanly above + Extra-Large Wavy Gold-Framed Artwork) */
 .card-img-wrapper {
     position: relative !important;
     width: 100%;
-    aspect-ratio: 1/1;
-    overflow: hidden !important;
-    background: #FAF7F0 !important;
+    padding-top: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
     isolation: isolate !important;
+    z-index: 2;
 }
 
 .card-img-wrapper::before {
-    content: "" !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background-image: url('assets/town-sketch.jpg') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    opacity: 0.25 !important;
-    z-index: 0 !important;
-    pointer-events: none !important;
+    display: none !important;
+    content: none !important;
 }
 
 /* Skeleton Shimmer on Real Card Images while loading */
 .card-img-wrapper:not(.shimmer-loaded)::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 26px 0 8px 0;
+    border-radius: 28px;
     background: linear-gradient(
         90deg,
         rgba(226, 182, 107, 0.08) 0%,
@@ -393,14 +397,20 @@ body {
 }
 
 .card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 106%;
+    max-width: 106%;
+    aspect-ratio: 10 / 13.8;
+    height: auto;
+    object-fit: contain !important;
+    object-position: bottom center;
+    padding: 0 !important;
+    margin: 0 -3%;
     display: block;
     position: relative !important;
     z-index: 2 !important;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+    transform-origin: bottom center;
+    transition: opacity 0.4s ease, transform 0.35s ease, filter 0.35s ease;
+    filter: drop-shadow(0 12px 18px rgba(18, 52, 42, 0.2));
 }
 
 .card-img:not(.shimmer-loaded) {
@@ -413,44 +423,33 @@ body {
 
 .product-card:hover .card-img {
     transform: scale(1.03);
-    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.22));
+    filter: drop-shadow(0 14px 24px rgba(18, 52, 42, 0.25));
 }
 
-/* Persian Ornate Corner/Border Accents */
-.persian-corner-top-left {
+/* Remove legacy rectangular corner lines */
+.persian-corner-top-left,
+.persian-corner-top-right {
     display: none !important;
 }
 
-.persian-corner-top-right {
-    position: absolute;
-    top: 6px;
-    right: 48px;
-    width: 18px;
-    height: 18px;
-    border-top: 2px solid var(--color-gold);
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0.85;
-}
-
-/* Wishlist Button */
+/* Wishlist Button — Floating Cleanly Top-Right on Open Cream Background */
 .wishlist-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0;
+    right: 2px;
     width: 34px;
     height: 34px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.96);
     border-radius: 50%;
-    border: none;
+    border: 1px solid rgba(226, 182, 107, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #444;
     font-size: 0.95rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 10px rgba(18, 52, 42, 0.12);
     cursor: pointer;
-    z-index: 5;
+    z-index: 10;
     transition: all 0.25s ease;
 }
 
@@ -468,25 +467,25 @@ body {
     font-weight: 900;
 }
 
-/* Badge - Positioned Top-Left with High Z-Index so it is NEVER Covered by Image */
+/* Badge — Floating Cleanly Top-Left Above Image Without Outer Box */
 .card-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 4px;
+    left: 2px;
     bottom: auto;
     background: var(--color-dark-green);
     color: var(--color-gold);
     font-size: 0.64rem;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 5px 10px;
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     z-index: 10 !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
-    border: 1px solid rgba(226, 182, 107, 0.4);
+    box-shadow: 0 3px 10px rgba(18, 52, 42, 0.2);
+    border: 1px solid rgba(226, 182, 107, 0.45);
     pointer-events: none;
-    max-width: calc(100% - 56px);
+    max-width: calc(100% - 44px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -495,23 +494,85 @@ body {
     align-items: center;
 }
 
-@media (max-width: 600px) {
-    .card-badge {
-        top: 8px;
-        left: 8px;
-        font-size: 0.58rem;
-        padding: 3px 8px;
-        max-width: calc(100% - 46px);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    }
-}
-
-/* Card Body Content */
+/* Attached Compact Bottom Details Box */
 .card-body {
-    padding: 14px 14px 16px 14px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid rgba(226, 182, 107, 0.35);
+    box-shadow: 0 6px 20px rgba(18, 52, 42, 0.08);
+    padding: 16px 14px 12px 14px;
+    margin-top: -15px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     flex: 1;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover .card-body {
+    border-color: var(--color-gold);
+    box-shadow: 0 12px 26px rgba(18, 52, 42, 0.14);
+}
+
+@media (max-width: 600px) {
+    .card-img-wrapper {
+        padding-top: 24px;
+    }
+    .card-img-wrapper:not(.shimmer-loaded)::after {
+        inset: 24px 0 4px 0;
+        border-radius: 22px;
+    }
+    .card-img {
+        width: 104%;
+        max-width: 104%;
+        margin: 0 -2%;
+    }
+    .card-badge {
+        top: 2px;
+        left: 0;
+        font-size: 0.56rem;
+        padding: 3px 8px;
+        max-width: calc(100% - 34px);
+        box-shadow: 0 2px 8px rgba(18, 52, 42, 0.2);
+    }
+    .wishlist-btn {
+        top: 0;
+        right: 0;
+        width: 28px;
+        height: 28px;
+        font-size: 0.82rem;
+    }
+    .card-body {
+        padding: 13px 10px 10px 10px;
+        margin-top: -10px;
+        border-radius: 14px;
+    }
+    .card-title {
+        font-size: 0.94rem;
+    }
+    .card-price-row {
+        margin-bottom: 8px;
+    }
+    .price-val {
+        font-size: 1rem;
+    }
+    .orig-price-val {
+        font-size: 0.76rem;
+    }
+    .weight-val {
+        font-size: 0.72rem;
+    }
+    .add-cart-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        font-size: 0.84rem;
+    }
 }
 
 .card-title {
@@ -635,11 +696,11 @@ body {
 /* --- Product Detail Page Styles --- */
 .product-detail-wrapper {
     background: var(--color-cream);
-    padding: calc(var(--nav-height) + 65px) 5% 80px 5%;
+    padding: calc(var(--nav-height) + 65px) 4% 80px 4%;
 }
 
 .product-detail-container {
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
 }
 
@@ -669,8 +730,8 @@ body {
 
 .product-main-grid {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 50px;
+    grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+    gap: 44px;
     margin-bottom: 60px;
 }
 
@@ -683,35 +744,31 @@ body {
 .detail-main-img-box {
     position: relative !important;
     width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 20px;
-    overflow: hidden !important;
-    box-shadow: 0 10px 30px rgba(18, 52, 42, 0.12);
-    border: 2px solid rgba(226, 182, 107, 0.4);
-    background: #FAF7F0 !important;
+    max-width: 100%;
+    aspect-ratio: auto !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    padding: 0 !important;
     isolation: isolate !important;
 }
 
 .detail-main-img-box::before {
-    content: "" !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background-image: url('assets/town-sketch.jpg') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    opacity: 0.25 !important;
-    z-index: 0 !important;
-    pointer-events: none !important;
+    display: none !important;
+    content: none !important;
 }
 
 .detail-main-img-box:not(.shimmer-loaded)::after {
     content: '';
     position: absolute;
     inset: 0;
+    min-height: 360px;
+    border-radius: 24px;
     background: linear-gradient(
         90deg,
         rgba(226, 182, 107, 0.08) 0%,
@@ -736,13 +793,14 @@ body {
 
 .detail-main-img {
     width: 100%;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
     object-fit: contain;
     display: block;
     position: relative !important;
     z-index: 2 !important;
-    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
-    transition: opacity 0.35s ease;
+    filter: drop-shadow(0 14px 26px rgba(18, 52, 42, 0.2));
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .detail-main-img:not(.shimmer-loaded) {
@@ -1619,12 +1677,12 @@ body {
 /* Responsive Media Queries */
 @media (max-width: 1024px) {
     .product-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
     }
 
     .product-main-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 36px;
     }
 }
@@ -1697,7 +1755,7 @@ body {
     }
 
     .product-main-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: minmax(0, 1fr) !important;
         gap: 22px !important;
         margin-bottom: 35px !important;
         width: 100% !important;
@@ -1717,23 +1775,28 @@ body {
     .detail-main-img-box {
         width: 100% !important;
         max-width: 100% !important;
-        aspect-ratio: 1 / 1 !important;
-        border-radius: 16px !important;
-        padding: 10px !important;
+        aspect-ratio: auto !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        overflow: visible !important;
     }
 
     .detail-main-img {
+        width: 100% !important;
         max-width: 100% !important;
-        max-height: 100% !important;
+        height: auto !important;
         object-fit: contain !important;
     }
 
     .detail-wishlist-btn {
-        width: 38px !important;
-        height: 38px !important;
-        top: 12px !important;
-        right: 12px !important;
-        font-size: 1rem !important;
+        width: 40px !important;
+        height: 40px !important;
+        top: 8px !important;
+        right: 8px !important;
+        font-size: 1.05rem !important;
     }
 
     .thumbnail-row {
@@ -2070,16 +2133,21 @@ body {
         font-size: 1.35rem !important;
     }
 
+    .catalog-grid-section {
+        padding: 16px 12px 60px 12px !important;
+    }
+
     .product-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px 12px !important;
         width: 100% !important;
+        max-width: 100% !important;
     }
 }
 
-@media (max-width: 365px) {
+@media (max-width: 340px) {
     .product-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: minmax(0, 1fr) !important;
     }
     .detail-title {
         font-size: 1.5rem !important;
@@ -3834,13 +3902,13 @@ body {
     overflow: hidden;
 }
 
-/* Skeleton Product Card - Exact replica of Hamsa product card layout */
+/* Skeleton Product Card - Exact replica of open-top + compact-bottom-box layout */
 .skeleton-product-card {
-    background: #FFFFFF;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(18, 52, 42, 0.06);
-    border: 1px solid rgba(226, 182, 107, 0.25);
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    border: none;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -3852,43 +3920,50 @@ body {
 .skeleton-img-box {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #FAF7F0;
-    overflow: hidden;
+    padding-top: 26px;
+    background: transparent;
+    overflow: visible;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 }
 
 .skeleton-badge-pill {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 4px;
+    left: 2px;
     width: 84px;
-    height: 18px;
+    height: 20px;
     border-radius: 20px;
     z-index: 2;
 }
 
 .skeleton-wishlist-circle {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
+    top: 0;
+    right: 2px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     z-index: 2;
 }
 
 .skeleton-product-silhouette {
-    width: 62%;
-    height: 72%;
-    border-radius: 14px;
-    margin: auto;
+    width: 106%;
+    margin: 0 -3%;
+    aspect-ratio: 10 / 13.8;
+    border-radius: 28px;
 }
 
 .skeleton-card-body {
-    padding: 14px 14px 16px 14px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid rgba(226, 182, 107, 0.35);
+    box-shadow: 0 6px 20px rgba(18, 52, 42, 0.08);
+    padding: 16px 14px 12px 14px;
+    margin-top: -15px;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -3991,20 +4066,25 @@ body {
 
 /* Mobile responsive tuning for skeleton cards */
 @media (max-width: 600px) {
+    .skeleton-img-box {
+        padding-top: 34px;
+    }
     .skeleton-card-body {
-        padding: 10px 10px 12px 10px;
+        padding: 14px 10px 12px 10px;
+        margin-top: -8px;
+        border-radius: 14px;
     }
     .skeleton-badge-pill {
-        top: 8px;
-        left: 8px;
+        top: 3px;
+        left: 0;
         width: 64px;
-        height: 15px;
+        height: 16px;
     }
     .skeleton-wishlist-circle {
-        top: 8px;
-        right: 8px;
-        width: 28px;
-        height: 28px;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
     }
     .skeleton-line.skeleton-title {
         height: 15px;

@@ -1467,8 +1467,8 @@ const server = http.createServer(async (req, res) => {
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 return res.end('500 Internal Server Error');
             }
-            const isStaticAsset = ['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.ico', '.woff', '.woff2', '.ttf'].includes(extname);
-            const cacheHeader = isStaticAsset ? 'public, max-age=604800' : 'no-cache';
+            const isLongCachedAsset = ['.svg', '.ico', '.woff', '.woff2', '.ttf'].includes(extname);
+            const cacheHeader = isLongCachedAsset ? 'public, max-age=604800' : 'no-cache';
             const acceptEncoding = String(req.headers['accept-encoding'] || '');
             const isCompressible = ['.svg', '.html', '.css', '.js', '.json'].includes(extname) && content.length > 1024;
 

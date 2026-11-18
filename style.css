@@ -2410,13 +2410,13 @@ body.intro-playing {
     overflow: hidden;
 }
 
-/* Skeleton Product Card - Exact replica of Hamsa product card layout */
+/* Skeleton Product Card - Exact replica of open-top + compact-bottom-box layout */
 .skeleton-product-card {
-    background: #FFFFFF;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(18, 52, 42, 0.06);
-    border: 1px solid rgba(226, 182, 107, 0.25);
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    border: none;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -2428,43 +2428,50 @@ body.intro-playing {
 .skeleton-img-box {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #FAF7F0;
-    overflow: hidden;
+    padding-top: 26px;
+    background: transparent;
+    overflow: visible;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 }
 
 .skeleton-badge-pill {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 4px;
+    left: 2px;
     width: 84px;
-    height: 18px;
+    height: 20px;
     border-radius: 20px;
     z-index: 2;
 }
 
 .skeleton-wishlist-circle {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
+    top: 0;
+    right: 2px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     z-index: 2;
 }
 
 .skeleton-product-silhouette {
-    width: 62%;
-    height: 72%;
-    border-radius: 14px;
-    margin: auto;
+    width: 106%;
+    margin: 0 -3%;
+    aspect-ratio: 10 / 13.8;
+    border-radius: 28px;
 }
 
 .skeleton-card-body {
-    padding: 14px 14px 16px 14px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid rgba(226, 182, 107, 0.35);
+    box-shadow: 0 6px 20px rgba(18, 52, 42, 0.08);
+    padding: 16px 14px 12px 14px;
+    margin-top: -15px;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -2531,7 +2538,8 @@ body.intro-playing {
 .card-img-wrapper:not(.shimmer-loaded)::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 40px 4px 6px 4px;
+    border-radius: 26px;
     background: linear-gradient(
         90deg,
         rgba(226, 182, 107, 0.08) 0%,
@@ -2650,20 +2658,25 @@ body.intro-playing {
 
 /* Mobile responsive tuning for skeleton cards */
 @media (max-width: 600px) {
+    .skeleton-img-box {
+        padding-top: 34px;
+    }
     .skeleton-card-body {
-        padding: 10px 10px 12px 10px;
+        padding: 14px 10px 12px 10px;
+        margin-top: -8px;
+        border-radius: 14px;
     }
     .skeleton-badge-pill {
-        top: 8px;
-        left: 8px;
+        top: 3px;
+        left: 0;
         width: 64px;
-        height: 15px;
+        height: 16px;
     }
     .skeleton-wishlist-circle {
-        top: 8px;
-        right: 8px;
-        width: 28px;
-        height: 28px;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
     }
     .skeleton-line.skeleton-title {
         height: 15px;
