@@ -18,7 +18,7 @@ const royalSpicesCatalog = [
         weight: '60g',
         rating: 4.9,
         reviews: '1.8K',
-        img: 'assets/lazeez-dum-biryani.png?v=35'
+        img: 'assets/lazeez-dum-biryani.png?v=36'
     },
     {
         id: 'classic-biryani',
@@ -34,7 +34,7 @@ const royalSpicesCatalog = [
         weight: '60g',
         rating: 4.8,
         reviews: '2.1K',
-        img: 'assets/original-classic-biryani.png?v=35'
+        img: 'assets/original-classic-biryani.png?v=36'
     },
     {
         id: 'raaz-e-kalimiri',
@@ -48,7 +48,7 @@ const royalSpicesCatalog = [
         weight: '60g',
         rating: 4.9,
         reviews: '1.5K',
-        img: 'assets/raaz-e-kalimiri-biryani.png?v=35'
+        img: 'assets/raaz-e-kalimiri-biryani.png?v=36'
     },
     {
         id: 'turkish-lamb-shank',
@@ -62,7 +62,7 @@ const royalSpicesCatalog = [
         weight: '100g',
         rating: 4.9,
         reviews: '1.4K',
-        img: 'assets/turkish-lamb-shank.png?v=35'
+        img: 'assets/turkish-lamb-shank.png?v=36'
     },
     {
         id: 'boti-delight',
@@ -76,7 +76,7 @@ const royalSpicesCatalog = [
         weight: '80g',
         rating: 4.9,
         reviews: '1.9K',
-        img: 'assets/boti-delight.png?v=35'
+        img: 'assets/boti-delight.png?v=36'
     },
     {
         id: 'murg-lababdar',
@@ -92,7 +92,7 @@ const royalSpicesCatalog = [
         weight: '100g',
         rating: 4.9,
         reviews: '1.6K',
-        img: 'assets/murg-lababdar.png?v=35'
+        img: 'assets/murg-lababdar.png?v=36'
     },
     {
         id: 'murg-kalimiri',
@@ -106,7 +106,7 @@ const royalSpicesCatalog = [
         weight: '100g',
         rating: 4.9,
         reviews: '1.3K',
-        img: 'assets/murg-kalimiri.png?v=35'
+        img: 'assets/murg-kalimiri.png?v=36'
     },
     {
         id: 'ruz-bi-haleebia',
@@ -120,7 +120,7 @@ const royalSpicesCatalog = [
         weight: '100g',
         rating: 5.0,
         reviews: '2.4K',
-        img: 'assets/ruz-bi-haleebia.png?v=35'
+        img: 'assets/ruz-bi-haleebia.png?v=36'
     },
     {
         id: 'destiny-queen-mojito',
@@ -136,7 +136,7 @@ const royalSpicesCatalog = [
         weight: '750 ml',
         rating: 5.0,
         reviews: '850',
-        img: 'assets/Destiny%20Queen%20Mulberry%20Mojito.png?v=35'
+        img: 'assets/Destiny%20Queen%20Mulberry%20Mojito.png?v=36'
     }
 ];
 

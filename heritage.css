@@ -317,25 +317,51 @@
 }
 
 /* ==========================================================================
-   CHAPTER 2: THE SILK ROUTE JOURNEY (CREAM BG + TOWN SKETCH)
+   CHAPTER 2: THE SILK ROUTE JOURNEY (STARLIT CARAVAN BG)
    ========================================================================== */
 .chapter-silk-route {
-    background: #F4F0E6;
-    color: #1A1A1A;
+    background: #071020;
+    color: #FAF7F0;
     padding: 110px 6% 120px 6%;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
 }
 
-/* Parallax Town Sketch Background Layer */
+.chapter-silk-route::before,
+.chapter-silk-route::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.chapter-silk-route::before {
+    top: 0;
+    height: 44px;
+    background: linear-gradient(180deg, #071020 0%, rgba(7, 16, 32, 0) 100%);
+}
+
+.chapter-silk-route::after {
+    bottom: 0;
+    height: 54px;
+    background: linear-gradient(180deg, rgba(11, 33, 26, 0) 0%, #0B211A 100%);
+}
+
+/* Crisp Caravan Background Layer (Full Visibility, Non-Blurry) */
 .town-sketch-parallax-bg {
     position: absolute;
-    inset: 0;
-    background-image: url('assets/town-sketch.jpg');
+    inset: -60px 0;
+    background-image: url('assets/silk-route-caravan.jpg?v=37');
     background-size: cover;
-    background-position: center top;
-    opacity: 0.18;
-    mix-blend-mode: multiply;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    mix-blend-mode: normal;
+    filter: none;
+    will-change: transform;
     pointer-events: none;
     z-index: 1;
 }
@@ -344,7 +370,7 @@
     max-width: 1140px;
     margin: 0 auto;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 .section-kicker-gold {
@@ -357,12 +383,18 @@
     margin-bottom: 12px;
 }
 
+.chapter-silk-route .section-kicker-gold {
+    color: #F5CE85;
+    text-shadow: 0 2px 12px rgba(4, 9, 20, 0.95);
+}
+
 .silk-route-heading {
     font-family: var(--font-heading);
     font-size: clamp(2rem, 4vw, 3.2rem);
-    color: #12342A;
+    color: #FFFDF8;
     line-height: 1.2;
     margin-bottom: 24px;
+    text-shadow: 0 3px 18px rgba(4, 9, 20, 0.96), 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 
 .silk-route-grid {
@@ -373,27 +405,36 @@
     margin-top: 40px;
 }
 
+.silk-route-story-text {
+    background: rgba(6, 13, 27, 0.72);
+    border: 1px solid rgba(226, 182, 107, 0.35);
+    border-radius: 18px;
+    padding: 28px 30px;
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.48);
+}
+
 .silk-route-story-text p {
     font-size: 1.05rem;
-    color: #333333;
+    color: #FAF7F0;
     line-height: 1.8;
     margin-bottom: 20px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
 }
 
 .silk-route-story-text p strong {
-    color: #12342A;
+    color: #F5CE85;
 }
 
 .silk-route-quote-card {
-    background: #FFFFFF;
-    border: 1.5px solid rgba(226, 182, 107, 0.4);
-    border-left: 5px solid #12342A;
+    background: rgba(11, 33, 26, 0.85);
+    border: 1.5px solid rgba(226, 182, 107, 0.45);
+    border-left: 5px solid #E2B66B;
     border-radius: 12px;
     padding: 20px 24px;
     margin-top: 28px;
     font-style: italic;
-    color: #444;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    color: #FAF7F0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 /* Right Illustration Box */
@@ -402,7 +443,7 @@
     border-radius: 20px;
     overflow: hidden;
     border: 2px solid #E2B66B;
-    box-shadow: 0 20px 50px rgba(18, 52, 42, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
 }
 
 .silk-route-visual-card img {
@@ -422,7 +463,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(18, 52, 42, 0.95) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(6, 13, 27, 0.94) 100%);
     padding: 30px 24px 20px 24px;
     color: #FAF7F0;
 }
@@ -436,7 +477,7 @@
 
 .silk-visual-caption p {
     font-size: 0.85rem;
-    color: rgba(244, 240, 230, 0.8);
+    color: rgba(244, 240, 230, 0.9);
     margin: 0;
 }
 
@@ -449,13 +490,13 @@
 }
 
 .silk-stat-box {
-    background: #FFFFFF;
-    border: 1px solid rgba(226, 182, 107, 0.35);
+    background: rgba(6, 13, 27, 0.78);
+    border: 1px solid rgba(226, 182, 107, 0.45);
     border-radius: 16px;
     padding: 28px 20px;
     text-align: center;
-    box-shadow: 0 8px 24px rgba(18, 52, 42, 0.05);
-    transition: transform 0.3s;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, border-color 0.3s;
 }
 
 .silk-stat-box:hover {
@@ -466,7 +507,7 @@
 .silk-stat-number {
     font-family: var(--font-heading);
     font-size: 2.2rem;
-    color: #12342A;
+    color: #F5CE85;
     font-weight: 700;
     margin-bottom: 6px;
 }
@@ -474,7 +515,7 @@
 .silk-stat-label {
     font-size: 0.82rem;
     font-weight: 700;
-    color: #A37424;
+    color: #FAF7F0;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -954,9 +995,28 @@
    RESPONSIVE DESIGN (TABLETS & MOBILE)
    ========================================================================== */
 @media (max-width: 900px) {
+    .chapter-silk-route {
+        padding: 72px 16px 84px 16px;
+    }
+
+    .silk-route-container,
+    .silk-route-grid > * {
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .silk-route-story-text {
+        padding: 22px 18px;
+    }
+
+    .silk-route-visual-card img {
+        height: 290px;
+    }
+
     .silk-route-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
     }
 
     .silk-stats-grid {
@@ -1036,24 +1096,27 @@
     }
 }
 
-/* === MANUAL FIX: HERITAGE SILK ROUTE SKETCH === */
+/* === MANUAL FIX: HERITAGE SILK ROUTE CARAVAN === */
 .chapter-silk-route {
     position: relative !important;
     isolation: isolate !important;
 }
 
 .town-sketch-parallax-bg {
-    background-image: url('assets/town-sketch.jpg') !important;
+    background-image: url('assets/silk-route-caravan.jpg?v=37') !important;
     background-size: cover !important;
-    background-position: center !important;
-    opacity: 0.25 !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    opacity: 1 !important;
+    mix-blend-mode: normal !important;
+    filter: none !important;
     z-index: 1 !important;
     pointer-events: none !important;
 }
 
 .silk-route-container {
     position: relative !important;
-    z-index: 2 !important;
+    z-index: 3 !important;
 }
 
 /* === MANUAL FIX: HIDE MODALS, DRAWERS & TOAST ON HERITAGE PAGE === */
